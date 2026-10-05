@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 from demo_run import CMS, write_demo_docs
 from pydantic import ValidationError
+from rich.text import Text
 from typer.testing import CliRunner
 
 from plan_diff.cli import app
@@ -17,17 +18,17 @@ from plan_diff.models.run import ApiUsage
 NOW = "2026-10-05T12:00:00+00:00"
 
 
-def invoke(docs: Path, out: Path, *kind: str) -> tuple[int, str]:
+def invoke(docs: Path, out: Path, *kind: str, color: bool = False) -> tuple[int, str]:
     args = ["run", "--docs", str(docs), "--cms", str(CMS), "--plans", "H9999-001"]
     args += ["--years", "2026,2027", "--out", str(out), "--run-id", "k", "--now", NOW, *kind]
-    result = CliRunner().invoke(app, args)
+    result = CliRunner().invoke(app, args, color=color)
     return result.exit_code, result.output
 
 
 def test_run_refuses_without_a_data_kind(tmp_path: Path) -> None:
     write_demo_docs(tmp_path / "docs")
-    code, output = invoke(tmp_path / "docs", tmp_path / "runs")
-    assert code == 2 and "--data-kind" in output
+    code, output = invoke(tmp_path / "docs", tmp_path / "runs", color=True)
+    assert code == 2 and "--data-kind" in Text.from_ansi(output).plain
     assert not (tmp_path / "runs" / "k").exists()
 
 
