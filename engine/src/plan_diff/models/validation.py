@@ -18,6 +18,20 @@ class Verdict(StrEnum):
     MISMATCH = "mismatch"
     NOT_IN_CMS = "not_in_cms"
     NOT_EXTRACTED = "not_extracted"
+    # Release 0.1.0: the two sides state different periods or units, so they cannot be checked.
+    # Counted apart from MISMATCH and left out of the match rate; still goes to review.
+    NOT_COMPARABLE = "not_comparable"
+
+
+# Release 0.1.0: disagreement() reasons that mean "cannot check", not "the values differ".
+NOT_COMPARABLE_REASONS = frozenset({"period not comparable", "unit not comparable"})
+
+
+def verdict_for(reason: str | None) -> Verdict:
+    """The verdict for a disagreement() reason when both sides have a value."""
+    if reason is None:
+        return Verdict.MATCH
+    return Verdict.NOT_COMPARABLE if reason in NOT_COMPARABLE_REASONS else Verdict.MISMATCH
 
 
 def disagreement(
@@ -46,7 +60,7 @@ def disagreement(
     if pdf != cms:
         return "values differ"
     if pdf_unit is not None and cms_unit is not None and pdf_unit != cms_unit:
-        return "units differ"
+        return "unit not comparable"
     return None
 
 
@@ -61,7 +75,7 @@ class ValidationResult(StrictModel):
     cms_citation: Citation | None  # the CMS file row
     pdf_unit: Unit | None = None  # PR 7
     cms_unit: Unit | None = None  # PR 7
-    reason: str | None = None  # PR 7: why a mismatch is a mismatch
+    reason: str | None = None  # PR 7: why a mismatch (or, 0.1.0, a not comparable) is one
 
     @model_validator(mode="after")
     def _verdict_fits_values(self) -> Self:
@@ -69,9 +83,11 @@ class ValidationResult(StrictModel):
         why = None
         if pdf is not None and cms is not None:
             why = disagreement(self.field, pdf, self.pdf_unit, cms, self.cms_unit)
+        both = pdf is not None and cms is not None
         ok = {
-            Verdict.MATCH: pdf is not None and cms is not None and why is None,
-            Verdict.MISMATCH: why is not None,
+            Verdict.MATCH: both and why is None,
+            Verdict.MISMATCH: both and verdict_for(why) == Verdict.MISMATCH,
+            Verdict.NOT_COMPARABLE: both and verdict_for(why) == Verdict.NOT_COMPARABLE,
             Verdict.NOT_IN_CMS: pdf is not None and cms is None,
             Verdict.NOT_EXTRACTED: pdf is None,
         }[self.verdict]
@@ -90,9 +106,15 @@ class AccuracyRow(StrictModel):
     not_extracted: int
     not_in_cms: int
     match_rate: float | None  # matched / (matched + mismatched); None when nothing compared
+    not_comparable: int = 0  # Release 0.1.0: never part of match_rate
 
 
 class AccuracyTable(StrictModel):
     """PR 7: accuracy.json. One row per field and method, then one total row per method."""
 
     rows: tuple[AccuracyRow, ...]
+    # Release 0.1.0: which slice and run the numbers describe, so they are never quoted unlabeled
+    plans: tuple[PlanId, ...] = ()
+    years: tuple[PlanYear, ...] = ()
+    run_id: str | None = None
+    as_of: str | None = None  # the run's start date, YYYY-MM-DD

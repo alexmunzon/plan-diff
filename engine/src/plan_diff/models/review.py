@@ -20,6 +20,7 @@ class ReviewKind(StrEnum):
     CROSSWALK_ROW_MISSING = "crosswalk_row_missing"  # PR 8: never read as a termination
     SHOP_AGAIN_UNCERTAIN = "shop_again_uncertain"  # Review 2: a field that cannot decide the flag
     UNEXPECTED_UNIT = "unexpected_unit"  # Review 2: a yearly field whose cell states another period
+    NOT_COMPARABLE = "not_comparable"  # Release 0.1.0: PDF and CMS name different periods or units
 
 
 class Severity(StrEnum):

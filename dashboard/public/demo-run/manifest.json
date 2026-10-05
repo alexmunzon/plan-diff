@@ -4,7 +4,7 @@
   "started_at": "2026-10-05T12:00:00Z",
   "finished_at": "2026-10-05T12:00:00Z",
   "versions": {
-    "plan-diff": "0.0.0",
+    "plan-diff": "0.1.0",
     "pdfplumber": "0.11.10",
     "pypdf": "6.19.0",
     "polars": "1.44.2",
@@ -13,7 +13,8 @@
   "plans": [
     "H9999-001",
     "H9999-002",
-    "H9999-003"
+    "H9999-003",
+    "H9999-004"
   ],
   "years": [
     2026,
@@ -66,6 +67,28 @@
     },
     {
       "kind": "pdf",
+      "path": "H9999-004_2026_SB.pdf",
+      "sha256": "eb1c44d4189099a5f0ca17675faa8b0bd903c2d8c4f745ed387daeea65180ad5",
+      "size_bytes": 2952,
+      "status": "classified",
+      "document_id": "H9999-004_2026_SB",
+      "plan_id": "H9999-004",
+      "year": 2026,
+      "document_type": "SB"
+    },
+    {
+      "kind": "pdf",
+      "path": "H9999-004_2027_SB.pdf",
+      "sha256": "47f556ccbe356c2d489b5428283ff170cfc45b7d507e4859e9b3bb6b067d201d",
+      "size_bytes": 2961,
+      "status": "classified",
+      "document_id": "H9999-004_2027_SB",
+      "plan_id": "H9999-004",
+      "year": 2027,
+      "document_type": "SB"
+    },
+    {
+      "kind": "pdf",
       "path": "unlabeled_2026_SB.pdf",
       "sha256": "016a16aa4faf2c1d631fda6acffacfa3e223a4fa0670fa42fe6fa4e0bcf5386b",
       "size_bytes": 2949,
@@ -78,8 +101,8 @@
     {
       "kind": "cms",
       "path": "crosswalk_2027.csv",
-      "sha256": "799af4dae14cd39b3f5b1d637f5be09b5cda13127022f705f40aabb20381ea95",
-      "size_bytes": 336,
+      "sha256": "ec3f660cbf6ad20a74d89b4773feb0a4323efdc3071b3caa131a2012ef551c9f",
+      "size_bytes": 377,
       "status": null,
       "document_id": null,
       "plan_id": null,
@@ -89,8 +112,8 @@
     {
       "kind": "cms",
       "path": "landscape_2026.csv",
-      "sha256": "a4d4c2272da3055bc5c645346e8b104684d40aed0c4e289c525b34ded85934c8",
-      "size_bytes": 479,
+      "sha256": "6ca8005daab1eceec2c75e0c68d24704f7f1204a565445f3a040814d33d85a58",
+      "size_bytes": 565,
       "status": null,
       "document_id": null,
       "plan_id": null,
@@ -100,8 +123,8 @@
     {
       "kind": "cms",
       "path": "landscape_2027.csv",
-      "sha256": "f7d639e3e7849f11faaa2ba570aa24e21193cb97de0ac27bad2505d8c0198738",
-      "size_bytes": 310,
+      "sha256": "5655a6d1194e48b651a0cc9088c76ba7d5ffaf67d995e1ddc6342150daa2b9c4",
+      "size_bytes": 396,
       "status": null,
       "document_id": null,
       "plan_id": null,
@@ -343,9 +366,9 @@
     }
   ],
   "counts": {
-    "pdfs": 5,
-    "plan_records": 4,
-    "diffs": 3,
-    "review_items": 8
+    "pdfs": 7,
+    "plan_records": 6,
+    "diffs": 4,
+    "review_items": 10
   }
 }

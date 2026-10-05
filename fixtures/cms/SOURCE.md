@@ -16,8 +16,9 @@ column names are unconfirmed until Alex approves the real downloads; see `docs/c
 | `pbp_2026/*.txt` | PBP Benefits 2026 tables | https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/benefits-data/pbp-benefits-2026 |
 
 Crosswalk rows: H9999-001 continues; H9999-002 is consolidated into H9999-001 (SPEC example 2);
-H9999-003 is terminated (SPEC example 3); H9999-004 is new; H9998-010 renews with a service area
-reduction. Status codes N, R, C, T are described by ResDAC:
+H9999-003 is terminated (SPEC example 3); H9999-004 renews (it was "new" until release 0.1.0,
+which moved the new plan row to H9999-005 and added Landscape rows for H9999-004 so the demo can
+show an undecided plan); H9999-005 is new; H9998-010 renews with a service area reduction. Status codes N, R, C, T are described by ResDAC:
 https://resdac.org/cms-data/variables/relationship-code
 
 `landscape_2027.csv` and `pbp_2027/` (added in PR 9, also hand-typed and synthetic) give the

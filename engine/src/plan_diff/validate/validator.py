@@ -34,6 +34,7 @@ from plan_diff.models import (
     ValidationResult,
     Verdict,
     disagreement,
+    verdict_for,
 )
 
 _KIND = {p.field: p.kind for family in FAMILIES.values() for p in family}
@@ -122,7 +123,7 @@ def compare(
             verdict = Verdict.NOT_IN_CMS
         else:
             reason = disagreement(name, pdf.value, pdf.unit, cms.value, cms.unit)
-            verdict = Verdict.MATCH if reason is None else Verdict.MISMATCH
+            verdict = verdict_for(reason)
         results.append(
             ValidationResult(
                 plan_id=extracted.plan_id,
@@ -155,23 +156,33 @@ def _describe(value: FieldValue | None, unit: Unit | None) -> str:
 
 
 def review_items(results: Iterable[ValidationResult]) -> list[ReviewItem]:
-    """One low-confidence review item per mismatch, with both values and both citations."""
+    """One low-confidence review item per mismatch, with both values and both citations.
+    Release 0.1.0: a not comparable result gets its own medium item with no confidence score."""
     items = []
     for r in results:
-        if r.verdict != Verdict.MISMATCH or r.pdf_citation is None or r.cms_citation is None:
+        if r.verdict not in (Verdict.MISMATCH, Verdict.NOT_COMPARABLE):
             continue
-        severity = config.VALIDATE_SEVERITY.get(r.field.value, config.VALIDATE_SEVERITY_DEFAULT)
+        if r.pdf_citation is None or r.cms_citation is None:
+            continue
         pdf, cms = _describe(r.pdf_value, r.pdf_unit), _describe(r.cms_value, r.cms_unit)
+        if r.verdict == Verdict.MISMATCH:
+            kind = ReviewKind.PDF_CMS_MISMATCH
+            severity = config.VALIDATE_SEVERITY.get(r.field.value, config.VALIDATE_SEVERITY_DEFAULT)
+            confidence: float | None = config.VALIDATE_MISMATCH_CONFIDENCE
+        else:
+            kind = ReviewKind.NOT_COMPARABLE
+            severity = config.VALIDATE_NOT_COMPARABLE_SEVERITY
+            confidence = None
         items.append(
             ReviewItem(
-                kind=ReviewKind.PDF_CMS_MISMATCH,
+                kind=kind,
                 plan_id=r.plan_id,
                 year=r.year,
                 field=r.field,
                 evidence=(r.pdf_citation, r.cms_citation),
                 reason=f"PDF says {pdf}, CMS says {cms} ({r.reason})",
                 severity=Severity(severity),
-                confidence=config.VALIDATE_MISMATCH_CONFIDENCE,
+                confidence=confidence,
             )
         )
     return items
@@ -190,6 +201,7 @@ def _row(
         not_extracted=count[Verdict.NOT_EXTRACTED],
         not_in_cms=count[Verdict.NOT_IN_CMS],
         match_rate=count[Verdict.MATCH] / compared if compared else None,
+        not_comparable=count[Verdict.NOT_COMPARABLE],
     )
 
 

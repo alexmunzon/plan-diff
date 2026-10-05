@@ -45,6 +45,7 @@ from plan_diff.models.validation import (
     ValidationResult,
     Verdict,
     disagreement,
+    verdict_for,
 )
 
 # One per run output file (SPEC section 7). `plan-diff schema export` writes a JSON Schema for each.
@@ -102,5 +103,6 @@ __all__ = [
     "category_for",
     "crosswalk_status_from_cms",
     "disagreement",
+    "verdict_for",
     "normalize_plan_id",
 ]

@@ -311,7 +311,9 @@ def run(o: RunOptions, clock: Callable[[], datetime]) -> Path:
             path.write_text(record.model_dump_json(indent=2) + "\n")
         _plans_frame(list(records.values())).write_parquet(tmp / "plans.parquet")
         write_validation(validation, tmp / "validation.json")
-        write_accuracy(accuracy(validation), tmp / "accuracy.json")
+        labels = {"plans": plans, "years": years, "run_id": o.run_id}
+        labels["as_of"] = started.date().isoformat()  # Release 0.1.0: numbers carry their slice
+        write_accuracy(accuracy(validation).model_copy(update=labels), tmp / "accuracy.json")
         for plan_id, d in diffs.items():
             (tmp / "diff" / f"{plan_id}.json").write_text(d.model_dump_json(indent=2) + "\n")
         write_review_queue(review, tmp / "review_queue.jsonl")

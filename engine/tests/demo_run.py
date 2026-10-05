@@ -4,7 +4,9 @@ JSON files copied to dashboard/public/demo-run/. No PDF ever lands in the repo.
 The fake plans: H9999-001 continues and its premium rises from $0 to $25 (SPEC example 1; its
 specialist copay says $45 where CMS says $40, example 4); H9999-002 is consolidated into
 H9999-001 (example 2); H9999-003 is terminated (example 3). One extra SB has no plan id, so the
-rules cannot classify it and it goes to review (example 8).
+rules cannot classify it and it goes to review (example 8). Release 0.1.0 adds H9999-004, which
+continues unchanged except that its 2027 maximum out-of-pocket cell holds two unlabeled amounts:
+the rules keep the first at low confidence, so its shop-again flag is undecided and needs review.
 """
 
 import shutil
@@ -22,7 +24,7 @@ from plan_diff.run import RunOptions, run, summary
 REPO = Path(__file__).resolve().parents[2]
 CMS = REPO / "fixtures" / "cms"
 DEMO_OUT = REPO / "dashboard" / "public" / "demo-run"
-PLANS = ("H9999-001", "H9999-002", "H9999-003")
+PLANS = ("H9999-001", "H9999-002", "H9999-003", "H9999-004")
 NOW = datetime.fromisoformat("2026-10-05T12:00:00+00:00")
 F = FieldName
 
@@ -49,6 +51,8 @@ SILVER = {
     F.DRUG_TIER_3: "$45 per prescription",
     F.OTC_ALLOWANCE: "$150 per year",
 }
+# Release 0.1.0: two amounts with no label saying which is in network, so neither can be trusted.
+AMBIGUOUS_MOOP = "$3,400 / $5,900"
 
 
 def write_demo_docs(docs: Path) -> None:
@@ -62,6 +66,12 @@ def write_demo_docs(docs: Path) -> None:
     make_plan_pdf(docs, year=2026, plan_ids=("H9999-002",), values=SILVER, plan_name="Silver HMO")
     bronze = {F.MONTHLY_PREMIUM: "$12 per month"}
     make_plan_pdf(docs, year=2026, plan_ids=("H9999-003",), values=bronze, plan_name="Bronze HMO")
+    platinum = {F.MONTHLY_PREMIUM: "$0 per month"}
+    ambiguous = platinum | {F.MOOP_IN_NETWORK: AMBIGUOUS_MOOP}
+    for year, values in ((2026, platinum), (2027, ambiguous)):
+        make_plan_pdf(
+            docs, year=year, plan_ids=("H9999-004",), values=values, plan_name="Platinum HMO"
+        )
     make_plan_pdf(docs, year=2026, plan_ids=(), document_type=sb, name="unlabeled_2026_SB.pdf")
 
 

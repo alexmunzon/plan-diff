@@ -176,7 +176,10 @@ def _doubts(
         if wanted and not isinstance(side.value, NotCovered) and side.unit != Unit(wanted):
             doubts.append(f"{year} value is {_words(side.unit)}, not {_words(Unit(wanted))}")
         if (bad := mismatches.get((year, name))) is not None:
-            doubts.append(f"{year} PDF value disagrees with CMS ({bad.reason})")
+            if bad.verdict == Verdict.NOT_COMPARABLE:
+                doubts.append(f"{year} PDF value cannot be checked against CMS ({bad.reason})")
+            else:
+                doubts.append(f"{year} PDF value disagrees with CMS ({bad.reason})")
             evidence += [bad.cms_citation] if bad.cms_citation else []
     if direction == Direction.NOT_COMPARABLE and not doubts:
         doubts.append("the two years are different kinds of value, so they cannot be compared")
@@ -266,6 +269,10 @@ def _service_area(
     return sorted(lost.values()), []
 
 
+# Release 0.1.0: a not comparable result blocks a deciding field just like a mismatch.
+_BLOCKING = frozenset({Verdict.MISMATCH, Verdict.NOT_COMPARABLE})
+
+
 def _mismatches(
     validation: Iterable[ValidationResult] | None, old: PlanRecord, new: PlanRecord
 ) -> Mismatches:
@@ -273,7 +280,7 @@ def _mismatches(
     return {
         (r.year, r.field): r
         for r in validation or ()
-        if r.verdict == Verdict.MISMATCH and (r.plan_id, r.year) in mine
+        if r.verdict in _BLOCKING and (r.plan_id, r.year) in mine
     }
 
 
@@ -327,10 +334,11 @@ def diff_plans(
     """Diff one plan into next year, following the crosswalk row, and decide shop again.
 
     `validation` (Review 2) is the PR 7 ValidationResult list for the old and new records; results
-    for other plans or years are ignored. A MISMATCH on a threshold field or a removed benefit stops
-    that field from deciding the flag. Without it, CMS disagreement is not checked (each field's
-    extraction confidence still is). shop_again is True when any confident reason fires, None when
-    none fires but a field could not decide, and False only when every deciding field is certain.
+    for other plans or years are ignored. A MISMATCH or NOT_COMPARABLE on a threshold field or a
+    removed benefit stops that field from deciding the flag. Without it, CMS disagreement is not
+    checked (each field's extraction confidence still is). shop_again is True when any confident
+    reason fires, None when none fires but a field could not decide, and False only when every
+    deciding field is certain.
     """
     if crosswalk_row is None:
         return _undecided(old)

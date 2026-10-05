@@ -1,6 +1,6 @@
 [project]
 name = "plan-diff"
-version = "0.0.0"
+version = "0.1.0"
 description = "Turn public carrier benefit PDFs into one canonical plan schema with page provenance, then diff plan years. Public data only."
 requires-python = ">=3.12,<3.13"
 license = "MIT"

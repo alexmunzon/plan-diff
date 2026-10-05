@@ -126,7 +126,8 @@ def test_copay_vs_coinsurance_is_a_mismatch() -> None:
 def test_units_must_agree_outside_allowances() -> None:
     pdf = _field(F.INPATIENT_STAY, Copay(amount=Decimal("295")), Unit.PER_STAY)
     cms = _cms(F.INPATIENT_STAY, Copay(amount=Decimal("295")), Unit.PER_DAY)
-    assert _one(pdf, cms, F.INPATIENT_STAY).reason == "units differ"
+    result = _one(pdf, cms, F.INPATIENT_STAY)
+    assert (result.verdict, result.reason) == (Verdict.NOT_COMPARABLE, "unit not comparable")
 
 
 @pytest.mark.parametrize(
@@ -134,8 +135,8 @@ def test_units_must_agree_outside_allowances() -> None:
     [
         (Unit.PER_QUARTER, Unit.PER_YEAR, "200", Verdict.MATCH, None),
         (Unit.PER_QUARTER, Unit.PER_YEAR, "150", Verdict.MISMATCH, "yearly amounts differ"),
-        (Unit.PER_QUARTER, None, "200", Verdict.MISMATCH, "period not comparable"),
-        (None, Unit.PER_YEAR, "200", Verdict.MISMATCH, "period not comparable"),
+        (Unit.PER_QUARTER, None, "200", Verdict.NOT_COMPARABLE, "period not comparable"),
+        (None, Unit.PER_YEAR, "200", Verdict.NOT_COMPARABLE, "period not comparable"),
     ],
 )
 def test_allowances_compare_yearly(
