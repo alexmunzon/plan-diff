@@ -108,7 +108,7 @@ shop-again flag with reasons), `review_queue.jsonl`.
    the diff; the shop-again flag stays off.
 6. **Must refuse, hash mismatch.** `plan-diff fetch` given a file whose SHA-256 differs from the manifest refuses it,
    writes nothing to `data/raw/`, and exits non-zero naming the expected and received hashes.
-7. **Must never commit a carrier PDF.** A test fails if any `.pdf` outside `tests/` generated fixtures is tracked by git.
+7. **Must never commit a carrier PDF.** A test fails if any `.pdf` is tracked by git anywhere (test PDFs are generated into a temp folder).
 8. **Jev and LLM off.** With both off, documents the rules cannot classify or fields they cannot read go to the review
    queue, the run completes, and the manifest shows zero calls and zero cost.
 
