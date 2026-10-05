@@ -2,21 +2,23 @@
 
 from typing import Annotated, Literal, Self
 
-from pydantic import AwareDatetime, Field, HttpUrl, StrictInt, model_validator
+from pydantic import AwareDatetime, Field, HttpUrl, StrictInt, StringConstraints, model_validator
 
 from plan_diff.models.ids import (
     Carrier,
     DocumentType,
-    NonEmpty,
     PlanId,
     PlanYear,
     Sha256,
     StrictModel,
 )
 
+# Also the file name in data/raw: only lowercase letters, digits, and dashes (no "/" or ".").
+DocumentId = Annotated[str, StringConstraints(pattern=r"^[a-z0-9-]+$")]
+
 
 class SourceDocument(StrictModel):
-    document_id: NonEmpty
+    document_id: DocumentId
     url: HttpUrl | None  # direct file URL; None until someone finds it by hand
     sha256: Sha256 | None  # None until the file is pinned by its first fetch
     size_bytes: Annotated[StrictInt, Field(ge=1)] | None

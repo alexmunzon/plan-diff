@@ -39,6 +39,33 @@ def file_name(doc: SourceDocument) -> str:
     return doc.document_id + (".zip" if doc.document_type.startswith("CMS_") else ".pdf")
 
 
+def _expected_magic(doc: SourceDocument) -> tuple[bytes, str]:
+    """The first bytes a real file of this type starts with, and a plain name for the type."""
+    if doc.document_type.startswith("CMS_"):
+        return b"PK\x03\x04", "ZIP"
+    return b"%PDF-", "PDF"
+
+
+def _check_content(doc: SourceDocument, path: Path) -> None:
+    magic, kind = _expected_magic(doc)
+    with path.open("rb") as fh:
+        head = fh.read(len(magic))
+    if head != magic:
+        raise FetchRefused(
+            f"{doc.document_id}: the server sent something that is not a {kind} "
+            f"(it starts with {head!r}). Nothing was written."
+        )
+
+
+def _quarantine(path: Path, out: Path) -> Path:
+    """Move a bad file out of the way so no later step reads it."""
+    rejected = out / ".rejected"
+    rejected.mkdir(exist_ok=True)
+    target = rejected / path.name
+    os.replace(path, target)
+    return target
+
+
 def _download(client: httpx.Client, doc: SourceDocument, out: Path, max_bytes: int) -> Path:
     """Stream to a temp file in `out` and return its path. The caller moves or deletes it."""
     fd, tmp_name = tempfile.mkstemp(dir=out, prefix=f".{doc.document_id}.", suffix=".part")
@@ -47,6 +74,11 @@ def _download(client: httpx.Client, doc: SourceDocument, out: Path, max_bytes: i
         with os.fdopen(fd, "wb") as fh:
             ua = {"User-Agent": USER_AGENT}
             with client.stream("GET", str(doc.url), headers=ua) as response:
+                asked, landed = httpx.URL(str(doc.url)).host, response.url.host
+                if landed != asked:
+                    raise FetchRefused(
+                        f"{doc.document_id}: redirected from {asked} to {landed}, another host"
+                    )
                 response.raise_for_status()
                 declared = int(response.headers.get("Content-Length") or 0)
                 if declared > max_bytes:
@@ -105,33 +137,41 @@ def fetch_manifest(
             failed = True
             continue
         dest = out / file_name(doc)
-        if doc.sha256 is not None and dest.exists() and _sha256(dest) == doc.sha256:
-            echo(f"already have {doc.document_id}")
-            continue
+        if dest.exists():
+            if doc.sha256 is not None and _sha256(dest) == doc.sha256:
+                echo(f"already have {doc.document_id}")
+                continue
+            moved = _quarantine(dest, out)
+            echo(
+                f"quarantined {doc.document_id}: the file already in {out} does not match the "
+                f"manifest hash. Moved to {moved}."
+            )
         if not first_request:
             sleep(settings.delay_s)
         first_request = False
+        tmp: Path | None = None
         try:
             tmp = _download(client, doc, out, settings.max_bytes)
-        except (FetchRefused, httpx.HTTPError) as exc:
-            echo(
-                f"refused {exc}"
-                if isinstance(exc, FetchRefused)
-                else f"failed {doc.document_id}: {exc}"
-            )
+            _check_content(doc, tmp)
+            received = _sha256(tmp)
+            if doc.sha256 is not None and received != doc.sha256:
+                raise FetchRefused(
+                    f"{doc.document_id}: hash mismatch. "
+                    f"expected {doc.sha256}, received {received}. Nothing was written."
+                )
+            size = tmp.stat().st_size
+            os.replace(tmp, dest)
+        except FetchRefused as exc:
+            echo(f"refused {exc}")
             failed = True
             continue
-        received = _sha256(tmp)
-        if doc.sha256 is not None and received != doc.sha256:
-            tmp.unlink()
-            echo(
-                f"refused {doc.document_id}: hash mismatch. "
-                f"expected {doc.sha256}, received {received}. Nothing was written."
-            )
+        except httpx.HTTPError as exc:
+            echo(f"failed {doc.document_id}: {exc}")
             failed = True
             continue
-        size = tmp.stat().st_size
-        os.replace(tmp, dest)
+        finally:
+            if tmp is not None:
+                tmp.unlink(missing_ok=True)  # a no-op once the file was moved into place
         if doc.sha256 is None:
             updated[doc.document_id] = doc.model_copy(
                 update={"sha256": received, "size_bytes": size, "retrieved_at": now()}
@@ -141,5 +181,16 @@ def fetch_manifest(
             echo(f"fetched {doc.document_id}: hash matches")
     if pin and any(updated[d.document_id] is not d for d in manifest.documents):
         new = manifest.model_copy(update={"documents": tuple(updated.values())})
-        manifest_path.write_text(new.model_dump_json(indent=2) + "\n")
+        _write_atomically(manifest_path, new.model_dump_json(indent=2) + "\n")
     return 1 if failed else 0
+
+
+def _write_atomically(path: Path, text: str) -> None:
+    """Write to a temp file next to `path`, then swap it in, so a crash never leaves half a file."""
+    fd, tmp_name = tempfile.mkstemp(dir=path.parent, prefix=f".{path.name}.", suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w") as fh:
+            fh.write(text)
+        os.replace(tmp_name, path)
+    finally:
+        Path(tmp_name).unlink(missing_ok=True)

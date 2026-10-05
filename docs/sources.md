@@ -33,7 +33,15 @@ From the repo root:
 - If the manifest has no hash yet, fetch refuses unless you pass `--pin`. With `--pin` it downloads
   the file and records its hash, size, and date in the manifest ("trust on first use"). Review the file,
   then commit the manifest change.
+- A redirect to a different host is refused (a redirect on the same host is fine), so a link can
+  never quietly hand us a file from somewhere else.
+- The file must look like what the manifest says: a carrier document must start with the PDF marker
+  `%PDF-`, and a CMS file with the ZIP marker. A web page (for example a login or landing page) is
+  refused, nothing is written, and nothing is pinned.
+- A file already in `data/raw/` that does not match the manifest hash (or has no hash to check) is
+  moved to `data/raw/.rejected/` with a message, then downloaded again, so no later step reads it.
 - Entries with no URL are skipped with a message.
+- A `document_id` may use only lowercase letters, digits, and dashes, because it becomes the file name.
 - `--only <document_id>` fetches one document.
 - It never runs in CI. Tests use a fake network instead.
 
@@ -45,5 +53,5 @@ Carrier PDFs are public but copyrighted, and they are large (an Evidence of Cove
 Committing them would republish someone else's work and bloat the repo forever, since git keeps every
 version. Instead the repo commits the manifest (where each file lives and its fingerprint) and the
 values we extract, each with a page citation. Anyone can rebuild `data/raw/` with `plan-diff fetch`
-and the hash check proves they got the same files. A test fails if any `.pdf` outside `tests/` is
-tracked by git.
+and the hash check proves they got the same files. A test fails if any `.pdf` at all is
+tracked by git; test PDFs are generated into a temporary folder each run.
