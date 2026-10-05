@@ -37,7 +37,14 @@ from plan_diff.models.ids import (
 from plan_diff.models.plan import PlanRecord
 from plan_diff.models.review import ReviewItem, ReviewKind, Severity
 from plan_diff.models.source import SourceDocument, SourcesManifest
-from plan_diff.models.validation import ValidationResult, Verdict
+from plan_diff.models.validation import (
+    ALLOWANCE_FIELDS,
+    AccuracyRow,
+    AccuracyTable,
+    ValidationResult,
+    Verdict,
+    disagreement,
+)
 
 # One per run output file (SPEC section 7). `plan-diff schema export` writes a JSON Schema for each.
 TOP_LEVEL_MODELS: tuple[type[BaseModel], ...] = (
@@ -46,9 +53,13 @@ TOP_LEVEL_MODELS: tuple[type[BaseModel], ...] = (
     ValidationResult,
     PlanDiff,
     ReviewItem,
+    AccuracyTable,
 )
 
 __all__ = [
+    "ALLOWANCE_FIELDS",
+    "AccuracyRow",
+    "AccuracyTable",
     "CMS_CROSSWALK_LABELS",
     "TOP_LEVEL_MODELS",
     "Carrier",
@@ -84,5 +95,6 @@ __all__ = [
     "Verdict",
     "category_for",
     "crosswalk_status_from_cms",
+    "disagreement",
     "normalize_plan_id",
 ]
