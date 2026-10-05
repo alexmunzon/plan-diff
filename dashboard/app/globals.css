@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+/* Design tokens copied from agency-intake-kit at a54faee (docs/design.md there). Colors are Tailwind's
+   built-in palette used directly in class names: slate neutrals, one indigo accent, and the fixed
+   severity colors in components/severity-badge.tsx, each paired with an icon and a word.
+   Dark mode is a class on <html>: the layout's inline script sets it before paint from the saved
+   choice, or from the system setting when there is none. The header toggle flips it. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.dark {
+  color-scheme: dark;
+}
