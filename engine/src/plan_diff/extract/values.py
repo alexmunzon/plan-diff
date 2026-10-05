@@ -14,8 +14,8 @@ from plan_diff.models import Coinsurance, Copay, FieldName, FieldValue, Money, N
 _MONEY = re.compile(r"\$\s?(\d{1,3}(?:,\d{3})+|\d+)(\.\d{1,2})?")
 _PERCENT = re.compile(r"(\d{1,3}(?:\.\d{1,2})?)\s?%")
 _NOT_COVERED = re.compile(r"\bnot covered\b", re.IGNORECASE)
-_IN_NETWORK = re.compile(r"\bin[- ]network\b", re.IGNORECASE)
-_SEGMENT_SPLIT = re.compile(r"[,;/]|\bor\b", re.IGNORECASE)
+_SEGMENT_SPLIT = re.compile(r",(?!\d{3}\b)|[;/]|\bor\b", re.IGNORECASE)  # "$1,500" stays whole
+_PERIOD = re.compile(config.EXTRACT_PERIOD_PATTERN, re.IGNORECASE)
 _DAY_RANGE = re.compile(r"\bdays?\s+\d", re.IGNORECASE)
 
 
@@ -25,6 +25,8 @@ class FieldParser:
     kind: Literal["money", "copay"]  # what a dollar amount means for this field
     default_unit: Unit
     first_day_range: bool = False  # "$395 per day for days 1 to 5; $0 ..." keeps the first range
+    period: bool = False  # an allowance: a period it cannot map gives no unit, never the default
+    prefer: tuple[str, ...] = ("in-network",)  # keys of config.EXTRACT_PREFER_MARKERS, in order
 
     @property
     def label(self) -> re.Pattern[str]:
@@ -36,6 +38,8 @@ class Parsed:
     value: FieldValue
     unit: Unit | None
     multiple: bool  # the cell held two or more values; one was chosen by rule
+    picked: str = ""  # which rule chose it, for the review item: "in-network", ..., or "first"
+    unknown_period: str = ""  # a period phrase no Unit matches ("every 2 months"); unit is None
 
 
 def _tokens(text: str) -> list[tuple[int, Coinsurance | Decimal]]:
@@ -48,23 +52,35 @@ def _tokens(text: str) -> list[tuple[int, Coinsurance | Decimal]]:
     return sorted(found, key=lambda t: t[0])
 
 
-def _unit(text: str, default: Unit) -> Unit:
-    lowered = text.lower()
-    hits = [(lowered.find(p), u) for p, u in config.EXTRACT_UNIT_PHRASES.items() if p in lowered]
-    return Unit(min(hits)[1]) if hits else default
+def _unit(text: str) -> Unit | None:
+    """The earliest unit phrase in the text. "bi-annual" is not "annual"."""
+    hits = [
+        (m.start(), u)
+        for p, u in config.EXTRACT_UNIT_PHRASES.items()
+        if (m := re.search(rf"(?<![\w-]){re.escape(p)}\b", text, re.IGNORECASE))
+    ]
+    return Unit(min(hits)[1]) if hits else None
 
 
 def parse_value(text: str, parser: FieldParser) -> Parsed | None:
-    """Read one cell. Two or more values: the in-network one, else the first (lower confidence)."""
+    """Read one cell. Two or more values: the one the field's preferred markers pick (for example
+    in-network, or a drug tier's standard pharmacy price), else the first (lower confidence)."""
     tokens = _tokens(text)
     if not tokens:
         return Parsed(NotCovered(), None, False) if _NOT_COVERED.search(text) else None
-    chosen_text = text
+    chosen_text, picked = text, ""
     day_ranges = parser.first_day_range and _DAY_RANGE.search(text) is not None
     multiple = len(tokens) > 1 and not day_ranges
     if multiple:
-        marked = [s for s in _SEGMENT_SPLIT.split(text) if _IN_NETWORK.search(s) and _tokens(s)]
-        chosen_text = marked[0] if marked else text
+        segments = [s for s in _SEGMENT_SPLIT.split(text) if _tokens(s)]
+        rules: list[str] = []
+        for rule in parser.prefer:
+            marker = re.compile(config.EXTRACT_PREFER_MARKERS[rule], re.IGNORECASE)
+            marked = [s for s in segments if marker.search(s)]
+            if marked:
+                segments, rules = marked, [*rules, rule]
+        chosen_text = segments[0] if rules else text
+        picked = " and ".join(rules) or "first"
     token = _tokens(chosen_text)[0][1]
     value: FieldValue
     if isinstance(token, Coinsurance):
@@ -73,10 +89,13 @@ def parse_value(text: str, parser: FieldParser) -> Parsed | None:
         value = Money(amount=token)
     else:
         value = Copay(amount=token)
-    return Parsed(value, _unit(chosen_text, parser.default_unit), multiple)
+    unit = _unit(chosen_text)
+    if unit is None and parser.period and (m := _PERIOD.search(chosen_text)):
+        return Parsed(value, None, multiple, picked, unknown_period=m.group(0))
+    return Parsed(value, unit or parser.default_unit, multiple, picked)
 
 
-# PR 5: the cost-sharing family. PR 6 adds a drug family and an allowance family beside it.
+# PR 5: the cost-sharing family.
 COST_SHARING: tuple[FieldParser, ...] = (
     FieldParser(FieldName.MONTHLY_PREMIUM, "money", Unit.PER_MONTH),
     FieldParser(FieldName.MEDICAL_DEDUCTIBLE, "money", Unit.PER_YEAR),
@@ -89,4 +108,23 @@ COST_SHARING: tuple[FieldParser, ...] = (
     FieldParser(FieldName.OUTPATIENT_SURGERY, "copay", Unit.PER_VISIT),
 )
 
-FAMILIES: dict[str, tuple[FieldParser, ...]] = {"cost_sharing": COST_SHARING}
+# PR 6: the drug family. A tier is standard retail, 30-day supply, initial coverage stage.
+_TIER_PREFER = ("in-network", "standard pharmacy", "30-day supply")
+DRUGS: tuple[FieldParser, ...] = (
+    FieldParser(FieldName.DRUG_DEDUCTIBLE, "money", Unit.PER_YEAR),
+    FieldParser(FieldName.DRUG_TIER_1, "copay", Unit.PER_PRESCRIPTION, prefer=_TIER_PREFER),
+    FieldParser(FieldName.DRUG_TIER_2, "copay", Unit.PER_PRESCRIPTION, prefer=_TIER_PREFER),
+    FieldParser(FieldName.DRUG_TIER_3, "copay", Unit.PER_PRESCRIPTION, prefer=_TIER_PREFER),
+)
+
+# PR 6: the allowance family. The period (month, quarter, year) is the unit; see annualize().
+ALLOWANCES: tuple[FieldParser, ...] = (
+    FieldParser(FieldName.DENTAL_ALLOWANCE, "money", Unit.PER_YEAR, period=True),
+    FieldParser(FieldName.OTC_ALLOWANCE, "money", Unit.PER_YEAR, period=True),
+)
+
+FAMILIES: dict[str, tuple[FieldParser, ...]] = {
+    "cost_sharing": COST_SHARING,
+    "drugs": DRUGS,
+    "allowances": ALLOWANCES,
+}

@@ -23,8 +23,6 @@ from plan_diff.models import (
     Unit,
 )
 
-COST_FIELDS = {p.field for p in COST_SHARING}
-
 
 def _extract(tmp_path: Path, **kwargs: Any) -> tuple[FakePdf, ExtractionResult]:
     fake = make_plan_pdf(tmp_path, **kwargs)
@@ -36,7 +34,7 @@ def _extract(tmp_path: Path, **kwargs: Any) -> tuple[FakePdf, ExtractionResult]:
 def test_spec_example_1_premium_and_pages(tmp_path: Path, year: int, premium: str) -> None:
     values = {FieldName.MONTHLY_PREMIUM: f"${premium.split('.')[0]} per month"}
     fake, result = _extract(tmp_path, year=year, values=values)
-    assert set(result.fields) == COST_FIELDS
+    assert set(result.fields) == set(FieldName)  # PR 6 reads all 15
     assert result.review_items == ()
     got = result.fields[FieldName.MONTHLY_PREMIUM]
     assert got.value == Money(amount=Decimal(premium))
@@ -159,3 +157,4 @@ def test_drug_deductible_does_not_read_as_medical_deductible() -> None:
     pages = ["Prescription drug deductible $590 per year\nMedical deductible $0 per year"]
     result = extract_pages(pages, classify_pages(pages, document_id="d"))
     assert result.fields[FieldName.MEDICAL_DEDUCTIBLE].value == Money(amount=Decimal(0))
+    assert result.fields[FieldName.DRUG_DEDUCTIBLE].value == Money(amount=Decimal(590))

@@ -53,8 +53,28 @@ class Unit(StrEnum):
     PER_DAY = "per_day"
     PER_STAY = "per_stay"
     PER_MONTH = "per_month"
+    PER_QUARTER = "per_quarter"  # PR 6: OTC allowances are often paid every quarter
+    PER_HALF_YEAR = "per_half_year"  # PR 6: "every 6 months", "twice a year"
     PER_YEAR = "per_year"
     PER_PRESCRIPTION = "per_prescription"
+
+
+# How many times a period repeats in a plan year. Units that are not a period are left out.
+PERIODS_PER_YEAR: dict[Unit, int] = {
+    Unit.PER_MONTH: 12,
+    Unit.PER_QUARTER: 4,
+    Unit.PER_HALF_YEAR: 2,
+    Unit.PER_YEAR: 1,
+}
+
+
+def annualize(value: Decimal | int, unit: Unit | None) -> Decimal:
+    """A per-month, per-quarter, or per-year amount as a yearly amount: $50 a quarter is $200."""
+    _refuse_float(value)
+    if unit is None or unit not in PERIODS_PER_YEAR:
+        name = unit.value if unit is not None else "no unit"
+        raise ValueError(f"{name} is not a period, so it cannot be made yearly")
+    return Decimal(value) * PERIODS_PER_YEAR[unit]
 
 
 class Money(StrictModel):
