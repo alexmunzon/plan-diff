@@ -22,6 +22,7 @@ from plan_diff.models.fields import (
     Money,
     NotCovered,
     Unit,
+    annualize,
 )
 from plan_diff.models.ids import (
     Carrier,
@@ -77,6 +78,7 @@ __all__ = [
     "SourcesManifest",
     "StrictModel",
     "Unit",
+    "annualize",
     "ValidationResult",
     "Verdict",
     "category_for",

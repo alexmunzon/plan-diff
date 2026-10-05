@@ -86,3 +86,43 @@ EXTRACT_CONFIDENCE_CONFLICT = 0.3
 
 # Longest snippet kept on a citation (the schema allows 200 characters).
 EXTRACT_SNIPPET_CHARS = 120
+
+# PR 6
+# Deterministic extraction of the drug and allowance fields. These add to the PR 5 tables above.
+
+# Row labels for the drug and allowance fields (PR 5 rules: case-insensitive, start of line).
+# A tier label may name its drug group, for example "Tier 1 (preferred generic)".
+_TIER_GROUP = r"(?:\s*\(?(?:preferred |non-preferred )?(?:generics?|brands?)(?: drugs?)?\)?)?"
+EXTRACT_LABELS |= {
+    "drug_deductible": r"(?:part d (?:drug )?|(?:prescription |rx )?drug |pharmacy )deductible\b",
+    "drug_tier_1": r"tier 1\b" + _TIER_GROUP,
+    "drug_tier_2": r"tier 2\b" + _TIER_GROUP,
+    "drug_tier_3": r"tier 3\b" + _TIER_GROUP,
+    "dental_allowance": r"(?:comprehensive )?dental(?: services| care| benefits?)?"
+    r" (?:allowance|maximum|limit)\b",
+    "otc_allowance": r"(?:over[- ]the[- ]counter|otc)(?: \(otc\))?(?: items| products| benefits?)?"
+    r" (?:allowance|credit|card)\b",
+}
+
+# Allowance periods. The first phrase found in a cell wins over the field's default unit.
+EXTRACT_UNIT_PHRASES |= {
+    "per quarter": "per_quarter",
+    "a quarter": "per_quarter",
+    "every quarter": "per_quarter",
+    "each quarter": "per_quarter",
+    "quarterly": "per_quarter",
+    "every 3 months": "per_quarter",
+    "every three months": "per_quarter",
+    "every month": "per_month",
+    "each month": "per_month",
+    "every year": "per_year",
+    "each year": "per_year",
+}
+
+# When one cell holds two or more values, segments with these markers win, tried in this order;
+# a field lists the markers it uses. A drug tier takes the standard pharmacy, 30-day supply price.
+EXTRACT_PREFER_MARKERS: dict[str, str] = {
+    "in-network": r"\bin[- ]network\b",
+    "standard pharmacy": r"\bstandard\b",
+    "30-day supply": r"\b(?:30|thirty)[- ]day\b|\bone[- ]month\b",
+}

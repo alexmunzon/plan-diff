@@ -108,7 +108,8 @@ def extract_pages(page_texts: Sequence[str], classification: Classification) -> 
             flag(name, ReviewKind.CONFLICTING_VALUES, list(distinct.values()), reason)
         elif first.parsed.multiple:
             confidence = config.EXTRACT_CONFIDENCE_MULTIPLE
-            reason = f"two or more values in one cell: '{first.text}'; took in-network or first"
+            picked = first.parsed.picked
+            reason = f"two or more values in one cell: '{first.text}'; took the {picked} value"
             flag(name, ReviewKind.CONFLICTING_VALUES, [first], reason)
         fields[name] = ExtractedField(
             name=name,

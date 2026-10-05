@@ -32,11 +32,12 @@ changed after they are made. Money is always an exact decimal with 2 places, nev
 | drug_tier_2 | drugs | copay or coinsurance, per prescription |
 | drug_tier_3 | drugs | copay or coinsurance, per prescription |
 | dental_allowance | allowances | money, per year, or not covered |
-| otc_allowance | allowances | money, per month or per year, or not covered |
+| otc_allowance | allowances | money, per month, per quarter, or per year, or not covered |
 
 A value is one of: **money** (an amount), **copay** (a fixed amount per unit), **coinsurance** (a
 percent, 0 to 100), or **not covered**. An ExtractedField adds the unit, the citation, and a
-confidence score from 0 to 1.
+confidence score from 0 to 1. `annualize(amount, unit)` turns a per-month, per-quarter, or
+per-year amount into a yearly one, so allowances with different periods compare fairly.
 
 ## Run output models
 
