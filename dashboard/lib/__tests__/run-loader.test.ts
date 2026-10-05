@@ -1,0 +1,101 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { describe, expect, it } from "vitest";
+
+import { formatMoney } from "@/lib/money";
+import { overviewRows, shopAgainText, summary } from "@/lib/overview";
+import { DEMO_RUN_DIR, loadRunDir } from "@/lib/run-dir";
+import { parseRun, type RunFiles } from "@/lib/run-loader";
+
+async function demoFiles(): Promise<RunFiles> {
+  const read = (name: string) => readFile(path.join(DEMO_RUN_DIR, name), "utf8");
+  const plans = ["H9999-001", "H9999-002", "H9999-003", "H9999-004"];
+  return {
+    manifest: await read("manifest.json"),
+    accuracy: await read("accuracy.json"),
+    reviewQueue: await read("review_queue.jsonl"),
+    diffs: Object.fromEntries(await Promise.all(plans.map(async (p) => [p, await read(`diff/${p}.json`)]))),
+  };
+}
+
+describe("formatMoney", () => {
+  it.each([
+    ["25.00", "$25.00"],
+    ["1234567.50", "$1,234,567.50"],
+    ["-24.50", "-$24.50"],
+    ["0.00", "$0.00"],
+  ])("formats %s as %s", (text, shown) => {
+    expect(formatMoney(text)).toBe(shown);
+  });
+
+  it.each(["25.0.5", "1e3", "", "$5.00"])("refuses %j", (text) => {
+    expect(() => formatMoney(text)).toThrow(/money/);
+  });
+});
+
+describe("loadRunDir", () => {
+  it("loads the committed demo run with all four diffs and every review item", async () => {
+    const run = await loadRunDir(DEMO_RUN_DIR);
+    expect(run.manifest.run_id).toBe("demo");
+    expect(run.diffs.map((d) => d.old_plan_id)).toEqual(["H9999-001", "H9999-002", "H9999-003", "H9999-004"]);
+    expect(run.reviewQueue).toHaveLength(run.manifest.counts.review_items);
+  });
+
+  it("names the file it could not read", async () => {
+    await expect(loadRunDir(path.join(DEMO_RUN_DIR, "no-such-run"))).rejects.toThrow(/manifest\.json/);
+  });
+});
+
+describe("parseRun", () => {
+  it("refuses money written as a number", async () => {
+    const files = await demoFiles();
+    const manifest = JSON.parse(files.manifest);
+    manifest.jev.cost_usd = 0.5;
+    expect(() => parseRun({ ...files, manifest: JSON.stringify(manifest) })).toThrow(/cost_usd must be text/);
+    const diff = JSON.parse(files.diffs["H9999-001"]);
+    diff.changes[0].new.value.amount = 25;
+    expect(() => parseRun({ ...files, diffs: { ...files.diffs, "H9999-001": JSON.stringify(diff) } })).toThrow(
+      /diff\/H9999-001\.json: amount must be text/,
+    );
+  });
+
+  it("refuses an unknown shop again value and names the review queue line", async () => {
+    const files = await demoFiles();
+    const diff = JSON.parse(files.diffs["H9999-004"]);
+    diff.shop_again = "maybe";
+    expect(() => parseRun({ ...files, diffs: { ...files.diffs, "H9999-004": JSON.stringify(diff) } })).toThrow(
+      /shop_again/,
+    );
+    const broken = files.reviewQueue.replace('"severity":"high"', '"severity":"urgent"');
+    expect(() => parseRun({ ...files, reviewQueue: broken })).toThrow(/review_queue\.jsonl line 1/);
+  });
+});
+
+describe("overview data", () => {
+  it("puts flagged plans first and undecided after them, with review counts per plan", async () => {
+    const rows = overviewRows(await loadRunDir(DEMO_RUN_DIR));
+    expect(rows.map((r) => [r.planId, r.shopAgain, r.reviewCount])).toEqual([
+      ["H9999-001", true, 5],
+      ["H9999-002", true, 2],
+      ["H9999-003", true, 0],
+      ["H9999-004", null, 2],
+    ]);
+  });
+
+  it("never reads undecided as no", () => {
+    expect(shopAgainText(null)).toBe("Undecided, needs review");
+    expect(shopAgainText(true)).toBe("Yes");
+    expect(shopAgainText(false)).toBe("No");
+  });
+
+  it("summarizes the run with a labeled match rate", async () => {
+    expect(summary(await loadRunDir(DEMO_RUN_DIR))).toEqual({
+      compared: 4,
+      flagged: 3,
+      undecided: 1,
+      reviewItems: 10,
+      matchRate: "97.6%",
+      matchContext: "41 of 42 checked values, on synthetic fixtures, as of 2026-10-05",
+    });
+  });
+});
