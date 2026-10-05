@@ -20,7 +20,8 @@ plan schema with page citations, then diffs plan years. Public documents and CMS
 - Never read .env or any .env.* file. Secrets live only in .env, which git ignores.
 - Downloaded PDFs and CMS files go in data/raw/, which git ignores. Never commit them in bulk.
   Small test fixtures go in fixtures/ with a note on where they came from.
-- No PDF library yet. Picking one is a SPEC decision because of licenses (PyMuPDF is AGPL, this repo is MIT).
+- PDF libraries: pdfplumber (MIT) and pypdf (BSD-3) at runtime, reportlab (BSD) only to write test PDFs.
+  Never PyMuPDF (AGPL) or any GPL or AGPL package; check and record each new dependency's license.
 
 ## Gotchas
 - Use uv, not pip. Use polars, not pandas.
