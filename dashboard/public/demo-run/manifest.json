@@ -33,7 +33,8 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -46,7 +47,8 @@
       "year": 2027,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -59,7 +61,8 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -72,7 +75,8 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -85,7 +89,8 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -98,7 +103,8 @@
       "year": 2027,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -111,7 +117,8 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -124,7 +131,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -137,7 +145,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -150,7 +159,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -163,7 +173,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -176,7 +187,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -189,7 +201,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -202,7 +215,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -215,7 +229,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -228,7 +243,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -241,7 +257,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -254,7 +271,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -267,7 +285,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -280,7 +299,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -293,7 +313,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -306,7 +327,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -319,7 +341,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -332,7 +355,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -345,7 +369,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -358,7 +383,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -371,7 +397,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -384,7 +411,8 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     }
   ],
   "modes": {

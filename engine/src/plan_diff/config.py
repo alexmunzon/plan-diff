@@ -14,7 +14,13 @@ CLASSIFY_TITLE_LINES = 3
 
 # Medicare Advantage contract-plan id, H (local) or R (regional PPO), for example H0028-030.
 # A trailing segment is kept unless it is 000 (models.ids.normalize_plan_id). ASCII digits only.
-PLAN_ID_PATTERN = r"\b([HR][0-9]{4}-[0-9]{3}(?:-[0-9]{3})?)\b"
+# PR 15: also the real Wellcare forms "H5294_014_2026_TX_SB..." (file codes), "H5294 | 014 | 000",
+# and "H5294, Plan 014, 000". A plan number must be exactly 3 digits not followed by a digit, so
+# the file code "H5294_2026_TX" is not plan 202.
+PLAN_ID_PATTERN = (
+    r"(?<![A-Za-z0-9])([HR][0-9]{4}(?:-|_|\s?\|\s?|,\s?Plan\s)[0-9]{3}"
+    r"(?:(?:-|\s?\|\s?|,\s?)[0-9]{3})?)(?![0-9])"
+)
 
 # A plan year from 2010 to 2099. Not part of a dollar amount or a longer number.
 PLAN_YEAR_PATTERN = r"(?<![$\d.,])(20[1-9]\d)(?![\d])(?!,\d)"

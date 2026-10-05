@@ -16,7 +16,11 @@ _SEGMENT = r"(00[1-9]|0[1-9][0-9]|[1-9][0-9]{2})"
 PLAN_ID_REGEX = rf"^[HR][0-9]{{4}}-[0-9]{{3}}(-{_SEGMENT})?$"
 PlanId = Annotated[str, Field(pattern=PLAN_ID_REGEX)]
 
-_LOOSE_PLAN_ID = re.compile(r"([HR][0-9]{4})-([0-9]{1,3})(?:-([0-9]{1,3}))?")
+# PR 15: carriers also write the id as "H5294_014", "H5294 | 014 | 000", or "H5294, Plan 014, 000"
+# (all seen in the real Wellcare documents). Each is the same contract, plan, and segment.
+_LOOSE_PLAN_ID = re.compile(
+    r"([HR][0-9]{4})(?:-|_|\s*\|\s*|,\s*Plan\s+)([0-9]{1,3})(?:(?:-|_|\s*\|\s*|,\s*)([0-9]{1,3}))?"
+)
 
 
 def normalize_plan_id(text: str) -> str:
@@ -24,6 +28,7 @@ def normalize_plan_id(text: str) -> str:
 
     H0028-030-000 becomes H0028-030; H5294-014-001 stays H5294-014-001 (segments can carry
     different benefits). Short plan or segment numbers are zero padded (H0028-30 is H0028-030).
+    PR 15: "H5294_014", "H5294 | 014 | 000", and "H5294, Plan 014, 000" are H5294-014.
     Anything else, including S (Part D) and E (employer) contracts, raises ValueError.
     """
     match = _LOOSE_PLAN_ID.fullmatch(text.strip())

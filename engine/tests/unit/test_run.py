@@ -130,7 +130,7 @@ def test_a_bug_in_our_own_code_fails_the_run(
     def broken(*_: object) -> None:
         raise ValueError("bug in extraction")
 
-    monkeypatch.setattr("plan_diff.run.documents.extract_document", broken)
+    monkeypatch.setattr("plan_diff.run.documents.extract_pages", broken)
     write_demo_docs(tmp_path / "docs")
     with pytest.raises(ValueError, match="bug in extraction"):
         running.run(
