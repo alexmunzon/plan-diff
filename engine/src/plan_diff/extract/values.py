@@ -9,7 +9,16 @@ from decimal import Decimal
 from typing import Literal
 
 from plan_diff import config
-from plan_diff.models import Coinsurance, Copay, FieldName, FieldValue, Money, NotCovered, Unit
+from plan_diff.models import (
+    Coinsurance,
+    Copay,
+    FieldName,
+    FieldValue,
+    Money,
+    NotCovered,
+    Unit,
+)
+from plan_diff.models.fields import PERIODS_PER_YEAR
 
 _MONEY = re.compile(r"\$\s?(\d{1,3}(?:,\d{3})+|\d+)(\.\d{1,2})?")
 _PERCENT = re.compile(r"(\d{1,3}(?:\.\d{1,2})?)\s?%")
@@ -51,6 +60,7 @@ class Parsed:
     unknown_period: str = ""  # an allowance with no known period next to it; unit is None
     ambiguous: str = ""  # a digit right after the amount may be a footnote marker (Review 2)
     labeled: bool = False  # the pick's own words carry an explicit marker such as "in-network"
+    unexpected_unit: str = ""  # a yearly field (MOOP, deductible) whose own words state another
 
 
 @dataclass(frozen=True)
@@ -95,6 +105,21 @@ def _own_span(text: str, cands: list[_Cand], i: int, seg: tuple[int, int]) -> st
     before = max((text.rfind(p, start, c.start) for p in _PARENS), default=-1)
     after = [k for p in _PARENS if (k := text.find(p, c.end, end)) != -1]
     return text[max(start, before + 1) : min([end, *after])]
+
+
+_ATTACHED_PERIOD = re.compile(
+    r"^\s*(?:\(\s*|,\s*)(?<![\w-])("
+    + "|".join(re.escape(p) for p in sorted(config.EXTRACT_PERIOD_UNIT_PHRASES, key=len)[::-1])
+    + r")\b",
+    re.IGNORECASE,
+)
+
+
+def _attached_period(text: str, end: int) -> Unit | None:
+    """A period right after the value, inside a parenthesis or after a comma: "$1,500 (per year)",
+    "$50, every quarter". A parenthesis that starts with another value is not attached."""
+    m = _ATTACHED_PERIOD.match(text[end:])
+    return Unit(config.EXTRACT_PERIOD_UNIT_PHRASES[m.group(1).lower()]) if m else None
 
 
 def _unit(text: str, phrases: dict[str, str]) -> Unit | None:
@@ -166,15 +191,29 @@ def parse_value(text: str, parser: FieldParser) -> Parsed | None:
     if isinstance(token, NotCovered):
         return Parsed(value, None, multiple, picked, ambiguous=ambiguous, labeled=labeled)
     span = _own_span(clean, cands, index, seg)
+    stated = _unit(span, config.EXTRACT_PERIOD_UNIT_PHRASES) or _attached_period(clean, chosen.end)
     if parser.period:
-        unit = _unit(span, config.EXTRACT_PERIOD_UNIT_PHRASES)
+        unit = stated
         if unit is None:
             m = _PERIOD.search(span)
             unknown = m.group(0) if m else "none stated next to the amount"
             return Parsed(value, None, multiple, picked, unknown, ambiguous, labeled)
         return Parsed(value, unit, multiple, picked, ambiguous=ambiguous, labeled=labeled)
     if parser.units == "period":
-        unit = _unit(span, config.EXTRACT_PERIOD_UNIT_PHRASES)
+        unit = stated
+    elif parser.default_unit in PERIODS_PER_YEAR and stated not in (None, parser.default_unit):
+        # A MOOP or deductible that says "per month": keep the amount and its stated unit, but
+        # never at full confidence (Review 2, unexpected_unit).
+        assert stated is not None
+        return Parsed(
+            value,
+            stated,
+            multiple,
+            picked,
+            ambiguous=ambiguous,
+            labeled=labeled,
+            unexpected_unit=stated.value,
+        )
     else:
         unit = _unit(span, config.EXTRACT_COST_UNIT_PHRASES)
     if day_range:

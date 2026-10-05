@@ -49,12 +49,17 @@ ambiguous, the field is left unread or kept at lower confidence with a review it
 10. **Merge.** main added its own `# Review 2` block (diff) to `config.py`; this fix's constants
     follow under `# Review 2 (extraction)`. No other section moved.
 
+11. **Unexpected unit (coordinator follow-up 2).** A MOOP or medical or drug deductible whose own
+    words state a non-yearly period ("$3,400 per month") keeps the amount and the stated unit at
+    confidence 0.5 (below the 0.7 shop-again floor) with a new review kind `unexpected_unit`.
+12. **Attached periods.** For allowances and the premium, a period right after the chosen value
+    inside a parenthesis or after a comma ("$1,500 (per year)", "$50, every quarter") is that
+    value's own period. A parenthesis that starts with another value ("$50 ($200 a year)") is not.
+
 ## Risks and follow-ups
 
 - Section headings are a phrase list; real SBs may title sections differently. PR 15 must check.
-- Allowance cells that put the period in a separate column or a parenthesis ("$1,500 (per year)")
-  now go to review instead of being read. That is safe but adds review volume.
-- A deductible or MOOP cell that states a month ("$300 per month") keeps per year, the field's
-  default, with no review item. Rare on real documents; worth a flag later.
+- Allowance cells that put the period in a separate column now go to review instead of being
+  read. That is safe but adds review volume.
 - Treating an unreadable row as a conflict will lower confidence wherever EOC prose starts a line
   with a field label. Safe direction, but expect more review items on long documents.

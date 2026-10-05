@@ -19,6 +19,7 @@ class ReviewKind(StrEnum):
     UNKNOWN_PERIOD = "unknown_period"  # an allowance period no Unit matches; never made yearly
     CROSSWALK_ROW_MISSING = "crosswalk_row_missing"  # PR 8: never read as a termination
     SHOP_AGAIN_UNCERTAIN = "shop_again_uncertain"  # Review 2: a field that cannot decide the flag
+    UNEXPECTED_UNIT = "unexpected_unit"  # Review 2: a yearly field whose cell states another period
 
 
 class Severity(StrEnum):

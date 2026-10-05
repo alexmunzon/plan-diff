@@ -227,3 +227,39 @@ def test_unlabeled_first_pick_stays_06(line: str) -> None:
     assert (got.value, got.confidence) == (Money(amount=Decimal(25)), 0.6)
     (item,) = [i for i in result.review_items if i.field is FieldName.MONTHLY_PREMIUM]
     assert "explicitly labeled" not in item.reason
+
+
+# Coordinator follow-up 2: a yearly field stating another period is flagged, never silent.
+
+
+@pytest.mark.parametrize(
+    ("field", "line", "amount", "unit"),
+    [
+        (FieldName.MOOP_IN_NETWORK, "Maximum out-of-pocket $3,400 per month", 3400, Unit.PER_MONTH),
+        (FieldName.MEDICAL_DEDUCTIBLE, "Medical deductible $500 per month", 500, Unit.PER_MONTH),
+        (FieldName.DRUG_DEDUCTIBLE, "Part D deductible $100 every quarter", 100, Unit.PER_QUARTER),
+    ],
+)
+def test_yearly_field_with_another_period_is_unexpected_unit(
+    field: FieldName, line: str, amount: int, unit: Unit
+) -> None:
+    result = _run(line)
+    got = result.fields[field]
+    assert (got.value, got.unit) == (Money(amount=Decimal(amount)), unit)
+    assert got.confidence < 0.7
+    assert ReviewKind.UNEXPECTED_UNIT in _items(result, field)
+
+
+def test_yearly_field_stating_a_year_is_not_flagged() -> None:
+    result = _run("Maximum out-of-pocket $3,400 per year")
+    assert result.fields[FieldName.MOOP_IN_NETWORK].confidence == 0.9
+    assert _items(result, FieldName.MOOP_IN_NETWORK) == []
+
+
+@pytest.mark.parametrize(
+    ("text", "unit"),
+    [("$1,500 (per year)", Unit.PER_YEAR), ("$50, every quarter", Unit.PER_QUARTER)],
+)
+def test_attached_period_counts_for_an_allowance(text: str, unit: Unit) -> None:
+    parsed = parse_value(text, PARSERS[FieldName.OTC_ALLOWANCE])
+    assert parsed is not None and parsed.unit is unit and parsed.unknown_period == ""

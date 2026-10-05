@@ -164,6 +164,13 @@ def extract_pages(page_texts: Sequence[str], classification: Classification) -> 
                 "amount kept with no unit, so it cannot be made yearly"
             )
             flag(name, ReviewKind.UNKNOWN_PERIOD, [first], reason)
+        if first.parsed.unexpected_unit:
+            confidence = min(confidence, config.EXTRACT_CONFIDENCE_UNEXPECTED_UNIT)
+            reason = (
+                f"'{first.text}' states {first.parsed.unexpected_unit}, but this field is normally "
+                f"{parser.default_unit.value}; amount kept with the stated unit, check the document"
+            )
+            flag(name, ReviewKind.UNEXPECTED_UNIT, [first], reason)
         if first.parsed.ambiguous:
             confidence = min(confidence, config.EXTRACT_CONFIDENCE_AMBIGUOUS_DIGIT)
             reason = (

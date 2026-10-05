@@ -263,3 +263,8 @@ EXTRACT_CONFIDENCE_AMBIGUOUS_DIGIT = 0.6
 # above SHOP_AGAIN_CONFIDENCE_FLOOR so an in-network MOOP or premium can still decide the flag.
 EXTRACT_LABELED_RULES = frozenset({"in-network", "standard pharmacy"})
 EXTRACT_CONFIDENCE_LABELED = 0.85
+
+# A yearly field (MOOP, medical or drug deductible) whose own words state another period ("$3,400
+# per month") keeps the amount and the stated unit at this confidence, below
+# SHOP_AGAIN_CONFIDENCE_FLOOR, with an unexpected_unit review item.
+EXTRACT_CONFIDENCE_UNEXPECTED_UNIT = 0.5
