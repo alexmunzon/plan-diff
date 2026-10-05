@@ -8,7 +8,7 @@ from pydantic import model_validator
 from plan_diff.models.citation import Citation
 from plan_diff.models.fields import ExtractedField, FieldName, NotCovered
 from plan_diff.models.ids import NonEmpty, PlanId, PlanYear, StrictModel
-from plan_diff.models.review import ReviewItem
+from plan_diff.models.review import ReviewItem, ReviewKind, Severity
 
 
 class CrosswalkStatus(StrEnum):
@@ -74,9 +74,9 @@ class Direction(StrEnum):
     UP = "up"
     DOWN = "down"
     SAME = "same"
-    ADDED = "added"  # no value last year, or not covered last year
+    ADDED = "added"  # explicitly not covered last year, covered now (Review 2: absent is not added)
     REMOVED = "removed"  # explicitly not covered this year, with a citation
-    NOT_COMPARABLE = "not_comparable"  # different kind or unit, or absent this year (review)
+    NOT_COMPARABLE = "not_comparable"  # different kind or unit, or absent in either year (review)
 
 
 class FieldChange(StrictModel):
@@ -95,12 +95,12 @@ class FieldChange(StrictModel):
                 raise ValueError(f"{side.name} cannot describe {self.field}")
         if self.old is None and self.new is None:
             raise ValueError("a change needs an old or a new value")
-        if self.old is None and self.direction != Direction.ADDED:
-            raise ValueError("no old value means added")
+        if self.old is None and self.direction != Direction.NOT_COMPARABLE:
+            raise ValueError("no old value means not comparable (it may be an extraction miss)")
         if self.direction == Direction.ADDED and not (
-            self.old is None or isinstance(self.old.value, NotCovered)
+            self.old is not None and isinstance(self.old.value, NotCovered)
         ):
-            raise ValueError("added means there was no old value, or it was not covered")
+            raise ValueError("added needs an explicit not covered value last year")
         if self.new is None and self.direction != Direction.NOT_COMPARABLE:
             raise ValueError("no new value means not comparable (it may be an extraction miss)")
         if self.direction == Direction.REMOVED and not (
@@ -119,20 +119,29 @@ class PlanDiff(StrictModel):
     new_plan_id: PlanId | None  # None only for a terminated plan
     old_year: PlanYear
     new_year: PlanYear
-    crosswalk_status: CrosswalkStatus | None  # None only when undecided (no crosswalk row)
+    crosswalk_status: CrosswalkStatus | None  # None only when there is no crosswalk row
     changes: tuple[FieldChange, ...]
     shop_again: bool | None  # None means undecided: a person must look (see review)
     reasons: tuple[NonEmpty, ...]  # plain language, for example "premium up $25 a month"
     evidence: tuple[Citation, ...] = ()  # PR 8: the CMS crosswalk row behind the status
-    review: tuple[ReviewItem, ...] = ()  # PR 8: why the flag is undecided, if it is
+    review: tuple[ReviewItem, ...] = ()  # PR 8: why the flag is undecided, if it is (Review 2: or
+    # which fields could not decide it while another reason did)
 
     @model_validator(mode="after")
     def _consistent(self) -> Self:
         if self.new_year != self.old_year + 1:
             raise ValueError("new_year must be old_year + 1")
+        uncertain = any(
+            i.kind == ReviewKind.SHOP_AGAIN_UNCERTAIN and i.severity == Severity.HIGH
+            for i in self.review
+        )
+        if self.shop_again is False and uncertain:
+            raise ValueError("a field could not decide the flag, so it is undecided, never False")
         if self.shop_again is None:
-            if not self.review or self.reasons or self.changes:
-                raise ValueError("undecided needs a review item and no reasons or changes")
+            if not any(i.severity == Severity.HIGH for i in self.review) or self.reasons:
+                raise ValueError("undecided needs a high review item and no reasons")
+            if self.crosswalk_status is None and self.changes:
+                raise ValueError("with no crosswalk row, nothing is compared")
             if self.crosswalk_status is None and (self.old_plan_id is None or self.new_plan_id):
                 raise ValueError("with no crosswalk row, only the old plan id is known")
             if self.crosswalk_status is None:

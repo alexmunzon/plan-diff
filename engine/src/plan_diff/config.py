@@ -203,3 +203,13 @@ VALIDATE_MISMATCH_CONFIDENCE = 0.3
 SHOP_AGAIN_PREMIUM_UP = Decimal("20.00")  # monthly premium, per month
 SHOP_AGAIN_MOOP_UP = Decimal("1000.00")  # in-network maximum out-of-pocket, per year
 SHOP_AGAIN_DRUG_DEDUCTIBLE_UP = Decimal("0.01")  # any rise at all
+
+# Review 2
+# The shop-again flag is never confidently wrong (SPEC decisions 4 and 5). A threshold field
+# (premium, MOOP, drug deductible) or a removed benefit cannot decide the flag when either year's
+# value is below this confidence, missing, not comparable, in the wrong unit, or disagrees with CMS.
+SHOP_AGAIN_CONFIDENCE_FLOOR = 0.7  # a value at the floor is trusted; below it goes to review
+
+# County names compare after lowercasing, dropping punctuation, and dropping this trailing word, so
+# "Bexar County", "BEXAR", and "Bexar" are one county.
+COUNTY_SUFFIXES = ("county",)
