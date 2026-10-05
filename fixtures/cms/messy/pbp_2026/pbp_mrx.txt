@@ -1,0 +1,3 @@
+pbp_a_hnumber	pbp_a_plan_identifier	segment_id	mrx_alt_ded_amount
+H9999	001	000	0
+H9999	002	000	200

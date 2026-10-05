@@ -101,8 +101,8 @@ def test_custom_alias_table_and_unknown_carrier() -> None:
     assert custom.document_type.value == "EOC"
 
 
-def test_dollar_amounts_are_not_years_and_segments_are_dropped() -> None:
-    pages = ["Humana 2026 Summary of Benefits\nH0028-030-001\nDeductible $2050 or 2,020.00"]
+def test_dollar_amounts_are_not_years_and_zero_segments_are_dropped() -> None:
+    pages = ["Humana 2026 Summary of Benefits\nH0028-030-000\nDeductible $2050 or 2,020.00"]
     result = classify_pages(pages, document_id="d")
     assert result.status is ClassifyStatus.SURE
     assert result.year.value == "2026"

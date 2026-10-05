@@ -1,0 +1,7 @@
+pbp_a_hnumber	pbp_a_plan_identifier	segment_id	pbp_b7a_copay_amt_mc_min	pbp_b7d_copay_amt_mc_min
+H9999	001	000	0	40
+H9999	002	000	5	45
+H9999	003	000	0	40
+H9999	003	000	5	45
+S9999	001	000	0	0
+S9999	001	000	0	0

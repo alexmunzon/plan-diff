@@ -48,7 +48,7 @@ def premium(amount: str, doc: str = "sb-h0028-030-2026") -> ExtractedField:
     )
 
 
-@pytest.mark.parametrize("good", ["H0028-030", "H5294-014", "H5294-014-001"])
+@pytest.mark.parametrize("good", ["H0028-030", "H5294-014", "H5294-014-001", "R9999-001"])
 def test_plan_id_accepts_real_shapes(good: str) -> None:
     assert plan_id.validate_python(good) == good
 
@@ -64,6 +64,9 @@ def test_plan_id_accepts_real_shapes(good: str) -> None:
         " H0028-030",
         "",
         "H\u0660028-030",
+        "H0028-030-000",  # not canonical: normalize_plan_id drops segment 000
+        "S9999-001",  # Part D only
+        "E9999-001",  # employer group
     ],
 )
 def test_plan_id_rejects_bad_shapes(bad: str) -> None:
@@ -71,7 +74,7 @@ def test_plan_id_rejects_bad_shapes(bad: str) -> None:
         plan_id.validate_python(bad)
 
 
-@given(st.from_regex(r"\AH[0-9]{4}-[0-9]{3}(-[0-9]{3})?\Z"))
+@given(st.from_regex(r"\A[HR][0-9]{4}-[0-9]{3}(-(00[1-9]|0[1-9][0-9]|[1-9][0-9]{2}))?\Z"))
 def test_plan_id_accepts_any_valid_pattern(value: str) -> None:
     assert plan_id.validate_python(value) == value
 

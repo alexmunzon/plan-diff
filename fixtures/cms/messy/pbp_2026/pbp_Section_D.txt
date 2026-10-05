@@ -1,0 +1,9 @@
+pbp_a_hnumber	pbp_a_plan_identifier	segment_id	pbp_d_ann_deduct_amt	pbp_d_out_pocket_amt	note
+H9999	1	0	$1,234	N/A	café
+H9999	002	000	250.555	6700	
+S9999	001	000	-5	abc	
+			0	0	
+			0	0	
+H5294	014	001	0	Not covered	
+R9999	001	000	100	3400	
+H0028	030	000	0	5900	
