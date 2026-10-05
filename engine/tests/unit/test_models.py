@@ -309,3 +309,15 @@ def test_validation_verdict_must_fit_the_values() -> None:
             pdf_citation=None,
             cms_citation=None,
         )
+
+
+def test_source_without_url_needs_a_note_and_carrier_docs_need_a_plan() -> None:
+    manifest = examples()[1]
+    assert isinstance(manifest, SourcesManifest)
+    unpinned = manifest.documents[1].model_dump()
+    SourceDocument.model_validate({**unpinned, "url": None, "note": "find by hand"})
+    with pytest.raises(ValidationError):
+        SourceDocument.model_validate({**unpinned, "url": None})
+    with pytest.raises(ValidationError):
+        SourceDocument.model_validate({**unpinned, "plan_id": None})
+    SourceDocument.model_validate({**unpinned, "plan_id": None, "document_type": "CMS_PBP"})

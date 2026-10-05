@@ -6,7 +6,8 @@ plan schema with page citations, then diffs plan years. Public documents and CMS
 
 ## Commands
 - `npm run verify`            all checks: ruff, mypy, pytest, eslint, tsc, vitest, next build. Must pass before any commit.
-- `cd engine && uv run plan-diff version`   print the engine version (the only command so far).
+- `cd engine && uv run plan-diff version`   print the engine version.
+- `uv run --project engine plan-diff fetch --manifest sources/manifest.json --out data/raw [--only ID] [--pin]`   download sources (Alex approves the file list first; never in CI). See docs/sources.md.
 - `cd engine && uv run pytest -q tests/unit/test_cli.py -k version`   run one test file or test.
 - `cd dashboard && npm run dev`   local dashboard.
 

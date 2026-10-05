@@ -42,7 +42,7 @@ confidence score from 0 to 1.
 
 | Model | Run file | Key fields |
 |---|---|---|
-| SourcesManifest | `sources/manifest.json` | list of SourceDocument: id, url, sha256 (empty until first fetch), size, retrieved date, carrier, plan, year, document type. Ids must be unique; a pinned file must have size and date |
+| SourcesManifest | `sources/manifest.json` | list of SourceDocument: id, url, sha256 (empty until first fetch), size, retrieved date, carrier, plan (empty for CMS files), year, document type, landing page, verified, note. Ids must be unique; a pinned file must have size and date; a document with no url needs a note. See docs/sources.md |
 | PlanRecord | `plans/<plan>_<year>.json` | plan id, year, carrier, plan name, counties, fields by name, document ids. A PDF citation must point at a listed document |
 | ValidationResult | `validation.json` | field, PDF value, CMS value, verdict (match, mismatch, not_in_cms, not_extracted), PDF page and CMS row citations |
 | PlanDiff | `diff/<plan>.json` | old and new plan id, years, crosswalk status, changes, shop_again, reasons. Shop again is on exactly when there are reasons |
