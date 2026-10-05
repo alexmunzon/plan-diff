@@ -68,3 +68,11 @@ absent this year, which goes to review). Removed needs an explicit not covered v
 Labels come from CMS guidance and 42 CFR 422.530 (see the research file, section 1c). They are not
 yet confirmed against the crosswalk file's own codebook; PR 3 confirms them. An unknown label is an
 error, never a guess.
+
+## Validation (PR 7)
+
+ValidationResult also carries the unit on each side and, for a mismatch, the reason. Allowances
+compare as yearly amounts, and only when both sides name a period. AccuracyTable (`accuracy.json`)
+has one row per field and extraction method plus a total per method: matched, mismatched, not
+extracted, not in CMS, and the match rate over fields that could be compared. A ReviewItem may
+carry a confidence from 0 to 1.

@@ -86,6 +86,7 @@ def test_landscape_reads_typed_rows() -> None:
         "county",
         "premium",
         "premium_status",
+        "source_row",
     ]
     assert isinstance(df.schema["premium"], pl.Decimal)
     first = df.filter(pl.col("plan_id") == "H9999-001").to_dicts()[0]

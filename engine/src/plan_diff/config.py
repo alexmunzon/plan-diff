@@ -162,6 +162,41 @@ EXTRACT_PREFER_MARKERS: dict[str, str] = {
 CMS_MISSING_MARKERS = frozenset({"", "n/a", "na", "not applicable"})
 CMS_NOT_COVERED_MARKERS = frozenset({"not covered", "no coverage", "not offered"})
 
+# PR 7
+# Validation against CMS (SPEC section 6 step 6, decision 5: flag it, never pick).
+
+# The unit a CMS value carries, per field. None means CMS does not say: an allowance with no CMS
+# period is never compared ("period not comparable"); docs/cms-fields.md says the OTC and dental
+# period columns are not read yet. Inpatient is the per-day first day range.
+VALIDATE_CMS_UNITS: dict[str, str | None] = {
+    "monthly_premium": "per_month",
+    "medical_deductible": "per_year",
+    "moop_in_network": "per_year",
+    "pcp_copay": "per_visit",
+    "specialist_copay": "per_visit",
+    "emergency_room": "per_visit",
+    "urgent_care": "per_visit",
+    "inpatient_stay": "per_day",
+    "outpatient_surgery": "per_visit",
+    "drug_deductible": "per_year",
+    "drug_tier_1": "per_prescription",
+    "drug_tier_2": "per_prescription",
+    "drug_tier_3": "per_prescription",
+    "dental_allowance": None,
+    "otc_allowance": None,
+}
+
+# Severity of a PDF vs CMS mismatch. Fields behind the shop-again flag (decision 4) are high.
+VALIDATE_SEVERITY_DEFAULT = "medium"
+VALIDATE_SEVERITY: dict[str, str] = {
+    "monthly_premium": "high",
+    "moop_in_network": "high",
+    "drug_deductible": "high",
+}
+
+# Confidence on a mismatch review item: low, because two official sources disagree.
+VALIDATE_MISMATCH_CONFIDENCE = 0.3
+
 # PR 8
 # Shop-again thresholds (SPEC decision 4). A rise of at least this much flags the plan. Money is
 # Decimal. Termination, consolidation, a lost county, and a removed benefit always flag.

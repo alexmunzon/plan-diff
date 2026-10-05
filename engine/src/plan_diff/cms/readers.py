@@ -219,6 +219,7 @@ def read_landscape(
         pl.col(lay.county).alias("county"),
         "premium",
         "premium_status",
+        "source_row",  # PR 7: the CMS citation for the premium
     )
 
 
@@ -269,6 +270,8 @@ def read_pbp(
             pl.lit(name.value).alias("field"),
             "amount",
             "amount_status",
+            "source_row",  # PR 7: the CMS citation (file and row) for each value
+            pl.lit(where.file).alias("file"),
         )
         frames.append(rows)
     return pl.concat(frames)
