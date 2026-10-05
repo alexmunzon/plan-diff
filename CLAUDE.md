@@ -8,7 +8,7 @@ plan schema with page citations, then diffs plan years. Public documents and CMS
 - `npm run verify`            all checks: ruff, mypy, pytest, eslint, tsc, vitest, next build. Must pass before any commit.
 - `cd engine && uv run plan-diff version`   print the engine version.
 - `uv run --project engine plan-diff fetch --manifest sources/manifest.json --out data/raw [--only ID] [--pin]`   download sources (Alex approves the file list first; never in CI). See docs/sources.md.
-- `uv run --project engine plan-diff run --docs DIR --cms DIR --plans H9999-001,... --years 2026,2027 --out runs --run-id ID [--overwrite] [--now ISO]`   one run folder (docs/pr-9-notes.md).
+- `uv run --project engine plan-diff run --docs DIR --cms DIR --plans H9999-001,... --years 2026,2027 --data-kind synthetic|public --out runs --run-id ID [--overwrite] [--now ISO]`   one run folder (docs/pr-9-notes.md).
 - `uv run --project engine plan-diff unzip-cms --raw data/raw`   unzip downloaded CMS zips safely, each into its own folder.
 - `npm run demo`   synthetic demo run into dashboard/public/demo-run/ (JSON only, byte-identical every time).
 - `cd engine && uv run pytest -q tests/unit/test_cli.py -k version`   run one test file or test.

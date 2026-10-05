@@ -10,11 +10,11 @@ export const metadata: Metadata = {
     "Which Medicare Advantage plans changed enough that a client should shop again? Carrier documents compared year over year, every value cited to its page. Public data only.",
 };
 
-// Pages without an href are built in PRs 13 and 14 and show as "coming soon".
+// Pages without an href are built in PR 14 and show as "coming soon".
 const PAGES: { label: string; href?: string }[] = [
   { label: "Overview", href: "/" },
-  { label: "Plan comparison" },
-  { label: "Changes" },
+  { label: "Plan comparison", href: "/plans" },
+  { label: "Changes", href: "/changes" },
   { label: "Trust" },
   { label: "Documents" },
 ];

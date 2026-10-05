@@ -62,8 +62,8 @@ export function summary(run: Run) {
   const matched = totals.reduce((sum, row) => sum + row.matched, 0);
   const checked = matched + totals.reduce((sum, row) => sum + row.mismatched, 0);
   const { plans, as_of } = run.accuracy;
-  // H9999 is the made-up contract number every synthetic fixture uses.
-  const synthetic = plans.length > 0 && plans.every((plan) => plan.startsWith("H9999-"));
+  // The run says what it read (`plan-diff run --data-kind`); plan ids are never used to guess.
+  const synthetic = run.manifest.data_kind === "synthetic";
   const slice = `${synthetic ? "on synthetic fixtures" : `on ${plural(plans.length, "plan")}`}${as_of ? `, as of ${as_of}` : ""}`;
   return {
     compared: run.diffs.length,

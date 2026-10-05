@@ -21,7 +21,8 @@ PLANS = "H9999-001,H9999-002,H9999-003"
 
 def run_cli(docs: Path, out: Path, *extra: str, run_id: str = "r1") -> tuple[int, str]:
     args = ["run", "--docs", str(docs), "--cms", str(CMS), "--plans", PLANS]
-    args += ["--years", "2026,2027", "--out", str(out), "--run-id", run_id, "--now", NOW, *extra]
+    args += ["--years", "2026,2027", "--out", str(out), "--run-id", run_id, "--now", NOW]
+    args += ["--data-kind", "synthetic", *extra]
     result = CliRunner().invoke(app, args)
     return result.exit_code, result.output
 
@@ -89,7 +90,9 @@ def test_bad_options_are_refused_before_anything_is_written(tmp_path: Path) -> N
     code, output = run_cli(tmp_path / "docs", tmp_path / "runs", "--years", "2026,2028")
     assert code == 1 and "two years in a row" in output
     args = ["run", "--docs", str(tmp_path), "--cms", str(CMS), "--plans", PLANS, "--years"]
-    result = CliRunner().invoke(app, [*args, "2026", "--now", "2026-10-05T12:00:00"])
+    result = CliRunner().invoke(
+        app, [*args, "2026", "--data-kind", "synthetic", "--now", "2026-10-05T12:00:00"]
+    )
     assert result.exit_code == 2 and "time zone" in result.output
     assert not (tmp_path / "runs").exists() and not (tmp_path / "escape").exists()
 
@@ -113,6 +116,7 @@ def test_a_threshold_field_that_disagrees_with_cms_leaves_the_flag_undecided(
     write_demo_docs(tmp_path / "docs")
     args = ["run", "--docs", str(tmp_path / "docs"), "--cms", str(cms), "--plans", "H9999-001"]
     args += ["--years", "2026,2027", "--out", str(tmp_path / "runs"), "--run-id", "r", "--now", NOW]
+    args += ["--data-kind", "synthetic"]
     result = CliRunner().invoke(app, args)
     assert result.exit_code == 0, result.output
     diff = json.loads((tmp_path / "runs" / "r" / "diff" / "H9999-001.json").read_text())
@@ -132,7 +136,7 @@ def test_a_bug_in_our_own_code_fails_the_run(
         running.run(
             running.RunOptions(
                 docs=tmp_path / "docs", cms=CMS, plans=tuple(PLANS.split(",")),
-                years=(2026, 2027), out=tmp_path / "runs", run_id="r",
+                years=(2026, 2027), out=tmp_path / "runs", run_id="r", data_kind="synthetic",
             ),
             lambda: datetime.fromisoformat(NOW),
         )  # fmt: skip

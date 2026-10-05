@@ -20,6 +20,7 @@ export interface RunFiles {
 
 export const FILE_NAMES = { manifest: "manifest.json", accuracy: "accuracy.json", reviewQueue: "review_queue.jsonl" };
 const SEVERITIES = ["low", "medium", "high"];
+const DATA_KINDS = ["synthetic", "public"];
 const MONEY_KEYS = ["amount", "percent", "cost_usd"];
 
 function check(ok: boolean, where: string, problem: string): void {
@@ -54,8 +55,9 @@ function moneyIsText(value: unknown, where: string): void {
 
 export function parseRun(files: RunFiles): Run {
   const manifest = object(parseJson(files.manifest, FILE_NAMES.manifest), FILE_NAMES.manifest, [
-    "run_id", "plans", "years", "jev", "llm", "counts",
+    "run_id", "data_kind", "plans", "years", "inputs", "jev", "llm", "counts",
   ]);
+  check(DATA_KINDS.includes(manifest.data_kind as string), FILE_NAMES.manifest, "data_kind must be synthetic or public");
   moneyIsText(manifest, FILE_NAMES.manifest);
 
   const accuracy = object(parseJson(files.accuracy, FILE_NAMES.accuracy), FILE_NAMES.accuracy, ["rows"]);

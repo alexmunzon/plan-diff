@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "demo",
+  "data_kind": "synthetic",
   "started_at": "2026-10-05T12:00:00Z",
   "finished_at": "2026-10-05T12:00:00Z",
   "versions": {

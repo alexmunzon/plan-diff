@@ -3,6 +3,7 @@
 import json
 import os
 from datetime import UTC, datetime
+from enum import StrEnum
 from pathlib import Path
 from typing import Annotated
 
@@ -67,6 +68,13 @@ def fetch(
     raise typer.Exit(code)
 
 
+class DataKindChoice(StrEnum):
+    """PR 13: no default, so a run never labels itself by guessing."""
+
+    SYNTHETIC = "synthetic"
+    PUBLIC = "public"
+
+
 def _csv(text: str) -> tuple[str, ...]:
     return tuple(part.strip() for part in text.split(",") if part.strip())
 
@@ -77,6 +85,10 @@ def run_command(
     cms: Annotated[Path, typer.Option(help="Folder of CMS files, named as in fixtures/cms.")],
     plans: Annotated[str, typer.Option(help="Plan ids, comma separated: H9999-001,H9999-002.")],
     years: Annotated[str, typer.Option(help="One year, or two in a row: 2026,2027.")],
+    data_kind: Annotated[
+        DataKindChoice,
+        typer.Option("--data-kind", help="synthetic (test fixtures) or public (carrier files)."),
+    ],
     out: Annotated[Path, typer.Option(help="Folder that holds run folders.")] = Path("runs"),
     run_id: Annotated[str, typer.Option("--run-id", help="Name of this run's folder.")] = "",
     overwrite: Annotated[bool, typer.Option(help="Replace an existing run folder.")] = False,
@@ -102,6 +114,7 @@ def run_command(
         years=year_numbers,
         out=out,
         run_id=run_id or (frozen or datetime.now(UTC)).strftime("%Y%m%dT%H%M%SZ"),
+        data_kind="synthetic" if data_kind is DataKindChoice.SYNTHETIC else "public",
         overwrite=overwrite,
     )
     try:
