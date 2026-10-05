@@ -11,6 +11,7 @@ class ReviewKind(StrEnum):
     PDF_CMS_MISMATCH = "pdf_cms_mismatch"
     RULE_LLM_DISAGREE = "rule_llm_disagree"
     NOT_EXTRACTED = "not_extracted"
+    CONFLICTING_VALUES = "conflicting_values"  # one field read as two different values
     UNCLASSIFIED_DOCUMENT = "unclassified_document"
 
 
