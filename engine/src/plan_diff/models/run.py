@@ -25,6 +25,19 @@ class RunInput(StrictModel):
     plan_id: PlanId | None = None
     year: PlanYear | None = None
     document_type: DocumentType | None = None
+    # PR 14: PDFs only. The carrier's own https URL when sources/manifest.json pins this exact file
+    # (same SHA-256), else None (synthetic demo PDFs). Page count when the PDF could be opened.
+    source_url: Annotated[str, Field(pattern=r"^https://[^\s]+$")] | None = None
+    page_count: Annotated[StrictInt, Field(ge=1)] | None = None
+
+
+class RunConfig(StrictModel):
+    """PR 14: the decision values this run used, so the dashboard never keeps its own copy."""
+
+    confidence_floor: Annotated[float, Field(ge=0, le=1)]  # a score, not money
+    premium_up: Amount
+    moop_up: Amount
+    drug_deductible_up: Amount
 
 
 class ApiUsage(StrictModel):
@@ -53,3 +66,4 @@ class RunManifest(StrictModel):
     llm: ApiUsage
     timings: tuple[StepTiming, ...]
     counts: dict[str, int]  # documents, plan records, diffs, review items
+    config: RunConfig  # PR 14

@@ -1,4 +1,4 @@
-import type { AccuracyTable, PlanDiff, ReviewItem, RunManifest } from "@/lib/types";
+import type { AccuracyTable, PlanDiff, PlanRecord, ReviewItem, RunManifest, ValidationResult } from "@/lib/types";
 
 // Parses one run's files from text, so the server (demo run) and the browser (a run you load) share
 // it. Pattern copied from agency-intake-kit lib/run-loader.ts (a54faee). Basic shape checks only: the
@@ -8,6 +8,8 @@ export interface Run {
   accuracy: AccuracyTable;
   diffs: PlanDiff[];
   reviewQueue: ReviewItem[];
+  validation: ValidationResult[];
+  plans: PlanRecord[];
 }
 
 export interface RunFiles {
@@ -16,12 +18,21 @@ export interface RunFiles {
   reviewQueue: string;
   /** diff/<old plan id>.json text, keyed by the old plan id. */
   diffs: Record<string, string>;
+  /** validation.json text (PR 14). Optional so a caller with only the PR 12 files still loads. */
+  validation?: string;
+  /** plans/<plan>_<year>.json text, keyed by the file name without .json (PR 14). */
+  plans?: Record<string, string>;
 }
 
-export const FILE_NAMES = { manifest: "manifest.json", accuracy: "accuracy.json", reviewQueue: "review_queue.jsonl" };
+export const FILE_NAMES = {
+  manifest: "manifest.json",
+  accuracy: "accuracy.json",
+  reviewQueue: "review_queue.jsonl",
+  validation: "validation.json",
+};
 const SEVERITIES = ["low", "medium", "high"];
 const DATA_KINDS = ["synthetic", "public"];
-const MONEY_KEYS = ["amount", "percent", "cost_usd"];
+const MONEY_KEYS = ["amount", "percent", "cost_usd", "premium_up", "moop_up", "drug_deductible_up"];
 
 function check(ok: boolean, where: string, problem: string): void {
   if (!ok) throw new Error(`${where}: ${problem}`);
@@ -55,9 +66,11 @@ function moneyIsText(value: unknown, where: string): void {
 
 export function parseRun(files: RunFiles): Run {
   const manifest = object(parseJson(files.manifest, FILE_NAMES.manifest), FILE_NAMES.manifest, [
-    "run_id", "data_kind", "plans", "years", "inputs", "jev", "llm", "counts",
+    "run_id", "data_kind", "plans", "years", "inputs", "jev", "llm", "counts", "config",
   ]);
   check(DATA_KINDS.includes(manifest.data_kind as string), FILE_NAMES.manifest, "data_kind must be synthetic or public");
+  const floor = object(manifest.config, `${FILE_NAMES.manifest} config`, ["confidence_floor"]).confidence_floor;
+  check(typeof floor === "number" && floor >= 0 && floor <= 1, FILE_NAMES.manifest, "confidence_floor must be a number from 0 to 1");
   moneyIsText(manifest, FILE_NAMES.manifest);
 
   const accuracy = object(parseJson(files.accuracy, FILE_NAMES.accuracy), FILE_NAMES.accuracy, ["rows"]);
@@ -87,10 +100,23 @@ export function parseRun(files: RunFiles): Run {
     return item as unknown as ReviewItem;
   });
 
+  const validation = parseJson(files.validation ?? "[]", FILE_NAMES.validation);
+  check(Array.isArray(validation), FILE_NAMES.validation, "expected a list");
+  moneyIsText(validation, FILE_NAMES.validation);
+
+  const plans = Object.entries(files.plans ?? {}).map(([name, text]) => {
+    const where = `plans/${name}.json`;
+    const plan = object(parseJson(text, where), where, ["plan_id", "year", "carrier", "fields", "documents"]);
+    moneyIsText(plan, where);
+    return plan as unknown as PlanRecord;
+  });
+
   return {
     manifest: manifest as unknown as RunManifest,
     accuracy: { plans: [], years: [], run_id: null, as_of: null, ...accuracy } as unknown as AccuracyTable,
     diffs: diffs.sort((a, b) => (a.old_plan_id ?? "").localeCompare(b.old_plan_id ?? "")),
     reviewQueue,
+    validation: validation as ValidationResult[],
+    plans: plans.sort((a, b) => `${a.plan_id} ${a.year}`.localeCompare(`${b.plan_id} ${b.year}`)),
   };
 }

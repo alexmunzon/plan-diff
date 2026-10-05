@@ -70,8 +70,8 @@ describe("Plan comparison", () => {
   it("links a page only to the carrier's https copy, never to a repo file", async () => {
     await show("H9999-001", (run) => {
       const input = run.manifest.inputs.find((i) => i.document_id === "H9999-001_2027_SB")!;
-      input.url = "https://carrier.example/sb-2027.pdf";
-      run.manifest.inputs.find((i) => i.document_id === "H9999-001_2026_SB")!.url = "/demo-run/x.pdf";
+      input.source_url = "https://carrier.example/sb-2027.pdf";
+      run.manifest.inputs.find((i) => i.document_id === "H9999-001_2026_SB")!.source_url = "/demo-run/x.pdf";
     });
     const links = screen.getAllByRole("link", { name: "H9999-001_2027_SB, page 1" });
     expect(links[0]).toHaveAttribute("href", "https://carrier.example/sb-2027.pdf#page=1");

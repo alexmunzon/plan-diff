@@ -1,6 +1,6 @@
 import { formatMoney } from "@/lib/money";
 import type { Run } from "@/lib/run-loader";
-import type { ChangeCategory, Citation, Direction, ExtractedField, FieldChange, PlanDiff, RunManifest } from "@/lib/types";
+import type { ChangeCategory, Citation, Direction, ExtractedField, FieldChange, FieldValue, PlanDiff, RunManifest } from "@/lib/types";
 
 // Turns diffs into what the Plan comparison and Changes pages show. Kept apart from the pages so it is easy to test.
 
@@ -24,9 +24,6 @@ export const FIELDS: [name: string, label: string][] = [
 ];
 
 export const fieldLabel = (name: string) => FIELDS.find(([key]) => key === name)?.[1] ?? name.replaceAll("_", " ");
-
-/** Mirrors the engine's config.SHOP_AGAIN_CONFIDENCE_FLOOR. A value at the floor is trusted. */
-export const CONFIDENCE_FLOOR = 0.7;
 
 export const CATEGORIES: [ChangeCategory, string][] = [
   ["premium", "Premium"],
@@ -63,8 +60,13 @@ const UNITS: Record<string, string> = {
 /** "$25.00 a month", "$45.00 copay a visit", "20% coinsurance a visit", "Not covered". Never a float. */
 export function valueText(field: ExtractedField | null): string {
   if (field === null) return "Not found in the document";
-  const unit = field.unit ? ` ${UNITS[field.unit] ?? field.unit.replaceAll("_", " ")}` : "";
-  const { value } = field;
+  return fieldValueText(field.value, field.unit);
+}
+
+/** One value and its unit, for a PDF or CMS side that has no ExtractedField around it. */
+export function fieldValueText(value: FieldValue | null, unitName: string | null | undefined): string {
+  if (value === null) return "No value";
+  const unit = unitName ? ` ${UNITS[unitName] ?? unitName.replaceAll("_", " ")}` : "";
   switch (value.kind) {
     case "money": return `${formatMoney(value.amount)}${unit}`;
     case "copay": return `${formatMoney(value.amount)} copay${unit}`;
@@ -86,21 +88,29 @@ export function citationText(citation: Citation): string {
 export function carrierPageUrl(manifest: RunManifest, citation: Citation): string | null {
   if (citation.method === "cms") return null;
   const input = manifest.inputs.find((item) => item.kind === "pdf" && item.document_id === citation.document_id);
-  if (!input?.url) return null;
+  return httpsPageUrl(input?.source_url, citation.page);
+}
+
+/** The recorded https URL with #page=N, or null for anything else (no URL, http, a path on this site). */
+export function httpsPageUrl(source: string | null | undefined, page?: number): string | null {
+  if (!source) return null;
   try {
-    const url = new URL(input.url);
+    const url = new URL(source);
     if (url.protocol !== "https:") return null;
-    url.hash = `page=${citation.page}`;
+    if (page !== undefined) url.hash = `page=${page}`;
     return url.toString();
   } catch {
     return null;
   }
 }
 
-/** Shown only below the floor, because only then does it change what a broker can quote. */
-export function lowConfidence(field: ExtractedField | null): string | null {
-  if (field === null || field.confidence >= CONFIDENCE_FLOOR) return null;
-  return `Read with confidence ${field.confidence}, below ${CONFIDENCE_FLOOR}`;
+/**
+ * Shown only below the floor, because only then does it change what a broker can quote. The floor
+ * is the one the run used (manifest config), so it can never drift from the engine. At the floor is trusted.
+ */
+export function lowConfidence(field: ExtractedField | null, floor: number): string | null {
+  if (field === null || field.confidence >= floor) return null;
+  return `Read with confidence ${field.confidence}, below ${floor}`;
 }
 
 /** All 15 fields in order. A field the diff does not list was found in neither year. */
@@ -116,6 +126,9 @@ const REVIEW_KINDS: Record<string, string> = {
   not_extracted: "Not read from the document",
   crosswalk_row_missing: "No crosswalk row",
   unclassified_document: "Document not identified",
+  rule_llm_disagree: "Rules and LLM disagree",
+  unknown_period: "Unknown allowance period",
+  unexpected_unit: "Unexpected period for a yearly amount",
 };
 
 export const reviewKindText = (kind: string) => REVIEW_KINDS[kind] ?? kind.replaceAll("_", " ");

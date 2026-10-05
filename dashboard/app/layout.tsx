@@ -10,13 +10,12 @@ export const metadata: Metadata = {
     "Which Medicare Advantage plans changed enough that a client should shop again? Carrier documents compared year over year, every value cited to its page. Public data only.",
 };
 
-// Pages without an href are built in PR 14 and show as "coming soon".
 const PAGES: { label: string; href?: string }[] = [
   { label: "Overview", href: "/" },
   { label: "Plan comparison", href: "/plans" },
   { label: "Changes", href: "/changes" },
-  { label: "Trust" },
-  { label: "Documents" },
+  { label: "Trust", href: "/trust" },
+  { label: "Documents", href: "/documents" },
 ];
 
 // Runs before the first paint, so a dark page never flashes white. The saved choice wins;

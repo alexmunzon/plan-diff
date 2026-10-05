@@ -92,6 +92,10 @@ def run_command(
     out: Annotated[Path, typer.Option(help="Folder that holds run folders.")] = Path("runs"),
     run_id: Annotated[str, typer.Option("--run-id", help="Name of this run's folder.")] = "",
     overwrite: Annotated[bool, typer.Option(help="Replace an existing run folder.")] = False,
+    sources: Annotated[
+        Path | None,
+        typer.Option(help="sources/manifest.json, to record each fetched PDF's https URL."),
+    ] = None,
     now: Annotated[
         str | None, typer.Option(help="Freeze the clock (ISO time with zone) for a repeatable run.")
     ] = None,
@@ -116,6 +120,7 @@ def run_command(
         run_id=run_id or (frozen or datetime.now(UTC)).strftime("%Y%m%dT%H%M%SZ"),
         data_kind="synthetic" if data_kind is DataKindChoice.SYNTHETIC else "public",
         overwrite=overwrite,
+        sources=sources,
     )
     try:
         folder = running.run(options, clock)

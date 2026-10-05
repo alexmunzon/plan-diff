@@ -20,10 +20,15 @@ export async function loadRunDir(dir: string): Promise<Run> {
   const names = (await readdir(path.join(dir, "diff")).catch(() => [])).filter((name) => name.endsWith(".json"));
   const diffs: RunFiles["diffs"] = {};
   for (const name of names) diffs[name.slice(0, -".json".length)] = await read(dir, `diff/${name}`);
+  const planNames = (await readdir(path.join(dir, "plans")).catch(() => [])).filter((name) => name.endsWith(".json"));
+  const plans: Record<string, string> = {};
+  for (const name of planNames.sort()) plans[name.slice(0, -".json".length)] = await read(dir, `plans/${name}`);
   return parseRun({
     manifest,
     accuracy: await read(dir, FILE_NAMES.accuracy),
     reviewQueue: await read(dir, FILE_NAMES.reviewQueue),
     diffs,
+    validation: await read(dir, FILE_NAMES.validation),
+    plans,
   });
 }
