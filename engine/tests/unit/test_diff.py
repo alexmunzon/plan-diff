@@ -128,6 +128,55 @@ def test_example_5_moop_up_500_reported_not_flagged() -> None:
     assert diff.shop_again is False and diff.reasons == ()
 
 
+def test_missing_old_benefit_makes_shop_again_undecided() -> None:
+    next_year = plan(2027)
+    fields = {
+        name: value
+        for name, value in next_year.fields.items()
+        if name != FieldName.DENTAL_ALLOWANCE
+    }
+    next_year = next_year.model_copy(update={"fields": fields})
+
+    diff = run(plan(2026), next_year, renewal())
+
+    assert diff.shop_again is None
+    assert any(
+        item.kind == ReviewKind.SHOP_AGAIN_UNCERTAIN and item.field == FieldName.DENTAL_ALLOWANCE
+        for item in diff.review
+    )
+
+
+def test_verified_trigger_still_flags_when_another_benefit_is_missing() -> None:
+    next_year = plan(2027, monthly_premium=money("25"))
+    fields = {
+        name: value
+        for name, value in next_year.fields.items()
+        if name != FieldName.DENTAL_ALLOWANCE
+    }
+    next_year = next_year.model_copy(update={"fields": fields})
+
+    diff = run(plan(2026), next_year, renewal())
+
+    assert diff.shop_again is True
+    assert diff.reasons == ("premium up $25 a month",)
+    assert any(item.kind == ReviewKind.SHOP_AGAIN_UNCERTAIN for item in diff.review)
+
+
+def test_low_confidence_premium_cannot_trigger_shop_again() -> None:
+    next_year = plan(2027, monthly_premium=money("25"))
+    next_year.fields[FieldName.MONTHLY_PREMIUM] = next_year.fields[
+        FieldName.MONTHLY_PREMIUM
+    ].model_copy(update={"confidence": 0.3})
+
+    diff = run(plan(2026), next_year, renewal())
+
+    assert diff.shop_again is None and diff.reasons == ()
+    assert any(
+        item.kind == ReviewKind.SHOP_AGAIN_UNCERTAIN and item.field == FieldName.MONTHLY_PREMIUM
+        for item in diff.review
+    )
+
+
 def test_missing_crosswalk_row_is_not_a_termination() -> None:
     assert xwalk("H9999-777") is None
     diff = run(plan(2026, "H9999-777"), None, None)
@@ -227,16 +276,18 @@ def test_benefit_now_not_covered_is_removed_and_flags() -> None:
     assert diff.review == ()
 
 
-def test_benefit_absent_in_new_year_goes_to_review_not_flag() -> None:
-    # Absent may be an extraction miss: not comparable, a review item, and no flag.
+def test_benefit_absent_in_new_year_makes_flag_undecided() -> None:
+    # Absent may be an extraction miss: not comparable, a high review item, and undecided.
     new = plan(2027)
     del new.fields[FieldName.DENTAL_ALLOWANCE]
     diff = run(plan(2026), new, renewal())
     assert by_field(diff)[FieldName.DENTAL_ALLOWANCE] == Direction.NOT_COMPARABLE
-    assert diff.shop_again is False and diff.reasons == ()
-    (item,) = diff.review
-    assert item.kind == ReviewKind.NOT_EXTRACTED and item.field == FieldName.DENTAL_ALLOWANCE
-    assert item.severity == Severity.MEDIUM and item.year == 2027
+    assert diff.shop_again is None and diff.reasons == ()
+    assert len(diff.review) == 1
+    item = diff.review[0]
+    assert item.kind == ReviewKind.SHOP_AGAIN_UNCERTAIN
+    assert item.field == FieldName.DENTAL_ALLOWANCE
+    assert item.severity == Severity.HIGH and item.year == 2027
     assert item.evidence[0].document_id == "sb-2026"
 
 

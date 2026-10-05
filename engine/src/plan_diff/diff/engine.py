@@ -216,7 +216,8 @@ def _field_changes(
                     field=name, old=before, new=after, category=category, direction=direction
                 )
             )
-        decides = name in _THRESHOLD_FIELDS or direction == Direction.REMOVED
+        missing_old_benefit = before is not None and after is None
+        decides = name in _THRESHOLD_FIELDS or direction == Direction.REMOVED or missing_old_benefit
         doubts, cites = _doubts(name, ((old, before), (new, after)), direction, mismatches)
         if decides and doubts:
             review.append(_uncertain(new, name, LABELS[name], doubts, cites))

@@ -105,7 +105,7 @@ describe("overview data", () => {
       undecided: 1,
       reviewItems: 10,
       matchRate: "97.6%",
-      matchContext: "41 of 42 checked values, on synthetic fixtures, as of 2026-10-05",
+      matchContext: "41 of 42 comparable values, on synthetic fixtures, as of 2026-10-05. Synthetic test fixtures; not production accuracy.",
     });
   });
 });

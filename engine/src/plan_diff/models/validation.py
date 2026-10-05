@@ -9,6 +9,7 @@ from plan_diff.models.citation import Citation, CitationMethod
 from plan_diff.models.fields import (
     PERIODS_PER_YEAR,
     Amount,
+    Coinsurance,
     Copay,
     FieldName,
     FieldValue,
@@ -61,8 +62,10 @@ def disagreement(
     Allowances compare after annualize() when both name a period. Other fields: when both name a
     unit, the units must be the same.
     """
-    if isinstance(cms, Money | Copay) and cms_max is not None and cms_max != cms.amount:
-        return "CMS gives a range"
+    if isinstance(cms, Money | Copay | Coinsurance) and cms_max is not None:
+        bottom = cms.percent if isinstance(cms, Coinsurance) else cms.amount
+        if cms_max != bottom:
+            return "CMS gives a range"
     if pdf.kind != cms.kind:
         return f"PDF has a {pdf.kind} value, CMS has a {cms.kind} value"
     if field in ALLOWANCE_FIELDS and isinstance(pdf, Money) and isinstance(cms, Money):
@@ -73,10 +76,10 @@ def disagreement(
         if annualize(pdf.amount, pdf_unit) != annualize(cms.amount, cms_unit):
             return "yearly amounts differ"
         return None
-    if pdf != cms:
-        return "values differ"
     if pdf_unit is not None and cms_unit is not None and pdf_unit != cms_unit:
         return "unit not comparable"
+    if pdf != cms:
+        return "values differ"
     return None
 
 
@@ -97,6 +100,10 @@ class ValidationResult(StrictModel):
     @model_validator(mode="after")
     def _verdict_fits_values(self) -> Self:
         pdf, cms = self.pdf_value, self.cms_value
+        if (pdf is None) != (self.pdf_citation is None):
+            raise ValueError("PDF value and citation must both be present or both be absent")
+        if (cms is None) != (self.cms_citation is None):
+            raise ValueError("CMS value and citation must both be present or both be absent")
         why = None
         if pdf is not None and cms is not None:
             why = disagreement(

@@ -60,17 +60,23 @@ export function plural(count: number, word: string): string {
 export function summary(run: Run) {
   const totals = run.accuracy.rows.filter((row) => row.field === null);
   const matched = totals.reduce((sum, row) => sum + row.matched, 0);
-  const checked = matched + totals.reduce((sum, row) => sum + row.mismatched, 0);
+  const mismatched = totals.reduce((sum, row) => sum + row.mismatched, 0);
+  const checked = matched + mismatched;
+  const notComparable = totals.reduce((sum, row) => sum + (row.not_comparable ?? 0), 0);
+  const notExtracted = totals.reduce((sum, row) => sum + row.not_extracted, 0);
   const { plans, as_of } = run.accuracy;
   // The run says what it read (`plan-diff run --data-kind`); plan ids are never used to guess.
   const synthetic = run.manifest.data_kind === "synthetic";
-  const slice = `${synthetic ? "on synthetic fixtures" : `on ${plural(plans.length, "plan")}`}${as_of ? `, as of ${as_of}` : ""}`;
+  const slice = `${synthetic ? "on synthetic fixtures" : `across ${plural(plans.length, "public plan")}`}${as_of ? `, as of ${as_of}` : ""}`;
+  const accuracyCaveat = synthetic
+    ? "Synthetic test fixtures; not production accuracy."
+    : `Extraction rules were tuned on these same documents, not held-out measured accuracy. ${plural(notComparable, "value")} not comparable and ${plural(notExtracted, "value")} not extracted.`;
   return {
     compared: run.diffs.length,
     flagged: run.diffs.filter((diff) => diff.shop_again === true).length,
     undecided: run.diffs.filter((diff) => diff.shop_again === null).length,
     reviewItems: run.reviewQueue.length,
     matchRate: checked === 0 ? "None checked" : `${((100 * matched) / checked).toFixed(1)}%`,
-    matchContext: `${matched} of ${checked} checked values, ${slice}`,
+    matchContext: `${matched} of ${checked} comparable values, ${slice}. ${accuracyCaveat}`,
   };
 }

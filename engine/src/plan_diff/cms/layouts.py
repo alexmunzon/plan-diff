@@ -66,6 +66,7 @@ class PbpColumn:
     tier: str | None = None
     max_column: str | None = None
     coins_column: str | None = None
+    coins_max_column: str | None = None
     period_column: str | None = None
     zero_when: tuple[str, str] | None = None
     combo_category: str | None = None
@@ -74,7 +75,13 @@ class PbpColumn:
 
 
 def _copay(file: str, prefix: str, coins: str) -> PbpColumn:
-    return PbpColumn(file, f"{prefix}_min", max_column=f"{prefix}_max", coins_column=coins)
+    return PbpColumn(
+        file,
+        f"{prefix}_min",
+        max_column=f"{prefix}_max",
+        coins_column=coins,
+        coins_max_column=coins.removesuffix("_min") + "_max",
+    )
 
 
 _SECTION_D = "pbp_Section_D.txt"

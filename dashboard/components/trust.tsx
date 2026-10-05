@@ -17,6 +17,16 @@ const COUNTS = [
   ["not_in_cms", "Not in CMS"],
 ] as const;
 
+function accuracyScope(run: Run) {
+  const totalRows = run.accuracy.rows.filter((row) => row.field === null);
+  const count = (key: "matched" | "mismatched" | "not_comparable" | "not_extracted") =>
+    totalRows.reduce((sum, row) => sum + (row[key] ?? 0), 0);
+  if (run.manifest.data_kind === "synthetic") {
+    return "Synthetic test fixtures check expected behavior; this match rate is not production accuracy.";
+  }
+  return `Extraction rules were tuned on these same public Texas documents. The ${count("matched")} of ${count("matched") + count("mismatched")} comparable matches are an in-sample check, not held-out measured accuracy. ${count("not_comparable")} values are not comparable and ${count("not_extracted")} were not extracted; both are counted separately in the table.`;
+}
+
 export function Trust({ run }: { run: Run }) {
   const mismatches = run.validation.filter((result) => result.verdict === "mismatch");
   return (
@@ -34,9 +44,13 @@ export function Trust({ run }: { run: Run }) {
       <section aria-labelledby="accuracy-heading" className={cn(CARD, "overflow-x-auto")}>
         <h2 id="accuracy-heading" className="px-3 pt-3 text-sm font-semibold">PDF values checked against CMS</h2>
         <p className={cn(MUTED, "px-3")}>
-          Match rate counts only values both sides state comparably. Not comparable, not extracted, and not in CMS are
-          counted apart.
+          {accuracyScope(run)} Match rate counts only values both sides state comparably. Not comparable, not extracted, and not in CMS are counted apart.
         </p>
+        {run.manifest.data_kind === "public" && (
+          <p className={cn(MUTED, "px-3 pt-1")}>
+            CMS reports the OTC allowance on a shared card. An OTC match confirms the shared-card figure, not an OTC-only balance.
+          </p>
+        )}
         <table className={cn(TABLE, "min-w-[860px]")}>
           <thead>
             <tr>

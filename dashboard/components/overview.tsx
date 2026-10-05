@@ -76,7 +76,7 @@ export function Overview({ run, base = "" }: { run: Run; base?: string }) {
         </ul>
       </section>
       <p className="text-xs text-slate-600 tabular-nums dark:text-slate-400">
-        {usageText("Jev", manifest.jev)}. {usageText("LLM", manifest.llm)}. Public and synthetic data only.
+        {usageText("Jev", manifest.jev)}. {usageText("LLM", manifest.llm)}. {manifest.data_kind === "synthetic" ? "Synthetic test fixtures." : "Public Texas carrier documents and CMS files."}
       </p>
     </div>
   );

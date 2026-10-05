@@ -76,10 +76,14 @@ class _Cand:
 def _candidates(text: str) -> list[_Cand]:
     """Every dollar amount, percent, and "not covered", in reading order. "Not covered (you pay
     100%)" is one value: the 100% only restates it (Review 2)."""
+    if any(Decimal(m.group(1)) > 100 for m in _PERCENT.finditer(text)):
+        return []  # malformed/OCR percentages cannot abort extraction or select another token
     found = [
         _Cand(m.start(), m.end(), Decimal(m.group(1).replace(",", "") + (m.group(2) or "")))
         for m in _MONEY.finditer(text)
     ]
+    if any(isinstance(c.value, Decimal) and c.value >= Decimal("10000000000") for c in found):
+        return []
     found += [
         _Cand(m.start(), m.end(), Coinsurance(percent=Decimal(m.group(1))))
         for m in _PERCENT.finditer(text)
@@ -87,7 +91,22 @@ def _candidates(text: str) -> list[_Cand]:
     not_covered = [_Cand(m.start(), m.end(), NotCovered()) for m in _NOT_COVERED.finditer(text)]
     if not_covered:
         full = Coinsurance(percent=Decimal(100))
-        found = [c for c in found if c.value != full]
+        restated = []
+        for c in not_covered:
+            suffix = re.match(
+                r"\s*\(\s*(?:you\s+pay\s+)?100(?:\.0{1,2})?\s*%\s*\)",
+                text[c.end :],
+                re.IGNORECASE,
+            )
+            if suffix:
+                restated.append((c.end, c.end + suffix.end()))
+        found = [
+            c
+            for c in found
+            if not (
+                c.value == full and any(start <= c.start < c.end <= end for start, end in restated)
+            )
+        ]
     return sorted([*found, *not_covered], key=lambda c: c.start)
 
 
@@ -193,10 +212,16 @@ def parse_value(text: str, parser: FieldParser) -> Parsed | None:
             seg[1], cands[index + 1].start if index + 1 < len(cands) else len(clean)
         )
     ]
-    labeled = any(
-        re.search(config.EXTRACT_PREFER_MARKERS[r], near, re.IGNORECASE)
-        for r in rules
-        if r in config.EXTRACT_LABELED_RULES
+    # A network or pharmacy marker only resolves a pick when it leaves one candidate.
+    # Two values in the same marked segment can still be a range or conflicting amounts.
+    labeled = (
+        bool(rules)
+        and sum(seg_of(c) in segs for c in cands) == 1
+        and any(
+            re.search(config.EXTRACT_PREFER_MARKERS[r], near, re.IGNORECASE)
+            for r in rules
+            if r in config.EXTRACT_LABELED_RULES
+        )
     )
     token = chosen.value
     value: FieldValue
