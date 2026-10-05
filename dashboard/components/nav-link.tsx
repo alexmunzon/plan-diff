@@ -19,7 +19,8 @@ export function NavLink({ href, label }: { href?: string; label: string }) {
       </span>
     );
   }
-  const current = pathname === href;
+  // A plan page counts as the Plan comparison page.
+  const current = pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
   return (
     <Link
       href={href}

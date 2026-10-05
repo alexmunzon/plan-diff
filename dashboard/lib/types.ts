@@ -86,12 +86,23 @@ export interface ApiUsage {
   cost_usd: string;
 }
 
+/** One input file. `url` (https, the carrier's own copy) is optional: the demo run has none. */
+export interface RunInput {
+  kind: "pdf" | "cms";
+  path: string;
+  document_id: string | null;
+  url?: string | null;
+}
+
 export interface RunManifest {
   run_id: string;
+  /** Set by `plan-diff run --data-kind`. Never guessed from plan ids. */
+  data_kind: "synthetic" | "public";
   started_at: string;
   finished_at: string;
   plans: string[];
   years: number[];
+  inputs: RunInput[];
   jev: ApiUsage;
   llm: ApiUsage;
   counts: Record<string, number>;

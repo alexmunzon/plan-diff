@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { SeverityBadge, type Tone } from "@/components/severity-badge";
 import { CARD, Tile } from "@/components/tiles";
 import { formatMoney } from "@/lib/money";
@@ -7,7 +9,7 @@ import type { ApiUsage } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 // Color is never the only signal: each answer is a word plus an icon.
-const ANSWER_TONE = (value: boolean | null): Tone => (value === null ? "warning" : value ? "error" : "pass");
+export const ANSWER_TONE = (value: boolean | null): Tone => (value === null ? "warning" : value ? "error" : "pass");
 
 function usageText(name: string, usage: ApiUsage): string {
   return `${name} ${usage.mode}, ${plural(usage.calls, "call")}, ${formatMoney(usage.cost_usd)}`;
@@ -18,7 +20,7 @@ function PlanRow({ row }: { row: OverviewRow }) {
   return (
     <li aria-label={`Plan ${row.planId}`} className={cn(CARD, "grid gap-2 p-4 sm:grid-cols-[13rem_1fr_15rem] sm:gap-4")}>
       <div className="space-y-1">
-        <p className="font-mono text-sm font-medium">{row.planId}</p>
+        <Link href={`/plans/${row.planId}`} className="font-mono text-sm font-medium underline">{row.planId}</Link>
         <p className="text-xs text-slate-600 dark:text-slate-400">
           Shop again: <SeverityBadge tone={ANSWER_TONE(row.shopAgain)} label={shopAgainText(row.shopAgain)} />
         </p>

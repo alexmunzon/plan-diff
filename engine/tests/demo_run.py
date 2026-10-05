@@ -80,7 +80,13 @@ def main() -> int:
         docs, runs = Path(tmp) / "docs", Path(tmp) / "runs"
         write_demo_docs(docs)
         options = RunOptions(
-            docs=docs, cms=CMS, plans=PLANS, years=(2026, 2027), out=runs, run_id="demo"
+            docs=docs,
+            cms=CMS,
+            plans=PLANS,
+            years=(2026, 2027),
+            out=runs,
+            run_id="demo",
+            data_kind="synthetic",
         )
         folder = run(options, lambda: NOW)
         if DEMO_OUT.exists():

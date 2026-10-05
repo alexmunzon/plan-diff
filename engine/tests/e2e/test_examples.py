@@ -50,6 +50,7 @@ EXPECTED_2027 = EXPECTED_2026 | {"monthly_premium": ("money", "25.00", "per_mont
 def run(docs: Path, out: Path, cms: Path = CMS, plans: str = PLANS) -> Path:
     args = ["run", "--docs", str(docs), "--cms", str(cms), "--plans", plans, "--years"]
     args += ["2026,2027", "--out", str(out), "--run-id", "e2e", "--now", NOW_TEXT]
+    args += ["--data-kind", "synthetic"]
     result = CliRunner().invoke(app, args)
     assert result.exit_code == 0, result.output
     return out / "e2e"
@@ -228,7 +229,7 @@ def test_demo_output_matches_the_committed_demo(tmp_path: Path) -> None:
     write_demo_docs(tmp_path / "docs")
     options = RunOptions(
         docs=tmp_path / "docs", cms=CMS, plans=DEMO_PLANS, years=(2026, 2027),
-        out=tmp_path / "runs", run_id="demo",
+        out=tmp_path / "runs", run_id="demo", data_kind="synthetic",
     )  # fmt: skip
     folder = run_folder(options, lambda: NOW)
     fresh = {

@@ -47,6 +47,7 @@ per-year amount into a yearly one, so allowances with different periods compare 
 | PlanRecord | `plans/<plan>_<year>.json` | plan id, year, carrier, plan name, counties, fields by name, document ids. A PDF citation must point at a listed document |
 | ValidationResult | `validation.json` | field, PDF value, CMS value, verdict (match, mismatch, not_comparable, not_in_cms, not_extracted), PDF page and CMS row citations |
 | PlanDiff | `diff/<plan>.json` | old and new plan id, years, crosswalk status, changes, shop_again, reasons, evidence (the crosswalk row), review. Shop again is on exactly when there are reasons; it is empty (undecided) when the crosswalk row is missing, or when no reason fires but a deciding field is uncertain (Review 2), always with a high review item. It is never off while a shop_again_uncertain item is open |
+| RunManifest | `manifest.json` | run id, data kind (synthetic or public, required, from `run --data-kind`), times, versions, plans, years, inputs with hashes, modes, Jev and LLM usage, timings, counts |
 | ReviewItem | `review_queue.jsonl` | kind, plan, year, field, evidence citations, reason, severity (low, medium, high) |
 
 A FieldChange holds the old and new ExtractedField (so both pages travel with the change), the

@@ -36,6 +36,7 @@ from plan_diff.models import (
     StepTiming,
     ValidationResult,
 )
+from plan_diff.models.run import DataKind
 from plan_diff.run.documents import Document, RunRefused, merge_fields, read_documents, run_input
 from plan_diff.validate import (
     accuracy,
@@ -67,6 +68,7 @@ class RunOptions:
     years: tuple[int, ...]
     out: Path
     run_id: str
+    data_kind: DataKind
     overwrite: bool = False
 
 
@@ -276,6 +278,7 @@ def run(o: RunOptions, clock: Callable[[], datetime]) -> Path:
     finished = clock()
     manifest = RunManifest(
         run_id=o.run_id,
+        data_kind=o.data_kind,
         started_at=started,
         finished_at=finished,
         versions={"plan-diff": __version__}
