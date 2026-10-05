@@ -1,0 +1,383 @@
+{
+  "old_plan_id": "H5294-014",
+  "new_plan_id": "H5294-014",
+  "old_year": 2026,
+  "new_year": 2027,
+  "crosswalk_status": "service_area_reduced",
+  "changes": [
+    {
+      "field": "monthly_premium",
+      "old": {
+        "name": "monthly_premium",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_month",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "$0"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "monthly_premium",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_month",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "$0"
+        },
+        "confidence": 0.9
+      },
+      "category": "premium",
+      "direction": "same"
+    },
+    {
+      "field": "medical_deductible",
+      "old": {
+        "name": "medical_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "No deductible"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "medical_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "No deductible"
+        },
+        "confidence": 0.9
+      },
+      "category": "deductible",
+      "direction": "same"
+    },
+    {
+      "field": "moop_in_network",
+      "old": {
+        "name": "moop_in_network",
+        "value": {
+          "kind": "money",
+          "amount": "3400.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "$3,400 annually"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "moop_in_network",
+        "value": {
+          "kind": "money",
+          "amount": "3400.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "$3,400 annually"
+        },
+        "confidence": 0.9
+      },
+      "category": "moop",
+      "direction": "same"
+    },
+    {
+      "field": "pcp_copay",
+      "old": {
+        "name": "pcp_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "$0 copay"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "pcp_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 5,
+          "method": "rule",
+          "text": "$0 copay"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "same"
+    },
+    {
+      "field": "specialist_copay",
+      "old": {
+        "name": "specialist_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "10.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 5,
+          "method": "rule",
+          "text": "$10 copay"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "specialist_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "10.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 5,
+          "method": "rule",
+          "text": "$10 copay"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "same"
+    },
+    {
+      "field": "emergency_room",
+      "old": {
+        "name": "emergency_room",
+        "value": {
+          "kind": "copay",
+          "amount": "150.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 5,
+          "method": "rule",
+          "text": "$150 copay"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "emergency_room",
+        "value": {
+          "kind": "copay",
+          "amount": "150.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 5,
+          "method": "rule",
+          "text": "$150 copay"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "same"
+    },
+    {
+      "field": "urgent_care",
+      "old": {
+        "name": "urgent_care",
+        "value": {
+          "kind": "copay",
+          "amount": "25.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 5,
+          "method": "rule",
+          "text": "$25 copay"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "urgent_care",
+        "value": {
+          "kind": "copay",
+          "amount": "25.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 5,
+          "method": "rule",
+          "text": "$25 copay"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "same"
+    },
+    {
+      "field": "inpatient_stay",
+      "old": {
+        "name": "inpatient_stay",
+        "value": {
+          "kind": "copay",
+          "amount": "275.00"
+        },
+        "unit": "per_day",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "For each admission, you pay • $275 copay per day for days 1 through 5 • $0 copay per day for days 6 through 90 • $0 copa"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "inpatient_stay",
+        "value": {
+          "kind": "copay",
+          "amount": "275.00"
+        },
+        "unit": "per_day",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "For each admission, you pay • $275 copay per day for days 1 through 5 • $0 copay per day for days 6 through 90 • $0 copa"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "same"
+    },
+    {
+      "field": "dental_allowance",
+      "old": {
+        "name": "dental_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "3000.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 9,
+          "method": "rule",
+          "text": "up to $3,000 per plan year"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "dental_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "3000.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 9,
+          "method": "rule",
+          "text": "up to $3,000 per plan year"
+        },
+        "confidence": 0.9
+      },
+      "category": "allowances",
+      "direction": "same"
+    },
+    {
+      "field": "otc_allowance",
+      "old": {
+        "name": "otc_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "50.00"
+        },
+        "unit": "per_month",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2026",
+          "page": 15,
+          "method": "rule",
+          "text": "$50 monthly"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "otc_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "50.00"
+        },
+        "unit": "per_month",
+        "citation": {
+          "document_id": "wellcare-h5294-014-sb-2027",
+          "page": 16,
+          "method": "rule",
+          "text": "$50 monthly"
+        },
+        "confidence": 0.9
+      },
+      "category": "allowances",
+      "direction": "same"
+    }
+  ],
+  "shop_again": true,
+  "reasons": [
+    "service area lost 33 counties: Bastrop, Bee, Brooks, Burnet, Caldwell, Cameron, Colorado, Duval, Goliad, Grimes, Hays, Hidalgo, Jack, Jim Hogg, Jim Wells, Karnes, Kenedy, Kimble, Kleberg, Lee, Mason, Maverick, McCulloch, McMullen, Nueces, Palo Pinto, Refugio, San Patricio, Starr, Webb, Willacy, Williamson, Zapata"
+  ],
+  "evidence": [
+    {
+      "document_id": "crosswalk_2027.csv",
+      "page": 5240,
+      "method": "cms",
+      "text": "Renewal Plan with SAR"
+    }
+  ],
+  "review": [
+    {
+      "kind": "shop_again_uncertain",
+      "plan_id": "H5294-014",
+      "year": 2027,
+      "field": "drug_deductible",
+      "evidence": [],
+      "reason": "drug deductible cannot decide shop again: not found in 2026; not found in 2027",
+      "severity": "high",
+      "confidence": null
+    }
+  ]
+}

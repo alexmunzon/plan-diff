@@ -168,7 +168,9 @@ def _hits(
 def extract_pages(page_texts: Sequence[str], classification: Classification) -> ExtractionResult:
     """Extract every field that has a parser from already extracted page text, page 1 first."""
     document_id = classification.document_id
-    pages = [[ln.strip() for ln in text.splitlines() if ln.strip()] for text in page_texts]
+    # PR 15: en and em dashes become a plain hyphen, so no quoted snippet carries one (docs rule).
+    plain = [t.replace("\u2013", "-").replace("\u2014", "-") for t in page_texts]
+    pages = [[ln.strip() for ln in text.splitlines() if ln.strip()] for text in plain]
     drug_flags = _drug_section_flags(pages)
     skip_flags = [[False] * len(lines) for lines in pages]
     for start, length in _SKIP:

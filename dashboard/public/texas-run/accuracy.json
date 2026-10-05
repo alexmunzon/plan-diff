@@ -1,0 +1,174 @@
+{
+  "rows": [
+    {
+      "field": "monthly_premium",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "medical_deductible",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "moop_in_network",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "pcp_copay",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "specialist_copay",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "emergency_room",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "urgent_care",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "inpatient_stay",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "outpatient_surgery",
+      "method": "rule",
+      "matched": 0,
+      "mismatched": 0,
+      "not_extracted": 2,
+      "not_in_cms": 0,
+      "match_rate": null,
+      "not_comparable": 2
+    },
+    {
+      "field": "drug_deductible",
+      "method": "rule",
+      "matched": 2,
+      "mismatched": 0,
+      "not_extracted": 2,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "drug_tier_1",
+      "method": "rule",
+      "matched": 2,
+      "mismatched": 0,
+      "not_extracted": 2,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "drug_tier_2",
+      "method": "rule",
+      "matched": 2,
+      "mismatched": 0,
+      "not_extracted": 2,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "drug_tier_3",
+      "method": "rule",
+      "matched": 2,
+      "mismatched": 0,
+      "not_extracted": 2,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "dental_allowance",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": "otc_allowance",
+      "method": "rule",
+      "matched": 4,
+      "mismatched": 0,
+      "not_extracted": 0,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 0
+    },
+    {
+      "field": null,
+      "method": "rule",
+      "matched": 48,
+      "mismatched": 0,
+      "not_extracted": 10,
+      "not_in_cms": 0,
+      "match_rate": 1.0,
+      "not_comparable": 2
+    }
+  ],
+  "plans": [
+    "H0028-030",
+    "H5294-014"
+  ],
+  "years": [
+    2026,
+    2027
+  ],
+  "run_id": "texas-2026-2027",
+  "as_of": "2026-10-05"
+}

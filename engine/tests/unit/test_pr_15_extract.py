@@ -192,7 +192,9 @@ def test_wellcare_dental_and_spendables() -> None:
 def test_anoc_rows_with_last_year_and_this_year_are_not_read() -> None:
     page = [  # REAL, Humana 2026 ANOC page 5: 2025 then 2026 side by side
         "Maximum out-of-pocket amount $3,600 $3,400",
-        "Inpatient hospital stays $75 copayment per day for days 1 – $95 copayment per day for days 1 –",
+        # the real line has an en dash after each "days 1"; written as an escape, never typed
+        "Inpatient hospital stays $75 copayment per day for days 1 \u2013 $95 copayment per day"
+        " for days 1 \u2013",
     ]
     r = run(HUMANA, page, title="Annual Notice of Changes")
     assert F.MOOP_IN_NETWORK not in r.fields and F.INPATIENT_STAY not in r.fields

@@ -1,0 +1,1658 @@
+[
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "monthly_premium",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "$0"
+    },
+    "cms_citation": {
+      "document_id": "landscape_2026.csv",
+      "page": 113290,
+      "method": "cms",
+      "text": "CMS Landscape 2026, landscape_2026.csv, row 113290"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "medical_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "This plan does not have adeductible."
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 13, pbp_d_inn_deduct_yn = 2"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "moop_in_network",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "3400.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "3400.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "$3,400 in-network"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 13"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "pcp_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "\u2022 PCP's office: $0 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b7_health_prof.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "specialist_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "15.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "15.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "\u2022 Specialist's office: $15 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b7_health_prof.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "emergency_room",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 5,
+      "method": "rule",
+      "text": "Emergency services at emergency room $150 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b4_emerg_urgent.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "urgent_care",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "65.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "65.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 6,
+      "method": "rule",
+      "text": "$65 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b4_emerg_urgent.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "inpatient_stay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "95.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "95.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "This plan covers an unlimited number of days for an $95 copay per day for days 1-5"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b1a_inpat_hosp.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b1a_inpat_hosp.txt, row 13"
+    },
+    "pdf_unit": "per_day",
+    "cms_unit": "per_day",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "outpatient_surgery",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "100.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "not_comparable",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "$100 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b9_outpat_hosp.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b9_outpat_hosp.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": "CMS gives a range",
+    "cms_max": "100.00"
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "drug_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "615.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "615.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "$0 deductible for Tier 1, Tier 2and Tier 3; $615 deductible for Tier 4and Tier 5"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx.txt, row 13"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "drug_tier_1",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 11,
+      "method": "rule",
+      "text": "Preferred Generic $0 $0 $10 $30 $0 $0"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 51,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx_tier.txt, row 51"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "drug_tier_2",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 11,
+      "method": "rule",
+      "text": "Generic $0 $0 $20 $60 $0 $0"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 52,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx_tier.txt, row 52"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "drug_tier_3",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 11,
+      "method": "rule",
+      "text": "Preferred Brand $45 $135 $47 $141 $45 $90"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 53,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx_tier.txt, row 53"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "dental_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "4000.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "4000.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 8,
+      "method": "rule",
+      "text": "$4,000 maximum benefit coverage amount per year for all diagnostic/preventive and"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b16_dental.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b16_dental.txt, row 13"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2026,
+    "field": "otc_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "75.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "75.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2026",
+      "page": 15,
+      "method": "rule",
+      "text": "$75 quarterly allowance"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 13, combined group 'OTC Max Allowance' (13b;18c)"
+    },
+    "pdf_unit": "per_quarter",
+    "cms_unit": "per_quarter",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "monthly_premium",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "$0"
+    },
+    "cms_citation": {
+      "document_id": "landscape_2027.csv",
+      "page": 106897,
+      "method": "cms",
+      "text": "CMS Landscape 2027, landscape_2027.csv, row 106897"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "medical_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "This plan does not have a deductible."
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_Section_D.txt, row 13, pbp_d_inn_deduct_yn = 2"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "moop_in_network",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "3900.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "3900.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "$3,900 in-network"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_Section_D.txt, row 13"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "pcp_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "\u2022 PCP's office: $0 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b7_health_prof.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "specialist_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "20.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "20.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "\u2022 Specialist's office: $ 20 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b7_health_prof.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "emergency_room",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 5,
+      "method": "rule",
+      "text": "Emergency services at emergency room $150 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b4_emerg_urgent.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "urgent_care",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "65.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "65.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 5,
+      "method": "rule",
+      "text": "$65 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b4_emerg_urgent.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "inpatient_stay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "This plan covers an unlimited number of days for an $150 copay per day for days 1-5"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b1a_inpat_hosp.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b1a_inpat_hosp.txt, row 13"
+    },
+    "pdf_unit": "per_day",
+    "cms_unit": "per_day",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "outpatient_surgery",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "300.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "not_comparable",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "$300 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b9_outpat_hosp.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b9_outpat_hosp.txt, row 13"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": "CMS gives a range",
+    "cms_max": "300.00"
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "drug_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "700.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "700.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "$0 deductible for Tier 1, Tier 2 and Tier 3; $700 deductible for Tier 4 and Tier 5"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_mrx.txt, row 13"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "drug_tier_1",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 11,
+      "method": "rule",
+      "text": "Preferred Generic $0 $0 $10 $30 $0 $0"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 51,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_mrx_tier.txt, row 51"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "drug_tier_2",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 11,
+      "method": "rule",
+      "text": "Generic $0 $0 $20 $60 $0 $0"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 52,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_mrx_tier.txt, row 52"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "drug_tier_3",
+    "pdf_value": {
+      "kind": "coinsurance",
+      "percent": "17"
+    },
+    "cms_value": {
+      "kind": "coinsurance",
+      "percent": "17.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 11,
+      "method": "rule",
+      "text": "Preferred Brand 17% 17% 17% 17% 17% 15%"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 53,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_mrx_tier.txt, row 53"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "dental_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "4000.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "4000.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 8,
+      "method": "rule",
+      "text": "$4,000 maximum benefit coverage amount per year for all diagnostic/preventive and"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b16_dental.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b16_dental.txt, row 13"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H0028-030",
+    "year": 2027,
+    "field": "otc_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "60.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "60.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "humana-h0028-030-sb-2027",
+      "page": 15,
+      "method": "rule",
+      "text": "$60 quarterly allowance"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 13,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_Section_D.txt, row 13, combined group 'OTC Max Allowance' (13b;18c)"
+    },
+    "pdf_unit": "per_quarter",
+    "cms_unit": "per_quarter",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "monthly_premium",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "$0"
+    },
+    "cms_citation": {
+      "document_id": "landscape_2026.csv",
+      "page": 113264,
+      "method": "cms",
+      "text": "CMS Landscape 2026, landscape_2026.csv, row 113264"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "medical_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "No deductible"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 4694, pbp_d_inn_deduct_yn = 2"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "moop_in_network",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "3400.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "3400.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "$3,400 annually"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 4694"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "pcp_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "$0 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b7_health_prof.txt, row 4694"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "specialist_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "10.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "10.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 5,
+      "method": "rule",
+      "text": "$10 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b7_health_prof.txt, row 4694"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "emergency_room",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 5,
+      "method": "rule",
+      "text": "$150 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b4_emerg_urgent.txt, row 4694"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "urgent_care",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "25.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "25.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 5,
+      "method": "rule",
+      "text": "$25 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b4_emerg_urgent.txt, row 4694"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "inpatient_stay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "275.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "275.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 4,
+      "method": "rule",
+      "text": "For each admission, you pay \u2022 $275 copay per day for days 1 through 5 \u2022 $0 copay per day for days 6 through 90 \u2022 $0 copa"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b1a_inpat_hosp.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b1a_inpat_hosp.txt, row 4694"
+    },
+    "pdf_unit": "per_day",
+    "cms_unit": "per_day",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "outpatient_surgery",
+    "pdf_value": null,
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": {
+      "document_id": "pbp_b9_outpat_hosp.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b9_outpat_hosp.txt, row 4694"
+    },
+    "pdf_unit": null,
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": "200.00"
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "drug_deductible",
+    "pdf_value": null,
+    "cms_value": null,
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": null,
+    "pdf_unit": null,
+    "cms_unit": null,
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "drug_tier_1",
+    "pdf_value": null,
+    "cms_value": null,
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": null,
+    "pdf_unit": null,
+    "cms_unit": null,
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "drug_tier_2",
+    "pdf_value": null,
+    "cms_value": null,
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": null,
+    "pdf_unit": null,
+    "cms_unit": null,
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "drug_tier_3",
+    "pdf_value": null,
+    "cms_value": null,
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": null,
+    "pdf_unit": null,
+    "cms_unit": null,
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "dental_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "3000.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "3000.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 9,
+      "method": "rule",
+      "text": "up to $3,000 per plan year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b16_dental.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b16_dental.txt, row 4694"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2026,
+    "field": "otc_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "50.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "50.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2026",
+      "page": 15,
+      "method": "rule",
+      "text": "$50 monthly"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 4694,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 4694, combined group 'OTC DVH' (13b;16b1;16b2;16b3;16b4;16b5;16b6;17a1;17b1;17b2;17b3;17b4;17b5;18a1;18a2;18b1;16c1;16c2;16c3;"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "monthly_premium",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "$0"
+    },
+    "cms_citation": {
+      "document_id": "landscape_2027.csv",
+      "page": 106878,
+      "method": "cms",
+      "text": "CMS Landscape 2027, landscape_2027.csv, row 106878"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "medical_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "No deductible"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_Section_D.txt, row 4629, pbp_d_inn_deduct_yn = 2"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "moop_in_network",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "3400.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "3400.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "$3,400 annually"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_Section_D.txt, row 4629"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "pcp_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 5,
+      "method": "rule",
+      "text": "$0 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b7_health_prof.txt, row 4629"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "specialist_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "10.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "10.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 5,
+      "method": "rule",
+      "text": "$10 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b7_health_prof.txt, row 4629"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "emergency_room",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "150.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 5,
+      "method": "rule",
+      "text": "$150 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b4_emerg_urgent.txt, row 4629"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "urgent_care",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "25.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "25.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 5,
+      "method": "rule",
+      "text": "$25 copay"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b4_emerg_urgent.txt, row 4629"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "inpatient_stay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "275.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "275.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 4,
+      "method": "rule",
+      "text": "For each admission, you pay \u2022 $275 copay per day for days 1 through 5 \u2022 $0 copay per day for days 6 through 90 \u2022 $0 copa"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b1a_inpat_hosp.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b1a_inpat_hosp.txt, row 4629"
+    },
+    "pdf_unit": "per_day",
+    "cms_unit": "per_day",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "outpatient_surgery",
+    "pdf_value": null,
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": {
+      "document_id": "pbp_b9_outpat_hosp.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b9_outpat_hosp.txt, row 4629"
+    },
+    "pdf_unit": null,
+    "cms_unit": "per_visit",
+    "reason": null,
+    "cms_max": "200.00"
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "drug_deductible",
+    "pdf_value": null,
+    "cms_value": null,
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": null,
+    "pdf_unit": null,
+    "cms_unit": null,
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "drug_tier_1",
+    "pdf_value": null,
+    "cms_value": null,
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": null,
+    "pdf_unit": null,
+    "cms_unit": null,
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "drug_tier_2",
+    "pdf_value": null,
+    "cms_value": null,
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": null,
+    "pdf_unit": null,
+    "cms_unit": null,
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "drug_tier_3",
+    "pdf_value": null,
+    "cms_value": null,
+    "verdict": "not_extracted",
+    "pdf_citation": null,
+    "cms_citation": null,
+    "pdf_unit": null,
+    "cms_unit": null,
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "dental_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "3000.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "3000.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 9,
+      "method": "rule",
+      "text": "up to $3,000 per plan year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b16_dental.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b16_dental.txt, row 4629"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null,
+    "cms_max": null
+  },
+  {
+    "plan_id": "H5294-014",
+    "year": 2027,
+    "field": "otc_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "50.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "50.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "wellcare-h5294-014-sb-2027",
+      "page": 16,
+      "method": "rule",
+      "text": "$50 monthly"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 4629,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_Section_D.txt, row 4629, combined group 'OTC DVH' (13b;16b1;16b2;16b3;16b4;16b5;16b6;16c1;16c2;16c3;16c4;16c7;16c8;16c10;17a1;17a2;17b1;17b2;17b3"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null,
+    "cms_max": null
+  }
+]

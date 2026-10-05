@@ -1,0 +1,547 @@
+{
+  "old_plan_id": "H0028-030",
+  "new_plan_id": "H0028-030",
+  "old_year": 2026,
+  "new_year": 2027,
+  "crosswalk_status": "continuing",
+  "changes": [
+    {
+      "field": "monthly_premium",
+      "old": {
+        "name": "monthly_premium",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_month",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "$0"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "monthly_premium",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_month",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "$0"
+        },
+        "confidence": 0.9
+      },
+      "category": "premium",
+      "direction": "same"
+    },
+    {
+      "field": "medical_deductible",
+      "old": {
+        "name": "medical_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "This plan does not have adeductible."
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "medical_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "This plan does not have a deductible."
+        },
+        "confidence": 0.9
+      },
+      "category": "deductible",
+      "direction": "same"
+    },
+    {
+      "field": "moop_in_network",
+      "old": {
+        "name": "moop_in_network",
+        "value": {
+          "kind": "money",
+          "amount": "3400.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "$3,400 in-network"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "moop_in_network",
+        "value": {
+          "kind": "money",
+          "amount": "3900.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "$3,900 in-network"
+        },
+        "confidence": 0.9
+      },
+      "category": "moop",
+      "direction": "up"
+    },
+    {
+      "field": "pcp_copay",
+      "old": {
+        "name": "pcp_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "• PCP's office: $0 copay"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "pcp_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "• PCP's office: $0 copay"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "same"
+    },
+    {
+      "field": "specialist_copay",
+      "old": {
+        "name": "specialist_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "15.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "• Specialist's office: $15 copay"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "specialist_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "20.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "• Specialist's office: $ 20 copay"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "up"
+    },
+    {
+      "field": "emergency_room",
+      "old": {
+        "name": "emergency_room",
+        "value": {
+          "kind": "copay",
+          "amount": "150.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 5,
+          "method": "rule",
+          "text": "Emergency services at emergency room $150 copay"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "emergency_room",
+        "value": {
+          "kind": "copay",
+          "amount": "150.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 5,
+          "method": "rule",
+          "text": "Emergency services at emergency room $150 copay"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "same"
+    },
+    {
+      "field": "urgent_care",
+      "old": {
+        "name": "urgent_care",
+        "value": {
+          "kind": "copay",
+          "amount": "65.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 6,
+          "method": "rule",
+          "text": "$65 copay"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "urgent_care",
+        "value": {
+          "kind": "copay",
+          "amount": "65.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 5,
+          "method": "rule",
+          "text": "$65 copay"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "same"
+    },
+    {
+      "field": "inpatient_stay",
+      "old": {
+        "name": "inpatient_stay",
+        "value": {
+          "kind": "copay",
+          "amount": "95.00"
+        },
+        "unit": "per_day",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "This plan covers an unlimited number of days for an $95 copay per day for days 1-5"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "inpatient_stay",
+        "value": {
+          "kind": "copay",
+          "amount": "150.00"
+        },
+        "unit": "per_day",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "This plan covers an unlimited number of days for an $150 copay per day for days 1-5"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "up"
+    },
+    {
+      "field": "outpatient_surgery",
+      "old": {
+        "name": "outpatient_surgery",
+        "value": {
+          "kind": "copay",
+          "amount": "100.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "$100 copay"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "outpatient_surgery",
+        "value": {
+          "kind": "copay",
+          "amount": "300.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "$300 copay"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "up"
+    },
+    {
+      "field": "drug_deductible",
+      "old": {
+        "name": "drug_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "615.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 4,
+          "method": "rule",
+          "text": "$0 deductible for Tier 1, Tier 2and Tier 3; $615 deductible for Tier 4and Tier 5"
+        },
+        "confidence": 0.85
+      },
+      "new": {
+        "name": "drug_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "700.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 4,
+          "method": "rule",
+          "text": "$0 deductible for Tier 1, Tier 2 and Tier 3; $700 deductible for Tier 4 and Tier 5"
+        },
+        "confidence": 0.85
+      },
+      "category": "drugs",
+      "direction": "up"
+    },
+    {
+      "field": "drug_tier_1",
+      "old": {
+        "name": "drug_tier_1",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 11,
+          "method": "rule",
+          "text": "Preferred Generic $0 $0 $10 $30 $0 $0"
+        },
+        "confidence": 0.6
+      },
+      "new": {
+        "name": "drug_tier_1",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 11,
+          "method": "rule",
+          "text": "Preferred Generic $0 $0 $10 $30 $0 $0"
+        },
+        "confidence": 0.6
+      },
+      "category": "drugs",
+      "direction": "same"
+    },
+    {
+      "field": "drug_tier_2",
+      "old": {
+        "name": "drug_tier_2",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 11,
+          "method": "rule",
+          "text": "Generic $0 $0 $20 $60 $0 $0"
+        },
+        "confidence": 0.6
+      },
+      "new": {
+        "name": "drug_tier_2",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 11,
+          "method": "rule",
+          "text": "Generic $0 $0 $20 $60 $0 $0"
+        },
+        "confidence": 0.6
+      },
+      "category": "drugs",
+      "direction": "same"
+    },
+    {
+      "field": "drug_tier_3",
+      "old": {
+        "name": "drug_tier_3",
+        "value": {
+          "kind": "copay",
+          "amount": "45.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 11,
+          "method": "rule",
+          "text": "Preferred Brand $45 $135 $47 $141 $45 $90"
+        },
+        "confidence": 0.6
+      },
+      "new": {
+        "name": "drug_tier_3",
+        "value": {
+          "kind": "coinsurance",
+          "percent": "17"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 11,
+          "method": "rule",
+          "text": "Preferred Brand 17% 17% 17% 17% 17% 15%"
+        },
+        "confidence": 0.6
+      },
+      "category": "drugs",
+      "direction": "not_comparable"
+    },
+    {
+      "field": "dental_allowance",
+      "old": {
+        "name": "dental_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "4000.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 8,
+          "method": "rule",
+          "text": "$4,000 maximum benefit coverage amount per year for all diagnostic/preventive and"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "dental_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "4000.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 8,
+          "method": "rule",
+          "text": "$4,000 maximum benefit coverage amount per year for all diagnostic/preventive and"
+        },
+        "confidence": 0.9
+      },
+      "category": "allowances",
+      "direction": "same"
+    },
+    {
+      "field": "otc_allowance",
+      "old": {
+        "name": "otc_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "75.00"
+        },
+        "unit": "per_quarter",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2026",
+          "page": 15,
+          "method": "rule",
+          "text": "$75 quarterly allowance"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "otc_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "60.00"
+        },
+        "unit": "per_quarter",
+        "citation": {
+          "document_id": "humana-h0028-030-sb-2027",
+          "page": 15,
+          "method": "rule",
+          "text": "$60 quarterly allowance"
+        },
+        "confidence": 0.9
+      },
+      "category": "allowances",
+      "direction": "down"
+    }
+  ],
+  "shop_again": true,
+  "reasons": [
+    "drug deductible up $85"
+  ],
+  "evidence": [
+    {
+      "document_id": "crosswalk_2027.csv",
+      "page": 15,
+      "method": "cms",
+      "text": "Renewal Plan"
+    }
+  ],
+  "review": []
+}
