@@ -1,0 +1,30 @@
+# Secrets. Only the empty template is committed.
+.env
+.env.*
+!.env.example
+
+# Run output (immutable run directories stay local)
+runs/*
+!runs/.gitkeep
+
+# Downloaded public PDFs and CMS files. Never commit these in bulk; small test fixtures go in fixtures/.
+data/raw/*
+!data/raw/.gitkeep
+
+# Node and Next.js
+node_modules
+dashboard/.next
+dashboard/test-results
+dashboard/playwright-report
+
+# Python
+.venv
+__pycache__
+.mypy_cache
+.ruff_cache
+.pytest_cache
+.hypothesis
+.coverage
+
+# OS
+.DS_Store
