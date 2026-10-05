@@ -101,7 +101,7 @@ regenerated (only `manifest.json` hashes, `plan_pages`, and `cms_max` lines chan
   (the 2025 value) and the 2026 Wellcare ANOC gave $150 outpatient surgery (an ambulatory surgery
   center value from 2025). Both were caught before commit.
 - En and em dashes in carrier text become hyphens before extraction, so no quoted snippet carries
-  one. One test string keeps the real en dash as a `–` escape.
+  one. One test string keeps the real en dash as a Python unicode escape (backslash u2013), never typed.
 - Drug tiers in Humana's grid stay at 0.6 ("took the first value"): the first column is retail
   30-day, which is what CMS files, but the rule does not read the grid header, so it is not trusted.
 
