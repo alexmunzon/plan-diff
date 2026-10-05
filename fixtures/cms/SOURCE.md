@@ -22,3 +22,8 @@ https://resdac.org/cms-data/variables/relationship-code
 
 Real filtered extracts for the Texas slice replace or join these only after the download is
 approved, each with its own source URL, file name, and retrieved date.
+
+`messy/` (added in the Review 1 fix, also hand-typed and synthetic) holds one deliberately messy
+file per reader: unpadded plan numbers, "$1,234", a 3 decimal value, a negative value, "N/A",
+"Not covered", a non-UTF-8 byte, S, E, and R contracts, a non-zero segment, blank ids, duplicate
+PBP rows, and a terminated crosswalk row that still names a current plan id.

@@ -23,6 +23,7 @@ from plan_diff.models import (
     ReviewKind,
     Severity,
     StrictModel,
+    normalize_plan_id,
 )
 
 # One hit on a line: (canonical value, text as it appears in the document).
@@ -55,9 +56,9 @@ class Classification(StrictModel):
     review_item: ReviewItem | None  # set exactly when status is UNSURE
 
 
-def _regex_extractor(pattern: str) -> Extractor:
+def _regex_extractor(pattern: str, canonical: Callable[[str], str] = str) -> Extractor:
     compiled = re.compile(pattern)
-    return lambda line: [(m.group(1), m.group(0)) for m in compiled.finditer(line)]
+    return lambda line: [(canonical(m.group(1)), m.group(0)) for m in compiled.finditer(line)]
 
 
 def _phrase_extractor(table: Mapping[str, str]) -> Extractor:
@@ -116,7 +117,9 @@ def classify_pages(
     aliases = config.CARRIER_ALIASES if carrier_aliases is None else carrier_aliases
     findings = {
         "document type": _find(pages, _phrase_extractor(config.DOCUMENT_TYPE_PHRASES), document_id),
-        "plan id": _find(pages, _regex_extractor(config.PLAN_ID_PATTERN), document_id),
+        "plan id": _find(
+            pages, _regex_extractor(config.PLAN_ID_PATTERN, normalize_plan_id), document_id
+        ),
         "plan year": _find(pages, _regex_extractor(config.PLAN_YEAR_PATTERN), document_id),
         "carrier": _find(pages, _phrase_extractor(aliases), document_id),
     }

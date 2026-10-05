@@ -32,6 +32,7 @@ from plan_diff.models.ids import (
     PlanYear,
     Sha256,
     StrictModel,
+    normalize_plan_id,
 )
 from plan_diff.models.plan import PlanRecord
 from plan_diff.models.review import ReviewItem, ReviewKind, Severity
@@ -83,4 +84,5 @@ __all__ = [
     "Verdict",
     "category_for",
     "crosswalk_status_from_cms",
+    "normalize_plan_id",
 ]

@@ -9,8 +9,9 @@ CLASSIFY_FIRST_PAGES = 3
 # The first lines of page 1 count as the title. A value found there beats one found in body text.
 CLASSIFY_TITLE_LINES = 3
 
-# Medicare contract-plan id, for example H0028-030. A trailing segment (-001) is ignored.
-PLAN_ID_PATTERN = r"\b(H\d{4}-\d{3})(?:-\d{3})?\b"
+# Medicare Advantage contract-plan id, H (local) or R (regional PPO), for example H0028-030.
+# A trailing segment is kept unless it is 000 (models.ids.normalize_plan_id). ASCII digits only.
+PLAN_ID_PATTERN = r"\b([HR][0-9]{4}-[0-9]{3}(?:-[0-9]{3})?)\b"
 
 # A plan year from 2010 to 2099. Not part of a dollar amount or a longer number.
 PLAN_YEAR_PATTERN = r"(?<![$\d.,])(20[1-9]\d)(?![\d])(?!,\d)"
@@ -151,3 +152,10 @@ EXTRACT_PREFER_MARKERS: dict[str, str] = {
     "standard pharmacy": r"\bstandard\b",
     "30-day supply": r"\b(?:30|thirty)[- ]day\b|\bone[- ]month\b",
 }
+
+# Review 1
+# CMS money cells, checked on the requested plans only, before the decimal cast. Matched without
+# case after "$", thousands commas, and spaces are stripped. Anything else that is not a plain
+# non-negative amount with at most 2 decimal places stops the read, naming file, column, and row.
+CMS_MISSING_MARKERS = frozenset({"", "n/a", "na", "not applicable"})
+CMS_NOT_COVERED_MARKERS = frozenset({"not covered", "no coverage", "not offered"})
