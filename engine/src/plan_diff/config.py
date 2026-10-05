@@ -203,3 +203,46 @@ VALIDATE_MISMATCH_CONFIDENCE = 0.3
 SHOP_AGAIN_PREMIUM_UP = Decimal("20.00")  # monthly premium, per month
 SHOP_AGAIN_MOOP_UP = Decimal("1000.00")  # in-network maximum out-of-pocket, per year
 SHOP_AGAIN_DRUG_DEDUCTIBLE_UP = Decimal("0.01")  # any rise at all
+
+# Review 2
+# Extraction never turns an unreadable or ambiguous cell into a confident value (SPEC: never guess).
+
+# Units a cost-sharing or drug value may state for itself (per day, stay, visit, prescription).
+# Period words (monthly, a year, every quarter) set the unit only for allowances, and for the
+# premium when written right next to the premium amount. Every other field keeps its default unit.
+EXTRACT_COST_UNIT_PHRASES: dict[str, str] = {
+    "per day": "per_day",
+    "a day": "per_day",
+    "per stay": "per_stay",
+    "per admission": "per_stay",
+    "per visit": "per_visit",
+    "per prescription": "per_prescription",
+}
+EXTRACT_PERIOD_UNIT_PHRASES: dict[str, str] = {
+    phrase: unit
+    for phrase, unit in EXTRACT_UNIT_PHRASES.items()
+    if unit in {"per_month", "per_quarter", "per_half_year", "per_year"}
+}
+
+# Section headings (a whole line with no amount that is not a field label). Inside a drug section,
+# the fields listed in EXTRACT_DRUG_SECTION_LABELS use the stricter label, so a drug "Deductible"
+# row never reads as the medical deductible. A medical heading ends the drug section.
+EXTRACT_DRUG_SECTION_HEADING = (
+    r"^(?:section [\w.]+[:.]?\s*)?(?:medicare )?(?:part d\b|(?:outpatient )?prescription drugs?\b"
+    r"|rx drugs?\b|pharmacy\b|drug (?:benefits?|coverage)\b)"
+)
+EXTRACT_MEDICAL_SECTION_HEADING = (
+    r"^(?:section [\w.]+[:.]?\s*)?(?:medical|hospital|doctor|health|dental|vision|hearing"
+    r"|extra|additional|other)\b"
+)
+EXTRACT_DRUG_SECTION_LABELS: dict[str, str] = {
+    "medical_deductible": r"(?:medical|health) deductible\b",
+}
+
+# Footnote markers stripped before amounts are read ("$45*", "$45" plus a superscript 1).
+EXTRACT_FOOTNOTE_MARKERS = "¹²³⁰⁴⁵⁶⁷⁸⁹*†‡"
+# A digit glued to an amount ("$1,5001") or one or two lone digits right after it ("$45 1") may
+# be a footnote marker or part of the number. The first reading is kept at this confidence and a
+# conflicting_values review item says why.
+EXTRACT_AMBIGUOUS_DIGIT = r"^(?:\d|\s\d{1,2}(?![\d,.%$\w-]))"
+EXTRACT_CONFIDENCE_AMBIGUOUS_DIGIT = 0.6

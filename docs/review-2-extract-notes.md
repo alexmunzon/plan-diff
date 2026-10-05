@@ -1,0 +1,49 @@
+# Review 2 notes: extraction never guesses
+
+Decisions made while fixing review 2 (subagent run, 2026-10-05). Rule: when a cell is unreadable or
+ambiguous, the field is left unread or kept at lower confidence with a review item. Tests are in
+`engine/tests/unit/test_review_2_extract.py`; constants are under `# Review 2` in `config.py`.
+
+1. **F2, units by field.** Period words (monthly, a year, every quarter) set the unit only for the
+   dental and OTC allowances. The premium is per month unless a period phrase sits right next to
+   the premium amount ("$300 per year"). Every other field takes only per day, per stay, per
+   admission, per visit, or per prescription, else its default unit. So "$3,400 (does not include
+   your monthly premium)" is MOOP per year, and "$40 copay (annual limit...)" is a per visit copay.
+   The PR 5 and PR 6 phrase table is split into `EXTRACT_COST_UNIT_PHRASES` and
+   `EXTRACT_PERIOD_UNIT_PHRASES` (built from the old table, which is left as is).
+2. **F4, wrapped values.** A label line with no value takes the next line only if that line does
+   not start with any field label. Otherwise the field has an empty, unreadable hit.
+3. **F5, unreadable beside readable.** Any unreadable row for a field plus a readable row is a
+   `conflicting_values` review item at confidence 0.3 that cites both. The readable value is kept
+   at that low confidence. This replaces the PR 5 behavior of quietly ignoring unreadable rows.
+4. **F5, sections.** A heading is a whole line with no `$`, `%`, or digit that is not a field
+   label. A drug heading ("Prescription drug benefits", "Part D drug coverage", "Pharmacy") starts
+   a drug section; a medical heading ("Medical benefits", "Hospital", "Dental", "Other") ends it.
+   The section carries across pages. Inside a drug section the medical deductible label must say
+   "medical" or "health", so a bare "Deductible $250" is never the medical deductible. It is not
+   read as the drug deductible either (that would be a guess); it is simply skipped.
+5. **F8, not covered first.** "Not covered" is a value like an amount. A 100% next to it only
+   restates it, so "Not covered (you pay 100%)" is NotCovered. "$40 copay; not covered" is two
+   values and goes through the usual two-value rule (confidence 0.6 and a review item).
+6. **F9, inpatient.** The in-network rule runs before the day-range rule, and any day range in the
+   chosen value's segment (or the whole cell when no marker picked) makes the unit per day. An
+   ellipsis or a sentence end now also splits a cell into segments.
+7. **F10, the value's own words.** The unit is read only from the chosen value's span: its segment,
+   cut at neighbouring values and at any parenthesis. "$50 ($200 a year)" for an allowance is $50
+   with no unit and an `unknown_period` review item. An allowance with no period next to its
+   amount ("$1,500", "$0") also gets no unit and that review item, never per year. The PR 6 test
+   that expected "$0" dental to be per year now expects no unit.
+8. **F11, footnotes.** Superscript digits, `*`, and daggers are stripped before reading. A digit
+   glued to the amount ("$1,5001", "$45.501") or one or two lone digits after it ("$45 1") may be
+   a footnote or part of the number: the amount without it is kept at confidence 0.6 with a
+   `conflicting_values` review item (no new review kind, so the schema is unchanged).
+
+## Risks and follow-ups
+
+- Section headings are a phrase list; real SBs may title sections differently. PR 15 must check.
+- Allowance cells that put the period in a separate column or a parenthesis ("$1,500 (per year)")
+  now go to review instead of being read. That is safe but adds review volume.
+- A deductible or MOOP cell that states a month ("$300 per month") keeps per year, the field's
+  default, with no review item. Rare on real documents; worth a flag later.
+- Treating an unreadable row as a conflict will lower confidence wherever EOC prose starts a line
+  with a field label. Safe direction, but expect more review items on long documents.

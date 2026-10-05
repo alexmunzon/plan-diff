@@ -76,7 +76,7 @@ def test_spec_example_1_reads_all_15_fields_with_pages(tmp_path: Path) -> None:
             Money(amount=Decimal(1500)),
             Unit.PER_YEAR,
         ),
-        (FieldName.DENTAL_ALLOWANCE, "$0", Money(amount=Decimal(0)), Unit.PER_YEAR),
+        (FieldName.DENTAL_ALLOWANCE, "$0", Money(amount=Decimal(0)), None),  # Review 2: no period
         (
             FieldName.OTC_ALLOWANCE,
             "$50 every quarter OTC",
