@@ -5,9 +5,15 @@ copied from a CMS file. Plan ids H9999-xxx and H9998-xxx are fake, and so are th
 plan names, counties, and dollar amounts. They exist so the readers in `engine/src/plan_diff/cms/`
 can be tested in CI without any download.
 
-The files only copy the shape of the real files: the column names CMS has used in past years, the
-separator (comma for Landscape and Crosswalk, tab for PBP), and the crosswalk status labels. Those
-column names are unconfirmed until Alex approves the real downloads; see `docs/cms-fields.md`.
+The files only copy the shape of the real files: the column names, the separator, and the crosswalk
+status labels. PR 15 checked those against the real 2026 and 2027 files and moved these fixtures to
+the real shapes (no values changed): the crosswalk is tab separated with no segment columns and
+writes NEW and TERMINATED in the empty id columns; the Landscape premium column is "Monthly
+Consolidated Premium (Part C + D)", with "Part C Premium" and "Part D Coverage Indicator" added;
+the outpatient table is `pbp_b9_outpat_hosp.txt`; the PBP tables gained the range, coinsurance,
+and period columns the readers now read (left empty). The real rows for the Texas slice are in
+`fixtures/cms-real/`. The `messy/` crosswalk keeps its comma separated, segmented shape on purpose,
+so the segment rule stays tested; its test passes that layout in.
 
 | File | Shaped like | Documentation page |
 |---|---|---|
