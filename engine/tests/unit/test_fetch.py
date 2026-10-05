@@ -12,7 +12,7 @@ from typer.testing import CliRunner
 
 from plan_diff.cli import app
 from plan_diff.fetch import FetchSettings, fetch_manifest
-from plan_diff.models import SourcesManifest
+from plan_diff.models import SourceDocument, SourcesManifest
 
 BODY = b"%PDF-1.4 synthetic test body"
 GOOD = hashlib.sha256(BODY).hexdigest()
@@ -58,7 +58,7 @@ class Run:
 
     def __call__(self, manifest: Path, out: Path, **kw: Any) -> int:
         settings = kw.pop("settings", FetchSettings(delay_s=5, max_bytes=1_000_000))
-        client = httpx.Client(transport=httpx.MockTransport(self.handler))
+        client = httpx.Client(transport=httpx.MockTransport(self.handler), follow_redirects=True)
         return fetch_manifest(
             manifest,
             out,
@@ -170,3 +170,130 @@ def test_committed_manifest_is_valid_and_unpinned() -> None:
     manifest = SourcesManifest.model_validate_json(path.read_text())
     assert len(manifest.documents) >= 10
     assert all(not d.verified and d.sha256 is None for d in manifest.documents)
+
+
+def test_redirect_to_another_host_is_refused(tmp_path: Path) -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.host == "example.test":
+            return httpx.Response(302, headers={"Location": "https://evil.test/sb-a.pdf"})
+        return httpx.Response(200, content=BODY)
+
+    run = Run()
+    run.handler = handler  # type: ignore[method-assign]
+    manifest = write_manifest(tmp_path, doc("sb-a"))
+    code = run(manifest, tmp_path / "raw", pin=True)
+    assert code != 0
+    assert list((tmp_path / "raw").iterdir()) == []
+    assert "evil.test" in "\n".join(run.lines)
+    assert SourcesManifest.model_validate_json(manifest.read_text()).documents[0].sha256 is None
+
+
+def test_redirect_on_the_same_host_is_allowed(tmp_path: Path) -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/sb-a.pdf":
+            return httpx.Response(302, headers={"Location": "https://example.test/files/sb-a.pdf"})
+        return httpx.Response(200, content=BODY)
+
+    run = Run()
+    run.handler = handler  # type: ignore[method-assign]
+    assert run(write_manifest(tmp_path, pinned("sb-a")), tmp_path / "raw") == 0
+    assert (tmp_path / "raw" / "sb-a.pdf").read_bytes() == BODY
+
+
+def test_html_body_with_pin_is_refused_and_nothing_pinned(tmp_path: Path) -> None:
+    run = Run(body=b"<!doctype html><html>landing page</html>")
+    manifest = write_manifest(tmp_path, doc("sb-a"))
+    code = run(manifest, tmp_path / "raw", pin=True)
+    assert code != 0
+    assert list((tmp_path / "raw").iterdir()) == []
+    assert "not a PDF" in "\n".join(run.lines)
+    assert SourcesManifest.model_validate_json(manifest.read_text()).documents[0].sha256 is None
+
+
+def test_cms_zip_must_start_with_zip_bytes(tmp_path: Path) -> None:
+    cms = doc(
+        "cms-pbp-2026", plan_id=None, document_type="CMS_PBP", url="https://example.test/p.zip"
+    )
+    assert Run(body=BODY)(write_manifest(tmp_path, cms), tmp_path / "raw", pin=True) != 0
+    assert list((tmp_path / "raw").iterdir()) == []
+    zipped = b"PK\x03\x04 synthetic zip"
+    assert Run(body=zipped)(write_manifest(tmp_path, cms), tmp_path / "raw", pin=True) == 0
+    assert (tmp_path / "raw" / "cms-pbp-2026.zip").read_bytes() == zipped
+
+
+def test_existing_file_with_wrong_hash_is_quarantined_and_refetched(tmp_path: Path) -> None:
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    (raw / "sb-a.pdf").write_bytes(b"%PDF-tampered")
+    run = Run()
+    assert run(write_manifest(tmp_path, pinned("sb-a")), raw) == 0
+    assert (raw / "sb-a.pdf").read_bytes() == BODY
+    assert (raw / ".rejected" / "sb-a.pdf").read_bytes() == b"%PDF-tampered"
+    assert any("sb-a" in line and "quarantined" in line for line in run.lines)
+
+
+def test_existing_bad_file_is_not_left_when_the_refetch_fails(tmp_path: Path) -> None:
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    (raw / "sb-a.pdf").write_bytes(b"%PDF-tampered")
+    run = Run(body=b"<html>gone</html>")
+    assert run(write_manifest(tmp_path, pinned("sb-a")), raw) != 0
+    assert not (raw / "sb-a.pdf").exists()
+    assert sorted(p.name for p in raw.iterdir()) == [".rejected"]
+
+
+def test_size_guard_counts_a_streamed_body_with_no_content_length(tmp_path: Path) -> None:
+    seen: list[httpx.Headers] = []
+
+    def chunks() -> Any:
+        for _ in range(10):
+            yield b"%PDF-" + b"x" * 200
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        response = httpx.Response(200, content=chunks())
+        seen.append(response.headers)
+        return response
+
+    run = Run()
+    run.handler = handler  # type: ignore[method-assign]
+    settings = FetchSettings(delay_s=0, max_bytes=1000)
+    code = run(write_manifest(tmp_path, doc("sb-a")), tmp_path / "raw", pin=True, settings=settings)
+    assert code != 0
+    assert "content-length" not in seen[0]
+    assert list((tmp_path / "raw").iterdir()) == []
+    assert "too large" in "\n".join(run.lines)
+
+
+def test_no_part_file_is_left_after_any_failure(tmp_path: Path) -> None:
+    raw = tmp_path / "raw"
+
+    def broken(request: httpx.Request) -> httpx.Response:
+        raise httpx.ConnectError("boom", request=request)
+
+    for handler_body in (b"<html>", b"%PDF-wrong"):
+        run = Run(body=handler_body)
+        run(write_manifest(tmp_path, pinned("sb-a", sha="0" * 64)), raw)
+    run = Run()
+    run.handler = broken  # type: ignore[method-assign]
+    assert run(write_manifest(tmp_path, pinned("sb-a")), raw) != 0
+    assert [p.name for p in raw.iterdir() if p.name.endswith(".part")] == []
+
+
+def test_pin_rewrites_the_manifest_atomically(tmp_path: Path) -> None:
+    manifest = write_manifest(tmp_path, doc("sb-a"))
+    assert Run()(manifest, tmp_path / "raw", pin=True) == 0
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["manifest.json", "raw"]
+
+
+@pytest.mark.parametrize("bad", ["../x", "a/b", "A-B", "a_b", "", "a.pdf"])
+def test_document_id_must_be_lowercase_letters_digits_and_dashes(bad: str) -> None:
+    with pytest.raises(ValueError):
+        SourceDocument.model_validate(doc(bad))
+
+
+def test_path_traversal_id_is_refused_by_fetch(tmp_path: Path) -> None:
+    run = Run()
+    with pytest.raises(ValueError):
+        run(write_manifest(tmp_path, doc("../x")), tmp_path / "raw", pin=True)
+    assert run.requests == []
+    assert not (tmp_path / "x.pdf").exists()
