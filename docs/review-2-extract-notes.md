@@ -38,6 +38,17 @@ ambiguous, the field is left unread or kept at lower confidence with a review it
    a footnote or part of the number: the amount without it is kept at confidence 0.6 with a
    `conflicting_values` review item (no new review kind, so the schema is unchanged).
 
+9. **Labeled picks (coordinator follow-up).** The diff fix sets a 0.7 confidence floor for the
+   shop-again flag, so 0.6 on every two-value cell would leave most real plans undecided. When
+   the chosen value's own words (its segment, between its neighbouring values) carry an explicit
+   in-network or standard pharmacy marker, it is read at 0.85 with a low-severity
+   `conflicting_values` item that says "explicitly labeled". A "first value" pick, or a marker
+   that is not next to the chosen value, stays at 0.6. The 30-day supply rule alone is not on
+   the trusted list (`EXTRACT_LABELED_RULES`). PR 5 and PR 6 tests now expect 0.85 for labeled
+   cells and still expect 0.6 for "$0 or $40".
+10. **Merge.** main added its own `# Review 2` block (diff) to `config.py`; this fix's constants
+    follow under `# Review 2 (extraction)`. No other section moved.
+
 ## Risks and follow-ups
 
 - Section headings are a phrase list; real SBs may title sections differently. PR 15 must check.

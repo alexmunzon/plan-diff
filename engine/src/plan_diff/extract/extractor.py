@@ -147,9 +147,15 @@ def extract_pages(page_texts: Sequence[str], classification: Classification) -> 
                 reason += "; a row with no readable value may hold a different one"
             flag(name, ReviewKind.CONFLICTING_VALUES, evidence, reason)
         elif first.parsed.multiple:
-            confidence = config.EXTRACT_CONFIDENCE_MULTIPLE
+            # Review 2: a pick explicitly labeled in its own words is trusted more than "first".
+            labeled = first.parsed.labeled
+            confidence = (
+                config.EXTRACT_CONFIDENCE_LABELED if labeled else config.EXTRACT_CONFIDENCE_MULTIPLE
+            )
             picked = first.parsed.picked
             reason = f"two or more values in one cell: '{first.text}'; took the {picked} value"
+            if labeled:
+                reason += f" (explicitly labeled {picked})"
             flag(name, ReviewKind.CONFLICTING_VALUES, [first], reason)
         if first.parsed.unknown_period:
             confidence = min(confidence, config.EXTRACT_CONFIDENCE_UNKNOWN_PERIOD)

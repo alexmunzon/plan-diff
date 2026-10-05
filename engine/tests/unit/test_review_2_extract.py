@@ -6,7 +6,16 @@ import pytest
 
 from plan_diff.classify import classify_pages
 from plan_diff.extract import FAMILIES, ExtractionResult, extract_pages, parse_value
-from plan_diff.models import Coinsurance, Copay, FieldName, Money, NotCovered, ReviewKind, Unit
+from plan_diff.models import (
+    Coinsurance,
+    Copay,
+    FieldName,
+    Money,
+    NotCovered,
+    ReviewKind,
+    Severity,
+    Unit,
+)
 
 PARSERS = {p.field: p for family in FAMILIES.values() for p in family}
 
@@ -184,3 +193,37 @@ def test_f11_superscript_from_a_pdf_line() -> None:
 def test_coinsurance_still_reads() -> None:
     parsed = parse_value("20% coinsurance", PARSERS[FieldName.EMERGENCY_ROOM])
     assert parsed is not None and parsed.value == Coinsurance(percent=Decimal(20))
+
+
+# Coordinator follow-up: an explicitly labeled pick is 0.85, a "first value" pick stays 0.6.
+
+
+@pytest.mark.parametrize(
+    "line",
+    [
+        "Maximum out-of-pocket $3,400 in-network / $6,700 out-of-network",
+        "Maximum out-of-pocket Out-of-network: $6,700, In-network: $3,400",
+    ],
+)
+def test_labeled_in_network_pick_is_085_with_a_review_item(line: str) -> None:
+    result = _run(line)
+    got = result.fields[FieldName.MOOP_IN_NETWORK]
+    assert (got.value, got.confidence) == (Money(amount=Decimal(3400)), 0.85)
+    (item,) = [i for i in result.review_items if i.field is FieldName.MOOP_IN_NETWORK]
+    assert item.kind is ReviewKind.CONFLICTING_VALUES and item.severity is Severity.LOW
+    assert "explicitly labeled in-network" in item.reason
+
+
+@pytest.mark.parametrize(
+    "line",
+    [
+        "Monthly plan premium $25 or $40",
+        "Monthly plan premium $25 copay $40 in-network",  # marker not next to the chosen value
+    ],
+)
+def test_unlabeled_first_pick_stays_06(line: str) -> None:
+    result = _run(line)
+    got = result.fields[FieldName.MONTHLY_PREMIUM]
+    assert (got.value, got.confidence) == (Money(amount=Decimal(25)), 0.6)
+    (item,) = [i for i in result.review_items if i.field is FieldName.MONTHLY_PREMIUM]
+    assert "explicitly labeled" not in item.reason

@@ -123,7 +123,7 @@ def test_tier_with_preferred_and_standard_takes_standard(tmp_path: Path, text: s
     result = extract_document(fake.path, classify_pdf(fake.path, document_id="doc"))
     got = result.fields[FieldName.DRUG_TIER_3]
     assert got.value == Copay(amount=Decimal(47))
-    assert got.confidence == 0.6
+    assert got.confidence == 0.85  # Review 2: explicitly labeled standard
     (item,) = result.review_items  # the rule is recorded, never silent
     assert item.kind is ReviewKind.CONFLICTING_VALUES
     assert "standard pharmacy" in item.reason

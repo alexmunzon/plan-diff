@@ -256,3 +256,10 @@ EXTRACT_FOOTNOTE_MARKERS = "¹²³⁰⁴⁵⁶⁷⁸⁹*†‡"
 # conflicting_values review item says why.
 EXTRACT_AMBIGUOUS_DIGIT = r"^(?:\d|\s\d{1,2}(?![\d,.%$\w-]))"
 EXTRACT_CONFIDENCE_AMBIGUOUS_DIGIT = 0.6
+
+# Two values in one cell: when the chosen value's own words carry one of these markers (keys of
+# EXTRACT_PREFER_MARKERS), it is read at this confidence with a low-severity review item noting
+# the rule. A "first value" pick with no marker stays at EXTRACT_CONFIDENCE_MULTIPLE (0.6). Kept
+# above SHOP_AGAIN_CONFIDENCE_FLOOR so an in-network MOOP or premium can still decide the flag.
+EXTRACT_LABELED_RULES = frozenset({"in-network", "standard pharmacy"})
+EXTRACT_CONFIDENCE_LABELED = 0.85

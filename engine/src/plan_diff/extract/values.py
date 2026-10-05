@@ -50,6 +50,7 @@ class Parsed:
     picked: str = ""  # which rule chose it, for the review item: "in-network", ..., or "first"
     unknown_period: str = ""  # an allowance with no known period next to it; unit is None
     ambiguous: str = ""  # a digit right after the amount may be a footnote marker (Review 2)
+    labeled: bool = False  # the pick's own words carry an explicit marker such as "in-network"
 
 
 @dataclass(frozen=True)
@@ -142,6 +143,18 @@ def parse_value(text: str, parser: FieldParser) -> Parsed | None:
     if (m := _AMBIGUOUS_DIGIT.match(clean[chosen.end :])) is not None:
         ambiguous = clean[chosen.start : chosen.end + m.end()].strip()
 
+    # Explicitly labeled: a trusted marker sits in the chosen value's own words, between its
+    # neighbouring values ("$1,500 in-network / $500 ...", "$47 copay (standard) / $42 ...").
+    near = clean[
+        max(seg[0], cands[index - 1].end if index > 0 else 0) : min(
+            seg[1], cands[index + 1].start if index + 1 < len(cands) else len(clean)
+        )
+    ]
+    labeled = any(
+        re.search(config.EXTRACT_PREFER_MARKERS[r], near, re.IGNORECASE)
+        for r in rules
+        if r in config.EXTRACT_LABELED_RULES
+    )
     token = chosen.value
     value: FieldValue
     if isinstance(token, NotCovered | Coinsurance):
@@ -151,22 +164,24 @@ def parse_value(text: str, parser: FieldParser) -> Parsed | None:
     else:
         value = Copay(amount=token)
     if isinstance(token, NotCovered):
-        return Parsed(value, None, multiple, picked, ambiguous=ambiguous)
+        return Parsed(value, None, multiple, picked, ambiguous=ambiguous, labeled=labeled)
     span = _own_span(clean, cands, index, seg)
     if parser.period:
         unit = _unit(span, config.EXTRACT_PERIOD_UNIT_PHRASES)
         if unit is None:
             m = _PERIOD.search(span)
             unknown = m.group(0) if m else "none stated next to the amount"
-            return Parsed(value, None, multiple, picked, unknown, ambiguous)
-        return Parsed(value, unit, multiple, picked, ambiguous=ambiguous)
+            return Parsed(value, None, multiple, picked, unknown, ambiguous, labeled)
+        return Parsed(value, unit, multiple, picked, ambiguous=ambiguous, labeled=labeled)
     if parser.units == "period":
         unit = _unit(span, config.EXTRACT_PERIOD_UNIT_PHRASES)
     else:
         unit = _unit(span, config.EXTRACT_COST_UNIT_PHRASES)
     if day_range:
         unit = Unit.PER_DAY  # any day range means per day (Review 2)
-    return Parsed(value, unit or parser.default_unit, multiple, picked, ambiguous=ambiguous)
+    return Parsed(
+        value, unit or parser.default_unit, multiple, picked, ambiguous=ambiguous, labeled=labeled
+    )
 
 
 # PR 5: the cost-sharing family.
