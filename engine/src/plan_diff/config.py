@@ -1,5 +1,7 @@
 """Tunable constants. Each PR adds its own block under a `# PR N` header."""
 
+from decimal import Decimal
+
 # PR 4
 # Document classifier (SPEC section 6 step 2). Deterministic: regex and phrase tables only.
 
@@ -194,3 +196,10 @@ VALIDATE_SEVERITY: dict[str, str] = {
 
 # Confidence on a mismatch review item: low, because two official sources disagree.
 VALIDATE_MISMATCH_CONFIDENCE = 0.3
+
+# PR 8
+# Shop-again thresholds (SPEC decision 4). A rise of at least this much flags the plan. Money is
+# Decimal. Termination, consolidation, a lost county, and a removed benefit always flag.
+SHOP_AGAIN_PREMIUM_UP = Decimal("20.00")  # monthly premium, per month
+SHOP_AGAIN_MOOP_UP = Decimal("1000.00")  # in-network maximum out-of-pocket, per year
+SHOP_AGAIN_DRUG_DEDUCTIBLE_UP = Decimal("0.01")  # any rise at all

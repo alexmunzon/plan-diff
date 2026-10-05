@@ -17,6 +17,7 @@ class ReviewKind(StrEnum):
     CONFLICTING_VALUES = "conflicting_values"  # one field read as two different values
     UNCLASSIFIED_DOCUMENT = "unclassified_document"
     UNKNOWN_PERIOD = "unknown_period"  # an allowance period no Unit matches; never made yearly
+    CROSSWALK_ROW_MISSING = "crosswalk_row_missing"  # PR 8: never read as a termination
 
 
 class Severity(StrEnum):
