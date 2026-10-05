@@ -5,7 +5,7 @@ Summary of Benefits: a title line, then a ruled cost-sharing table spread over t
 page numbers matter. EOC and ANOC variants change only the title.
 """
 
-from collections.abc import Mapping, Sequence
+from collections.abc import Collection, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -78,8 +78,14 @@ def make_plan_pdf(
     plan_name: str = "Example Gold Plus (HMO)",
     values: Mapping[FieldName, str] | None = None,
     name: str | None = None,
+    omit: Collection[FieldName] = (),
+    extra_rows: Sequence[tuple[int, str, str]] = (),
 ) -> FakePdf:
-    """Write one SB, EOC, or ANOC shaped PDF and return where each field landed."""
+    """Write one SB, EOC, or ANOC shaped PDF and return where each field landed.
+
+    `omit` leaves fields out (they are absent from field_pages). `extra_rows` adds
+    (page, label, value) rows at the end of that page's table.
+    """
     cells = {**DEFAULT_VALUES, **(values or {})}
     title = TITLES[document_type]
     year_text = f" {year}" if year is not None else ""
@@ -97,13 +103,17 @@ def make_plan_pdf(
             canvas.drawString(LEFT, height - 112, f"What changes from {year - 1} to {year}")
 
     fields = list(FieldName)
-    pages = [fields[:FIELDS_ON_PAGE_1], fields[FIELDS_ON_PAGE_1:]]
+    pages = [
+        [f for f in fields[:FIELDS_ON_PAGE_1] if f not in omit],
+        [f for f in fields[FIELDS_ON_PAGE_1:] if f not in omit],
+    ]
     field_pages: dict[FieldName, int] = {}
     for number, page_fields in enumerate(pages, start=1):
         if number > 1:
             canvas.showPage()
         top = height - 140
         rows = [("Benefit", "What you pay")] + [(LABELS[f], cells[f]) for f in page_fields]
+        rows += [(label, value) for page, label, value in extra_rows if page == number]
         for index, (label, value) in enumerate(rows):
             y = top - index * ROW_HEIGHT
             canvas.setFont("Helvetica-Bold" if index == 0 else "Helvetica", 10)
