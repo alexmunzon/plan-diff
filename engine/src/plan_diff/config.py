@@ -205,6 +205,16 @@ SHOP_AGAIN_MOOP_UP = Decimal("1000.00")  # in-network maximum out-of-pocket, per
 SHOP_AGAIN_DRUG_DEDUCTIBLE_UP = Decimal("0.01")  # any rise at all
 
 # Review 2
+# The shop-again flag is never confidently wrong (SPEC decisions 4 and 5). A threshold field
+# (premium, MOOP, drug deductible) or a removed benefit cannot decide the flag when either year's
+# value is below this confidence, missing, not comparable, in the wrong unit, or disagrees with CMS.
+SHOP_AGAIN_CONFIDENCE_FLOOR = 0.7  # a value at the floor is trusted; below it goes to review
+
+# County names compare after lowercasing, dropping punctuation, and dropping this trailing word, so
+# "Bexar County", "BEXAR", and "Bexar" are one county.
+COUNTY_SUFFIXES = ("county",)
+
+# Review 2 (extraction)
 # Extraction never turns an unreadable or ambiguous cell into a confident value (SPEC: never guess).
 
 # Units a cost-sharing or drug value may state for itself (per day, stay, visit, prescription).

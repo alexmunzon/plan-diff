@@ -18,6 +18,7 @@ class ReviewKind(StrEnum):
     UNCLASSIFIED_DOCUMENT = "unclassified_document"
     UNKNOWN_PERIOD = "unknown_period"  # an allowance period no Unit matches; never made yearly
     CROSSWALK_ROW_MISSING = "crosswalk_row_missing"  # PR 8: never read as a termination
+    SHOP_AGAIN_UNCERTAIN = "shop_again_uncertain"  # Review 2: a field that cannot decide the flag
 
 
 class Severity(StrEnum):

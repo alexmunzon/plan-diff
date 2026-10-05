@@ -63,25 +63,33 @@ def _typed(field: FieldName, amount: Decimal | None, status: str) -> FieldValue 
     return Copay(amount=amount) if _KIND[field] == "copay" else Money(amount=amount)
 
 
+def _cms_citation(kind: str, year: int, file: str, row: int) -> Citation:
+    text = f"CMS {kind} {year}, {file}, row {row}"
+    return Citation(document_id=file, page=row, method=CitationMethod.CMS, text=text)
+
+
 def cms_values_for(
     plan_id: str,
     *,
     pbp: pl.DataFrame,
     landscape: pl.DataFrame | None = None,
-    landscape_file: str = "landscape",
+    landscape_file: str | None = None,
 ) -> dict[FieldName, CmsValue]:
     """CMS values for one plan from read_pbp and read_landscape output. The premium comes from the
-    Landscape (docs/cms-fields.md). Counties that disagree on the premium stop the run."""
+    Landscape (docs/cms-fields.md). Counties that disagree on the premium stop the run.
+
+    Review 2: every citation names the real CMS file and the plan year. With a Landscape frame,
+    `landscape_file` (the real file name, for example "landscape_2026.csv") is required."""
+    if landscape is not None and not landscape_file:
+        raise ValueError("landscape_file is required with a Landscape frame: name the real file")
     out: dict[FieldName, CmsValue] = {}
     for row in pbp.filter(pl.col("plan_id") == plan_id).iter_rows(named=True):
         field = FieldName(row["field"])
         value = _typed(field, row["amount"], row["amount_status"])
         if value is not None:
-            cite = Citation(
-                document_id=row["file"], page=row["source_row"], method=CitationMethod.CMS
-            )
+            cite = _cms_citation("PBP", row["year"], row["file"], row["source_row"])
             out[field] = CmsValue(field=field, value=value, unit=_cms_unit(field), citation=cite)
-    if landscape is not None:
+    if landscape is not None and landscape_file:
         rows = landscape.filter(pl.col("plan_id") == plan_id)
         if rows.select("premium", "premium_status").unique().height > 1:
             found = rows["source_row"].to_list()
@@ -91,8 +99,8 @@ def cms_values_for(
             field = FieldName.MONTHLY_PREMIUM
             value = _typed(field, first["premium"], first["premium_status"])
             if value is not None:
-                cite = Citation(
-                    document_id=landscape_file, page=first["source_row"], method=CitationMethod.CMS
+                cite = _cms_citation(
+                    "Landscape", first["year"], landscape_file, first["source_row"]
                 )
                 out[field] = CmsValue(
                     field=field, value=value, unit=_cms_unit(field), citation=cite
