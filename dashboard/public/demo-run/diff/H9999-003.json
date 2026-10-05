@@ -1,0 +1,21 @@
+{
+  "old_plan_id": "H9999-003",
+  "new_plan_id": null,
+  "old_year": 2026,
+  "new_year": 2027,
+  "crosswalk_status": "terminated",
+  "changes": [],
+  "shop_again": true,
+  "reasons": [
+    "plan terminated"
+  ],
+  "evidence": [
+    {
+      "document_id": "crosswalk_2027.csv",
+      "page": 3,
+      "method": "cms",
+      "text": "Terminated/Non-renewed Plan"
+    }
+  ],
+  "review": []
+}

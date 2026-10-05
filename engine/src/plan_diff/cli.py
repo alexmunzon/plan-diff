@@ -2,6 +2,7 @@
 
 import json
 import os
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Annotated
 
@@ -9,6 +10,9 @@ import typer
 
 from plan_diff import __version__
 from plan_diff import fetch as fetching
+from plan_diff import run as running
+from plan_diff.cms import CmsFileError
+from plan_diff.cms.unzip import UnzipRefused, unzip_cms
 from plan_diff.models import TOP_LEVEL_MODELS
 
 app = typer.Typer(help="plan-diff. Public data only.", no_args_is_help=True)
@@ -61,3 +65,67 @@ def fetch(
             manifest, out, only=only, pin=pin, client=client, echo=typer.echo
         )
     raise typer.Exit(code)
+
+
+def _csv(text: str) -> tuple[str, ...]:
+    return tuple(part.strip() for part in text.split(",") if part.strip())
+
+
+@app.command("run")
+def run_command(
+    docs: Annotated[Path, typer.Option(help="Folder of carrier PDFs (read recursively).")],
+    cms: Annotated[Path, typer.Option(help="Folder of CMS files, named as in fixtures/cms.")],
+    plans: Annotated[str, typer.Option(help="Plan ids, comma separated: H9999-001,H9999-002.")],
+    years: Annotated[str, typer.Option(help="One year, or two in a row: 2026,2027.")],
+    out: Annotated[Path, typer.Option(help="Folder that holds run folders.")] = Path("runs"),
+    run_id: Annotated[str, typer.Option("--run-id", help="Name of this run's folder.")] = "",
+    overwrite: Annotated[bool, typer.Option(help="Replace an existing run folder.")] = False,
+    now: Annotated[
+        str | None, typer.Option(help="Freeze the clock (ISO time with zone) for a repeatable run.")
+    ] = None,
+) -> None:
+    """Classify, extract, validate against CMS, and diff; write one immutable run folder."""
+    frozen = datetime.fromisoformat(now) if now else None
+    if frozen is not None and frozen.tzinfo is None:
+        typer.echo("refused: --now needs a time zone, for example 2026-10-05T12:00:00+00:00")
+        raise typer.Exit(2)
+    clock = (lambda: frozen) if frozen is not None else (lambda: datetime.now(UTC))
+    try:
+        year_numbers = tuple(int(y) for y in _csv(years))
+    except ValueError:
+        typer.echo(f"refused: years must be numbers, got {years!r}")
+        raise typer.Exit(2) from None
+    options = running.RunOptions(
+        docs=docs,
+        cms=cms,
+        plans=_csv(plans),
+        years=year_numbers,
+        out=out,
+        run_id=run_id or (frozen or datetime.now(UTC)).strftime("%Y%m%dT%H%M%SZ"),
+        overwrite=overwrite,
+    )
+    try:
+        folder = running.run(options, clock)
+    except (running.RunRefused, CmsFileError, ValueError) as err:
+        typer.echo(f"refused: {err}")
+        raise typer.Exit(1) from None
+    typer.echo(f"wrote {folder}")
+    for line in running.summary(folder):
+        typer.echo(line)
+
+
+@app.command("unzip-cms")
+def unzip_cms_command(
+    raw: Annotated[Path, typer.Option(help="Folder holding fetched CMS zips.")] = Path("data/raw"),
+) -> None:
+    """Unzip every fetched CMS zip into a folder next to it, safely; skip unchanged zips."""
+    failed = False
+    for zipped in sorted(raw.glob("*.zip")):
+        try:
+            folder, changed = unzip_cms(zipped)
+        except (UnzipRefused, OSError, ValueError) as err:
+            typer.echo(f"refused {zipped.name}: {err}")
+            failed = True
+            continue
+        typer.echo(f"{'unzipped' if changed else 'unchanged'} {zipped.name} into {folder}")
+    raise typer.Exit(1 if failed else 0)

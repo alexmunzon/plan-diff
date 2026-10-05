@@ -20,6 +20,10 @@ H9999-003 is terminated (SPEC example 3); H9999-004 is new; H9998-010 renews wit
 reduction. Status codes N, R, C, T are described by ResDAC:
 https://resdac.org/cms-data/variables/relationship-code
 
+`landscape_2027.csv` and `pbp_2027/` (added in PR 9, also hand-typed and synthetic) give the
+surviving plan H9999-001 a 2027 row: premium $25.00 a month, specialist $45, everything else as
+in 2026. They let the demo run validate both years and compare service areas.
+
 Real filtered extracts for the Texas slice replace or join these only after the download is
 approved, each with its own source URL, file name, and retrieved date.
 

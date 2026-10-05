@@ -8,6 +8,7 @@
   "scripts": {
     "verify": "npm run verify:engine && npm run verify:dashboard",
     "verify:engine": "cd engine && uv run ruff check . && uv run ruff format --check . && uv run mypy src && uv run pytest -q",
-    "verify:dashboard": "cd dashboard && npm run lint && npm run typecheck && npm run test && npm run build"
+    "verify:dashboard": "cd dashboard && npm run lint && npm run typecheck && npm run test && npm run build",
+    "demo": "cd engine && uv run python tests/demo_run.py"
   }
 }

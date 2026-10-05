@@ -36,6 +36,7 @@ from plan_diff.models.ids import (
 )
 from plan_diff.models.plan import PlanRecord
 from plan_diff.models.review import ReviewItem, ReviewKind, Severity
+from plan_diff.models.run import ApiUsage, RunInput, RunManifest, StepTiming
 from plan_diff.models.source import SourceDocument, SourcesManifest
 from plan_diff.models.validation import (
     ALLOWANCE_FIELDS,
@@ -54,12 +55,14 @@ TOP_LEVEL_MODELS: tuple[type[BaseModel], ...] = (
     PlanDiff,
     ReviewItem,
     AccuracyTable,
+    RunManifest,  # PR 9
 )
 
 __all__ = [
     "ALLOWANCE_FIELDS",
     "AccuracyRow",
     "AccuracyTable",
+    "ApiUsage",
     "CMS_CROSSWALK_LABELS",
     "TOP_LEVEL_MODELS",
     "Carrier",
@@ -84,8 +87,11 @@ __all__ = [
     "PlanYear",
     "ReviewItem",
     "ReviewKind",
+    "RunInput",
+    "RunManifest",
     "Severity",
     "Sha256",
+    "StepTiming",
     "SourceDocument",
     "SourcesManifest",
     "StrictModel",
