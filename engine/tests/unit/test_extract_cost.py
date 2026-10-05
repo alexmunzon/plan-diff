@@ -98,16 +98,16 @@ def test_coinsurance_is_not_a_copay() -> None:
 
 
 @pytest.mark.parametrize(
-    ("text", "amount"),
-    [("$0 or $40", "0"), ("$40 out of network, $10 in network", "10")],
+    ("text", "amount", "confidence"),
+    [("$0 or $40", "0", 0.6), ("$40 out of network, $10 in network", "10", 0.85)],
 )
 def test_two_values_in_one_cell_take_in_network_or_first(
-    tmp_path: Path, text: str, amount: str
+    tmp_path: Path, text: str, amount: str, confidence: float
 ) -> None:
     _, result = _extract(tmp_path, values={FieldName.PCP_COPAY: text})
     got = result.fields[FieldName.PCP_COPAY]
     assert got.value == Copay(amount=Decimal(amount))
-    assert got.confidence == 0.6
+    assert got.confidence == confidence  # Review 2: an explicit in-network label is 0.85
     assert got.citation.text == text
     (item,) = result.review_items  # the choice is recorded, never silent
     assert item.kind is ReviewKind.CONFLICTING_VALUES and "one cell" in item.reason

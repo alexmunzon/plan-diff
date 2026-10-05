@@ -232,3 +232,58 @@ RUN_DOCUMENT_PRIORITY = ("SB", "EOC", "ANOC", "OTHER")
 # Jev and the LLM are off in PR 9 (they arrive in PRs 10 and 11). The manifest records the mode.
 RUN_JEV_MODE: Final = "off"
 RUN_LLM_MODE: Final = "off"
+
+# Review 2 (extraction)
+# Extraction never turns an unreadable or ambiguous cell into a confident value (SPEC: never guess).
+
+# Units a cost-sharing or drug value may state for itself (per day, stay, visit, prescription).
+# Period words (monthly, a year, every quarter) set the unit only for allowances, and for the
+# premium when written right next to the premium amount. Every other field keeps its default unit.
+EXTRACT_COST_UNIT_PHRASES: dict[str, str] = {
+    "per day": "per_day",
+    "a day": "per_day",
+    "per stay": "per_stay",
+    "per admission": "per_stay",
+    "per visit": "per_visit",
+    "per prescription": "per_prescription",
+}
+EXTRACT_PERIOD_UNIT_PHRASES: dict[str, str] = {
+    phrase: unit
+    for phrase, unit in EXTRACT_UNIT_PHRASES.items()
+    if unit in {"per_month", "per_quarter", "per_half_year", "per_year"}
+}
+
+# Section headings (a whole line with no amount that is not a field label). Inside a drug section,
+# the fields listed in EXTRACT_DRUG_SECTION_LABELS use the stricter label, so a drug "Deductible"
+# row never reads as the medical deductible. A medical heading ends the drug section.
+EXTRACT_DRUG_SECTION_HEADING = (
+    r"^(?:section [\w.]+[:.]?\s*)?(?:medicare )?(?:part d\b|(?:outpatient )?prescription drugs?\b"
+    r"|rx drugs?\b|pharmacy\b|drug (?:benefits?|coverage)\b)"
+)
+EXTRACT_MEDICAL_SECTION_HEADING = (
+    r"^(?:section [\w.]+[:.]?\s*)?(?:medical|hospital|doctor|health|dental|vision|hearing"
+    r"|extra|additional|other)\b"
+)
+EXTRACT_DRUG_SECTION_LABELS: dict[str, str] = {
+    "medical_deductible": r"(?:medical|health) deductible\b",
+}
+
+# Footnote markers stripped before amounts are read ("$45*", "$45" plus a superscript 1).
+EXTRACT_FOOTNOTE_MARKERS = "¹²³⁰⁴⁵⁶⁷⁸⁹*†‡"
+# A digit glued to an amount ("$1,5001") or one or two lone digits right after it ("$45 1") may
+# be a footnote marker or part of the number. The first reading is kept at this confidence and a
+# conflicting_values review item says why.
+EXTRACT_AMBIGUOUS_DIGIT = r"^(?:\d|\s\d{1,2}(?![\d,.%$\w-]))"
+EXTRACT_CONFIDENCE_AMBIGUOUS_DIGIT = 0.6
+
+# Two values in one cell: when the chosen value's own words carry one of these markers (keys of
+# EXTRACT_PREFER_MARKERS), it is read at this confidence with a low-severity review item noting
+# the rule. A "first value" pick with no marker stays at EXTRACT_CONFIDENCE_MULTIPLE (0.6). Kept
+# above SHOP_AGAIN_CONFIDENCE_FLOOR so an in-network MOOP or premium can still decide the flag.
+EXTRACT_LABELED_RULES = frozenset({"in-network", "standard pharmacy"})
+EXTRACT_CONFIDENCE_LABELED = 0.85
+
+# A yearly field (MOOP, medical or drug deductible) whose own words state another period ("$3,400
+# per month") keeps the amount and the stated unit at this confidence, below
+# SHOP_AGAIN_CONFIDENCE_FLOOR, with an unexpected_unit review item.
+EXTRACT_CONFIDENCE_UNEXPECTED_UNIT = 0.5
