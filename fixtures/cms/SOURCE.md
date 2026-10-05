@@ -1,0 +1,24 @@
+# fixtures/cms: SYNTHETIC, not CMS data
+
+Every file in this folder was typed by hand for PR 3 (2026-10-05). None of it was downloaded or
+copied from a CMS file. Plan ids H9999-xxx and H9998-xxx are fake, and so are the organization and
+plan names, counties, and dollar amounts. They exist so the readers in `engine/src/plan_diff/cms/`
+can be tested in CI without any download.
+
+The files only copy the shape of the real files: the column names CMS has used in past years, the
+separator (comma for Landscape and Crosswalk, tab for PBP), and the crosswalk status labels. Those
+column names are unconfirmed until Alex approves the real downloads; see `docs/cms-fields.md`.
+
+| File | Shaped like | Documentation page |
+|---|---|---|
+| `crosswalk_2027.csv` | Part C and D Plan Crosswalk 2027 | https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/plan-crosswalks/2027-part-cd-plan-crosswalk |
+| `landscape_2026.csv` | CY2026 MA Landscape | https://www.cms.gov/medicare/coverage/prescription-drug-coverage |
+| `pbp_2026/*.txt` | PBP Benefits 2026 tables | https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/benefits-data/pbp-benefits-2026 |
+
+Crosswalk rows: H9999-001 continues; H9999-002 is consolidated into H9999-001 (SPEC example 2);
+H9999-003 is terminated (SPEC example 3); H9999-004 is new; H9998-010 renews with a service area
+reduction. Status codes N, R, C, T are described by ResDAC:
+https://resdac.org/cms-data/variables/relationship-code
+
+Real filtered extracts for the Texas slice replace or join these only after the download is
+approved, each with its own source URL, file name, and retrieved date.

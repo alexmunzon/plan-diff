@@ -1,0 +1,3 @@
+pbp_a_hnumber	pbp_a_plan_identifier	segment_id	pbp_b9a_copay_ohs_amt_min
+H9999	001	000	250
+H9999	002	000	200
