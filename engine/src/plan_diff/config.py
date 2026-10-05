@@ -117,7 +117,32 @@ EXTRACT_UNIT_PHRASES |= {
     "each month": "per_month",
     "every year": "per_year",
     "each year": "per_year",
+    "per calendar year": "per_year",
+    "a calendar year": "per_year",
+    "each calendar year": "per_year",
+    "annual": "per_year",
+    "annually": "per_year",
+    "yearly": "per_year",
+    "monthly": "per_month",
+    "every 6 months": "per_half_year",
+    "every six months": "per_half_year",
+    "twice a year": "per_half_year",
+    "twice per year": "per_half_year",
+    "twice yearly": "per_half_year",
+    "semiannual": "per_half_year",
+    "semiannually": "per_half_year",
+    "semi-annual": "per_half_year",
+    "semi-annually": "per_half_year",
 }
+
+# Any period wording in an allowance cell. If it is here but not in the phrase table above, the
+# amount is kept with no unit and goes to review (kind unknown_period); it never defaults to a year.
+EXTRACT_PERIOD_PATTERN = (
+    r"\b(?:every|each|per|a|once|twice|times)\b[^$%;,]{0,20}?\b(?:days?|weeks?|months?|quarters?"
+    r"|years?|benefit periods?)\b|\b(?:bi-?monthly|bi-?annual(?:ly)?|bi-?weekly|weekly|monthly"
+    r"|annual(?:ly)?|yearly)\b"
+)
+EXTRACT_CONFIDENCE_UNKNOWN_PERIOD = 0.6
 
 # When one cell holds two or more values, segments with these markers win, tried in this order;
 # a field lists the markers it uses. A drug tier takes the standard pharmacy, 30-day supply price.

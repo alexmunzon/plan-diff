@@ -24,7 +24,14 @@ Decisions made while building, without questions to Alex (subagent run, 2026-10-
    the page; the diff compares yearly amounts through `annualize(value, unit)`, a pure helper in
    `models/fields.py` that returns a Decimal (month x12, quarter x4, year x1), refuses floats, and
    refuses units that are not a period (per visit, per day). Quarter phrases: per, a, every, each
-   quarter, quarterly, every 3 months. An allowance with no period defaults to per year.
+   quarter, quarterly, every 3 months. An allowance with no period wording defaults to per year.
+8. **Half year and unknown periods** (coordinator follow-up). Added `Unit.PER_HALF_YEAR`
+   (annualize x2) for "every 6 months", "twice a year", "semiannual". Any other period wording in
+   an allowance cell ("every 2 months", "every 2 years", "bi-annual") is never mapped to a year:
+   the amount is kept with no unit, confidence 0.6, and a new review kind `unknown_period` cites
+   the page; `annualize` refuses a missing unit, so the diff cannot make it yearly. Unit phrases
+   now match whole words, and not after a hyphen, so "bi-annual" is not read as "annual" and
+   "bimonthly" is not "monthly". "annual", "annually", "yearly", "monthly" are now known phrases.
 6. **Small fix to the PR 5 splitter.** A comma inside an amount ("$1,500") no longer splits a cell
    into two values.
 7. **PR 5 test updated**, not weakened: SPEC example 1 now expects all 15 fields, and the drug
@@ -39,5 +46,5 @@ No new dependencies.
   an unlabeled grid takes the first amount at 0.6 confidence and goes to review. PR 15 must check.
 - Deductible-stage vs initial-coverage-stage wording is not read yet; a tier row inside a
   deductible-stage table would be taken as is.
-- An OTC allowance with an unusual period ("every 6 months") falls back to per year. Review it on
-  real documents.
+- Period wording outside `EXTRACT_PERIOD_PATTERN` (for example "per benefit cycle") would still
+  default to per year. Check allowance cells on real documents in PR 15.

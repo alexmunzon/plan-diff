@@ -186,3 +186,38 @@ def test_annualize_refuses_float_and_non_periods() -> None:
 
 def test_unit_has_quarter() -> None:
     assert Unit("per_quarter") is Unit.PER_QUARTER
+
+
+@pytest.mark.parametrize(
+    "text", ["$300 every 6 months", "$300 twice a year", "$300 semiannually", "$300 semi-annual"]
+)
+def test_half_year_allowance(text: str) -> None:
+    parsed = parse_value(text, PARSERS[FieldName.OTC_ALLOWANCE])
+    assert parsed is not None and parsed.unit is Unit.PER_HALF_YEAR
+    assert annualize(Decimal(300), Unit.PER_HALF_YEAR) == Decimal(600)
+
+
+@pytest.mark.parametrize(
+    ("text", "unit"),
+    [("$1,500 annual maximum", Unit.PER_YEAR), ("$40 monthly", Unit.PER_MONTH)],
+)
+def test_plain_period_words(text: str, unit: Unit) -> None:
+    parsed = parse_value(text, PARSERS[FieldName.DENTAL_ALLOWANCE])
+    assert parsed is not None and parsed.unit is unit and parsed.unknown_period == ""
+
+
+@pytest.mark.parametrize(
+    "text", ["$80 every 2 months", "$2,000 every 2 years", "$75 bi-annual", "$60 bimonthly"]
+)
+def test_unknown_period_never_falls_back_to_a_year(tmp_path: Path, text: str) -> None:
+    parsed = parse_value(text, PARSERS[FieldName.OTC_ALLOWANCE])
+    assert parsed is not None and parsed.unit is None and parsed.unknown_period
+    fake = make_plan_pdf(tmp_path, values={FieldName.OTC_ALLOWANCE: text})
+    result = extract_document(fake.path, classify_pdf(fake.path, document_id="doc"))
+    got = result.fields[FieldName.OTC_ALLOWANCE]
+    assert isinstance(got.value, Money) and got.unit is None and got.confidence == 0.6
+    (item,) = result.review_items
+    assert (item.kind, item.field) == (ReviewKind.UNKNOWN_PERIOD, FieldName.OTC_ALLOWANCE)
+    assert item.evidence[0].page == fake.field_pages[FieldName.OTC_ALLOWANCE]
+    with pytest.raises(ValueError, match="cannot be made yearly"):
+        annualize(got.value.amount, got.unit)  # the diff cannot annualize it

@@ -15,6 +15,7 @@ _MONEY = re.compile(r"\$\s?(\d{1,3}(?:,\d{3})+|\d+)(\.\d{1,2})?")
 _PERCENT = re.compile(r"(\d{1,3}(?:\.\d{1,2})?)\s?%")
 _NOT_COVERED = re.compile(r"\bnot covered\b", re.IGNORECASE)
 _SEGMENT_SPLIT = re.compile(r",(?!\d{3}\b)|[;/]|\bor\b", re.IGNORECASE)  # "$1,500" stays whole
+_PERIOD = re.compile(config.EXTRACT_PERIOD_PATTERN, re.IGNORECASE)
 _DAY_RANGE = re.compile(r"\bdays?\s+\d", re.IGNORECASE)
 
 
@@ -24,6 +25,7 @@ class FieldParser:
     kind: Literal["money", "copay"]  # what a dollar amount means for this field
     default_unit: Unit
     first_day_range: bool = False  # "$395 per day for days 1 to 5; $0 ..." keeps the first range
+    period: bool = False  # an allowance: a period it cannot map gives no unit, never the default
     prefer: tuple[str, ...] = ("in-network",)  # keys of config.EXTRACT_PREFER_MARKERS, in order
 
     @property
@@ -37,6 +39,7 @@ class Parsed:
     unit: Unit | None
     multiple: bool  # the cell held two or more values; one was chosen by rule
     picked: str = ""  # which rule chose it, for the review item: "in-network", ..., or "first"
+    unknown_period: str = ""  # a period phrase no Unit matches ("every 2 months"); unit is None
 
 
 def _tokens(text: str) -> list[tuple[int, Coinsurance | Decimal]]:
@@ -49,10 +52,14 @@ def _tokens(text: str) -> list[tuple[int, Coinsurance | Decimal]]:
     return sorted(found, key=lambda t: t[0])
 
 
-def _unit(text: str, default: Unit) -> Unit:
-    lowered = text.lower()
-    hits = [(lowered.find(p), u) for p, u in config.EXTRACT_UNIT_PHRASES.items() if p in lowered]
-    return Unit(min(hits)[1]) if hits else default
+def _unit(text: str) -> Unit | None:
+    """The earliest unit phrase in the text. "bi-annual" is not "annual"."""
+    hits = [
+        (m.start(), u)
+        for p, u in config.EXTRACT_UNIT_PHRASES.items()
+        if (m := re.search(rf"(?<![\w-]){re.escape(p)}\b", text, re.IGNORECASE))
+    ]
+    return Unit(min(hits)[1]) if hits else None
 
 
 def parse_value(text: str, parser: FieldParser) -> Parsed | None:
@@ -82,7 +89,10 @@ def parse_value(text: str, parser: FieldParser) -> Parsed | None:
         value = Money(amount=token)
     else:
         value = Copay(amount=token)
-    return Parsed(value, _unit(chosen_text, parser.default_unit), multiple, picked)
+    unit = _unit(chosen_text)
+    if unit is None and parser.period and (m := _PERIOD.search(chosen_text)):
+        return Parsed(value, None, multiple, picked, unknown_period=m.group(0))
+    return Parsed(value, unit or parser.default_unit, multiple, picked)
 
 
 # PR 5: the cost-sharing family.
@@ -109,8 +119,8 @@ DRUGS: tuple[FieldParser, ...] = (
 
 # PR 6: the allowance family. The period (month, quarter, year) is the unit; see annualize().
 ALLOWANCES: tuple[FieldParser, ...] = (
-    FieldParser(FieldName.DENTAL_ALLOWANCE, "money", Unit.PER_YEAR),
-    FieldParser(FieldName.OTC_ALLOWANCE, "money", Unit.PER_YEAR),
+    FieldParser(FieldName.DENTAL_ALLOWANCE, "money", Unit.PER_YEAR, period=True),
+    FieldParser(FieldName.OTC_ALLOWANCE, "money", Unit.PER_YEAR, period=True),
 )
 
 FAMILIES: dict[str, tuple[FieldParser, ...]] = {

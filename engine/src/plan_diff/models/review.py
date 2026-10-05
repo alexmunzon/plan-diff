@@ -13,6 +13,7 @@ class ReviewKind(StrEnum):
     NOT_EXTRACTED = "not_extracted"
     CONFLICTING_VALUES = "conflicting_values"  # one field read as two different values
     UNCLASSIFIED_DOCUMENT = "unclassified_document"
+    UNKNOWN_PERIOD = "unknown_period"  # an allowance period no Unit matches; never made yearly
 
 
 class Severity(StrEnum):

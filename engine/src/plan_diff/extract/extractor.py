@@ -111,6 +111,13 @@ def extract_pages(page_texts: Sequence[str], classification: Classification) -> 
             picked = first.parsed.picked
             reason = f"two or more values in one cell: '{first.text}'; took the {picked} value"
             flag(name, ReviewKind.CONFLICTING_VALUES, [first], reason)
+        if first.parsed.unknown_period:
+            confidence = min(confidence, config.EXTRACT_CONFIDENCE_UNKNOWN_PERIOD)
+            reason = (
+                f"period '{first.parsed.unknown_period}' not recognized in '{first.text}'; "
+                "amount kept with no unit, so it cannot be made yearly"
+            )
+            flag(name, ReviewKind.UNKNOWN_PERIOD, [first], reason)
         fields[name] = ExtractedField(
             name=name,
             value=first.parsed.value,
