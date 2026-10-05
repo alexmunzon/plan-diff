@@ -15,12 +15,12 @@ function usageText(name: string, usage: ApiUsage): string {
   return `${name} ${usage.mode}, ${plural(usage.calls, "call")}, ${formatMoney(usage.cost_usd)}`;
 }
 
-function PlanRow({ row }: { row: OverviewRow }) {
+function PlanRow({ row, base }: { row: OverviewRow; base: string }) {
   const lines = row.reasons.length > 0 ? row.reasons : row.undecidedBecause;
   return (
     <li aria-label={`Plan ${row.planId}`} className={cn(CARD, "grid gap-2 p-4 sm:grid-cols-[13rem_1fr_15rem] sm:gap-4")}>
       <div className="space-y-1">
-        <Link href={`/plans/${row.planId}`} className="font-mono text-sm font-medium underline">{row.planId}</Link>
+        <Link href={`${base}/plans/${row.planId}`} className="font-mono text-sm font-medium underline">{row.planId}</Link>
         <p className="text-xs text-slate-600 dark:text-slate-400">
           Shop again: <SeverityBadge tone={ANSWER_TONE(row.shopAgain)} label={shopAgainText(row.shopAgain)} />
         </p>
@@ -47,7 +47,8 @@ function PlanRow({ row }: { row: OverviewRow }) {
   );
 }
 
-export function Overview({ run }: { run: Run }) {
+/** `base` is the run's URL prefix (PR 15): "" for the demo, "/texas" for the real run. */
+export function Overview({ run, base = "" }: { run: Run; base?: string }) {
   const totals = summary(run);
   const rows = overviewRows(run);
   const { manifest } = run;
@@ -71,7 +72,7 @@ export function Overview({ run }: { run: Run }) {
       <section aria-labelledby="plans-heading">
         <h2 id="plans-heading" className="sr-only">Plans</h2>
         <ul className="space-y-3">
-          {rows.map((row) => <PlanRow key={row.planId} row={row} />)}
+          {rows.map((row) => <PlanRow key={row.planId} row={row} base={base} />)}
         </ul>
       </section>
       <p className="text-xs text-slate-600 tabular-nums dark:text-slate-400">

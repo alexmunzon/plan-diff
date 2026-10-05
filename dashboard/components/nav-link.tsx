@@ -10,7 +10,7 @@ const ITEM = "block rounded-md px-3 py-1.5";
 
 // Only the page you are on is highlighted and announced as the current page. A page with no href
 // is not built yet: it shows as plain gray text that says so, and is not a link.
-export function NavLink({ href, label }: { href?: string; label: string }) {
+export function NavLink({ href, label, exact = false }: { href?: string; label: string; exact?: boolean }) {
   const pathname = usePathname();
   if (!href) {
     return (
@@ -20,7 +20,8 @@ export function NavLink({ href, label }: { href?: string; label: string }) {
     );
   }
   // A plan page counts as the Plan comparison page.
-  const current = pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+  // PR 15: a run's overview ("/texas") is exact, so its other pages do not highlight it too.
+  const current = pathname === href || (!exact && href !== "/" && pathname.startsWith(`${href}/`));
   return (
     <Link
       href={href}

@@ -8,7 +8,7 @@ import type { Run } from "@/lib/run-loader";
 import { cn } from "@/lib/utils";
 
 // A dense table, not a chart: the dashboard has no chart library and 6 by 6 counts read fine as numbers.
-export function Changes({ run }: { run: Run }) {
+export function Changes({ run, base = "" }: { run: Run; base?: string }) {
   const counts = changeCounts(run);
   const rows = changedRows(run);
   const { years } = run.manifest;
@@ -67,7 +67,7 @@ export function Changes({ run }: { run: Run }) {
               {rows.map(({ plan, newPlan, change }) => (
                 <tr key={`${plan} ${change.field}`} aria-label={`${plan} ${fieldLabel(change.field)}`}>
                   <td className={TD}>
-                    <Link href={`/plans/${plan}`} className="font-mono underline">{plan}</Link>
+                    <Link href={`${base}/plans/${plan}`} className="font-mono underline">{plan}</Link>
                     {newPlan && newPlan !== plan && (
                       <span className="block text-xs text-slate-600 dark:text-slate-400">now {newPlan}</span>
                     )}
