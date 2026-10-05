@@ -30,9 +30,11 @@ from plan_diff.models import (
     PlanRecord,
     ReviewItem,
     ReviewKind,
+    RunConfig,
     RunInput,
     RunManifest,
     Severity,
+    SourcesManifest,
     StepTiming,
     ValidationResult,
 )
@@ -70,6 +72,7 @@ class RunOptions:
     run_id: str
     data_kind: DataKind
     overwrite: bool = False
+    sources: Path | None = None  # PR 14: sources/manifest.json, to record each PDF's carrier URL
 
 
 @dataclass
@@ -93,6 +96,21 @@ def _check(o: RunOptions) -> Path:
     if final.exists() and not o.overwrite:
         raise RunRefused(f"{final} already exists and run folders are immutable; pass --overwrite")
     return final
+
+
+def _source_urls(sources: Path | None) -> dict[str, str]:
+    """SHA-256 to URL for every pinned https source. fetch refuses a file whose hash differs, so a
+    PDF with a pinned hash came from that URL. Anything else (http, unpinned) gets no link."""
+    if sources is None:
+        return {}
+    if not sources.is_file():
+        raise RunRefused(f"--sources {sources} is not a file")
+    manifest = SourcesManifest.model_validate_json(sources.read_text())
+    return {
+        d.sha256: str(d.url)
+        for d in manifest.documents
+        if d.sha256 and d.url is not None and d.url.scheme == "https"
+    }
 
 
 def _load_cms(o: RunOptions) -> _Cms:
@@ -235,7 +253,7 @@ def run(o: RunOptions, clock: Callable[[], datetime]) -> Path:
         return now
 
     plans, years = tuple(o.plans), tuple(sorted(o.years))
-    docs = read_documents(o.docs, plans, years)
+    docs = read_documents(o.docs, plans, years, _source_urls(o.sources))
     t = lap("classify_and_extract", started)
     cms = _load_cms(o)
     t = lap("read_cms", t)
@@ -302,6 +320,12 @@ def run(o: RunOptions, clock: Callable[[], datetime]) -> Path:
             "diffs": len(diffs),
             "review_items": len(review),
         },
+        config=RunConfig(
+            confidence_floor=config.SHOP_AGAIN_CONFIDENCE_FLOOR,
+            premium_up=config.SHOP_AGAIN_PREMIUM_UP,
+            moop_up=config.SHOP_AGAIN_MOOP_UP,
+            drug_deductible_up=config.SHOP_AGAIN_DRUG_DEDUCTIBLE_UP,
+        ),
     )
     o.out.mkdir(parents=True, exist_ok=True)
     tmp = Path(tempfile.mkdtemp(dir=o.out, prefix=f".{o.run_id}.", suffix=".part"))

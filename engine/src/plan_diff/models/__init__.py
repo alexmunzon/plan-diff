@@ -36,7 +36,7 @@ from plan_diff.models.ids import (
 )
 from plan_diff.models.plan import PlanRecord
 from plan_diff.models.review import ReviewItem, ReviewKind, Severity
-from plan_diff.models.run import ApiUsage, RunInput, RunManifest, StepTiming
+from plan_diff.models.run import ApiUsage, RunConfig, RunInput, RunManifest, StepTiming
 from plan_diff.models.source import SourceDocument, SourcesManifest
 from plan_diff.models.validation import (
     ALLOWANCE_FIELDS,
@@ -88,6 +88,7 @@ __all__ = [
     "PlanYear",
     "ReviewItem",
     "ReviewKind",
+    "RunConfig",
     "RunInput",
     "RunManifest",
     "Severity",

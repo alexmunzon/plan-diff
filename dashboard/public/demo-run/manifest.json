@@ -31,7 +31,9 @@
       "document_id": "H9999-001_2026_SB",
       "plan_id": "H9999-001",
       "year": 2026,
-      "document_type": "SB"
+      "document_type": "SB",
+      "source_url": null,
+      "page_count": 2
     },
     {
       "kind": "pdf",
@@ -42,7 +44,9 @@
       "document_id": "H9999-001_2027_SB",
       "plan_id": "H9999-001",
       "year": 2027,
-      "document_type": "SB"
+      "document_type": "SB",
+      "source_url": null,
+      "page_count": 2
     },
     {
       "kind": "pdf",
@@ -53,7 +57,9 @@
       "document_id": "H9999-002_2026_SB",
       "plan_id": "H9999-002",
       "year": 2026,
-      "document_type": "SB"
+      "document_type": "SB",
+      "source_url": null,
+      "page_count": 2
     },
     {
       "kind": "pdf",
@@ -64,7 +70,9 @@
       "document_id": "H9999-003_2026_SB",
       "plan_id": "H9999-003",
       "year": 2026,
-      "document_type": "SB"
+      "document_type": "SB",
+      "source_url": null,
+      "page_count": 2
     },
     {
       "kind": "pdf",
@@ -75,7 +83,9 @@
       "document_id": "H9999-004_2026_SB",
       "plan_id": "H9999-004",
       "year": 2026,
-      "document_type": "SB"
+      "document_type": "SB",
+      "source_url": null,
+      "page_count": 2
     },
     {
       "kind": "pdf",
@@ -86,7 +96,9 @@
       "document_id": "H9999-004_2027_SB",
       "plan_id": "H9999-004",
       "year": 2027,
-      "document_type": "SB"
+      "document_type": "SB",
+      "source_url": null,
+      "page_count": 2
     },
     {
       "kind": "pdf",
@@ -97,7 +109,9 @@
       "document_id": "unlabeled_2026_SB",
       "plan_id": null,
       "year": 2026,
-      "document_type": "SB"
+      "document_type": "SB",
+      "source_url": null,
+      "page_count": 2
     },
     {
       "kind": "cms",
@@ -108,7 +122,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -119,7 +135,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -130,7 +148,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -141,7 +161,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -152,7 +174,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -163,7 +187,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -174,7 +200,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -185,7 +213,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -196,7 +226,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -207,7 +239,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -218,7 +252,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -229,7 +265,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -240,7 +278,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -251,7 +291,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -262,7 +304,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -273,7 +317,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -284,7 +330,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -295,7 +343,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -306,7 +356,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -317,7 +369,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     },
     {
       "kind": "cms",
@@ -328,7 +382,9 @@
       "document_id": null,
       "plan_id": null,
       "year": null,
-      "document_type": null
+      "document_type": null,
+      "source_url": null,
+      "page_count": null
     }
   ],
   "modes": {
@@ -371,5 +427,11 @@
     "plan_records": 6,
     "diffs": 4,
     "review_items": 10
+  },
+  "config": {
+    "confidence_floor": 0.7,
+    "premium_up": "20.00",
+    "moop_up": "1000.00",
+    "drug_deductible_up": "0.01"
   }
 }

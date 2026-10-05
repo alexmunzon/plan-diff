@@ -5,7 +5,7 @@ it never stops the run. Jev and the LLM are off, so the rules are the only reade
 """
 
 import hashlib
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -13,6 +13,7 @@ from pdfminer.pdfdocument import PDFPasswordIncorrect
 from pdfminer.pdfexceptions import PDFException
 from pdfminer.psexceptions import PSException
 from pdfplumber.utils.exceptions import MalformedPDFException, PdfminerException
+from pypdf import PdfReader
 from pypdf.errors import PdfReadError
 
 from plan_diff import config
@@ -42,13 +43,19 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def run_input(kind: str, path: Path, root: Path, **extra: object) -> RunInput:
+def run_input(
+    kind: str, path: Path, root: Path, urls: Mapping[str, str] | None = None, **extra: object
+) -> RunInput:
+    """`urls` maps a pinned SHA-256 to its https source URL (PR 14); only PDFs look it up."""
+    sha = sha256_file(path)
+    url = (urls or {}).get(sha) if kind == "pdf" else None
     return RunInput.model_validate(
         {
             "kind": kind,
             "path": path.relative_to(root).as_posix(),
-            "sha256": sha256_file(path),
+            "sha256": sha,
             "size_bytes": path.stat().st_size,
+            "source_url": url,
             **extra,
         }
     )
@@ -99,7 +106,9 @@ def _unreadable(document_id: str, error: Exception) -> ReviewItem:
     )
 
 
-def read_documents(docs: Path, plans: Sequence[str], years: Sequence[int]) -> DocumentsStep:
+def read_documents(
+    docs: Path, plans: Sequence[str], years: Sequence[int], urls: Mapping[str, str] | None = None
+) -> DocumentsStep:
     step = DocumentsStep()
     paths = find_pdfs(docs)
     ids = [p.stem for p in paths]
@@ -109,13 +118,14 @@ def read_documents(docs: Path, plans: Sequence[str], years: Sequence[int]) -> Do
     for path in paths:
         try:
             result = classify_pdf(path, document_id=path.stem)
+            page_count = len(PdfReader(path).pages)
             extraction = None
             if result.status is ClassifyStatus.SURE:
                 extraction = extract_document(path, result)
         except PDF_READ_ERRORS as error:
             step.review.append(_unreadable(path.stem, error))
             step.inputs.append(
-                run_input("pdf", path, docs, status="unreadable", document_id=path.stem)
+                run_input("pdf", path, docs, urls, status="unreadable", document_id=path.stem)
             )
             continue
         plan_id, year = result.plan_id.value, result.year.value
@@ -133,7 +143,9 @@ def read_documents(docs: Path, plans: Sequence[str], years: Sequence[int]) -> Do
                 "pdf",
                 path,
                 docs,
+                urls,
                 status=status,
+                page_count=page_count or None,
                 document_id=path.stem,
                 plan_id=plan_id,
                 year=int(year) if year else None,

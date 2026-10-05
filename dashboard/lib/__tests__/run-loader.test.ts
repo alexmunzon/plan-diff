@@ -59,6 +59,16 @@ describe("parseRun", () => {
     );
   });
 
+  it("refuses a manifest without the config the run used", async () => {
+    const files = await demoFiles();
+    const manifest = JSON.parse(files.manifest);
+    expect(parseRun(files).manifest.config.confidence_floor).toBe(0.7);
+    manifest.config.confidence_floor = "0.7";
+    expect(() => parseRun({ ...files, manifest: JSON.stringify(manifest) })).toThrow(/confidence_floor must be a number/);
+    delete manifest.config;
+    expect(() => parseRun({ ...files, manifest: JSON.stringify(manifest) })).toThrow(/manifest\.json: missing config/);
+  });
+
   it("refuses an unknown shop again value and names the review queue line", async () => {
     const files = await demoFiles();
     const diff = JSON.parse(files.diffs["H9999-004"]);

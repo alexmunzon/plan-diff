@@ -86,12 +86,49 @@ export interface ApiUsage {
   cost_usd: string;
 }
 
-/** One input file. `url` (https, the carrier's own copy) is optional: the demo run has none. */
+/** One input file. `source_url` is the carrier's own https copy, set only for fetched PDFs (PR 14). */
 export interface RunInput {
   kind: "pdf" | "cms";
   path: string;
+  sha256: string;
+  status: "classified" | "unsure" | "unreadable" | "outside_slice" | null;
   document_id: string | null;
-  url?: string | null;
+  plan_id: string | null;
+  year: number | null;
+  document_type: string | null;
+  source_url?: string | null;
+  page_count?: number | null;
+}
+
+/** The decision values the run used (PR 14). The dashboard never keeps its own copy. */
+export interface RunConfig {
+  confidence_floor: number;
+  premium_up: string;
+  moop_up: string;
+  drug_deductible_up: string;
+}
+
+export interface ValidationResult {
+  plan_id: string;
+  year: number;
+  field: string;
+  pdf_value: FieldValue | null;
+  cms_value: FieldValue | null;
+  verdict: "match" | "mismatch" | "not_in_cms" | "not_extracted" | "not_comparable";
+  pdf_citation: Citation | null;
+  cms_citation: Citation | null;
+  pdf_unit?: string | null;
+  cms_unit?: string | null;
+  reason?: string | null;
+}
+
+export interface PlanRecord {
+  plan_id: string;
+  year: number;
+  carrier: string;
+  plan_name: string;
+  fields: Record<string, ExtractedField>;
+  documents: string[];
 }
 
 export interface RunManifest {
@@ -106,4 +143,5 @@ export interface RunManifest {
   jev: ApiUsage;
   llm: ApiUsage;
   counts: Record<string, number>;
+  config: RunConfig;
 }

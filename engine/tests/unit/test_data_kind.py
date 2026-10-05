@@ -51,6 +51,8 @@ def test_the_model_has_no_default_data_kind() -> None:
         "run_id": "k", "started_at": datetime.now(UTC), "finished_at": datetime.now(UTC),
         "versions": {}, "plans": (), "years": (), "inputs": (), "modes": {},
         "jev": usage, "llm": usage, "timings": (), "counts": {},
+        "config": {"confidence_floor": 0.7, "premium_up": "20", "moop_up": "1000",
+                   "drug_deductible_up": "0.01"},
     }  # fmt: skip
     with pytest.raises(ValidationError, match="data_kind"):
         RunManifest.model_validate(base)

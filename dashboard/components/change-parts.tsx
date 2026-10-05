@@ -49,7 +49,7 @@ export function CitationText({ citation, manifest }: { citation: Citation; manif
 
 /** One year's value, its citation, and a warning when it was read with low confidence. */
 export function ValueCell({ field, manifest }: { field: ExtractedField | null; manifest: RunManifest }) {
-  const warning = lowConfidence(field);
+  const warning = lowConfidence(field, manifest.config.confidence_floor);
   return (
     <div className="space-y-0.5">
       <p className={field === null ? "text-slate-600 dark:text-slate-400" : undefined}>{valueText(field)}</p>
