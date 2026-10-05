@@ -1,6 +1,9 @@
 """ReviewItem: something a person must look at. The pipeline never silently picks a value."""
 
 from enum import StrEnum
+from typing import Annotated
+
+from pydantic import Field
 
 from plan_diff.models.citation import Citation
 from plan_diff.models.fields import FieldName
@@ -30,3 +33,5 @@ class ReviewItem(StrictModel):
     evidence: tuple[Citation, ...]  # every page or CMS row behind the item
     reason: NonEmpty
     severity: Severity
+    # PR 7: how far to trust the value under review, 0 to 1; None when it does not apply
+    confidence: Annotated[float, Field(ge=0, le=1)] | None = None
