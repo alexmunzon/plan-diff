@@ -33,3 +33,6 @@ class DocumentType(StrEnum):
     EOC = "EOC"  # Evidence of Coverage
     ANOC = "ANOC"  # Annual Notice of Change
     OTHER = "OTHER"
+    CMS_PBP = "CMS_PBP"  # CMS Plan Benefit Package benefits data (ZIP)
+    CMS_LANDSCAPE = "CMS_LANDSCAPE"  # CMS Medicare Advantage Landscape file (ZIP)
+    CMS_CROSSWALK = "CMS_CROSSWALK"  # CMS Part C and D Plan Crosswalk (ZIP)
