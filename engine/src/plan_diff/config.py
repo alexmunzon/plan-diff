@@ -1,5 +1,7 @@
 """Tunable constants. Each PR adds its own block under a `# PR N` header."""
 
+from decimal import Decimal
+
 # PR 4
 # Document classifier (SPEC section 6 step 2). Deterministic: regex and phrase tables only.
 
@@ -159,3 +161,10 @@ EXTRACT_PREFER_MARKERS: dict[str, str] = {
 # non-negative amount with at most 2 decimal places stops the read, naming file, column, and row.
 CMS_MISSING_MARKERS = frozenset({"", "n/a", "na", "not applicable"})
 CMS_NOT_COVERED_MARKERS = frozenset({"not covered", "no coverage", "not offered"})
+
+# PR 8
+# Shop-again thresholds (SPEC decision 4). A rise of at least this much flags the plan. Money is
+# Decimal. Termination, consolidation, a lost county, and a removed benefit always flag.
+SHOP_AGAIN_PREMIUM_UP = Decimal("20.00")  # monthly premium, per month
+SHOP_AGAIN_MOOP_UP = Decimal("1000.00")  # in-network maximum out-of-pocket, per year
+SHOP_AGAIN_DRUG_DEDUCTIBLE_UP = Decimal("0.01")  # any rise at all

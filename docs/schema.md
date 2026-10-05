@@ -46,12 +46,12 @@ per-year amount into a yearly one, so allowances with different periods compare 
 | SourcesManifest | `sources/manifest.json` | list of SourceDocument: id, url, sha256 (empty until first fetch), size, retrieved date, carrier, plan (empty for CMS files), year, document type, landing page, verified, note. Ids must be unique; a pinned file must have size and date; a document with no url needs a note. See docs/sources.md |
 | PlanRecord | `plans/<plan>_<year>.json` | plan id, year, carrier, plan name, counties, fields by name, document ids. A PDF citation must point at a listed document |
 | ValidationResult | `validation.json` | field, PDF value, CMS value, verdict (match, mismatch, not_in_cms, not_extracted), PDF page and CMS row citations |
-| PlanDiff | `diff/<plan>.json` | old and new plan id, years, crosswalk status, changes, shop_again, reasons. Shop again is on exactly when there are reasons |
+| PlanDiff | `diff/<plan>.json` | old and new plan id, years, crosswalk status, changes, shop_again, reasons, evidence (the crosswalk row), review. Shop again is on exactly when there are reasons; it is empty (undecided) when the crosswalk row is missing, with a review item |
 | ReviewItem | `review_queue.jsonl` | kind, plan, year, field, evidence citations, reason, severity (low, medium, high) |
 
 A FieldChange holds the old and new ExtractedField (so both pages travel with the change), the
-change category, and a direction: increased, decreased, added, removed, or changed (a different
-kind of value, for example a copay that became coinsurance).
+change category, and a direction: up, down, same, added, removed, or not_comparable (a different
+kind of value, for example a copay that became coinsurance, or an allowance with no period).
 
 ## Crosswalk status
 

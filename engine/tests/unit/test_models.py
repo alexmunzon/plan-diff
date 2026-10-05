@@ -261,7 +261,7 @@ def examples() -> list[BaseModel]:
                     old=old,
                     new=new,
                     category=category_for(FieldName.MONTHLY_PREMIUM),
-                    direction=Direction.INCREASED,
+                    direction=Direction.UP,
                 ),
             ),
             shop_again=True,

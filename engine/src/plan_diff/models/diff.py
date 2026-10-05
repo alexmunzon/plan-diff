@@ -5,8 +5,10 @@ from typing import Self
 
 from pydantic import model_validator
 
-from plan_diff.models.fields import ExtractedField, FieldName
+from plan_diff.models.citation import Citation
+from plan_diff.models.fields import ExtractedField, FieldName, NotCovered
 from plan_diff.models.ids import NonEmpty, PlanId, PlanYear, StrictModel
+from plan_diff.models.review import ReviewItem
 
 
 class CrosswalkStatus(StrEnum):
@@ -69,11 +71,12 @@ def category_for(field: FieldName) -> ChangeCategory:
 
 
 class Direction(StrEnum):
-    INCREASED = "increased"
-    DECREASED = "decreased"
-    ADDED = "added"  # no value last year
+    UP = "up"
+    DOWN = "down"
+    SAME = "same"
+    ADDED = "added"  # no value last year, or not covered last year
     REMOVED = "removed"  # no value this year, or now not covered
-    CHANGED = "changed"  # different kind, for example copay to coinsurance
+    NOT_COMPARABLE = "not_comparable"  # different kind or unit, for example copay to coinsurance
 
 
 class FieldChange(StrictModel):
@@ -92,8 +95,12 @@ class FieldChange(StrictModel):
                 raise ValueError(f"{side.name} cannot describe {self.field}")
         if self.old is None and self.new is None:
             raise ValueError("a change needs an old or a new value")
-        if (self.direction == Direction.ADDED) != (self.old is None):
-            raise ValueError("added means there was no old value")
+        if self.old is None and self.direction != Direction.ADDED:
+            raise ValueError("no old value means added")
+        if self.direction == Direction.ADDED and not (
+            self.old is None or isinstance(self.old.value, NotCovered)
+        ):
+            raise ValueError("added means there was no old value, or it was not covered")
         if self.new is None and self.direction != Direction.REMOVED:
             raise ValueError("no new value means removed")
         return self
@@ -108,20 +115,31 @@ class PlanDiff(StrictModel):
     new_plan_id: PlanId | None  # None only for a terminated plan
     old_year: PlanYear
     new_year: PlanYear
-    crosswalk_status: CrosswalkStatus
+    crosswalk_status: CrosswalkStatus | None  # None only when undecided (no crosswalk row)
     changes: tuple[FieldChange, ...]
-    shop_again: bool
+    shop_again: bool | None  # None means undecided: a person must look (see review)
     reasons: tuple[NonEmpty, ...]  # plain language, for example "premium up $25 a month"
+    evidence: tuple[Citation, ...] = ()  # PR 8: the CMS crosswalk row behind the status
+    review: tuple[ReviewItem, ...] = ()  # PR 8: why the flag is undecided, if it is
 
     @model_validator(mode="after")
     def _consistent(self) -> Self:
+        if self.new_year != self.old_year + 1:
+            raise ValueError("new_year must be old_year + 1")
+        if self.shop_again is None:
+            if not self.review or self.reasons or self.changes:
+                raise ValueError("undecided needs a review item and no reasons or changes")
+            if self.crosswalk_status is None and (self.old_plan_id is None or self.new_plan_id):
+                raise ValueError("with no crosswalk row, only the old plan id is known")
+            if self.crosswalk_status is None:
+                return self
         status = self.crosswalk_status
+        if status is None:
+            raise ValueError("a decided flag needs a crosswalk status")
         if (self.old_plan_id is not None) != (status in _NEEDS_OLD):
             raise ValueError(f"{status} plan: old_plan_id is wrong")
         if (self.new_plan_id is not None) != (status in _NEEDS_NEW):
             raise ValueError(f"{status} plan: new_plan_id is wrong")
-        if self.new_year != self.old_year + 1:
-            raise ValueError("new_year must be old_year + 1")
-        if self.shop_again != bool(self.reasons):
+        if self.shop_again is not None and self.shop_again != bool(self.reasons):
             raise ValueError("shop_again is true exactly when there are reasons")
         return self
