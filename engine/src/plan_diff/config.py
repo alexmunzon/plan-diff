@@ -1,6 +1,7 @@
 """Tunable constants. Each PR adds its own block under a `# PR N` header."""
 
 from decimal import Decimal
+from typing import Final
 
 # PR 4
 # Document classifier (SPEC section 6 step 2). Deterministic: regex and phrase tables only.
@@ -213,3 +214,21 @@ SHOP_AGAIN_CONFIDENCE_FLOOR = 0.7  # a value at the floor is trusted; below it g
 # County names compare after lowercasing, dropping punctuation, and dropping this trailing word, so
 # "Bexar County", "BEXAR", and "Bexar" are one county.
 COUNTY_SUFFIXES = ("county",)
+
+# PR 9
+# The run command (SPEC section 7) and the CMS unzip step (review 1 finding 6).
+
+# A fetched CMS zip is refused before anything is written if it holds more members than this, or
+# more uncompressed bytes than this (counted while writing, so a lying header cannot get past).
+UNZIP_MAX_MEMBERS = 5_000
+UNZIP_MAX_BYTES = 4 * 1024 * 1024 * 1024  # 4 GB; a full PBP release unzips to about 1 GB
+
+# A run id becomes a folder name under --out: letters, digits, dot, dash, underscore only.
+RUN_ID_PATTERN = r"^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+
+# When several documents describe one plan year, a field is read from the first type that has it.
+RUN_DOCUMENT_PRIORITY = ("SB", "EOC", "ANOC", "OTHER")
+
+# Jev and the LLM are off in PR 9 (they arrive in PRs 10 and 11). The manifest records the mode.
+RUN_JEV_MODE: Final = "off"
+RUN_LLM_MODE: Final = "off"

@@ -1,0 +1,239 @@
+{
+  "plan_id": "H9999-002",
+  "year": 2026,
+  "carrier": "Example Health Plan",
+  "plan_name": "Synthetic Silver HMO",
+  "counties": [
+    "Bexar"
+  ],
+  "fields": {
+    "monthly_premium": {
+      "name": "monthly_premium",
+      "value": {
+        "kind": "money",
+        "amount": "25.50"
+      },
+      "unit": "per_month",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 1,
+        "method": "rule",
+        "text": "$25.50 per month"
+      },
+      "confidence": 0.9
+    },
+    "medical_deductible": {
+      "name": "medical_deductible",
+      "value": {
+        "kind": "money",
+        "amount": "250.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 1,
+        "method": "rule",
+        "text": "$250 per year"
+      },
+      "confidence": 0.9
+    },
+    "moop_in_network": {
+      "name": "moop_in_network",
+      "value": {
+        "kind": "money",
+        "amount": "6700.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 1,
+        "method": "rule",
+        "text": "$6,700 per year"
+      },
+      "confidence": 0.9
+    },
+    "pcp_copay": {
+      "name": "pcp_copay",
+      "value": {
+        "kind": "copay",
+        "amount": "5.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 1,
+        "method": "rule",
+        "text": "$5 per visit"
+      },
+      "confidence": 0.9
+    },
+    "specialist_copay": {
+      "name": "specialist_copay",
+      "value": {
+        "kind": "copay",
+        "amount": "45.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 1,
+        "method": "rule",
+        "text": "$45 per visit"
+      },
+      "confidence": 0.9
+    },
+    "emergency_room": {
+      "name": "emergency_room",
+      "value": {
+        "kind": "copay",
+        "amount": "110.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 1,
+        "method": "rule",
+        "text": "$110 per visit"
+      },
+      "confidence": 0.9
+    },
+    "urgent_care": {
+      "name": "urgent_care",
+      "value": {
+        "kind": "copay",
+        "amount": "35.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 1,
+        "method": "rule",
+        "text": "$35 per visit"
+      },
+      "confidence": 0.9
+    },
+    "inpatient_stay": {
+      "name": "inpatient_stay",
+      "value": {
+        "kind": "copay",
+        "amount": "295.00"
+      },
+      "unit": "per_day",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 1,
+        "method": "rule",
+        "text": "$295 per day, days 1 to 5"
+      },
+      "confidence": 0.9
+    },
+    "outpatient_surgery": {
+      "name": "outpatient_surgery",
+      "value": {
+        "kind": "copay",
+        "amount": "200.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 2,
+        "method": "rule",
+        "text": "$200 per visit"
+      },
+      "confidence": 0.9
+    },
+    "drug_deductible": {
+      "name": "drug_deductible",
+      "value": {
+        "kind": "money",
+        "amount": "200.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 2,
+        "method": "rule",
+        "text": "$200 per year"
+      },
+      "confidence": 0.9
+    },
+    "drug_tier_1": {
+      "name": "drug_tier_1",
+      "value": {
+        "kind": "copay",
+        "amount": "2.00"
+      },
+      "unit": "per_prescription",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 2,
+        "method": "rule",
+        "text": "$2 per prescription"
+      },
+      "confidence": 0.9
+    },
+    "drug_tier_2": {
+      "name": "drug_tier_2",
+      "value": {
+        "kind": "copay",
+        "amount": "10.00"
+      },
+      "unit": "per_prescription",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 2,
+        "method": "rule",
+        "text": "$10 per prescription"
+      },
+      "confidence": 0.9
+    },
+    "drug_tier_3": {
+      "name": "drug_tier_3",
+      "value": {
+        "kind": "copay",
+        "amount": "45.00"
+      },
+      "unit": "per_prescription",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 2,
+        "method": "rule",
+        "text": "$45 per prescription"
+      },
+      "confidence": 0.9
+    },
+    "dental_allowance": {
+      "name": "dental_allowance",
+      "value": {
+        "kind": "money",
+        "amount": "1500.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 2,
+        "method": "rule",
+        "text": "$1,500 per year"
+      },
+      "confidence": 0.9
+    },
+    "otc_allowance": {
+      "name": "otc_allowance",
+      "value": {
+        "kind": "money",
+        "amount": "150.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "H9999-002_2026_SB",
+        "page": 2,
+        "method": "rule",
+        "text": "$150 per year"
+      },
+      "confidence": 0.9
+    }
+  },
+  "documents": [
+    "H9999-002_2026_SB"
+  ]
+}

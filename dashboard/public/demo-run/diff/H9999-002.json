@@ -1,0 +1,547 @@
+{
+  "old_plan_id": "H9999-002",
+  "new_plan_id": "H9999-001",
+  "old_year": 2026,
+  "new_year": 2027,
+  "crosswalk_status": "consolidated",
+  "changes": [
+    {
+      "field": "monthly_premium",
+      "old": {
+        "name": "monthly_premium",
+        "value": {
+          "kind": "money",
+          "amount": "25.50"
+        },
+        "unit": "per_month",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$25.50 per month"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "monthly_premium",
+        "value": {
+          "kind": "money",
+          "amount": "25.00"
+        },
+        "unit": "per_month",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$25 per month"
+        },
+        "confidence": 0.9
+      },
+      "category": "premium",
+      "direction": "down"
+    },
+    {
+      "field": "medical_deductible",
+      "old": {
+        "name": "medical_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "250.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$250 per year"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "medical_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$0 per year"
+        },
+        "confidence": 0.9
+      },
+      "category": "deductible",
+      "direction": "down"
+    },
+    {
+      "field": "moop_in_network",
+      "old": {
+        "name": "moop_in_network",
+        "value": {
+          "kind": "money",
+          "amount": "6700.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$6,700 per year"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "moop_in_network",
+        "value": {
+          "kind": "money",
+          "amount": "4900.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$4,900 per year"
+        },
+        "confidence": 0.9
+      },
+      "category": "moop",
+      "direction": "down"
+    },
+    {
+      "field": "pcp_copay",
+      "old": {
+        "name": "pcp_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "5.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$5 per visit"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "pcp_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$0 per visit"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "down"
+    },
+    {
+      "field": "specialist_copay",
+      "old": {
+        "name": "specialist_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "45.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$45 per visit"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "specialist_copay",
+        "value": {
+          "kind": "copay",
+          "amount": "45.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$45 per visit"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "same"
+    },
+    {
+      "field": "emergency_room",
+      "old": {
+        "name": "emergency_room",
+        "value": {
+          "kind": "copay",
+          "amount": "110.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$110 per visit"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "emergency_room",
+        "value": {
+          "kind": "copay",
+          "amount": "125.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$125 per visit"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "up"
+    },
+    {
+      "field": "urgent_care",
+      "old": {
+        "name": "urgent_care",
+        "value": {
+          "kind": "copay",
+          "amount": "35.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$35 per visit"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "urgent_care",
+        "value": {
+          "kind": "copay",
+          "amount": "40.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$40 per visit"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "up"
+    },
+    {
+      "field": "inpatient_stay",
+      "old": {
+        "name": "inpatient_stay",
+        "value": {
+          "kind": "copay",
+          "amount": "295.00"
+        },
+        "unit": "per_day",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$295 per day, days 1 to 5"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "inpatient_stay",
+        "value": {
+          "kind": "copay",
+          "amount": "325.00"
+        },
+        "unit": "per_day",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 1,
+          "method": "rule",
+          "text": "$325 per day, days 1 to 5"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "up"
+    },
+    {
+      "field": "outpatient_surgery",
+      "old": {
+        "name": "outpatient_surgery",
+        "value": {
+          "kind": "copay",
+          "amount": "200.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$200 per visit"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "outpatient_surgery",
+        "value": {
+          "kind": "copay",
+          "amount": "250.00"
+        },
+        "unit": "per_visit",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$250 per visit"
+        },
+        "confidence": 0.9
+      },
+      "category": "copays",
+      "direction": "up"
+    },
+    {
+      "field": "drug_deductible",
+      "old": {
+        "name": "drug_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "200.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$200 per year"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "drug_deductible",
+        "value": {
+          "kind": "money",
+          "amount": "0.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$0 per year"
+        },
+        "confidence": 0.9
+      },
+      "category": "drugs",
+      "direction": "down"
+    },
+    {
+      "field": "drug_tier_1",
+      "old": {
+        "name": "drug_tier_1",
+        "value": {
+          "kind": "copay",
+          "amount": "2.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$2 per prescription"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "drug_tier_1",
+        "value": {
+          "kind": "copay",
+          "amount": "0.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$0 per prescription"
+        },
+        "confidence": 0.9
+      },
+      "category": "drugs",
+      "direction": "down"
+    },
+    {
+      "field": "drug_tier_2",
+      "old": {
+        "name": "drug_tier_2",
+        "value": {
+          "kind": "copay",
+          "amount": "10.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$10 per prescription"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "drug_tier_2",
+        "value": {
+          "kind": "copay",
+          "amount": "8.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$8 per prescription"
+        },
+        "confidence": 0.9
+      },
+      "category": "drugs",
+      "direction": "down"
+    },
+    {
+      "field": "drug_tier_3",
+      "old": {
+        "name": "drug_tier_3",
+        "value": {
+          "kind": "copay",
+          "amount": "45.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$45 per prescription"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "drug_tier_3",
+        "value": {
+          "kind": "copay",
+          "amount": "47.00"
+        },
+        "unit": "per_prescription",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$47 per prescription"
+        },
+        "confidence": 0.9
+      },
+      "category": "drugs",
+      "direction": "up"
+    },
+    {
+      "field": "dental_allowance",
+      "old": {
+        "name": "dental_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "1500.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$1,500 per year"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "dental_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "2000.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$2,000 per year"
+        },
+        "confidence": 0.9
+      },
+      "category": "allowances",
+      "direction": "up"
+    },
+    {
+      "field": "otc_allowance",
+      "old": {
+        "name": "otc_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "150.00"
+        },
+        "unit": "per_year",
+        "citation": {
+          "document_id": "H9999-002_2026_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$150 per year"
+        },
+        "confidence": 0.9
+      },
+      "new": {
+        "name": "otc_allowance",
+        "value": {
+          "kind": "money",
+          "amount": "50.00"
+        },
+        "unit": "per_quarter",
+        "citation": {
+          "document_id": "H9999-001_2027_SB",
+          "page": 2,
+          "method": "rule",
+          "text": "$50 per quarter"
+        },
+        "confidence": 0.9
+      },
+      "category": "allowances",
+      "direction": "up"
+    }
+  ],
+  "shop_again": true,
+  "reasons": [
+    "plan consolidated into H9999-001"
+  ],
+  "evidence": [
+    {
+      "document_id": "crosswalk_2027.csv",
+      "page": 2,
+      "method": "cms",
+      "text": "Consolidated Renewal Plan"
+    }
+  ],
+  "review": []
+}

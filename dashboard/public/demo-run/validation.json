@@ -1,0 +1,1630 @@
+[
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "monthly_premium",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$0 per month"
+    },
+    "cms_citation": {
+      "document_id": "landscape_2026.csv",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS Landscape 2026, landscape_2026.csv, row 1"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "medical_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$0 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 1"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "moop_in_network",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "4900.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "4900.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$4,900 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 1"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "pcp_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$0 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b7_health_prof.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "specialist_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "40.00"
+    },
+    "verdict": "mismatch",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$45 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b7_health_prof.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": "values differ"
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "emergency_room",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "125.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "125.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$125 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b4_emerg_urgent.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "urgent_care",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "40.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "40.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$40 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b4_emerg_urgent.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "inpatient_stay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "325.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "325.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$325 per day, days 1 to 5"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b1a_inpat_hosp.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b1a_inpat_hosp.txt, row 1"
+    },
+    "pdf_unit": "per_day",
+    "cms_unit": "per_day",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "outpatient_surgery",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "250.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "250.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$250 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b9a_outpat_hosp.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b9a_outpat_hosp.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "drug_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$0 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx.txt, row 1"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "drug_tier_1",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$0 per prescription"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx_tier.txt, row 1"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "drug_tier_2",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "8.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "8.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$8 per prescription"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx_tier.txt, row 2"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "drug_tier_3",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "47.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "47.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$47 per prescription"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 3,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx_tier.txt, row 3"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "dental_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "2000.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "2000.00"
+    },
+    "verdict": "mismatch",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$2,000 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b16_dental.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b16_dental.txt, row 1"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": null,
+    "reason": "period not comparable"
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "field": "otc_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "50.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "200.00"
+    },
+    "verdict": "mismatch",
+    "pdf_citation": {
+      "document_id": "H9999-001_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$50 per quarter"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b13_other_services.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b13_other_services.txt, row 1"
+    },
+    "pdf_unit": "per_quarter",
+    "cms_unit": null,
+    "reason": "period not comparable"
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "monthly_premium",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "25.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "25.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$25 per month"
+    },
+    "cms_citation": {
+      "document_id": "landscape_2027.csv",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS Landscape 2027, landscape_2027.csv, row 1"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "medical_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$0 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_Section_D.txt, row 1"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "moop_in_network",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "4900.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "4900.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$4,900 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_Section_D.txt, row 1"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "pcp_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$0 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b7_health_prof.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "specialist_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$45 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b7_health_prof.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "emergency_room",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "125.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "125.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$125 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b4_emerg_urgent.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "urgent_care",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "40.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "40.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$40 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b4_emerg_urgent.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "inpatient_stay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "325.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "325.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$325 per day, days 1 to 5"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b1a_inpat_hosp.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b1a_inpat_hosp.txt, row 1"
+    },
+    "pdf_unit": "per_day",
+    "cms_unit": "per_day",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "outpatient_surgery",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "250.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "250.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$250 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b9a_outpat_hosp.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b9a_outpat_hosp.txt, row 1"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "drug_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$0 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_mrx.txt, row 1"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "drug_tier_1",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$0 per prescription"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_mrx_tier.txt, row 1"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "drug_tier_2",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "8.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "8.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$8 per prescription"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_mrx_tier.txt, row 2"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "drug_tier_3",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "47.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "47.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$47 per prescription"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 3,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_mrx_tier.txt, row 3"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "dental_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "2000.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "2000.00"
+    },
+    "verdict": "mismatch",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$2,000 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b16_dental.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b16_dental.txt, row 1"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": null,
+    "reason": "period not comparable"
+  },
+  {
+    "plan_id": "H9999-001",
+    "year": 2027,
+    "field": "otc_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "50.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "200.00"
+    },
+    "verdict": "mismatch",
+    "pdf_citation": {
+      "document_id": "H9999-001_2027_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$50 per quarter"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b13_other_services.txt",
+      "page": 1,
+      "method": "cms",
+      "text": "CMS PBP 2027, pbp_b13_other_services.txt, row 1"
+    },
+    "pdf_unit": "per_quarter",
+    "cms_unit": null,
+    "reason": "period not comparable"
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "monthly_premium",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "25.50"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "25.50"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$25.50 per month"
+    },
+    "cms_citation": {
+      "document_id": "landscape_2026.csv",
+      "page": 3,
+      "method": "cms",
+      "text": "CMS Landscape 2026, landscape_2026.csv, row 3"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "medical_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "250.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "250.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$250 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 2"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "moop_in_network",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "6700.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "6700.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$6,700 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_Section_D.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_Section_D.txt, row 2"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "pcp_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "5.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "5.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$5 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b7_health_prof.txt, row 2"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "specialist_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$45 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b7_health_prof.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b7_health_prof.txt, row 2"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "emergency_room",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "110.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "110.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$110 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b4_emerg_urgent.txt, row 2"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "urgent_care",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "35.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "35.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$35 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b4_emerg_urgent.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b4_emerg_urgent.txt, row 2"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "inpatient_stay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "295.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "295.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$295 per day, days 1 to 5"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b1a_inpat_hosp.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b1a_inpat_hosp.txt, row 2"
+    },
+    "pdf_unit": "per_day",
+    "cms_unit": "per_day",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "outpatient_surgery",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "200.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "200.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$200 per visit"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b9a_outpat_hosp.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b9a_outpat_hosp.txt, row 2"
+    },
+    "pdf_unit": "per_visit",
+    "cms_unit": "per_visit",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "drug_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "200.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "200.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$200 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx.txt, row 2"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": "per_year",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "drug_tier_1",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "2.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "2.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$2 per prescription"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 4,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx_tier.txt, row 4"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "drug_tier_2",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "10.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "10.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$10 per prescription"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 5,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx_tier.txt, row 5"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "drug_tier_3",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "cms_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$45 per prescription"
+    },
+    "cms_citation": {
+      "document_id": "pbp_mrx_tier.txt",
+      "page": 6,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_mrx_tier.txt, row 6"
+    },
+    "pdf_unit": "per_prescription",
+    "cms_unit": "per_prescription",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "dental_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "1500.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "1500.00"
+    },
+    "verdict": "mismatch",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$1,500 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b16_dental.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b16_dental.txt, row 2"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": null,
+    "reason": "period not comparable"
+  },
+  {
+    "plan_id": "H9999-002",
+    "year": 2026,
+    "field": "otc_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "150.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "150.00"
+    },
+    "verdict": "mismatch",
+    "pdf_citation": {
+      "document_id": "H9999-002_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$150 per year"
+    },
+    "cms_citation": {
+      "document_id": "pbp_b13_other_services.txt",
+      "page": 2,
+      "method": "cms",
+      "text": "CMS PBP 2026, pbp_b13_other_services.txt, row 2"
+    },
+    "pdf_unit": "per_year",
+    "cms_unit": null,
+    "reason": "period not comparable"
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "monthly_premium",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "12.00"
+    },
+    "cms_value": {
+      "kind": "money",
+      "amount": "12.00"
+    },
+    "verdict": "match",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$12 per month"
+    },
+    "cms_citation": {
+      "document_id": "landscape_2026.csv",
+      "page": 4,
+      "method": "cms",
+      "text": "CMS Landscape 2026, landscape_2026.csv, row 4"
+    },
+    "pdf_unit": "per_month",
+    "cms_unit": "per_month",
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "medical_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$0 per year"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_year",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "moop_in_network",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "3400.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$3,400 per year"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_year",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "pcp_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$0 per visit"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_visit",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "specialist_copay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "45.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$45 per visit"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_visit",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "emergency_room",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "125.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$125 per visit"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_visit",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "urgent_care",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "40.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$40 per visit"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_visit",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "inpatient_stay",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "295.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 1,
+      "method": "rule",
+      "text": "$295 per day, days 1 to 5"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_day",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "outpatient_surgery",
+    "pdf_value": {
+      "kind": "coinsurance",
+      "percent": "20"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "20% coinsurance"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_visit",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "drug_deductible",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "0.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$0 per year"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_year",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "drug_tier_1",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "0.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$0 per prescription"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_prescription",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "drug_tier_2",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "5.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$5 per prescription"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_prescription",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "drug_tier_3",
+    "pdf_value": {
+      "kind": "copay",
+      "amount": "47.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$47 per prescription"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_prescription",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "dental_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "1500.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$1,500 per year"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_year",
+    "cms_unit": null,
+    "reason": null
+  },
+  {
+    "plan_id": "H9999-003",
+    "year": 2026,
+    "field": "otc_allowance",
+    "pdf_value": {
+      "kind": "money",
+      "amount": "50.00"
+    },
+    "cms_value": null,
+    "verdict": "not_in_cms",
+    "pdf_citation": {
+      "document_id": "H9999-003_2026_SB",
+      "page": 2,
+      "method": "rule",
+      "text": "$50 per quarter"
+    },
+    "cms_citation": null,
+    "pdf_unit": "per_quarter",
+    "cms_unit": null,
+    "reason": null
+  }
+]
