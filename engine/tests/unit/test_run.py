@@ -55,6 +55,51 @@ def test_a_run_folder_is_immutable_without_overwrite(tmp_path: Path) -> None:
     assert run_cli(tmp_path / "docs", tmp_path / "runs", "--overwrite")[0] == 0
 
 
+def test_overwrite_restores_previous_run_if_swap_fails(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    write_demo_docs(tmp_path / "docs")
+    assert run_cli(tmp_path / "docs", tmp_path / "runs")[0] == 0
+    old = files(tmp_path / "runs" / "r1")
+
+    def fail_swap(source: Path, target: Path) -> None:
+        if source.name.endswith(".part"):
+            raise OSError("simulated swap failure")
+        original_replace(source, target)
+
+    original_replace = running.folder.os.replace
+    monkeypatch.setattr(running.folder.os, "replace", fail_swap)
+    code, output = run_cli(tmp_path / "docs", tmp_path / "runs", "--overwrite")
+    assert code != 0
+    assert files(tmp_path / "runs" / "r1") == old
+    assert not list((tmp_path / "runs").glob(".r1.*"))
+
+
+def test_failed_restore_keeps_backup(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    write_demo_docs(tmp_path / "docs")
+    assert run_cli(tmp_path / "docs", tmp_path / "runs")[0] == 0
+    old = files(tmp_path / "runs" / "r1")
+
+    def fail_both(source: Path, target: Path) -> None:
+        raise OSError("simulated rename failure")
+
+    monkeypatch.setattr(running.folder.os, "replace", fail_both)
+    code, output = run_cli(tmp_path / "docs", tmp_path / "runs", "--overwrite")
+    assert code != 0
+    backups = list((tmp_path / "runs").glob(".r1.backup.*/r1"))
+    assert len(backups) == 1
+    assert files(backups[0]) == old
+    assert str(backups[0]) in output
+
+
+def test_overwrite_refuses_a_run_folder_containing_inputs(tmp_path: Path) -> None:
+    docs = tmp_path / "runs" / "r1" / "docs"
+    write_demo_docs(docs)
+    code, output = run_cli(docs, tmp_path / "runs", "--overwrite")
+    assert code != 0 and "contains a run input" in output
+    assert next(docs.glob("*.pdf"), None) is not None
+
+
 def test_money_in_plans_parquet_is_decimal(tmp_path: Path) -> None:
     write_demo_docs(tmp_path / "docs")
     run_cli(tmp_path / "docs", tmp_path / "runs")
