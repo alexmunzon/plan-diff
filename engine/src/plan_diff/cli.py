@@ -106,7 +106,7 @@ def run_command(
     )
     try:
         folder = running.run(options, clock)
-    except (running.RunRefused, CmsFileError, ValueError) as err:
+    except (running.RunRefused, CmsFileError) as err:  # anything else is a bug: fail loudly
         typer.echo(f"refused: {err}")
         raise typer.Exit(1) from None
     typer.echo(f"wrote {folder}")

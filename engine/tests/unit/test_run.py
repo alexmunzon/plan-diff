@@ -3,13 +3,16 @@
 import json
 import shutil
 import zipfile
+from datetime import datetime
 from pathlib import Path
 
 import polars as pl
+import pytest
 from demo_run import CMS, write_demo_docs
 from pypdf import PdfReader, PdfWriter
 from typer.testing import CliRunner
 
+from plan_diff import run as running
 from plan_diff.cli import app
 
 NOW = "2026-10-05T12:00:00+00:00"
@@ -115,3 +118,22 @@ def test_a_threshold_field_that_disagrees_with_cms_leaves_the_flag_undecided(
     diff = json.loads((tmp_path / "runs" / "r" / "diff" / "H9999-001.json").read_text())
     assert diff["shop_again"] is None and diff["reasons"] == []
     assert "H9999-001: shop again undecided, needs review" in result.output
+
+
+def test_a_bug_in_our_own_code_fails_the_run(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def broken(*_: object) -> None:
+        raise ValueError("bug in extraction")
+
+    monkeypatch.setattr("plan_diff.run.documents.extract_document", broken)
+    write_demo_docs(tmp_path / "docs")
+    with pytest.raises(ValueError, match="bug in extraction"):
+        running.run(
+            running.RunOptions(
+                docs=tmp_path / "docs", cms=CMS, plans=tuple(PLANS.split(",")),
+                years=(2026, 2027), out=tmp_path / "runs", run_id="r",
+            ),
+            lambda: datetime.fromisoformat(NOW),
+        )  # fmt: skip
+    assert not (tmp_path / "runs" / "r").exists()

@@ -9,6 +9,12 @@ from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from pdfminer.pdfdocument import PDFPasswordIncorrect
+from pdfminer.pdfexceptions import PDFException
+from pdfminer.psexceptions import PSException
+from pdfplumber.utils.exceptions import MalformedPDFException, PdfminerException
+from pypdf.errors import PdfReadError
+
 from plan_diff import config
 from plan_diff.classify import Classification, ClassifyStatus, classify_pdf, document_type_of
 from plan_diff.extract import ExtractionResult, extract_document
@@ -22,6 +28,10 @@ from plan_diff.models import (
     RunInput,
     Severity,
 )
+
+
+class RunRefused(Exception):
+    """The run was refused before anything was written. The message says why."""
 
 
 def sha256_file(path: Path) -> str:
@@ -64,6 +74,18 @@ def find_pdfs(docs: Path) -> list[Path]:
     return sorted(found, key=lambda p: p.relative_to(docs).as_posix())
 
 
+# Only the PDF libraries' own read errors (corrupt, truncated, encrypted, wrong password) send a
+# document to review. Any other exception is a bug in our code and fails the run loudly.
+PDF_READ_ERRORS: tuple[type[Exception], ...] = (
+    PDFPasswordIncorrect,
+    PDFException,
+    PSException,
+    PdfminerException,
+    MalformedPDFException,
+    PdfReadError,
+)
+
+
 def _unreadable(document_id: str, error: Exception) -> ReviewItem:
     return ReviewItem(
         kind=ReviewKind.UNCLASSIFIED_DOCUMENT,
@@ -83,14 +105,14 @@ def read_documents(docs: Path, plans: Sequence[str], years: Sequence[int]) -> Do
     ids = [p.stem for p in paths]
     repeated = sorted({i for i in ids if ids.count(i) > 1})
     if repeated:
-        raise ValueError(f"two PDFs share a file name, so their citations would clash: {repeated}")
+        raise RunRefused(f"two PDFs share a file name, so their citations would clash: {repeated}")
     for path in paths:
         try:
             result = classify_pdf(path, document_id=path.stem)
             extraction = None
             if result.status is ClassifyStatus.SURE:
                 extraction = extract_document(path, result)
-        except Exception as error:  # noqa: BLE001 - any PDF failure goes to review, never a crash
+        except PDF_READ_ERRORS as error:
             step.review.append(_unreadable(path.stem, error))
             step.inputs.append(
                 run_input("pdf", path, docs, status="unreadable", document_id=path.stem)

@@ -36,7 +36,7 @@ from plan_diff.models import (
     StepTiming,
     ValidationResult,
 )
-from plan_diff.run.documents import Document, merge_fields, read_documents, run_input
+from plan_diff.run.documents import Document, RunRefused, merge_fields, read_documents, run_input
 from plan_diff.validate import (
     accuracy,
     cms_values_for,
@@ -57,10 +57,6 @@ _EMPTY_PBP = pl.DataFrame(
         "file": pl.String,
     }
 )
-
-
-class RunRefused(Exception):
-    """The run was refused before anything was written. The message says why."""
 
 
 @dataclass(frozen=True)

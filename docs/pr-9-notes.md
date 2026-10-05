@@ -17,9 +17,11 @@ Decisions made while building, without questions to Alex (subagent run, 2026-10-
    document goes to review as `conflicting_values`; a field is reported missing only when no
    document had it.
 6. **Documents that are not used.** Unsure ones go to review (the classifier's item) and are not
-   extracted, because they cannot be tied to a plan year. Unreadable ones (any exception from the
-   PDF libraries: corrupt, password protected) become a high severity `unclassified_document` item
-   saying "could not open". Classified documents outside `--plans` or `--years` are listed in the
+   extracted, because they cannot be tied to a plan year. Unreadable ones become a high severity
+   `unclassified_document` item saying "could not open". Only the PDF libraries' own read errors
+   count (`PDF_READ_ERRORS`: pdfminer PDFException, PSException, PDFPasswordIncorrect; pdfplumber
+   PdfminerException, MalformedPDFException; pypdf PdfReadError). Any other exception is a bug in
+   our code and fails the run loudly; the CLI no longer turns a ValueError into "refused". Classified documents outside `--plans` or `--years` are listed in the
    manifest as `outside_slice`.
 7. **Diff lookup.** The new record is found only through the crosswalk's current plan id. A
    crosswalk row that points at a plan with no new-year document gives an undecided diff with a high
@@ -57,5 +59,5 @@ Decisions made while building, without questions to Alex (subagent run, 2026-10-
   a threshold field that disagrees with CMS leaves the flag undecided (tested in test_run.py).
 - Allowances are always "period not comparable" against CMS (PR 7 decision), so the demo's review
   queue holds 6 allowance items. They are noise until the CMS period columns are read.
-- Catching every exception from the PDF libraries keeps the run alive, but a bug in our own
-  classifier would also show up as "could not open". The review item names the exception type.
+- A new kind of PDF read failure not in `PDF_READ_ERRORS` stops the run instead of going to
+  review. That is on purpose: add its type after checking it is a file problem, not a bug.
