@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { NavLink } from "@/components/nav-link";
+import { RunNav } from "@/components/run-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
 
@@ -9,14 +9,6 @@ export const metadata: Metadata = {
   description:
     "Which Medicare Advantage plans changed enough that a client should shop again? Carrier documents compared year over year, every value cited to its page. Public data only.",
 };
-
-const PAGES: { label: string; href?: string }[] = [
-  { label: "Overview", href: "/" },
-  { label: "Plan comparison", href: "/plans" },
-  { label: "Changes", href: "/changes" },
-  { label: "Trust", href: "/trust" },
-  { label: "Documents", href: "/documents" },
-];
 
 // Runs before the first paint, so a dark page never flashes white. The saved choice wins;
 // without one (or with storage blocked) the system setting decides. Copied from agency-intake-kit.
@@ -34,13 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <p className="text-sm font-semibold">plan-diff</p>
             <ThemeToggle />
           </div>
-          <ul className="flex gap-1 overflow-x-auto px-2 pb-2 text-sm lg:flex-col lg:px-3">
-            {PAGES.map(({ label, href }) => (
-              <li key={label} className="shrink-0">
-                <NavLink href={href} label={label} />
-              </li>
-            ))}
-          </ul>
+          <RunNav />
         </nav>
         <main className="mx-auto w-full max-w-[1120px] min-w-0 px-4 py-6 sm:px-10">{children}</main>
       </body>

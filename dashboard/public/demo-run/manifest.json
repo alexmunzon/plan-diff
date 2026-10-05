@@ -33,7 +33,8 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -46,7 +47,8 @@
       "year": 2027,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -59,7 +61,8 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -72,7 +75,8 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -85,7 +89,8 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -98,7 +103,8 @@
       "year": 2027,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "pdf",
@@ -111,137 +117,148 @@
       "year": 2026,
       "document_type": "SB",
       "source_url": null,
-      "page_count": 2
+      "page_count": 2,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "crosswalk_2027.csv",
-      "sha256": "ec3f660cbf6ad20a74d89b4773feb0a4323efdc3071b3caa131a2012ef551c9f",
-      "size_bytes": 377,
+      "sha256": "a55c3c6e1494b7a2ef41c1400ab1cba2f3c43da359d5e9c055fdb188a8f14b65",
+      "size_bytes": 638,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "landscape_2026.csv",
-      "sha256": "6ca8005daab1eceec2c75e0c68d24704f7f1204a565445f3a040814d33d85a58",
-      "size_bytes": 565,
+      "sha256": "6ef5820cc2c69d1baa2d94fb31c66b2d4a092167caf0dd4e8d06ec83ee99c7be",
+      "size_bytes": 632,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "landscape_2027.csv",
-      "sha256": "5655a6d1194e48b651a0cc9088c76ba7d5ffaf67d995e1ddc6342150daa2b9c4",
-      "size_bytes": 396,
+      "sha256": "82037b2df41788c66e33aeeead4491bbcf375123e1f5261a470acfb82a267e6a",
+      "size_bytes": 453,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2026/pbp_Section_D.txt",
-      "sha256": "d4624afadf92e84d632117371d32e1df2acad79a5ba5cfe4bb868f96a325d6f3",
-      "size_bytes": 133,
+      "sha256": "0db16496d6bad8adc17fde519ae1af370923d8a6991538cb56b676cc27c778ae",
+      "size_bytes": 155,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2026/pbp_b13_other_services.txt",
-      "sha256": "8e74859fa9af3d5ae6283d45efd575d3e15b2b42d6c032efec4f54e4b1db4161",
-      "size_bytes": 104,
+      "sha256": "14bbd025b6592dde7db306e46b1c95e550751b28252eb2b9fc84855e4c9279b7",
+      "size_bytes": 131,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2026/pbp_b16_dental.txt",
-      "sha256": "5f6afea04503b2b9861499f595bf45d1f76a51b9393a0f617b6f825aa586f300",
-      "size_bytes": 106,
+      "sha256": "4d3151b88fe6ffa86a8e49d09a5c47fd44e4225167f37e642267a11bcd276c0d",
+      "size_bytes": 165,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2026/pbp_b1a_inpat_hosp.txt",
-      "sha256": "5478e874293b156bdee72de11a21f2c31afac2c430a42ad53a22e89b42046b18",
-      "size_bytes": 113,
+      "sha256": "8c2df1bfb12f73f1890d03081ffe98c050c2c7de5961362990b82b96c0bcf439",
+      "size_bytes": 145,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2026/pbp_b4_emerg_urgent.txt",
-      "sha256": "722c0dc2625e57b802d6b2961f84f03b461618605adac2f0906518429afd6eb5",
-      "size_bytes": 139,
+      "sha256": "8c51a41c3f24d3338bbc6a80f75605e66929a39750d72218898f34ad30206bd7",
+      "size_bytes": 247,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2026/pbp_b7_health_prof.txt",
-      "sha256": "9ecf28cfbe5e01404b12e715cfbf8b11e735c1661e90d8484fa4a7500119ab5d",
-      "size_bytes": 135,
+      "sha256": "f3d772e659c563a430bd195e148580bc86c8dc3f52c71703bbe637f1720c8072",
+      "size_bytes": 243,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
-      "path": "pbp_2026/pbp_b9a_outpat_hosp.txt",
-      "sha256": "648a44bf3cf28eb6787c0937b2ebf0df097a429dd0b12b77baedeb6d9cd9a7f0",
-      "size_bytes": 109,
+      "path": "pbp_2026/pbp_b9_outpat_hosp.txt",
+      "sha256": "ca03b8586fb7117564274db0c937ef95693beb24e6b8b45cdd64ca1f2de129cf",
+      "size_bytes": 165,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -254,111 +271,120 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2026/pbp_mrx_tier.txt",
-      "sha256": "4250d21ebf6e9cc9bf2f0a3f225a40951d0d9785d980328c50fe0828e853c54f",
-      "size_bytes": 193,
+      "sha256": "d517d10f263258b036b31098a303f4c6e13955e1a44b5b4e96bfea422ae7650c",
+      "size_bytes": 222,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2027/pbp_Section_D.txt",
-      "sha256": "8c14b187bfdec2ceace8ba2311ab9d5182e172e1976abf0782f2f2f734bb0d44",
-      "size_bytes": 110,
+      "sha256": "6967f02cb8ece453a8b09b254cf53a93f25bf62b19a8e9fa80aa49ee4a603156",
+      "size_bytes": 131,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2027/pbp_b13_other_services.txt",
-      "sha256": "f5504252fa4067904d4b47cecd09ca3cf8dde744182b1d833247c4272d910324",
-      "size_bytes": 86,
+      "sha256": "87e6f48e9c4c6cc5fe53ee27d6fa5ae2022738fbaa080e462f673a3fcaf1a6a2",
+      "size_bytes": 112,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2027/pbp_b16_dental.txt",
-      "sha256": "11ea36ad860eb6289bf62b0ed42f98db97c460c40970a5ee3afeb03e5c98404f",
-      "size_bytes": 87,
+      "sha256": "f46358cbe88780dea8269a12f31a6bb8bc719c24481bed9a07530f350936cb81",
+      "size_bytes": 144,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2027/pbp_b1a_inpat_hosp.txt",
-      "sha256": "ef339f052dd463dad38b7056fd09f110ae3d1ca9afee7f83907a1eb9dc41cc45",
-      "size_bytes": 95,
+      "sha256": "cad5d3640032eea5fe8b1d44178ca4f32eadec6c033a3c44eac0797413d61852",
+      "size_bytes": 126,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2027/pbp_b4_emerg_urgent.txt",
-      "sha256": "4c00a048587ec226fce3d4d261c670548b1dffc731d7ad6b761dc42ad5e94a4a",
-      "size_bytes": 118,
+      "sha256": "90e60cb33f1911f307bc7e0272c9fc486d1ef5f0f68a615b3c4d1458bb1ba93a",
+      "size_bytes": 222,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2027/pbp_b7_health_prof.txt",
-      "sha256": "44bff963578ba74094be57193186804794330e4060f6b4623ccc418a4b22b9a6",
-      "size_bytes": 116,
+      "sha256": "e5fa2b2fd29b35bab1df5ecca4a99329f2e316218dcca2133618f6290d8c94db",
+      "size_bytes": 220,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
-      "path": "pbp_2027/pbp_b9a_outpat_hosp.txt",
-      "sha256": "3ba7852d0ec7b1e8b2438bacc5582f174ac6cc9d3d8dd3b6d545bd2b5487d98b",
-      "size_bytes": 91,
+      "path": "pbp_2027/pbp_b9_outpat_hosp.txt",
+      "sha256": "51c4adac0f309366680fd29d9964ebd39769c054c84d06ffd6ddf963b50201d5",
+      "size_bytes": 145,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
@@ -371,20 +397,22 @@
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     },
     {
       "kind": "cms",
       "path": "pbp_2027/pbp_mrx_tier.txt",
-      "sha256": "f091c1039d8d79d42a02cd89b579bb44b85d9d491b71bf0d64da4f974bfeaea7",
-      "size_bytes": 137,
+      "sha256": "cfdd6f7295b068154c3f3e0fe7afa98e395d0340933d4d910fd9972d8fc8311f",
+      "size_bytes": 163,
       "status": null,
       "document_id": null,
       "plan_id": null,
       "year": null,
       "document_type": null,
       "source_url": null,
-      "page_count": null
+      "page_count": null,
+      "plan_pages": null
     }
   ],
   "modes": {

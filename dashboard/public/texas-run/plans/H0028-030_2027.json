@@ -1,0 +1,248 @@
+{
+  "plan_id": "H0028-030",
+  "year": 2027,
+  "carrier": "Humana",
+  "plan_name": "Humana Gold Plus H0028-030 (HMO)",
+  "counties": [
+    "Atascosa",
+    "Bandera",
+    "Bexar",
+    "Comal",
+    "Guadalupe",
+    "Kendall",
+    "Medina",
+    "Wilson"
+  ],
+  "fields": {
+    "monthly_premium": {
+      "name": "monthly_premium",
+      "value": {
+        "kind": "money",
+        "amount": "0.00"
+      },
+      "unit": "per_month",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "$0"
+      },
+      "confidence": 0.9
+    },
+    "medical_deductible": {
+      "name": "medical_deductible",
+      "value": {
+        "kind": "money",
+        "amount": "0.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "This plan does not have a deductible."
+      },
+      "confidence": 0.9
+    },
+    "moop_in_network": {
+      "name": "moop_in_network",
+      "value": {
+        "kind": "money",
+        "amount": "3900.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "$3,900 in-network"
+      },
+      "confidence": 0.9
+    },
+    "pcp_copay": {
+      "name": "pcp_copay",
+      "value": {
+        "kind": "copay",
+        "amount": "0.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "• PCP's office: $0 copay"
+      },
+      "confidence": 0.9
+    },
+    "specialist_copay": {
+      "name": "specialist_copay",
+      "value": {
+        "kind": "copay",
+        "amount": "20.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "• Specialist's office: $ 20 copay"
+      },
+      "confidence": 0.9
+    },
+    "emergency_room": {
+      "name": "emergency_room",
+      "value": {
+        "kind": "copay",
+        "amount": "150.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 5,
+        "method": "rule",
+        "text": "Emergency services at emergency room $150 copay"
+      },
+      "confidence": 0.9
+    },
+    "urgent_care": {
+      "name": "urgent_care",
+      "value": {
+        "kind": "copay",
+        "amount": "65.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 5,
+        "method": "rule",
+        "text": "$65 copay"
+      },
+      "confidence": 0.9
+    },
+    "inpatient_stay": {
+      "name": "inpatient_stay",
+      "value": {
+        "kind": "copay",
+        "amount": "150.00"
+      },
+      "unit": "per_day",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "This plan covers an unlimited number of days for an $150 copay per day for days 1-5"
+      },
+      "confidence": 0.9
+    },
+    "outpatient_surgery": {
+      "name": "outpatient_surgery",
+      "value": {
+        "kind": "copay",
+        "amount": "300.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "$300 copay"
+      },
+      "confidence": 0.9
+    },
+    "drug_deductible": {
+      "name": "drug_deductible",
+      "value": {
+        "kind": "money",
+        "amount": "700.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "$0 deductible for Tier 1, Tier 2 and Tier 3; $700 deductible for Tier 4 and Tier 5"
+      },
+      "confidence": 0.85
+    },
+    "drug_tier_1": {
+      "name": "drug_tier_1",
+      "value": {
+        "kind": "copay",
+        "amount": "0.00"
+      },
+      "unit": "per_prescription",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 11,
+        "method": "rule",
+        "text": "Preferred Generic $0 $0 $10 $30 $0 $0"
+      },
+      "confidence": 0.6
+    },
+    "drug_tier_2": {
+      "name": "drug_tier_2",
+      "value": {
+        "kind": "copay",
+        "amount": "0.00"
+      },
+      "unit": "per_prescription",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 11,
+        "method": "rule",
+        "text": "Generic $0 $0 $20 $60 $0 $0"
+      },
+      "confidence": 0.6
+    },
+    "drug_tier_3": {
+      "name": "drug_tier_3",
+      "value": {
+        "kind": "coinsurance",
+        "percent": "17"
+      },
+      "unit": "per_prescription",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 11,
+        "method": "rule",
+        "text": "Preferred Brand 17% 17% 17% 17% 17% 15%"
+      },
+      "confidence": 0.6
+    },
+    "dental_allowance": {
+      "name": "dental_allowance",
+      "value": {
+        "kind": "money",
+        "amount": "4000.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 8,
+        "method": "rule",
+        "text": "$4,000 maximum benefit coverage amount per year for all diagnostic/preventive and"
+      },
+      "confidence": 0.9
+    },
+    "otc_allowance": {
+      "name": "otc_allowance",
+      "value": {
+        "kind": "money",
+        "amount": "60.00"
+      },
+      "unit": "per_quarter",
+      "citation": {
+        "document_id": "humana-h0028-030-sb-2027",
+        "page": 15,
+        "method": "rule",
+        "text": "$60 quarterly allowance"
+      },
+      "confidence": 0.9
+    }
+  },
+  "documents": [
+    "humana-h0028-030-anoc-2027",
+    "humana-h0028-030-eoc-2027",
+    "humana-h0028-030-sb-2027"
+  ]
+}

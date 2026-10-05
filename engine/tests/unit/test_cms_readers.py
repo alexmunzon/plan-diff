@@ -64,8 +64,8 @@ def test_crosswalk_unknown_status_raises(tmp_path: Path) -> None:
 def test_crosswalk_consolidated_without_new_id_raises(tmp_path: Path) -> None:
     lines = CROSSWALK.read_text().splitlines()
     lines = [
-        ",".join(["H9999", "002", "000", "", "", "", "Consolidated Renewal Plan"])
-        if line.startswith("H9999,002")
+        "\t".join(["H9999", "002", "Old", "", "", "", "", "", "", "", "Consolidated Renewal Plan"])
+        if line.startswith("H9999\t002")
         else line
         for line in lines
     ]

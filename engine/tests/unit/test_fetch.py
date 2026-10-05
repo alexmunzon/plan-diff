@@ -165,11 +165,15 @@ def test_cli_refuses_to_run_in_ci(monkeypatch: pytest.MonkeyPatch, tmp_path: Pat
     assert "CI" in result.output
 
 
-def test_committed_manifest_is_valid_and_unpinned() -> None:
+def test_committed_manifest_is_valid_and_pinned() -> None:
+    # PR 15: Alex approved the 17 files and they were pinned on the first download, so every
+    # entry now has an https URL, a SHA-256, a size, and a retrieved date.
     path = Path(__file__).resolve().parents[3] / "sources" / "manifest.json"
     manifest = SourcesManifest.model_validate_json(path.read_text())
-    assert len(manifest.documents) >= 10
-    assert all(not d.verified and d.sha256 is None for d in manifest.documents)
+    assert len(manifest.documents) == 17
+    for d in manifest.documents:
+        assert d.url is not None and d.url.scheme == "https"
+        assert d.sha256 and d.size_bytes and d.retrieved_at
 
 
 def test_redirect_to_another_host_is_refused(tmp_path: Path) -> None:

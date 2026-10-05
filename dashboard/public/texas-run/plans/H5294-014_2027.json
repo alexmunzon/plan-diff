@@ -1,0 +1,216 @@
+{
+  "plan_id": "H5294-014",
+  "year": 2027,
+  "carrier": "Wellcare",
+  "plan_name": "Wellcare Patriot Simple (HMO)",
+  "counties": [
+    "Armstrong",
+    "Atascosa",
+    "Bailey",
+    "Bandera",
+    "Bexar",
+    "Blanco",
+    "Borden",
+    "Briscoe",
+    "Castro",
+    "Collin",
+    "Comal",
+    "Crosby",
+    "Dallas",
+    "DeWitt",
+    "Denton",
+    "Ector",
+    "El Paso",
+    "Ellis",
+    "Fisher",
+    "Floyd",
+    "Garza",
+    "Glasscock",
+    "Gonzales",
+    "Guadalupe",
+    "Hockley",
+    "Hood",
+    "Kendall",
+    "Kent",
+    "La Salle",
+    "Lamb",
+    "Lubbock",
+    "Lynn",
+    "Martin",
+    "Medina",
+    "Milam",
+    "Nolan",
+    "Parker",
+    "Potter",
+    "Randall",
+    "Real",
+    "Rockwall",
+    "Shackelford",
+    "Sterling",
+    "Swisher",
+    "Tarrant",
+    "Terry",
+    "Throckmorton",
+    "Uvalde",
+    "Wilson",
+    "Wise",
+    "Zavala"
+  ],
+  "fields": {
+    "monthly_premium": {
+      "name": "monthly_premium",
+      "value": {
+        "kind": "money",
+        "amount": "0.00"
+      },
+      "unit": "per_month",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "$0"
+      },
+      "confidence": 0.9
+    },
+    "medical_deductible": {
+      "name": "medical_deductible",
+      "value": {
+        "kind": "money",
+        "amount": "0.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "No deductible"
+      },
+      "confidence": 0.9
+    },
+    "moop_in_network": {
+      "name": "moop_in_network",
+      "value": {
+        "kind": "money",
+        "amount": "3400.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "$3,400 annually"
+      },
+      "confidence": 0.9
+    },
+    "pcp_copay": {
+      "name": "pcp_copay",
+      "value": {
+        "kind": "copay",
+        "amount": "0.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 5,
+        "method": "rule",
+        "text": "$0 copay"
+      },
+      "confidence": 0.9
+    },
+    "specialist_copay": {
+      "name": "specialist_copay",
+      "value": {
+        "kind": "copay",
+        "amount": "10.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 5,
+        "method": "rule",
+        "text": "$10 copay"
+      },
+      "confidence": 0.9
+    },
+    "emergency_room": {
+      "name": "emergency_room",
+      "value": {
+        "kind": "copay",
+        "amount": "150.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 5,
+        "method": "rule",
+        "text": "$150 copay"
+      },
+      "confidence": 0.9
+    },
+    "urgent_care": {
+      "name": "urgent_care",
+      "value": {
+        "kind": "copay",
+        "amount": "25.00"
+      },
+      "unit": "per_visit",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 5,
+        "method": "rule",
+        "text": "$25 copay"
+      },
+      "confidence": 0.9
+    },
+    "inpatient_stay": {
+      "name": "inpatient_stay",
+      "value": {
+        "kind": "copay",
+        "amount": "275.00"
+      },
+      "unit": "per_day",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 4,
+        "method": "rule",
+        "text": "For each admission, you pay • $275 copay per day for days 1 through 5 • $0 copay per day for days 6 through 90 • $0 copa"
+      },
+      "confidence": 0.9
+    },
+    "dental_allowance": {
+      "name": "dental_allowance",
+      "value": {
+        "kind": "money",
+        "amount": "3000.00"
+      },
+      "unit": "per_year",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 9,
+        "method": "rule",
+        "text": "up to $3,000 per plan year"
+      },
+      "confidence": 0.9
+    },
+    "otc_allowance": {
+      "name": "otc_allowance",
+      "value": {
+        "kind": "money",
+        "amount": "50.00"
+      },
+      "unit": "per_month",
+      "citation": {
+        "document_id": "wellcare-h5294-014-sb-2027",
+        "page": 16,
+        "method": "rule",
+        "text": "$50 monthly"
+      },
+      "confidence": 0.9
+    }
+  },
+  "documents": [
+    "wellcare-h5294-014-anoc-2027",
+    "wellcare-h5294-014-eoc-2027",
+    "wellcare-h5294-014-sb-2027"
+  ]
+}

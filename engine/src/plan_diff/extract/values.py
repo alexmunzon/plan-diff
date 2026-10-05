@@ -32,6 +32,8 @@ _DAY_RANGE = re.compile(r"\bdays?\s+\d", re.IGNORECASE)
 _FOOTNOTES = str.maketrans(dict.fromkeys(config.EXTRACT_FOOTNOTE_MARKERS, " "))
 _AMBIGUOUS_DIGIT = re.compile(config.EXTRACT_AMBIGUOUS_DIGIT)
 _PARENS = "()"
+_TIER_DEDUCTIBLE = re.compile(config.EXTRACT_TIER_DEDUCTIBLE, re.IGNORECASE)
+_ZERO = {f: re.compile(p, re.IGNORECASE) for f, p in config.EXTRACT_ZERO_PHRASES.items()}
 
 Token = Coinsurance | Decimal | NotCovered
 
@@ -45,6 +47,7 @@ class FieldParser:
     period: bool = False  # an allowance: the unit is the period it states, else none (review)
     prefer: tuple[str, ...] = ("in-network",)  # keys of config.EXTRACT_PREFER_MARKERS, in order
     units: Literal["cost", "period"] = "cost"  # which phrase table may override default_unit
+    tier_split: bool = False  # PR 15: "$0 deductible for Tier 1 ...; $615 deductible for Tier 4"
 
     @property
     def label(self) -> re.Pattern[str]:
@@ -86,6 +89,11 @@ def _candidates(text: str) -> list[_Cand]:
         full = Coinsurance(percent=Decimal(100))
         found = [c for c in found if c.value != full]
     return sorted([*found, *not_covered], key=lambda c: c.start)
+
+
+def value_count(text: str) -> int:
+    """PR 15: how many values (amounts, percents, "not covered") a cell holds."""
+    return len(_candidates(text.translate(_FOOTNOTES)))
 
 
 def _segments(text: str) -> list[tuple[int, int]]:
@@ -139,7 +147,17 @@ def parse_value(text: str, parser: FieldParser) -> Parsed | None:
     clean = text.translate(_FOOTNOTES)
     cands = _candidates(clean)
     if not cands:
+        zero = _ZERO.get(parser.field.value)
+        if zero is not None and zero.search(
+            clean
+        ):  # PR 15: "This plan does not have a deductible."
+            return Parsed(Money(amount=Decimal(0)), parser.default_unit, multiple=False)
         return None
+    if parser.tier_split:
+        tiers = [Decimal(m.group(1).replace(",", "")) for m in _TIER_DEDUCTIBLE.finditer(clean)]
+        if len(tiers) >= 2:  # PR 15: the plan's deductible is the highest tier amount
+            top = Money(amount=max(tiers))
+            return Parsed(top, parser.default_unit, True, "highest tier deductible", labeled=True)
     segments = _segments(clean)
 
     def seg_of(c: _Cand) -> tuple[int, int]:
@@ -239,7 +257,7 @@ COST_SHARING: tuple[FieldParser, ...] = (
 # PR 6: the drug family. A tier is standard retail, 30-day supply, initial coverage stage.
 _TIER_PREFER = ("in-network", "standard pharmacy", "30-day supply")
 DRUGS: tuple[FieldParser, ...] = (
-    FieldParser(FieldName.DRUG_DEDUCTIBLE, "money", Unit.PER_YEAR),
+    FieldParser(FieldName.DRUG_DEDUCTIBLE, "money", Unit.PER_YEAR, tier_split=True),
     FieldParser(FieldName.DRUG_TIER_1, "copay", Unit.PER_PRESCRIPTION, prefer=_TIER_PREFER),
     FieldParser(FieldName.DRUG_TIER_2, "copay", Unit.PER_PRESCRIPTION, prefer=_TIER_PREFER),
     FieldParser(FieldName.DRUG_TIER_3, "copay", Unit.PER_PRESCRIPTION, prefer=_TIER_PREFER),

@@ -14,7 +14,13 @@ CLASSIFY_TITLE_LINES = 3
 
 # Medicare Advantage contract-plan id, H (local) or R (regional PPO), for example H0028-030.
 # A trailing segment is kept unless it is 000 (models.ids.normalize_plan_id). ASCII digits only.
-PLAN_ID_PATTERN = r"\b([HR][0-9]{4}-[0-9]{3}(?:-[0-9]{3})?)\b"
+# PR 15: also the real Wellcare forms "H5294_014_2026_TX_SB..." (file codes), "H5294 | 014 | 000",
+# and "H5294, Plan 014, 000". A plan number must be exactly 3 digits not followed by a digit, so
+# the file code "H5294_2026_TX" is not plan 202.
+PLAN_ID_PATTERN = (
+    r"(?<![A-Za-z0-9])([HR][0-9]{4}(?:-|_|\s?\|\s?|,\s?Plan\s)[0-9]{3}"
+    r"(?:(?:-|\s?\|\s?|,\s?)[0-9]{3})?)(?![0-9])"
+)
 
 # A plan year from 2010 to 2099. Not part of a dollar amount or a longer number.
 PLAN_YEAR_PATTERN = r"(?<![$\d.,])(20[1-9]\d)(?![\d])(?!,\d)"
@@ -293,3 +299,110 @@ EXTRACT_CONFIDENCE_UNEXPECTED_UNIT = 0.5
 # a "not comparable" verdict, counted apart from mismatches, and its review item gets this
 # severity (never high: nothing is known to be wrong) and no confidence score.
 VALIDATE_NOT_COMPARABLE_SEVERITY = "medium"
+
+# PR 15
+# Extraction tuned to the real Summary of Benefits layouts (Humana H0028-030 and Wellcare
+# H5294-014, 2026 and 2027). Each pattern below is tested on a short snippet of the real page in
+# engine/tests/unit/test_pr_15_extract.py. Tuning never trades a missing value for a guess.
+
+# Row labels, replacing the PR 5 and PR 6 ones for these fields. _VALUE_NEXT means the label counts
+# only when a value follows: an amount, an in- or out-of-network marker, or the end of the line
+# (the value is on the next line). "emergency care you received" in a sentence is not a row.
+_VALUE_NEXT = r"(?=\s*(?:\$|$|in[- ]network|out[- ]of[- ]network))"
+EXTRACT_LABELS |= {
+    # "Monthly Premium, Deductible and Limits" is a section heading, not the premium row.
+    "monthly_premium": r"monthly (?:plan )?premium\b(?!\s*,)",
+    # A deductible cell that names a drug tier is the drug deductible (see EXTRACT_CELL_EXCLUDE).
+    "medical_deductible": r"(?:medical |plan |health )?deductible\b",
+    "moop_in_network": r"(?:medical )?maximum out[- ]of[- ]pocket(?: amount)?"
+    r"(?: \(?in[- ]network\)?)?(?: \(moop\))?" + _VALUE_NEXT,
+    # "Primary Care Provider (PCP) • PCP's office: $0 copay", "Primary Care Providers $0 copay"
+    "pcp_copay": r"primary care(?: provider| physician)?(?: \(pcp\))?(?: office)? visits?\b"
+    r"|primary care providers?(?: \(pcp\))?(?=\s*(?:\$|•))",
+    # "Specialist • Specialist's office: $15 copay", "Specialists $10 copay"
+    "specialist_copay": r"specialist(?: office)? visits?\b|specialists?(?=\s*(?:\$|•))",
+    "emergency_room": r"emergency (?:room|care)\b" + _VALUE_NEXT,
+    # "Urgently Needed Services $25 copay"; Humana's heading has no amount (scoped row below).
+    "urgent_care": r"urgent(?:ly needed)? care\b|urgently needed services(?=\s*\$)",
+    # "Pharmacy (Part D) deductible $0 deductible for Tier 1, ..."
+    "drug_deductible": r"(?:part d (?:drug )?|(?:prescription |rx )?drug "
+    r"|pharmacy (?:\(part d\) )?)deductible\b",
+    # Humana 2027 prints two column headings on one line: "... (OTC) Allowance Rewards and ..."
+    "otc_allowance": r"(?:over[- ]the[- ]counter|otc)(?: \(otc\))?(?: items| products| benefits?)?"
+    r" (?:allowance|credit|card)\b(?=\s*(?:\$|$))",
+}
+
+# A hit whose cell matches is not this field's row at all (it is skipped, not unreadable).
+EXTRACT_CELL_EXCLUDE: dict[str, str] = {
+    # "Deductible $0 deductible for Tier 1, Tier 2 and Tier 3" sits under the drug benefits.
+    "medical_deductible": r"\btiers?\b|\bpart d\b|\bdrug",
+}
+
+# Words that state a $0 amount when no amount is printed.
+EXTRACT_ZERO_PHRASES: dict[str, str] = {
+    "medical_deductible": r"\bno deductible\b|\bdoes not have a ?deductible\b",
+    "drug_deductible": r"\bno deductible\b|\bdoes not have a ?deductible\b",
+}
+
+# A drug deductible split by tier ("$0 deductible for Tier 1, Tier 2 and Tier 3" then
+# "$615 deductible for Tier 4 and Tier 5" on the next line). The plan's deductible is the
+# highest amount: the lower tiers are exempt from it (CMS files it the same way, mrx_alt_ded_amount
+# plus the exempt tiers). Read at EXTRACT_CONFIDENCE_LABELED with a low review item naming the rule.
+EXTRACT_TIER_DEDUCTIBLE = r"\$\s?(\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,2})?\s+deductible for tiers?\b"
+
+# Continuation lines. A row that ends with ":" takes the bullet lines under it; a cell that ends
+# with a dangling period word ("$4,000 maximum benefit coverage amount per") takes the next line.
+EXTRACT_MAX_BULLETS = 4
+EXTRACT_DANGLING_PERIOD = r"\b(?:per|every|each)$"
+
+# Rows that only make sense inside one section. Each rule is (field, section start, row, lines):
+# the section starts at a line matching `start`, runs at most `lines` lines (the start line
+# included), and ends early at the next ALL CAPS heading. `row` is searched in each line and its
+# `cell` group is the value. A section rule adds hits; it never removes the generic ones.
+EXTRACT_SECTION_ROWS: tuple[tuple[str, str, str, int], ...] = (
+    # Humana: "URGENTLY NEEDED SERVICES" ... "• Urgent care center: $65 copay"
+    ("urgent_care", r"^urgently needed services$", r"•\s*urgent care center:\s*(?P<cell>[^•]*)", 6),
+    # Humana: "OUTPATIENT HOSPITAL COVERAGE" ... "Surgery services $100 copay"
+    (
+        "outpatient_surgery",
+        r"^outpatient hospital coverage$",
+        r"^surgery services\s*(?P<cell>.*)$",
+        6,
+    ),
+    # Humana: "DENTAL SERVICES" ... "• $4,000 maximum benefit coverage amount per" / "year ..."
+    (
+        "dental_allowance",
+        r"^dental services$",
+        r"•\s*(?P<cell>\$[\d,.]+ maximum benefit coverage amount per\b.*)$",
+        80,
+    ),
+    # Wellcare: "Additional Dental Information ..." ... "up to $3,000 per plan year."
+    (
+        "dental_allowance",
+        r"^additional dental information\b",
+        r"^(?:.*coverage of routine comprehensive services\s*)?(?P<cell>up to \$[\d,.]+ per "
+        r"(?:plan |calendar )?year)\b",
+        8,
+    ),
+    # Humana: "Over-the-Counter (OTC) Allowance" ... "$75 quarterly allowance on a prepaid"
+    (
+        "otc_allowance",
+        r"^over-the-counter \(otc\) allowance\b",
+        r"^(?P<cell>\$[\d,.]+ (?:quarterly|monthly|yearly|annual) allowance)\b",
+        3,
+    ),
+    # Wellcare: "Wellcare Spendables® You will receive (a total of) $50 monthly preloaded ..."
+    # The card is shared with dental, vision, and hearing; CMS files it the same way (one
+    # combined group that includes OTC), so the amounts compare like for like.
+    ("otc_allowance", r"^wellcare spendables\b", r"(?P<cell>\$[\d,.]+ monthly)\b", 1),
+)
+
+# Sections whose rows are never read: the insulin price table repeats the tier labels with
+# insulin-only prices. Same ending rule as above.
+EXTRACT_SKIP_SECTIONS: tuple[tuple[str, int], ...] = ((r"^insulin cost[- ]sharing\b", 30),)
+
+# An ALL CAPS heading ends a section ("VISION SERVICES", "CATASTROPHIC COVERAGE").
+EXTRACT_CAPS_HEADING = r"^[A-Z][A-Z &,'()/-]{3,}$"
+
+EXTRACT_UNIT_PHRASES["per plan year"] = "per_year"
+EXTRACT_PERIOD_UNIT_PHRASES["per plan year"] = "per_year"

@@ -160,7 +160,9 @@ def test_not_covered_matches_cms_not_covered(tmp_path: Path) -> None:
         text = src.read_text()
         if src.name == "pbp_b16_dental.txt":
             head, *rows = text.splitlines()
-            rows = [r.rsplit("\t", 1)[0] + "\tNot covered" for r in rows]
+            at = head.split("\t").index("pbp_b16c_maxplan_cmp_amt")
+            cells = [r.split("\t") for r in rows]
+            rows = ["\t".join([*c[:at], "Not covered", *c[at + 1 :]]) for c in cells]
             text = "\n".join([head, *rows]) + "\n"
         (pbp / src.name).write_text(text)
     cms = cms_values_for("H9999-001", pbp=read_pbp(pbp, 2026, plan_ids=["H9999-001"]))

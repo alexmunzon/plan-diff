@@ -1,2 +1,2 @@
-pbp_a_hnumber	pbp_a_plan_identifier	segment_id	pbp_b16c_maxplan_amt
-H9999	001	000	2000
+pbp_a_hnumber	pbp_a_plan_identifier	segment_id	pbp_b16c_maxplan_cmp_amt	pbp_b16c_maxplan_cmp_per	pbp_b16c_maxplan_cmp_type
+H9999	001	000	2000		

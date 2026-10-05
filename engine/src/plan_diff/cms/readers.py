@@ -19,9 +19,13 @@ import polars as pl
 from plan_diff.cms.layouts import (
     CROSSWALK_LAYOUTS,
     LANDSCAPE_LAYOUTS,
+    PBP_COMBO_COLUMNS,
+    PBP_COMBO_GROUPS,
     PBP_LAYOUTS,
+    PBP_PERIOD_CODES,
     CrosswalkLayout,
     LandscapeLayout,
+    PbpColumn,
     PbpLayout,
 )
 from plan_diff.config import (
@@ -31,7 +35,12 @@ from plan_diff.config import (
     CMS_MONEY_SCALE,
     CMS_NOT_COVERED_MARKERS,
 )
-from plan_diff.models import CrosswalkStatus, crosswalk_status_from_cms, normalize_plan_id
+from plan_diff.models import (
+    CrosswalkStatus,
+    FieldName,
+    crosswalk_status_from_cms,
+    normalize_plan_id,
+)
 
 log = logging.getLogger(__name__)
 
@@ -51,6 +60,12 @@ class AmountStatus(StrEnum):
     VALUE = "value"
     MISSING = "missing"
     NOT_COVERED = "not_covered"  # same word as plan_diff.models.NotCovered
+    # PR 15 (PBP only): the min and max columns differ, so CMS gives a range, not one value.
+    RANGE = "range"
+    # PR 15 (PBP only): no copay, a coinsurance percent instead (in the `percent` column).
+    PERCENT = "percent"
+    # PR 15 (PBP only): both a copay and a coinsurance are filed; neither is picked.
+    MIXED = "mixed"
 
 
 def _layout[L](layouts: dict[int, L], year: int) -> L:
@@ -84,15 +99,18 @@ def _blank(column: str) -> pl.Expr:
     return pl.col(column).fill_null("") == ""
 
 
-def _plan_ids(df: pl.DataFrame, contract: str, plan: str, segment: str) -> pl.Series:
-    """Canonical plan id per row, or null when the row has no id or not an MA plan id (S, E)."""
+def _plan_ids(df: pl.DataFrame, contract: str, plan: str, segment: str | None) -> pl.Series:
+    """Canonical plan id per row, or null when the row has no id or not an MA plan id (S, E).
+    PR 15: a file with no segment column (the real crosswalk) is plan level: segment 000."""
     base = pl.col(contract) + "-" + pl.col(plan)
+    with_segment = base if segment is None else base + "-" + pl.col(segment)
+    no_segment = pl.lit(True) if segment is None else _blank(segment)
     raw = df.select(
         pl.when(_blank(contract) | _blank(plan))
         .then(None)
-        .when(_blank(segment))
+        .when(no_segment)
         .then(base)
-        .otherwise(base + "-" + pl.col(segment))
+        .otherwise(with_segment)
     ).to_series()
     mapping: dict[str, str | None] = {}
     for text in raw.drop_nulls().unique().to_list():
@@ -156,7 +174,7 @@ def read_crosswalk(
     Keeps rows whose previous or current plan id is in `plan_ids`."""
     lay = _layout(layouts, year)
     wanted = _requested(plan_ids)
-    cols = [v for k, v in vars(lay).items() if k != "separator"]
+    cols = [v for k, v in vars(lay).items() if k != "separator" and v is not None]
     df = _read_text(path, lay.separator, cols)
     df = df.with_columns(
         _plan_ids(df, lay.previous_contract, lay.previous_plan, lay.previous_segment).alias(
@@ -210,6 +228,7 @@ def read_landscape(
     _count_blank_ids(df, path, lay.contract, lay.plan)
     df = df.with_columns(_plan_ids(df, lay.contract, lay.plan, lay.segment).alias("plan_id"))
     df = _money(df.filter(pl.col("plan_id").is_in(wanted)), lay.premium, path, "premium")
+    df = _part_c_only(df, lay, path)
     return df.select(
         "plan_id",
         pl.lit(year, pl.Int32).alias("year"),
@@ -220,6 +239,24 @@ def read_landscape(
         "premium",
         "premium_status",
         "source_row",  # PR 7: the CMS citation for the premium
+    )
+
+
+def _part_c_only(df: pl.DataFrame, lay: LandscapeLayout, path: Path) -> pl.DataFrame:
+    """PR 15: a plan with no Part D files "Not Applicable" as its consolidated premium; its whole
+    premium is the Part C premium. Only rows whose Part D indicator says No take it."""
+    no_d = (pl.col("premium_status") == AmountStatus.MISSING) & (
+        pl.col(lay.part_d_indicator).str.to_lowercase() == "no"
+    )
+    if not df.filter(no_d).height:
+        return df
+    part_c = _money(df, lay.part_c_premium, path, "part_c")
+    return part_c.with_columns(
+        pl.when(no_d).then(pl.col("part_c")).otherwise(pl.col("premium")).alias("premium"),
+        pl.when(no_d)
+        .then(pl.col("part_c_status"))
+        .otherwise(pl.col("premium_status"))
+        .alias("premium_status"),
     )
 
 
@@ -234,6 +271,84 @@ def _refuse_duplicates(rows: pl.DataFrame, where: str) -> None:
         raise CmsFileError(f"{where} has several rows for {found}")
 
 
+def _cell(row: dict[str, object], column: str, where: str) -> str:
+    if column not in row:
+        raise CmsFileError(f"{where}: missing column {column!r}; check this year's layout")
+    return str(row[column] or "")
+
+
+def _period(row: dict[str, object], column: str | None, where: str) -> str | None:
+    if column is None:
+        return None
+    return PBP_PERIOD_CODES.get(_cell(row, column, where).strip())
+
+
+_PbpOut = dict[str, object]
+_NOTE_CHARS = 120  # the CMS citation text, note included, stays under the schema's 200 characters
+
+
+def _combo(row: dict[str, object], spec: PbpColumn, where: str) -> _PbpOut:
+    """PR 15: the Section D combined benefit group that lists `spec.combo_category`."""
+    found = []
+    for n in range(1, PBP_COMBO_GROUPS + 1):
+        col = {k: v.format(n=n) for k, v in PBP_COMBO_COLUMNS.items()}
+        if col["categories"] not in row:
+            break
+        cats = [c.strip() for c in _cell(row, col["categories"], where).split(";")]
+        if spec.combo_category in cats:
+            found.append(col)
+    if not found:
+        return {"amount_status": AmountStatus.MISSING.value}
+    if len(found) > 1:
+        raise CmsFileError(f"{where}: {spec.combo_category} is in {len(found)} combined groups")
+    col = found[0]
+    amount, status = _parse_money(_cell(row, col["amount"], where), f"{where}, {col['amount']}")
+    listed = _cell(row, col["categories"], where).rstrip(";")
+    note = f"combined group {_cell(row, col['name'], where)!r} ({listed})"
+    return {
+        "amount": amount,
+        "amount_status": status.value,
+        "unit": _period(row, col["period"], where),
+        "note": note[:_NOTE_CHARS],
+    }
+
+
+def _pbp_value(row: dict[str, object], spec: PbpColumn, path: Path) -> _PbpOut:
+    """One field's value for one PBP row (PR 15 rules in PbpColumn's docstring)."""
+    n = row["source_row"]
+
+    def money(column: str) -> tuple[Decimal | None, AmountStatus]:
+        where = f"{path}: column {column!r}, row {n}"
+        return _parse_money(_cell(row, column, where), where)
+
+    if spec.only_when is not None:
+        column, code = spec.only_when
+        if _cell(row, column, str(path)).strip() != code:
+            return {"amount_status": AmountStatus.MISSING.value}
+    if spec.combo_category:
+        return _combo(row, spec, f"{path}: row {n}")
+    amount, status = money(spec.column)
+    out: _PbpOut = {"amount": amount, "amount_status": status.value}
+    if status is AmountStatus.MISSING and spec.zero_when is not None:
+        column, code = spec.zero_when
+        if _cell(row, column, str(path)).strip() == code:
+            out = {"amount": Decimal(0).quantize(_CENT), "amount_status": AmountStatus.VALUE.value}
+            out["note"] = f"{column} = {code}"
+    if status is AmountStatus.VALUE and spec.max_column is not None:
+        top, top_status = money(spec.max_column)
+        if top_status is AmountStatus.VALUE and top != amount:
+            out = {**out, "amount_status": AmountStatus.RANGE.value, "max_amount": top}
+    if spec.coins_column is not None:
+        pct, pct_status = money(spec.coins_column)
+        if pct_status is AmountStatus.VALUE:
+            if status is AmountStatus.VALUE:
+                out = {"amount_status": AmountStatus.MIXED.value}
+            elif status is AmountStatus.MISSING:
+                out = {"amount_status": AmountStatus.PERCENT.value, "percent": pct}
+    out["unit"] = _period(row, spec.period_column, str(path))
+    return out
+
+
 def read_pbp(
     directory: Path,
     year: int,
@@ -242,36 +357,79 @@ def read_pbp(
     layouts: dict[int, PbpLayout] = PBP_LAYOUTS,
 ) -> pl.DataFrame:
     """PBP benefits for `year` (the unzipped folder), requested plans only: one row per plan and
-    field, amount as Decimal with amount_status. Fields the layout marks None are left out."""
+    field, amount as Decimal with amount_status. Fields the layout marks None are left out.
+
+    PR 15 columns: `percent` (a coinsurance), `max_amount` (the top of a range), `unit` (the CMS
+    period of an allowance, else null), `note` (what else the citation should say)."""
     lay = _layout(layouts, year)
     wanted = _requested(plan_ids)
     ids = [lay.contract, lay.plan, lay.segment]
-    frames: list[pl.DataFrame] = []
     tables: dict[str, pl.DataFrame] = {}
-    for name, where in lay.fields.items():
-        if where is None:
+
+    def table(file: str) -> pl.DataFrame:
+        if file not in tables:
+            path = directory / file
+            raw = _read_text(path, lay.separator, ids)
+            _count_blank_ids(raw, path, lay.contract, lay.plan)
+            raw = raw.with_columns(_plan_ids(raw, *ids).alias("plan_id"))
+            tables[file] = raw.filter(pl.col("plan_id").is_in(wanted))
+        return tables[file]
+
+    def rows_for(spec: PbpColumn, name: FieldName) -> dict[str, dict[str, object]]:
+        rows = table(spec.file)
+        path = directory / spec.file
+        if spec.tier:
+            if lay.tier not in rows.columns:
+                raise CmsFileError(f"{path}: missing columns for {name}")
+            rows = rows.filter(pl.col(lay.tier) == spec.tier)
+        _refuse_duplicates(rows, f"{path}: {name}")
+        return {str(r["plan_id"]): r for r in rows.to_dicts()}
+
+    out: list[dict[str, object]] = []
+    for name, first in lay.fields.items():
+        if first is None:
             continue
-        path = directory / where.file
-        needed = ids + [where.column] + ([lay.tier] if where.tier else [])
-        if where.file not in tables:
-            table = _read_text(path, lay.separator, needed)
-            _count_blank_ids(table, path, lay.contract, lay.plan)
-            table = table.with_columns(_plan_ids(table, *ids).alias("plan_id"))
-            tables[where.file] = table.filter(pl.col("plan_id").is_in(wanted))
-        table = tables[where.file]
-        if where.column not in table.columns or (where.tier and lay.tier not in table.columns):
-            raise CmsFileError(f"{path}: missing columns for {name}")
-        if where.tier:
-            table = table.filter(pl.col(lay.tier) == where.tier)
-        _refuse_duplicates(table, f"{path}: {name}")
-        rows = _money(table, where.column, path, "amount").select(
-            "plan_id",
-            pl.lit(year, pl.Int32).alias("year"),
-            pl.lit(name.value).alias("field"),
-            "amount",
-            "amount_status",
-            "source_row",  # PR 7: the CMS citation (file and row) for each value
-            pl.lit(where.file).alias("file"),
-        )
-        frames.append(rows)
-    return pl.concat(frames)
+        for plan_id, row in sorted(rows_for(first, name).items()):
+            spec: PbpColumn | None = first
+            hit: tuple[PbpColumn, dict[str, object], _PbpOut] | None = None
+            while spec is not None:
+                source = row if spec.file == first.file else rows_for(spec, name).get(plan_id)
+                if source is not None:
+                    value = _pbp_value(source, spec, directory / spec.file)
+                    hit = (spec, source, value)
+                    if value["amount_status"] != AmountStatus.MISSING:
+                        break
+                spec = spec.fallback
+            assert hit is not None  # the first spec always has this plan's row
+            spec_used, source, value = hit
+            out.append(
+                {
+                    "plan_id": plan_id,
+                    "year": year,
+                    "field": name.value,
+                    "amount": value.get("amount"),
+                    "amount_status": value["amount_status"],
+                    "source_row": source["source_row"],
+                    "file": spec_used.file,
+                    "percent": value.get("percent"),
+                    "max_amount": value.get("max_amount"),
+                    "unit": value.get("unit"),
+                    "note": value.get("note"),
+                }
+            )
+    return pl.DataFrame(out, schema=PBP_SCHEMA)
+
+
+PBP_SCHEMA: dict[str, pl.DataType | type[pl.DataType]] = {
+    "plan_id": pl.String,
+    "year": pl.Int32,
+    "field": pl.String,
+    "amount": _MONEY,
+    "amount_status": pl.String,
+    "source_row": pl.Int64,
+    "file": pl.String,
+    "percent": _MONEY,
+    "max_amount": _MONEY,
+    "unit": pl.String,
+    "note": pl.String,
+}

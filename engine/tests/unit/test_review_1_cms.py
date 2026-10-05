@@ -7,13 +7,27 @@ from pathlib import Path
 import pytest
 
 from plan_diff.classify import classify_pages
-from plan_diff.cms import AmountStatus, CmsFileError, read_crosswalk, read_landscape, read_pbp
+from plan_diff.cms import (
+    AmountStatus,
+    CmsFileError,
+    CrosswalkLayout,
+    read_crosswalk,
+    read_landscape,
+    read_pbp,
+)
 from plan_diff.models import FieldName, normalize_plan_id
 
 MESSY = Path(__file__).resolve().parents[3] / "fixtures" / "cms" / "messy"
 LANDSCAPE = MESSY / "landscape_2026.csv"
 CROSSWALK = MESSY / "crosswalk_2027.csv"
 PBP = MESSY / "pbp_2026"
+# PR 15: the real crosswalk has no segment columns. The messy fixture keeps them (comma separated)
+# so the segment rule is still tested; the layout is passed in, as a future year's change would be.
+SEGMENTED = {
+    2027: CrosswalkLayout(
+        separator=",", previous_segment="PREVIOUS_SEGMENT_ID", current_segment="CURRENT_SEGMENT_ID"
+    )
+}
 
 
 @pytest.mark.parametrize(
@@ -60,9 +74,9 @@ def test_r_contract_is_accepted() -> None:
     )
     row = read_landscape(LANDSCAPE, 2026, plan_ids=["R9999-001"]).to_dicts()[0]
     assert row["premium"] == Decimal("40.00")
-    assert read_crosswalk(CROSSWALK, 2027, plan_ids=["R9999-001"])["current_plan_id"].to_list() == [
-        "R9999-001"
-    ]
+    assert read_crosswalk(CROSSWALK, 2027, plan_ids=["R9999-001"], layouts=SEGMENTED)[
+        "current_plan_id"
+    ].to_list() == ["R9999-001"]
 
 
 def test_s_and_e_rows_are_filtered_not_errors() -> None:
@@ -70,7 +84,9 @@ def test_s_and_e_rows_are_filtered_not_errors() -> None:
     # They are outside the slice, so none of it is checked.
     wanted = ["H9999-001", "R9999-001"]
     assert set(read_landscape(LANDSCAPE, 2026, plan_ids=wanted)["plan_id"]) == set(wanted)
-    assert set(read_crosswalk(CROSSWALK, 2027, plan_ids=wanted)["previous_plan_id"]) == set(wanted)
+    assert set(
+        read_crosswalk(CROSSWALK, 2027, plan_ids=wanted, layouts=SEGMENTED)["previous_plan_id"]
+    ) == set(wanted)
     assert set(read_pbp(PBP, 2026, plan_ids=["R9999-001"])["plan_id"]) == {"R9999-001"}
 
 
@@ -111,14 +127,14 @@ def test_landscape_blank_ids_are_counted(caplog: pytest.LogCaptureFixture) -> No
 
 def test_messy_crosswalk_padding_and_segments() -> None:
     wanted = ["H9999-001", "H5294-014-001", "H0028-030"]
-    df = read_crosswalk(CROSSWALK, 2027, plan_ids=wanted)
+    df = read_crosswalk(CROSSWALK, 2027, plan_ids=wanted, layouts=SEGMENTED)
     assert df["previous_plan_id"].to_list() == wanted
     assert df["current_plan_id"].to_list() == wanted
 
 
 def test_terminated_row_with_current_id_is_refused() -> None:
     with pytest.raises(CmsFileError, match=r"terminated rows \[2\] also name a current plan id"):
-        read_crosswalk(CROSSWALK, 2027, plan_ids=["H9999-003"])
+        read_crosswalk(CROSSWALK, 2027, plan_ids=["H9999-003"], layouts=SEGMENTED)
 
 
 def test_messy_pbp_reads_requested_plans() -> None:
@@ -134,7 +150,7 @@ def test_messy_pbp_reads_requested_plans() -> None:
 
 def test_pbp_three_decimals_is_refused() -> None:
     with pytest.raises(
-        CmsFileError, match=r"pbp_Section_D.txt: column 'pbp_d_ann_deduct_amt', row 2: '250.555'"
+        CmsFileError, match=r"pbp_Section_D.txt: column 'pbp_d_inn_deduct_amt', row 2: '250.555'"
     ):
         read_pbp(PBP, 2026, plan_ids=["H9999-002"])
 

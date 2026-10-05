@@ -29,6 +29,9 @@ class RunInput(StrictModel):
     # (same SHA-256), else None (synthetic demo PDFs). Page count when the PDF could be opened.
     source_url: Annotated[str, Field(pattern=r"^https://[^\s]+$")] | None = None
     page_count: Annotated[StrictInt, Field(ge=1)] | None = None
+    # PR 15: PDFs only. For a multi-plan booklet, the pages read for each requested plan,
+    # for example "H5294-014: pages 9 to 16". None when every page was read.
+    plan_pages: str | None = None
 
 
 class RunConfig(StrictModel):

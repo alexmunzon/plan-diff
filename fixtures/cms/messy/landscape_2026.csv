@@ -1,12 +1,12 @@
-State Territory Name,County Name,Organization Name,Plan Name,Contract ID,Plan ID,Segment ID,Monthly Consolidated Premium (Includes Part C + D)
-Texas,Bexar,Synthétic Health Plan,Synthetic Gold HMO,H9999,1,0,"$1,234"
-Texas,Travis,Synthetic Health Plan,Synthetic Silver HMO,H9999,002,000,N/A
-Texas,Bexar,Synthetic Health Plan,Synthetic Bronze HMO,H9999,003,000,12.345
-Texas,Bexar,Synthetic Health Plan,Synthetic Copper HMO,H9999,004,000,Not covered
-Texas,Bexar,Synthetic Health Plan,Synthetic Tin HMO,H9999,005,000,-5.00
-Texas,Bexar,Synthetic Drug Plan,Synthetic Part D,S9999,001,000,abc
-Texas,Bexar,Synthetic Employer Plan,Synthetic Group,E9999,001,000,-1
-Texas,Bexar,Synthetic Regional PPO,Synthetic Regional,R9999,001,000,$40.00
-Texas,Bexar,Synthetic Health Plan,Synthetic Segment One,H5294,014,001,$0
-Texas,Bexar,Synthetic Health Plan,Synthetic Segment Zero,H0028,030,000,$10
-Texas,Bexar,Synthetic Health Plan,Blank Id Row,,,,$0
+State Territory Name,County Name,Organization Marketing Name,Plan Name,Contract ID,Plan ID,Segment ID,Monthly Consolidated Premium (Part C + D),Part C Premium,Part D Coverage Indicator
+Texas,Bexar,Synthétic Health Plan,Synthetic Gold HMO,H9999,1,0,"$1,234",,Yes
+Texas,Travis,Synthetic Health Plan,Synthetic Silver HMO,H9999,002,000,N/A,,Yes
+Texas,Bexar,Synthetic Health Plan,Synthetic Bronze HMO,H9999,003,000,12.345,,Yes
+Texas,Bexar,Synthetic Health Plan,Synthetic Copper HMO,H9999,004,000,Not covered,,Yes
+Texas,Bexar,Synthetic Health Plan,Synthetic Tin HMO,H9999,005,000,-5.00,,Yes
+Texas,Bexar,Synthetic Drug Plan,Synthetic Part D,S9999,001,000,abc,,Yes
+Texas,Bexar,Synthetic Employer Plan,Synthetic Group,E9999,001,000,-1,,Yes
+Texas,Bexar,Synthetic Regional PPO,Synthetic Regional,R9999,001,000,$40.00,,Yes
+Texas,Bexar,Synthetic Health Plan,Synthetic Segment One,H5294,014,001,$0,,Yes
+Texas,Bexar,Synthetic Health Plan,Synthetic Segment Zero,H0028,030,000,$10,,Yes
+Texas,Bexar,Synthetic Health Plan,Blank Id Row,,,,$0,,Yes
