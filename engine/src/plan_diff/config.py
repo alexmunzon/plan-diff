@@ -42,3 +42,9 @@ CONFIDENCE_MISSING = 0.0
 FETCH_DELAY_S = 5  # seconds to wait between downloads, so carrier and CMS sites are not hammered
 FETCH_MAX_BYTES = 200 * 1024 * 1024  # refuse any single download larger than 200 MB
 FETCH_TIMEOUT_S = 60.0
+
+# PR 3
+# CMS public files: how money columns are typed and how text files are decoded.
+CMS_MONEY_PRECISION = 12  # total digits, matches the Amount type in plan_diff.models.fields
+CMS_MONEY_SCALE = 2  # cents
+CMS_ENCODING = "utf8-lossy"  # CMS text files are not always clean UTF-8; never fail on one byte
