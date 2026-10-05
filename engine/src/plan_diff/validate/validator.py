@@ -20,6 +20,7 @@ from plan_diff.models import (
     AccuracyTable,
     Citation,
     CitationMethod,
+    Coinsurance,
     Copay,
     FieldName,
     FieldValue,
@@ -49,23 +50,29 @@ class CmsValue(StrictModel):
     value: FieldValue
     unit: Unit | None
     citation: Citation
+    max_amount: Decimal | None = None  # PR 15: top of a CMS range; value holds the bottom
 
 
-def _cms_unit(field: FieldName) -> Unit | None:
-    unit = config.VALIDATE_CMS_UNITS[field.value]
+def _cms_unit(field: FieldName, stated: str | None = None) -> Unit | None:
+    """PR 15: a period the PBP states (an allowance's period code) wins over the field default."""
+    unit = stated or config.VALIDATE_CMS_UNITS[field.value]
     return Unit(unit) if unit is not None else None
 
 
-def _typed(field: FieldName, amount: Decimal | None, status: str) -> FieldValue | None:
+def _typed(
+    field: FieldName, amount: Decimal | None, status: str, percent: Decimal | None = None
+) -> FieldValue | None:
     if status == AmountStatus.NOT_COVERED:
         return NotCovered()
-    if status != AmountStatus.VALUE or amount is None:
-        return None  # an explicit missing marker: not in CMS
+    if status == AmountStatus.PERCENT and percent is not None:
+        return Coinsurance(percent=percent)  # PR 15: a coinsurance plan
+    if status not in (AmountStatus.VALUE, AmountStatus.RANGE) or amount is None:
+        return None  # missing, or both a copay and a coinsurance (mixed): not in CMS
     return Copay(amount=amount) if _KIND[field] == "copay" else Money(amount=amount)
 
 
-def _cms_citation(kind: str, year: int, file: str, row: int) -> Citation:
-    text = f"CMS {kind} {year}, {file}, row {row}"
+def _cms_citation(kind: str, year: int, file: str, row: int, note: str | None = None) -> Citation:
+    text = f"CMS {kind} {year}, {file}, row {row}" + (f", {note}" if note else "")
     return Citation(document_id=file, page=row, method=CitationMethod.CMS, text=text)
 
 
@@ -86,10 +93,18 @@ def cms_values_for(
     out: dict[FieldName, CmsValue] = {}
     for row in pbp.filter(pl.col("plan_id") == plan_id).iter_rows(named=True):
         field = FieldName(row["field"])
-        value = _typed(field, row["amount"], row["amount_status"])
+        value = _typed(field, row["amount"], row["amount_status"], row.get("percent"))
         if value is not None:
-            cite = _cms_citation("PBP", row["year"], row["file"], row["source_row"])
-            out[field] = CmsValue(field=field, value=value, unit=_cms_unit(field), citation=cite)
+            cite = _cms_citation(
+                "PBP", row["year"], row["file"], row["source_row"], row.get("note")
+            )
+            out[field] = CmsValue(
+                field=field,
+                value=value,
+                unit=_cms_unit(field, row.get("unit")),
+                citation=cite,
+                max_amount=row.get("max_amount"),
+            )
     if landscape is not None and landscape_file:
         rows = landscape.filter(pl.col("plan_id") == plan_id)
         if rows.select("premium", "premium_status").unique().height > 1:
@@ -122,7 +137,9 @@ def compare(
         elif cms is None:
             verdict = Verdict.NOT_IN_CMS
         else:
-            reason = disagreement(name, pdf.value, pdf.unit, cms.value, cms.unit)
+            reason = disagreement(
+                name, pdf.value, pdf.unit, cms.value, cms.unit, cms_max=cms.max_amount
+            )
             verdict = verdict_for(reason)
         results.append(
             ValidationResult(
@@ -137,15 +154,16 @@ def compare(
                 pdf_unit=pdf.unit if pdf else None,
                 cms_unit=cms.unit if cms else None,
                 reason=reason,
+                cms_max=cms.max_amount if cms else None,
             )
         )
     return results
 
 
-def _describe(value: FieldValue | None, unit: Unit | None) -> str:
+def _describe(value: FieldValue | None, unit: Unit | None, top: Decimal | None = None) -> str:
     match value:
         case Money(amount=amount) | Copay(amount=amount):
-            text = f"${amount:,.2f}"
+            text = f"${amount:,.2f}" + (f" to ${top:,.2f}" if top not in (None, amount) else "")
         case NotCovered():
             return "not covered"
         case None:
@@ -164,7 +182,8 @@ def review_items(results: Iterable[ValidationResult]) -> list[ReviewItem]:
             continue
         if r.pdf_citation is None or r.cms_citation is None:
             continue
-        pdf, cms = _describe(r.pdf_value, r.pdf_unit), _describe(r.cms_value, r.cms_unit)
+        pdf = _describe(r.pdf_value, r.pdf_unit)
+        cms = _describe(r.cms_value, r.cms_unit, r.cms_max)
         if r.verdict == Verdict.MISMATCH:
             kind = ReviewKind.PDF_CMS_MISMATCH
             severity = config.VALIDATE_SEVERITY.get(r.field.value, config.VALIDATE_SEVERITY_DEFAULT)

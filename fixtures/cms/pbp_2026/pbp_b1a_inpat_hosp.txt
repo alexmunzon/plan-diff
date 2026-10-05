@@ -1,3 +1,3 @@
-pbp_a_hnumber	pbp_a_plan_identifier	segment_id	pbp_b1a_copay_mcs_amt_int1_t1
-H9999	001	000	325
-H9999	002	000	295
+pbp_a_hnumber	pbp_a_plan_identifier	segment_id	pbp_b1a_copay_mcs_amt_int1_t1	pbp_b1a_coins_mcs_pct_int1_t1
+H9999	001	000	325	
+H9999	002	000	295	

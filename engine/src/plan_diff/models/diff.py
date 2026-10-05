@@ -21,9 +21,13 @@ class CrosswalkStatus(StrEnum):
 
 
 # CMS Part C and D Plan Crosswalk status labels (research file section 1c, from 42 CFR 422.530
-# and CMS guidance). Not yet checked against the crosswalk file's own codebook: PR 3 confirms.
+# and CMS guidance). PR 15: checked against PlanCrosswalk2027_10012026 and its readme. That file
+# uses New Plan, Renewal Plan, Consolidated Renewal Plan, Renewal Plan with SAR, Renewal Plan with
+# SAE, Initial Contract, and Terminated/Non-renewed Contract; the other spellings stay accepted.
 CMS_CROSSWALK_LABELS: dict[str, CrosswalkStatus] = {
     "new plan": CrosswalkStatus.NEW,
+    # PR 15: the real 2027 file's readme: "A new plan under a new contract" (no 2026 plan).
+    "initial contract": CrosswalkStatus.NEW,
     "renewal plan": CrosswalkStatus.CONTINUING,
     "consolidated renewal plan": CrosswalkStatus.CONSOLIDATED,
     "renewal plan with sar": CrosswalkStatus.SERVICE_AREA_REDUCED,

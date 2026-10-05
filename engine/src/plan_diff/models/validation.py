@@ -6,7 +6,16 @@ from typing import Self
 from pydantic import model_validator
 
 from plan_diff.models.citation import Citation, CitationMethod
-from plan_diff.models.fields import PERIODS_PER_YEAR, FieldName, FieldValue, Money, Unit, annualize
+from plan_diff.models.fields import (
+    PERIODS_PER_YEAR,
+    Amount,
+    Copay,
+    FieldName,
+    FieldValue,
+    Money,
+    Unit,
+    annualize,
+)
 from plan_diff.models.ids import PlanId, PlanYear, StrictModel
 
 # PR 7: allowances may state different periods ($50 a quarter, $200 a year); they compare yearly.
@@ -24,7 +33,11 @@ class Verdict(StrEnum):
 
 
 # Release 0.1.0: disagreement() reasons that mean "cannot check", not "the values differ".
-NOT_COMPARABLE_REASONS = frozenset({"period not comparable", "unit not comparable"})
+# PR 15: "CMS gives a range" (a min and a max that differ, for example outpatient hospital $0 to
+# $100) is never one value, so it cannot confirm or contradict a single PDF amount.
+NOT_COMPARABLE_REASONS = frozenset(
+    {"period not comparable", "unit not comparable", "CMS gives a range"}
+)
 
 
 def verdict_for(reason: str | None) -> Verdict:
@@ -40,6 +53,7 @@ def disagreement(
     pdf_unit: Unit | None,
     cms: FieldValue,
     cms_unit: Unit | None,
+    cms_max: Amount | None = None,
 ) -> str | None:
     """Why a PDF value and a CMS value disagree, or None when they agree (PR 7 rules).
 
@@ -47,6 +61,8 @@ def disagreement(
     Allowances compare after annualize() when both name a period. Other fields: when both name a
     unit, the units must be the same.
     """
+    if isinstance(cms, Money | Copay) and cms_max is not None and cms_max != cms.amount:
+        return "CMS gives a range"
     if pdf.kind != cms.kind:
         return f"PDF has a {pdf.kind} value, CMS has a {cms.kind} value"
     if field in ALLOWANCE_FIELDS and isinstance(pdf, Money) and isinstance(cms, Money):
@@ -76,13 +92,16 @@ class ValidationResult(StrictModel):
     pdf_unit: Unit | None = None  # PR 7
     cms_unit: Unit | None = None  # PR 7
     reason: str | None = None  # PR 7: why a mismatch (or, 0.1.0, a not comparable) is one
+    cms_max: Amount | None = None  # PR 15: top of a CMS range; cms_value holds the bottom
 
     @model_validator(mode="after")
     def _verdict_fits_values(self) -> Self:
         pdf, cms = self.pdf_value, self.cms_value
         why = None
         if pdf is not None and cms is not None:
-            why = disagreement(self.field, pdf, self.pdf_unit, cms, self.cms_unit)
+            why = disagreement(
+                self.field, pdf, self.pdf_unit, cms, self.cms_unit, cms_max=self.cms_max
+            )
         both = pdf is not None and cms is not None
         ok = {
             Verdict.MATCH: both and why is None,

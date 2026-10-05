@@ -26,7 +26,8 @@
     },
     "pdf_unit": "per_month",
     "cms_unit": "per_month",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -55,7 +56,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": "per_year",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -84,7 +86,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": "per_year",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -113,7 +116,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -142,7 +146,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": "values differ"
+    "reason": "values differ",
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -171,7 +176,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -200,7 +206,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -229,7 +236,8 @@
     },
     "pdf_unit": "per_day",
     "cms_unit": "per_day",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -251,14 +259,15 @@
       "text": "$250 per visit"
     },
     "cms_citation": {
-      "document_id": "pbp_b9a_outpat_hosp.txt",
+      "document_id": "pbp_b9_outpat_hosp.txt",
       "page": 1,
       "method": "cms",
-      "text": "CMS PBP 2026, pbp_b9a_outpat_hosp.txt, row 1"
+      "text": "CMS PBP 2026, pbp_b9_outpat_hosp.txt, row 1"
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -287,7 +296,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": "per_year",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -316,7 +326,8 @@
     },
     "pdf_unit": "per_prescription",
     "cms_unit": "per_prescription",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -345,7 +356,8 @@
     },
     "pdf_unit": "per_prescription",
     "cms_unit": "per_prescription",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -374,7 +386,8 @@
     },
     "pdf_unit": "per_prescription",
     "cms_unit": "per_prescription",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -403,7 +416,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": "period not comparable"
+    "reason": "period not comparable",
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -432,7 +446,8 @@
     },
     "pdf_unit": "per_quarter",
     "cms_unit": null,
-    "reason": "period not comparable"
+    "reason": "period not comparable",
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -461,7 +476,8 @@
     },
     "pdf_unit": "per_month",
     "cms_unit": "per_month",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -490,7 +506,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": "per_year",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -519,7 +536,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": "per_year",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -548,7 +566,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -577,7 +596,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -606,7 +626,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -635,7 +656,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -664,7 +686,8 @@
     },
     "pdf_unit": "per_day",
     "cms_unit": "per_day",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -686,14 +709,15 @@
       "text": "$250 per visit"
     },
     "cms_citation": {
-      "document_id": "pbp_b9a_outpat_hosp.txt",
+      "document_id": "pbp_b9_outpat_hosp.txt",
       "page": 1,
       "method": "cms",
-      "text": "CMS PBP 2027, pbp_b9a_outpat_hosp.txt, row 1"
+      "text": "CMS PBP 2027, pbp_b9_outpat_hosp.txt, row 1"
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -722,7 +746,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": "per_year",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -751,7 +776,8 @@
     },
     "pdf_unit": "per_prescription",
     "cms_unit": "per_prescription",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -780,7 +806,8 @@
     },
     "pdf_unit": "per_prescription",
     "cms_unit": "per_prescription",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -809,7 +836,8 @@
     },
     "pdf_unit": "per_prescription",
     "cms_unit": "per_prescription",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -838,7 +866,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": "period not comparable"
+    "reason": "period not comparable",
+    "cms_max": null
   },
   {
     "plan_id": "H9999-001",
@@ -867,7 +896,8 @@
     },
     "pdf_unit": "per_quarter",
     "cms_unit": null,
-    "reason": "period not comparable"
+    "reason": "period not comparable",
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -896,7 +926,8 @@
     },
     "pdf_unit": "per_month",
     "cms_unit": "per_month",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -925,7 +956,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": "per_year",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -954,7 +986,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": "per_year",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -983,7 +1016,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1012,7 +1046,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1041,7 +1076,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1070,7 +1106,8 @@
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1099,7 +1136,8 @@
     },
     "pdf_unit": "per_day",
     "cms_unit": "per_day",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1121,14 +1159,15 @@
       "text": "$200 per visit"
     },
     "cms_citation": {
-      "document_id": "pbp_b9a_outpat_hosp.txt",
+      "document_id": "pbp_b9_outpat_hosp.txt",
       "page": 2,
       "method": "cms",
-      "text": "CMS PBP 2026, pbp_b9a_outpat_hosp.txt, row 2"
+      "text": "CMS PBP 2026, pbp_b9_outpat_hosp.txt, row 2"
     },
     "pdf_unit": "per_visit",
     "cms_unit": "per_visit",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1157,7 +1196,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": "per_year",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1186,7 +1226,8 @@
     },
     "pdf_unit": "per_prescription",
     "cms_unit": "per_prescription",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1215,7 +1256,8 @@
     },
     "pdf_unit": "per_prescription",
     "cms_unit": "per_prescription",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1244,7 +1286,8 @@
     },
     "pdf_unit": "per_prescription",
     "cms_unit": "per_prescription",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1273,7 +1316,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": "period not comparable"
+    "reason": "period not comparable",
+    "cms_max": null
   },
   {
     "plan_id": "H9999-002",
@@ -1302,7 +1346,8 @@
     },
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": "period not comparable"
+    "reason": "period not comparable",
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1331,7 +1376,8 @@
     },
     "pdf_unit": "per_month",
     "cms_unit": "per_month",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1352,7 +1398,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1373,7 +1420,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1394,7 +1442,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1415,7 +1464,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1436,7 +1486,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1457,7 +1508,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1478,7 +1530,8 @@
     "cms_citation": null,
     "pdf_unit": "per_day",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1499,7 +1552,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1520,7 +1574,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1541,7 +1596,8 @@
     "cms_citation": null,
     "pdf_unit": "per_prescription",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1562,7 +1618,8 @@
     "cms_citation": null,
     "pdf_unit": "per_prescription",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1583,7 +1640,8 @@
     "cms_citation": null,
     "pdf_unit": "per_prescription",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1604,7 +1662,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-003",
@@ -1625,7 +1684,8 @@
     "cms_citation": null,
     "pdf_unit": "per_quarter",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1654,7 +1714,8 @@
     },
     "pdf_unit": "per_month",
     "cms_unit": "per_month",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1675,7 +1736,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1696,7 +1758,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1717,7 +1780,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1738,7 +1802,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1759,7 +1824,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1780,7 +1846,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1801,7 +1868,8 @@
     "cms_citation": null,
     "pdf_unit": "per_day",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1822,7 +1890,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1843,7 +1912,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1864,7 +1934,8 @@
     "cms_citation": null,
     "pdf_unit": "per_prescription",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1885,7 +1956,8 @@
     "cms_citation": null,
     "pdf_unit": "per_prescription",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1906,7 +1978,8 @@
     "cms_citation": null,
     "pdf_unit": "per_prescription",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1927,7 +2000,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1948,7 +2022,8 @@
     "cms_citation": null,
     "pdf_unit": "per_quarter",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1977,7 +2052,8 @@
     },
     "pdf_unit": "per_month",
     "cms_unit": "per_month",
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -1998,7 +2074,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2019,7 +2096,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2040,7 +2118,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2061,7 +2140,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2082,7 +2162,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2103,7 +2184,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2124,7 +2206,8 @@
     "cms_citation": null,
     "pdf_unit": "per_day",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2145,7 +2228,8 @@
     "cms_citation": null,
     "pdf_unit": "per_visit",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2166,7 +2250,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2187,7 +2272,8 @@
     "cms_citation": null,
     "pdf_unit": "per_prescription",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2208,7 +2294,8 @@
     "cms_citation": null,
     "pdf_unit": "per_prescription",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2229,7 +2316,8 @@
     "cms_citation": null,
     "pdf_unit": "per_prescription",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2250,7 +2338,8 @@
     "cms_citation": null,
     "pdf_unit": "per_year",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   },
   {
     "plan_id": "H9999-004",
@@ -2271,6 +2360,7 @@
     "cms_citation": null,
     "pdf_unit": "per_quarter",
     "cms_unit": null,
-    "reason": null
+    "reason": null,
+    "cms_max": null
   }
 ]

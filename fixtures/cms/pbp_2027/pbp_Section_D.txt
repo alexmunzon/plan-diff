@@ -1,2 +1,2 @@
-pbp_a_hnumber	pbp_a_plan_identifier	segment_id	pbp_d_ann_deduct_amt	pbp_d_out_pocket_amt
-H9999	001	000	0	4900
+pbp_a_hnumber	pbp_a_plan_identifier	segment_id	pbp_d_inn_deduct_amt	pbp_d_out_pocket_amt	pbp_d_inn_deduct_yn
+H9999	001	000	0	4900	

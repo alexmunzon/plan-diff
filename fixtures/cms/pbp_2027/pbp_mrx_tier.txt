@@ -1,4 +1,4 @@
-pbp_a_hnumber	pbp_a_plan_identifier	segment_id	mrx_tier_id	mrx_tier_rstd_copay_1m
-H9999	001	000	1	0
-H9999	001	000	2	8
-H9999	001	000	3	47
+pbp_a_hnumber	pbp_a_plan_identifier	segment_id	mrx_tier_id	mrx_tier_rstd_copay_1m	mrx_tier_rstd_coins_1m
+H9999	001	000	1	0	
+H9999	001	000	2	8	
+H9999	001	000	3	47	
