@@ -25,16 +25,19 @@ Decisions made while building, without questions to Alex (subagent run, 2026-10-
    `annualize`; a unit that is not a period (or no unit) is not comparable.
 6. **Reasons.** "plan terminated", "plan consolidated into H9999-001", "service area lost 1 county:
    Comal", "service area reduced (CMS crosswalk)" (the status, when no county list shows the loss),
-   "dental allowance no longer covered", "dental allowance removed", "premium up $25 a month",
+   "benefit removed: dental allowance no longer covered", "premium up $25 a month",
    "maximum out-of-pocket up $1,000", "drug deductible up $50". Amounts show cents only when there
    are some.
 7. **Thresholds** in `config.py` under `# PR 8`, as Decimal: premium 20.00, MOOP 1000.00, drug
    deductible 0.01 (any rise). A rise equal to the threshold flags.
 
+8. **Absent is not removed** (orchestrator decision). A field present last year and absent this
+   year may be an extraction miss: direction `not_comparable`, no flag, and a `not_extracted`
+   review item (severity medium, citing last year's page) on `PlanDiff.review`. `removed` and the
+   "benefit removed" reason need an explicit not covered value with its citation in the new year;
+   the FieldChange model enforces both rules.
+
 ## Risks and follow-ups
 
-- "Field absent in the new year" flags as removed per the brief, but absence can also be an
-  extraction miss. PR 9 should check the new year's `not_extracted` review items and treat such a
-  removal as needing review rather than a firm flag.
 - A premium recorded with a non-monthly unit is not comparable and would not flag.
 - Real crosswalk rows may split one old plan into several; `crosswalk_row_for` refuses that today.

@@ -110,7 +110,9 @@ def compare(old: ExtractedField | None, new: ExtractedField | None) -> Direction
     is_covered = new is not None and not isinstance(new.value, NotCovered)
     if old is None or (new is not None and not was_covered):
         return Direction.ADDED if is_covered or old is None else Direction.SAME
-    if new is None or not is_covered:
+    if new is None:
+        return Direction.NOT_COMPARABLE  # absent may be an extraction miss: review, never a flag
+    if not is_covered:
         return Direction.REMOVED
     allowance = category_for(old.name) == ChangeCategory.ALLOWANCES
     if old.value.kind != new.value.kind or (old.unit != new.unit and not allowance):
@@ -121,9 +123,25 @@ def compare(old: ExtractedField | None, new: ExtractedField | None) -> Direction
     return Direction.UP if after > before else Direction.DOWN if after < before else Direction.SAME
 
 
-def _field_changes(old: PlanRecord, new: PlanRecord) -> tuple[tuple[FieldChange, ...], list[str]]:
+def _absent(name: FieldName, before: ExtractedField, new: PlanRecord) -> ReviewItem:
+    return ReviewItem(
+        kind=ReviewKind.NOT_EXTRACTED,
+        plan_id=new.plan_id,
+        year=new.year,
+        field=name,
+        evidence=(before.citation,),
+        reason=f"{LABELS[name]} is in {new.year - 1} but was not found in {new.year}: check "
+        "whether it was removed or missed",
+        severity=Severity.MEDIUM,
+    )
+
+
+def _field_changes(
+    old: PlanRecord, new: PlanRecord
+) -> tuple[tuple[FieldChange, ...], list[str], list[ReviewItem]]:
     changes: list[FieldChange] = []
     reasons: list[str] = []
+    review: list[ReviewItem] = []
     for name in FieldName:
         before, after = old.fields.get(name), new.fields.get(name)
         if before is None and after is None:
@@ -134,8 +152,10 @@ def _field_changes(old: PlanRecord, new: PlanRecord) -> tuple[tuple[FieldChange,
                 field=name, old=before, new=after, category=category_for(name), direction=direction
             )
         )
-        if direction == Direction.REMOVED and before and not isinstance(before.value, NotCovered):
-            reasons.append(f"{LABELS[name]} {'removed' if after is None else 'no longer covered'}")
+        if direction == Direction.REMOVED:
+            reasons.append(f"benefit removed: {LABELS[name]} no longer covered")
+        if before is not None and after is None:
+            review.append(_absent(name, before, new))
     for name, threshold, tail in THRESHOLDS:
         change = next((c for c in changes if c.field == name), None)
         if change is None or change.direction != Direction.UP or not change.old or not change.new:
@@ -143,7 +163,7 @@ def _field_changes(old: PlanRecord, new: PlanRecord) -> tuple[tuple[FieldChange,
         rise = (_number(change.new) or Decimal(0)) - (_number(change.old) or Decimal(0))
         if rise >= threshold:
             reasons.append(f"{LABELS[name]} up {dollars(rise)}{tail}")
-    return tuple(changes), reasons
+    return tuple(changes), reasons, review
 
 
 def _check_row(old: PlanRecord, new: PlanRecord | None, row: CrosswalkRow) -> None:
@@ -198,6 +218,7 @@ def diff_plans(
     status = crosswalk_row.status
     reasons: list[str] = []
     changes: tuple[FieldChange, ...] = ()
+    review: list[ReviewItem] = []
     if status == CrosswalkStatus.TERMINATED:
         reasons.append("plan terminated")
     if status == CrosswalkStatus.CONSOLIDATED:
@@ -209,7 +230,7 @@ def diff_plans(
             reasons.append(f"service area lost {len(lost)} {word}: {', '.join(lost)}")
         elif status == CrosswalkStatus.SERVICE_AREA_REDUCED:
             reasons.append("service area reduced (CMS crosswalk)")
-        changes, field_reasons = _field_changes(old, new)
+        changes, field_reasons, review = _field_changes(old, new)
         reasons += field_reasons
     return PlanDiff(
         old_plan_id=old.plan_id,
@@ -221,4 +242,5 @@ def diff_plans(
         shop_again=bool(reasons),
         reasons=tuple(reasons),
         evidence=(crosswalk_row.citation(),),
+        review=tuple(review),
     )

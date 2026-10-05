@@ -16,6 +16,7 @@ from plan_diff.models import (
     CrosswalkStatus,
     Direction,
     ExtractedField,
+    FieldChange,
     FieldName,
     FieldValue,
     Money,
@@ -23,7 +24,9 @@ from plan_diff.models import (
     PlanDiff,
     PlanRecord,
     ReviewKind,
+    Severity,
     Unit,
+    category_for,
 )
 
 CROSSWALK = Path(__file__).resolve().parents[3] / "fixtures" / "cms" / "crosswalk_2027.csv"
@@ -220,15 +223,33 @@ def test_benefit_now_not_covered_is_removed_and_flags() -> None:
     new = plan(2027, dental_allowance=(NotCovered(), None))
     diff = run(plan(2026), new, renewal())
     assert by_field(diff)[FieldName.DENTAL_ALLOWANCE] == Direction.REMOVED
-    assert diff.reasons == ("dental allowance no longer covered",)
+    assert diff.reasons == ("benefit removed: dental allowance no longer covered",)
+    assert diff.review == ()
 
 
-def test_benefit_missing_in_new_year_is_removed_and_flags() -> None:
+def test_benefit_absent_in_new_year_goes_to_review_not_flag() -> None:
+    # Absent may be an extraction miss: not comparable, a review item, and no flag.
     new = plan(2027)
     del new.fields[FieldName.DENTAL_ALLOWANCE]
     diff = run(plan(2026), new, renewal())
-    assert by_field(diff)[FieldName.DENTAL_ALLOWANCE] == Direction.REMOVED
-    assert diff.reasons == ("dental allowance removed",)
+    assert by_field(diff)[FieldName.DENTAL_ALLOWANCE] == Direction.NOT_COMPARABLE
+    assert diff.shop_again is False and diff.reasons == ()
+    (item,) = diff.review
+    assert item.kind == ReviewKind.NOT_EXTRACTED and item.field == FieldName.DENTAL_ALLOWANCE
+    assert item.severity == Severity.MEDIUM and item.year == 2027
+    assert item.evidence[0].document_id == "sb-2026"
+
+
+def test_removed_needs_an_explicit_not_covered_value() -> None:
+    old = field(FieldName.DENTAL_ALLOWANCE, Money(amount=Decimal("1000")), Unit.PER_YEAR, 2026)
+    with pytest.raises(ValidationError):
+        FieldChange(
+            field=FieldName.DENTAL_ALLOWANCE,
+            old=old,
+            new=None,
+            category=category_for(FieldName.DENTAL_ALLOWANCE),
+            direction=Direction.REMOVED,
+        )
 
 
 def test_new_benefit_is_added_and_does_not_flag() -> None:

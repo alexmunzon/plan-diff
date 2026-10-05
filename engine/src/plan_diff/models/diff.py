@@ -75,8 +75,8 @@ class Direction(StrEnum):
     DOWN = "down"
     SAME = "same"
     ADDED = "added"  # no value last year, or not covered last year
-    REMOVED = "removed"  # no value this year, or now not covered
-    NOT_COMPARABLE = "not_comparable"  # different kind or unit, for example copay to coinsurance
+    REMOVED = "removed"  # explicitly not covered this year, with a citation
+    NOT_COMPARABLE = "not_comparable"  # different kind or unit, or absent this year (review)
 
 
 class FieldChange(StrictModel):
@@ -101,8 +101,12 @@ class FieldChange(StrictModel):
             self.old is None or isinstance(self.old.value, NotCovered)
         ):
             raise ValueError("added means there was no old value, or it was not covered")
-        if self.new is None and self.direction != Direction.REMOVED:
-            raise ValueError("no new value means removed")
+        if self.new is None and self.direction != Direction.NOT_COMPARABLE:
+            raise ValueError("no new value means not comparable (it may be an extraction miss)")
+        if self.direction == Direction.REMOVED and not (
+            self.new is not None and isinstance(self.new.value, NotCovered)
+        ):
+            raise ValueError("removed needs an explicit not covered value in the new year")
         return self
 
 

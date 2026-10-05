@@ -51,7 +51,8 @@ per-year amount into a yearly one, so allowances with different periods compare 
 
 A FieldChange holds the old and new ExtractedField (so both pages travel with the change), the
 change category, and a direction: up, down, same, added, removed, or not_comparable (a different
-kind of value, for example a copay that became coinsurance, or an allowance with no period).
+kind of value, for example a copay that became coinsurance, an allowance with no period, or a field
+absent this year, which goes to review). Removed needs an explicit not covered value this year.
 
 ## Crosswalk status
 
