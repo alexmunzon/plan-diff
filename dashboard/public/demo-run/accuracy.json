@@ -3,11 +3,12 @@
     {
       "field": "monthly_premium",
       "method": "rule",
-      "matched": 4,
+      "matched": 6,
       "mismatched": 0,
       "not_extracted": 0,
       "not_in_cms": 0,
-      "match_rate": 1.0
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "medical_deductible",
@@ -15,8 +16,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "moop_in_network",
@@ -24,8 +26,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "pcp_copay",
@@ -33,8 +36,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "specialist_copay",
@@ -42,8 +46,9 @@
       "matched": 2,
       "mismatched": 1,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 0.6666666666666666
+      "not_in_cms": 3,
+      "match_rate": 0.6666666666666666,
+      "not_comparable": 0
     },
     {
       "field": "emergency_room",
@@ -51,8 +56,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "urgent_care",
@@ -60,8 +66,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "inpatient_stay",
@@ -69,8 +76,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "outpatient_surgery",
@@ -78,8 +86,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "drug_deductible",
@@ -87,8 +96,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "drug_tier_1",
@@ -96,8 +106,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "drug_tier_2",
@@ -105,8 +116,9 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "drug_tier_3",
@@ -114,35 +126,51 @@
       "matched": 3,
       "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 1.0
+      "not_in_cms": 3,
+      "match_rate": 1.0,
+      "not_comparable": 0
     },
     {
       "field": "dental_allowance",
       "method": "rule",
       "matched": 0,
-      "mismatched": 3,
+      "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 0.0
+      "not_in_cms": 3,
+      "match_rate": null,
+      "not_comparable": 3
     },
     {
       "field": "otc_allowance",
       "method": "rule",
       "matched": 0,
-      "mismatched": 3,
+      "mismatched": 0,
       "not_extracted": 0,
-      "not_in_cms": 1,
-      "match_rate": 0.0
+      "not_in_cms": 3,
+      "match_rate": null,
+      "not_comparable": 3
     },
     {
       "field": null,
       "method": "rule",
-      "matched": 39,
-      "mismatched": 7,
+      "matched": 41,
+      "mismatched": 1,
       "not_extracted": 0,
-      "not_in_cms": 14,
-      "match_rate": 0.8478260869565217
+      "not_in_cms": 42,
+      "match_rate": 0.9761904761904762,
+      "not_comparable": 6
     }
-  ]
+  ],
+  "plans": [
+    "H9999-001",
+    "H9999-002",
+    "H9999-003",
+    "H9999-004"
+  ],
+  "years": [
+    2026,
+    2027
+  ],
+  "run_id": "demo",
+  "as_of": "2026-10-05"
 }

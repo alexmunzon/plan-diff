@@ -45,7 +45,7 @@ per-year amount into a yearly one, so allowances with different periods compare 
 |---|---|---|
 | SourcesManifest | `sources/manifest.json` | list of SourceDocument: id, url, sha256 (empty until first fetch), size, retrieved date, carrier, plan (empty for CMS files), year, document type, landing page, verified, note. Ids must be unique; a pinned file must have size and date; a document with no url needs a note. See docs/sources.md |
 | PlanRecord | `plans/<plan>_<year>.json` | plan id, year, carrier, plan name, counties, fields by name, document ids. A PDF citation must point at a listed document |
-| ValidationResult | `validation.json` | field, PDF value, CMS value, verdict (match, mismatch, not_in_cms, not_extracted), PDF page and CMS row citations |
+| ValidationResult | `validation.json` | field, PDF value, CMS value, verdict (match, mismatch, not_comparable, not_in_cms, not_extracted), PDF page and CMS row citations |
 | PlanDiff | `diff/<plan>.json` | old and new plan id, years, crosswalk status, changes, shop_again, reasons, evidence (the crosswalk row), review. Shop again is on exactly when there are reasons; it is empty (undecided) when the crosswalk row is missing, or when no reason fires but a deciding field is uncertain (Review 2), always with a high review item. It is never off while a shop_again_uncertain item is open |
 | ReviewItem | `review_queue.jsonl` | kind, plan, year, field, evidence citations, reason, severity (low, medium, high) |
 
@@ -77,3 +77,9 @@ compare as yearly amounts, and only when both sides name a period. AccuracyTable
 has one row per field and extraction method plus a total per method: matched, mismatched, not
 extracted, not in CMS, and the match rate over fields that could be compared. A ReviewItem may
 carry a confidence from 0 to 1.
+
+Release 0.1.0: when the two sides state different periods or units ("period not comparable",
+"unit not comparable") the verdict is `not_comparable`, not `mismatch`. It is counted in its own
+`not_comparable` column, left out of the match rate, and still goes to review (kind
+`not_comparable`, medium). AccuracyTable also names its slice: `plans`, `years`, `run_id`, and
+`as_of` (the run's start date).

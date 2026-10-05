@@ -30,7 +30,7 @@ from plan_diff.models import (
 )
 
 CROSSWALK = Path(__file__).resolve().parents[3] / "fixtures" / "cms" / "crosswalk_2027.csv"
-ALL = ("H9999-001", "H9999-002", "H9999-003", "H9999-004", "H9998-010")
+ALL = ("H9999-001", "H9999-002", "H9999-003", "H9999-004", "H9999-005", "H9998-010")
 COUNTIES = ("Bexar", "Comal")
 
 

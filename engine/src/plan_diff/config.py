@@ -287,3 +287,9 @@ EXTRACT_CONFIDENCE_LABELED = 0.85
 # per month") keeps the amount and the stated unit at this confidence, below
 # SHOP_AGAIN_CONFIDENCE_FLOOR, with an unexpected_unit review item.
 EXTRACT_CONFIDENCE_UNEXPECTED_UNIT = 0.5
+
+# Release 0.1.0
+# A PDF value and its CMS value that state different periods or units cannot be checked. That is
+# a "not comparable" verdict, counted apart from mismatches, and its review item gets this
+# severity (never high: nothing is known to be wrong) and no confidence score.
+VALIDATE_NOT_COMPARABLE_SEVERITY = "medium"

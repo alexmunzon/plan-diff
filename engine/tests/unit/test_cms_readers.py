@@ -20,7 +20,7 @@ from plan_diff.models import CrosswalkStatus, FieldName
 
 CMS = Path(__file__).resolve().parents[3] / "fixtures" / "cms"
 CROSSWALK = CMS / "crosswalk_2027.csv"
-ALL = ["H9999-001", "H9999-002", "H9999-003", "H9999-004", "H9998-010"]
+ALL = ["H9999-001", "H9999-002", "H9999-003", "H9999-004", "H9999-005", "H9998-010"]
 
 
 def rows_by_old_id(df: pl.DataFrame) -> dict[str | None, dict[str, object]]:
@@ -34,7 +34,7 @@ def test_crosswalk_reads_statuses() -> None:
     assert rows["H9999-001"]["status"] == CrosswalkStatus.CONTINUING
     assert rows["H9999-001"]["current_plan_id"] == "H9999-001"
     assert rows["H9998-010"]["status"] == CrosswalkStatus.SERVICE_AREA_REDUCED
-    assert rows[None]["current_plan_id"] == "H9999-004"
+    assert rows[None]["current_plan_id"] == "H9999-005"
     assert rows[None]["status"] == CrosswalkStatus.NEW
 
 
