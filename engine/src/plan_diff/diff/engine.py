@@ -2,8 +2,14 @@
 
 The old-to-new plan mapping comes only from the CMS crosswalk. A plan id missing from the new year
 is never read as a termination: with no crosswalk row the flag stays undecided and goes to review.
+
+Review 2: the flag is never confidently wrong. A threshold field or a removed benefit whose value
+is missing, not comparable, in the wrong unit, below the confidence floor, or in disagreement with
+CMS cannot decide the flag: it gets a high review item, and unless another reason fires the flag is
+undecided (None). An empty county list never means "lost every county".
 """
 
+import re
 from collections.abc import Iterable
 from decimal import Decimal
 
@@ -26,6 +32,9 @@ from plan_diff.models import (
     ReviewKind,
     Severity,
     StrictModel,
+    Unit,
+    ValidationResult,
+    Verdict,
     annualize,
     category_for,
 )
@@ -105,13 +114,17 @@ def _number(side: ExtractedField) -> Decimal | None:
         return None
 
 
+_THRESHOLD_FIELDS = frozenset(name for name, _, _ in THRESHOLDS)
+Mismatches = dict[tuple[int, FieldName], ValidationResult]
+
+
 def compare(old: ExtractedField | None, new: ExtractedField | None) -> Direction:
-    was_covered = old is not None and not isinstance(old.value, NotCovered)
-    is_covered = new is not None and not isinstance(new.value, NotCovered)
-    if old is None or (new is not None and not was_covered):
-        return Direction.ADDED if is_covered or old is None else Direction.SAME
-    if new is None:
+    if old is None or new is None:
         return Direction.NOT_COMPARABLE  # absent may be an extraction miss: review, never a flag
+    was_covered = not isinstance(old.value, NotCovered)
+    is_covered = not isinstance(new.value, NotCovered)
+    if not was_covered:
+        return Direction.ADDED if is_covered else Direction.SAME
     if not is_covered:
         return Direction.REMOVED
     allowance = category_for(old.name) == ChangeCategory.ALLOWANCES
@@ -123,47 +136,145 @@ def compare(old: ExtractedField | None, new: ExtractedField | None) -> Direction
     return Direction.UP if after > before else Direction.DOWN if after < before else Direction.SAME
 
 
-def _absent(name: FieldName, before: ExtractedField, new: PlanRecord) -> ReviewItem:
+def _absent(name: FieldName, found: ExtractedField, missing: PlanRecord, other: int) -> ReviewItem:
+    verb = "removed" if missing.year > other else "added"
     return ReviewItem(
         kind=ReviewKind.NOT_EXTRACTED,
-        plan_id=new.plan_id,
-        year=new.year,
+        plan_id=missing.plan_id,
+        year=missing.year,
         field=name,
-        evidence=(before.citation,),
-        reason=f"{LABELS[name]} is in {new.year - 1} but was not found in {new.year}: check "
-        "whether it was removed or missed",
+        evidence=(found.citation,),
+        reason=f"{LABELS[name]} is in {other} but was not found in {missing.year}: check "
+        f"whether it was {verb} or missed",
         severity=Severity.MEDIUM,
     )
 
 
+def _words(unit: Unit | None) -> str:
+    return unit.value.replace("_", " ") if unit else "no unit"
+
+
+def _doubts(
+    name: FieldName,
+    sides: tuple[tuple[PlanRecord, ExtractedField | None], ...],
+    direction: Direction | None,
+    mismatches: Mismatches,
+) -> tuple[list[str], list[Citation]]:
+    """Why this field cannot decide the flag (empty when it can), and the pages behind that."""
+    doubts: list[str] = []
+    evidence: list[Citation] = []
+    floor = config.SHOP_AGAIN_CONFIDENCE_FLOOR
+    wanted = config.VALIDATE_CMS_UNITS[name.value] if name in _THRESHOLD_FIELDS else None
+    for record, side in sides:
+        year = record.year
+        if side is None:
+            doubts.append(f"not found in {year}")
+            continue
+        evidence.append(side.citation)
+        if side.confidence < floor:
+            doubts.append(f"{year} value read with confidence {side.confidence:g}, below {floor:g}")
+        if wanted and not isinstance(side.value, NotCovered) and side.unit != Unit(wanted):
+            doubts.append(f"{year} value is {_words(side.unit)}, not {_words(Unit(wanted))}")
+        if (bad := mismatches.get((year, name))) is not None:
+            doubts.append(f"{year} PDF value disagrees with CMS ({bad.reason})")
+            evidence += [bad.cms_citation] if bad.cms_citation else []
+    if direction == Direction.NOT_COMPARABLE and not doubts:
+        doubts.append("the two years are different kinds of value, so they cannot be compared")
+    return doubts, evidence
+
+
+def _uncertain(
+    record: PlanRecord, field: FieldName | None, what: str, doubts: list[str], cites: list[Citation]
+) -> ReviewItem:
+    return ReviewItem(
+        kind=ReviewKind.SHOP_AGAIN_UNCERTAIN,
+        plan_id=record.plan_id,
+        year=record.year,
+        field=field,
+        evidence=tuple(cites),
+        reason=f"{what} cannot decide shop again: {'; '.join(doubts)}",
+        severity=Severity.HIGH,
+    )
+
+
 def _field_changes(
-    old: PlanRecord, new: PlanRecord
+    old: PlanRecord, new: PlanRecord, mismatches: Mismatches
 ) -> tuple[tuple[FieldChange, ...], list[str], list[ReviewItem]]:
     changes: list[FieldChange] = []
     reasons: list[str] = []
     review: list[ReviewItem] = []
     for name in FieldName:
         before, after = old.fields.get(name), new.fields.get(name)
-        if before is None and after is None:
-            continue
-        direction = compare(before, after)
-        changes.append(
-            FieldChange(
-                field=name, old=before, new=after, category=category_for(name), direction=direction
+        direction = None if before is None and after is None else compare(before, after)
+        if direction is not None:
+            category = category_for(name)
+            changes.append(
+                FieldChange(
+                    field=name, old=before, new=after, category=category, direction=direction
+                )
             )
-        )
+        decides = name in _THRESHOLD_FIELDS or direction == Direction.REMOVED
+        doubts, cites = _doubts(name, ((old, before), (new, after)), direction, mismatches)
+        if decides and doubts:
+            review.append(_uncertain(new, name, LABELS[name], doubts, cites))
+            continue
         if direction == Direction.REMOVED:
             reasons.append(f"benefit removed: {LABELS[name]} no longer covered")
         if before is not None and after is None:
-            review.append(_absent(name, before, new))
+            review.append(_absent(name, before, new, old.year))
+        if before is None and after is not None:
+            review.append(_absent(name, after, old, new.year))
     for name, threshold, tail in THRESHOLDS:
         change = next((c for c in changes if c.field == name), None)
         if change is None or change.direction != Direction.UP or not change.old or not change.new:
+            continue
+        if any(i.field == name and i.kind == ReviewKind.SHOP_AGAIN_UNCERTAIN for i in review):
             continue
         rise = (_number(change.new) or Decimal(0)) - (_number(change.old) or Decimal(0))
         if rise >= threshold:
             reasons.append(f"{LABELS[name]} up {dollars(rise)}{tail}")
     return tuple(changes), reasons, review
+
+
+def _county_key(name: str) -> str:
+    words = re.sub(r"[^\w\s]", " ", name.lower()).split()
+    if len(words) > 1 and words[-1] in config.COUNTY_SUFFIXES:
+        words = words[:-1]
+    return " ".join(words)
+
+
+def same_county(a: str, b: str) -> bool:
+    """Review 2: "Bexar County", "BEXAR", and "Bexar" are one county."""
+    return _county_key(a) == _county_key(b)
+
+
+def _service_area(
+    old: PlanRecord, new: PlanRecord, area_old: Iterable[str], area_new: Iterable[str]
+) -> tuple[list[str], list[ReviewItem]]:
+    """Lost counties (the old spelling), or a review item when either list is empty."""
+    before, after = list(area_old), list(area_new)
+    empty = [r.year for r, area in ((old, before), (new, after)) if not area]
+    if empty:
+        years = " and ".join(str(y) for y in empty)
+        why = f"the county list is empty for {years} (never read as losing every county)"
+        return [], [_uncertain(new, None, "service area", [why], [])]
+    kept = {_county_key(c) for c in after}
+    lost: dict[str, str] = {}
+    for county in before:
+        if _county_key(county) not in kept:
+            lost.setdefault(_county_key(county), county.strip())
+    return sorted(lost.values()), []
+
+
+def _mismatches(
+    validation: Iterable[ValidationResult] | None, old: PlanRecord, new: PlanRecord
+) -> Mismatches:
+    mine = {(old.plan_id, old.year), (new.plan_id, new.year)}
+    return {
+        (r.year, r.field): r
+        for r in validation or ()
+        if r.verdict == Verdict.MISMATCH and (r.plan_id, r.year) in mine
+    }
 
 
 def _check_row(old: PlanRecord, new: PlanRecord | None, row: CrosswalkRow) -> None:
@@ -210,8 +321,17 @@ def diff_plans(
     crosswalk_row: CrosswalkRow | None,
     service_area_old: Iterable[str],
     service_area_new: Iterable[str],
+    *,
+    validation: Iterable[ValidationResult] | None = None,
 ) -> PlanDiff:
-    """Diff one plan into next year, following the crosswalk row, and decide shop again."""
+    """Diff one plan into next year, following the crosswalk row, and decide shop again.
+
+    `validation` (Review 2) is the PR 7 ValidationResult list for the old and new records; results
+    for other plans or years are ignored. A MISMATCH on a threshold field or a removed benefit stops
+    that field from deciding the flag. Without it, CMS disagreement is not checked (each field's
+    extraction confidence still is). shop_again is True when any confident reason fires, None when
+    none fires but a field could not decide, and False only when every deciding field is certain.
+    """
     if crosswalk_row is None:
         return _undecided(old)
     _check_row(old, new, crosswalk_row)
@@ -224,14 +344,18 @@ def diff_plans(
     if status == CrosswalkStatus.CONSOLIDATED:
         reasons.append(f"plan consolidated into {crosswalk_row.current_plan_id}")
     if new is not None:
-        lost = sorted(set(service_area_old) - set(service_area_new))
+        lost, review = _service_area(old, new, service_area_old, service_area_new)
         if lost:
             word = "county" if len(lost) == 1 else "counties"
             reasons.append(f"service area lost {len(lost)} {word}: {', '.join(lost)}")
         elif status == CrosswalkStatus.SERVICE_AREA_REDUCED:
             reasons.append("service area reduced (CMS crosswalk)")
-        changes, field_reasons, review = _field_changes(old, new)
+        changes, field_reasons, field_review = _field_changes(
+            old, new, _mismatches(validation, old, new)
+        )
         reasons += field_reasons
+        review += field_review
+    uncertain = any(i.kind == ReviewKind.SHOP_AGAIN_UNCERTAIN for i in review)
     return PlanDiff(
         old_plan_id=old.plan_id,
         new_plan_id=new.plan_id if new else None,
@@ -239,7 +363,7 @@ def diff_plans(
         new_year=old.year + 1,
         crosswalk_status=status,
         changes=changes,
-        shop_again=bool(reasons),
+        shop_again=True if reasons else None if uncertain else False,
         reasons=tuple(reasons),
         evidence=(crosswalk_row.citation(),),
         review=tuple(review),

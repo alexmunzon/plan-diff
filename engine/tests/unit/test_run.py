@@ -1,6 +1,7 @@
 """PR 9: the run command. Immutable folder, determinism, unreadable PDFs, Decimal money."""
 
 import json
+import shutil
 import zipfile
 from pathlib import Path
 
@@ -97,3 +98,20 @@ def test_unzip_cms_command(tmp_path: Path) -> None:
     again = CliRunner().invoke(app, ["unzip-cms", "--raw", str(tmp_path)])
     assert first.exit_code == again.exit_code == 0
     assert "unzipped pbp.zip" in first.output and "unchanged pbp.zip" in again.output
+
+
+def test_a_threshold_field_that_disagrees_with_cms_leaves_the_flag_undecided(
+    tmp_path: Path,
+) -> None:
+    cms = tmp_path / "cms"
+    shutil.copytree(CMS, cms)
+    landscape = cms / "landscape_2027.csv"  # CMS says $30, the 2027 SB says $25
+    landscape.write_text(landscape.read_text().replace("$25.00", "$30.00"))
+    write_demo_docs(tmp_path / "docs")
+    args = ["run", "--docs", str(tmp_path / "docs"), "--cms", str(cms), "--plans", "H9999-001"]
+    args += ["--years", "2026,2027", "--out", str(tmp_path / "runs"), "--run-id", "r", "--now", NOW]
+    result = CliRunner().invoke(app, args)
+    assert result.exit_code == 0, result.output
+    diff = json.loads((tmp_path / "runs" / "r" / "diff" / "H9999-001.json").read_text())
+    assert diff["shop_again"] is None and diff["reasons"] == []
+    assert "H9999-001: shop again undecided, needs review" in result.output

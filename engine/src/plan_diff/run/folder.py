@@ -184,7 +184,8 @@ def _diff(
         if new is None:
             return _no_new_record(old, row)
     new_area = new.counties if new else ()
-    return diff_plans(old, new, row, old.counties, new_area)
+    # review 2: a threshold field that disagrees with CMS can never decide the flag
+    return diff_plans(old, new, row, old.counties, new_area, validation=validation)
 
 
 def _plans_frame(records: Sequence[PlanRecord]) -> pl.DataFrame:

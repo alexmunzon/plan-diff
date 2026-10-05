@@ -53,8 +53,8 @@ Decisions made while building, without questions to Alex (subagent run, 2026-10-
 
 ## Risks and follow-ups
 
-- The review 2 fix to `diff_plans` (validation results in, undecided on a doubtful threshold
-  field) merges separately; PR 9 must pass the validation results once it is on main.
+- Review 2 is merged: the run passes every validation result to `diff_plans(validation=...)`, so
+  a threshold field that disagrees with CMS leaves the flag undecided (tested in test_run.py).
 - Allowances are always "period not comparable" against CMS (PR 7 decision), so the demo's review
   queue holds 6 allowance items. They are noise until the CMS period columns are read.
 - Catching every exception from the PDF libraries keeps the run alive, but a bug in our own
