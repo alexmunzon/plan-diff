@@ -9,8 +9,32 @@ from pydantic import AfterValidator, BaseModel, ConfigDict, Field, StrictInt
 NonEmpty = Annotated[str, Field(min_length=1)]
 Sha256 = Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
 
-# Medicare contract-plan id, ASCII digits only: H0028-030, or with a segment H0028-030-001.
-PlanId = Annotated[str, Field(pattern=r"^H[0-9]{4}-[0-9]{3}(-[0-9]{3})?$")]
+# Medicare Advantage contract-plan id, ASCII digits only, in canonical form: H0028-030, or with a
+# non-zero segment H0028-030-001. H is a local MA contract, R a regional PPO. Segment 000 is never
+# written out (normalize_plan_id drops it), so one plan has exactly one spelling.
+_SEGMENT = r"(00[1-9]|0[1-9][0-9]|[1-9][0-9]{2})"
+PLAN_ID_REGEX = rf"^[HR][0-9]{{4}}-[0-9]{{3}}(-{_SEGMENT})?$"
+PlanId = Annotated[str, Field(pattern=PLAN_ID_REGEX)]
+
+_LOOSE_PLAN_ID = re.compile(r"([HR][0-9]{4})-([0-9]{1,3})(?:-([0-9]{1,3}))?")
+
+
+def normalize_plan_id(text: str) -> str:
+    """The one plan id rule: contract-plan plus segment, segment 000 (or none) dropped.
+
+    H0028-030-000 becomes H0028-030; H5294-014-001 stays H5294-014-001 (segments can carry
+    different benefits). Short plan or segment numbers are zero padded (H0028-30 is H0028-030).
+    Anything else, including S (Part D) and E (employer) contracts, raises ValueError.
+    """
+    match = _LOOSE_PLAN_ID.fullmatch(text.strip())
+    if match is None:
+        raise ValueError(f"not a Medicare Advantage plan id: {text!r}")
+    contract, plan, segment = match.groups()
+    base = f"{contract}-{plan.zfill(3)}"
+    segment = (segment or "0").zfill(3)
+    return base if segment == "000" else f"{base}-{segment}"
+
+
 PlanYear = Annotated[StrictInt, Field(ge=2006, le=2100)]
 
 

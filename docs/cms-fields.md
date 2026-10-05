@@ -30,7 +30,10 @@ tab-separated tables by section. The **Landscape** is one row per plan per count
 | otc_allowance | PBP | `pbp_b13_other_services.txt`, `pbp_b13b_maxplan_amt` | Period (month, quarter, year) not read yet |
 
 Plan id: CMS splits it into contract (H0028), plan (030), and segment (000). The readers join them
-as H0028-030, adding the segment (H0028-030-001) only when it is not 000.
+as H0028-030, adding the segment (H0028-030-001) only when it is not 000. This rule lives in one
+function, `normalize_plan_id` in `engine/src/plan_diff/models/ids.py`, which the classifier uses
+too. H (local MA) and R (regional PPO) contracts are accepted; readers keep only the requested
+plans, so S (Part D) and E (employer) rows are skipped.
 
 ## Crosswalk status labels
 
