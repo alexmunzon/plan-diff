@@ -48,10 +48,10 @@ export function Changes({ run, base = "" }: { run: Run; base?: string }) {
       </section>
       <section aria-labelledby="list-heading" className={cn(CARD, "overflow-x-auto")}>
         <h2 id="list-heading" className="px-3 pt-3 text-sm font-semibold">
-          Every change ({plural(rows.length, "field")} that did not stay the same)
+          Changes and values needing review ({plural(rows.length, "field")})
         </h2>
         {rows.length === 0 ? (
-          <p className="p-3 text-sm">No field changed.</p>
+          <p className="p-3 text-sm">No changes or values needing review.</p>
         ) : (
           <table className={cn(TABLE, "min-w-[720px]")}>
             <thead>

@@ -2,7 +2,7 @@ import { CitationText, DirectionText, TABLE, TD, TH, ValueCell } from "@/compone
 import { ANSWER_TONE } from "@/components/overview";
 import { SeverityBadge } from "@/components/severity-badge";
 import { CARD } from "@/components/tiles";
-import { categoryLabel, comparisonRows, fieldLabel, reviewKindText } from "@/lib/compare";
+import { categoryLabel, comparisonRows, displayDirection, fieldLabel, fieldWarning, reviewKindText } from "@/lib/compare";
 import { crosswalkText, shopAgainText } from "@/lib/overview";
 import type { Run } from "@/lib/run-loader";
 import type { PlanDiff } from "@/lib/types";
@@ -79,9 +79,9 @@ export function PlanComparison({ run, diff }: { run: Run; diff: PlanDiff }) {
               {comparisonRows(diff).map(({ name, label, change }) => (
                 <tr key={name} aria-label={label}>
                   <th scope="row" className={cn(TD, "font-medium")}>{label}</th>
-                  <td className={TD}><ValueCell field={change?.old ?? null} manifest={run.manifest} /></td>
-                  <td className={TD}><ValueCell field={change?.new ?? null} manifest={run.manifest} /></td>
-                  <td className={TD}>{change ? <DirectionText direction={change.direction} /> : "Not found in either year"}</td>
+                  <td className={TD}><ValueCell field={change?.old ?? null} manifest={run.manifest} reviewWarning={fieldWarning(run, change?.old ?? null)} /></td>
+                  <td className={TD}><ValueCell field={change?.new ?? null} manifest={run.manifest} reviewWarning={fieldWarning(run, change?.new ?? null)} /></td>
+                  <td className={TD}>{change ? <DirectionText direction={displayDirection(run, change)} /> : "Not found in either year"}</td>
                   <td className={TD}>{change ? categoryLabel(change.category) : ""}</td>
                 </tr>
               ))}

@@ -36,16 +36,19 @@ export const CATEGORIES: [ChangeCategory, string][] = [
 
 export const categoryLabel = (category: ChangeCategory) => CATEGORIES.find(([key]) => key === category)?.[1] ?? category;
 
-export const DIRECTIONS: [Direction, string][] = [
+export type DisplayDirection = Direction | "needs_review";
+
+export const DIRECTIONS: [DisplayDirection, string][] = [
   ["up", "Up"],
   ["down", "Down"],
   ["same", "No change"],
   ["added", "Added"],
   ["removed", "Removed"],
   ["not_comparable", "Not comparable"],
+  ["needs_review", "Needs review"],
 ];
 
-export const directionText = (direction: Direction) => DIRECTIONS.find(([key]) => key === direction)?.[1] ?? direction;
+export const directionText = (direction: DisplayDirection) => DIRECTIONS.find(([key]) => key === direction)?.[1] ?? direction;
 
 const UNITS: Record<string, string> = {
   per_month: "a month",
@@ -113,6 +116,18 @@ export function lowConfidence(field: ExtractedField | null, floor: number): stri
   return `Read with confidence ${field.confidence}, below ${floor}`;
 }
 
+/** A parsed value can still be disputed. Never present it as a confirmed comparison. */
+export function fieldWarning(run: Run, field: ExtractedField | null): string | null {
+  if (field && run.validation.some((v) => v.field === field.name && v.verdict === "mismatch"
+    && v.pdf_citation?.document_id === field.citation.document_id && v.pdf_citation.page === field.citation.page)) {
+    return "PDF and CMS disagree; value unconfirmed. Check Trust before quoting.";
+  }
+  return lowConfidence(field, run.manifest.config.confidence_floor);
+}
+
+export const displayDirection = (run: Run, change: FieldChange): DisplayDirection =>
+  fieldWarning(run, change.old) || fieldWarning(run, change.new) ? "needs_review" : change.direction;
+
 /** All 15 fields in order. A field the diff does not list was found in neither year. */
 export function comparisonRows(diff: PlanDiff): { name: string; label: string; change: FieldChange | null }[] {
   return FIELDS.map(([name, label]) => ({ name, label, change: diff.changes.find((c) => c.field === name) ?? null }));
@@ -138,26 +153,26 @@ export const diffFor = (run: Run, plan: string) => run.diffs.find((diff) => diff
 export const planIds = (run: Run) => run.diffs.flatMap((diff) => (diff.old_plan_id ? [diff.old_plan_id] : []));
 
 /** Counts per category and direction across every plan's changes, unchanged fields included. */
-export function changeCounts(run: Run): Record<ChangeCategory, Record<Direction, number>> {
+export function changeCounts(run: Run): Record<ChangeCategory, Record<DisplayDirection, number>> {
   const counts = Object.fromEntries(
     CATEGORIES.map(([category]) => [category, Object.fromEntries(DIRECTIONS.map(([d]) => [d, 0]))]),
-  ) as Record<ChangeCategory, Record<Direction, number>>;
-  for (const diff of run.diffs) for (const change of diff.changes) counts[change.category][change.direction] += 1;
+  ) as Record<ChangeCategory, Record<DisplayDirection, number>>;
+  for (const diff of run.diffs) for (const change of diff.changes) counts[change.category][displayDirection(run, change)] += 1;
   return counts;
 }
 
 export interface ChangeRow {
   plan: string;
   newPlan: string | null;
-  change: FieldChange;
+  change: Omit<FieldChange, "direction"> & { direction: DisplayDirection };
 }
 
 /** Every field that did not stay the same, plan by plan in field order. */
 export function changedRows(run: Run): ChangeRow[] {
   return run.diffs.flatMap((diff) =>
     comparisonRows(diff).flatMap(({ change }) =>
-      change && change.direction !== "same"
-        ? [{ plan: diff.old_plan_id ?? "Unknown plan", newPlan: diff.new_plan_id, change }]
+      change && displayDirection(run, change) !== "same"
+        ? [{ plan: diff.old_plan_id ?? "Unknown plan", newPlan: diff.new_plan_id, change: { ...change, direction: displayDirection(run, change) } }]
         : [],
     ),
   );

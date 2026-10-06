@@ -1,5 +1,6 @@
-import { readFile } from "node:fs/promises";
+import { cp, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { tmpdir } from "node:os";
 import { describe, expect, it } from "vitest";
 
 import { formatMoney } from "@/lib/money";
@@ -34,6 +35,30 @@ describe("formatMoney", () => {
 });
 
 describe("loadRunDir", () => {
+  it.each(["diff", "plans", "diff/H9999-001.json", "plans/H9999-001_2026.json"])("refuses missing %s instead of presenting an incomplete run", async (missing) => {
+    const dir = await mkdtemp(path.join(tmpdir(), "plan-diff-test-"));
+    try {
+      await cp(DEMO_RUN_DIR, dir, { recursive: true });
+      await rm(path.join(dir, missing), { recursive: true });
+      await expect(loadRunDir(dir)).rejects.toThrow(/diff|plan/);
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("refuses a truncated review queue instead of understating unresolved work", async () => {
+    const dir = await mkdtemp(path.join(tmpdir(), "plan-diff-test-"));
+    try {
+      await cp(DEMO_RUN_DIR, dir, { recursive: true });
+      const queue = path.join(dir, "review_queue.jsonl");
+      const lines = (await readFile(queue, "utf8")).trim().split("\n");
+      await writeFile(queue, lines.slice(1).join("\n"));
+      await expect(loadRunDir(dir)).rejects.toThrow(/review_items count differs/);
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
+  });
+
   it("loads the committed demo run with all four diffs and every review item", async () => {
     const run = await loadRunDir(DEMO_RUN_DIR);
     expect(run.manifest.run_id).toBe("demo");
