@@ -6,9 +6,9 @@ import type { Citation, ExtractedField, RunManifest } from "@/lib/types";
 
 // Small pieces shared by the Plan comparison and Changes pages.
 
-export const TABLE = "w-full border-collapse text-left text-sm tabular-nums";
-export const TH = "border-b border-slate-200 px-3 py-2 text-xs font-medium text-slate-600 dark:border-slate-800 dark:text-slate-400";
-export const TD = "border-b border-slate-100 px-3 py-2 align-top dark:border-slate-800";
+export const TABLE = "evidence-table";
+export const TH = "table-heading";
+export const TD = "table-cell";
 
 const ICONS: Record<DisplayDirection, LucideIcon> = {
   up: ArrowUp,
@@ -24,8 +24,8 @@ const ICONS: Record<DisplayDirection, LucideIcon> = {
 export function DirectionText({ direction }: { direction: DisplayDirection }) {
   const Icon = ICONS[direction];
   return (
-    <span className="inline-flex items-center gap-1 whitespace-nowrap">
-      <Icon aria-hidden className="size-3.5 shrink-0 text-slate-500 dark:text-slate-400" />
+    <span className="direction-label">
+      <Icon aria-hidden className="size-3.5 shrink-0" />
       {directionText(direction)}
     </span>
   );
@@ -36,7 +36,7 @@ export function CitationText({ citation, manifest }: { citation: Citation; manif
   const text = citationText(citation);
   const href = carrierPageUrl(manifest, citation);
   return (
-    <span className="text-xs text-slate-600 dark:text-slate-400">
+    <span className="citation-text">
       {href ? (
         <a href={href} target="_blank" rel="noopener noreferrer" className="underline">
           {text}
@@ -53,7 +53,7 @@ export function ValueCell({ field, manifest, reviewWarning }: { field: Extracted
   const warning = reviewWarning ?? lowConfidence(field, manifest.config.confidence_floor);
   return (
     <div className="space-y-0.5">
-      <p className={field === null ? "text-slate-600 dark:text-slate-400" : undefined}>{valueText(field)}</p>
+      <p className={field === null ? "muted" : undefined}>{valueText(field)}</p>
       {field && (
         <p>
           <CitationText citation={field.citation} manifest={manifest} />

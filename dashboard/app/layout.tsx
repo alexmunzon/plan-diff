@@ -20,15 +20,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <body className="flex min-h-full flex-col bg-slate-50 font-sans text-slate-900 lg:flex-row dark:bg-slate-950 dark:text-slate-100">
-        <nav aria-label="Main" className="border-b border-slate-200 bg-white lg:w-60 lg:shrink-0 lg:border-r lg:border-b-0 dark:border-slate-800 dark:bg-slate-900">
-          <div className="flex items-center justify-between gap-2 px-4 pt-3 pb-2 lg:px-5 lg:pt-6">
-            <p className="text-sm font-semibold">plan-diff</p>
+      <body className="app-shell font-sans">
+        <a href="#main-content" className="skip-link">Skip to main content</a>
+        <nav aria-label="Main" className="app-sidebar">
+          <div className="sidebar-brand">
+            <div>
+              <p className="brand-title">plan-diff</p>
+              <p className="brand-caption">Data Trust Series</p>
+            </div>
             <ThemeToggle />
           </div>
           <RunNav />
         </nav>
-        <main className="mx-auto w-full max-w-[1120px] min-w-0 px-4 py-6 sm:px-10">{children}</main>
+        <main id="main-content" tabIndex={-1} className="app-main">{children}</main>
       </body>
     </html>
   );

@@ -2,7 +2,7 @@
 import { SeverityIcon, type Tone } from "@/components/severity-badge";
 import { cn } from "@/lib/utils";
 
-export const CARD = "rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900";
+export const CARD = "panel";
 
 interface TileProps {
   label: string;
@@ -18,16 +18,16 @@ export function Tile({ label, value, context, tone, muted }: TileProps) {
     <div
       role="group"
       aria-label={label}
-      className={cn(CARD, "p-4", muted && "border-dashed bg-slate-100 dark:bg-slate-950")}
+      className={cn(CARD, "kpi-card", muted && "kpi-muted")}
     >
-      <p className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400">
+      <p className="kpi-label">
         {tone && !muted && <SeverityIcon tone={tone} />}
         {label}
       </p>
-      <p className={cn("mt-1 text-2xl font-semibold tabular-nums", muted && "text-slate-600 dark:text-slate-400")}>
+      <p className={cn("kpi-value", muted && "muted")}>
         {value}
       </p>
-      {context && <p className="mt-1 text-xs text-slate-600 tabular-nums dark:text-slate-400">{context}</p>}
+      {context && <p className="kpi-context tabular-nums">{context}</p>}
     </div>
   );
 }

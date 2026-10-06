@@ -1,5 +1,6 @@
 import { CitationText, TABLE, TD, TH } from "@/components/change-parts";
 import { SeverityBadge } from "@/components/severity-badge";
+import { RunEyebrow } from "@/components/run-eyebrow";
 import { CARD } from "@/components/tiles";
 import { fieldLabel, fieldValueText, reviewKindText } from "@/lib/compare";
 import type { Run } from "@/lib/run-loader";
@@ -8,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 const SEVERITY_TONE = { high: "error", medium: "warning", low: "info" } as const;
 const sentence = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
-const MUTED = "text-xs text-slate-600 dark:text-slate-400";
+const MUTED = "text-xs muted";
 const COUNTS = [
   ["matched", "Matched"],
   ["mismatched", "Mismatched"],
@@ -30,10 +31,11 @@ function accuracyScope(run: Run) {
 export function Trust({ run }: { run: Run }) {
   const mismatches = run.validation.filter((result) => result.verdict === "mismatch");
   return (
-    <div className="space-y-4">
-      <header>
-        <h1 className="text-2xl font-semibold">Which values can a broker quote?</h1>
-        <dl aria-label="What these numbers describe" className="mt-2 grid gap-x-4 gap-y-1 text-sm sm:grid-cols-[auto_1fr]">
+    <div className="report-page">
+      <header className="page-header">
+        <RunEyebrow run={run} />
+        <h1 className="page-title">Which values can a broker quote?</h1>
+        <dl aria-label="What these numbers describe" className="trust-context grid gap-x-6 gap-y-2 text-sm sm:grid-cols-[auto_1fr]">
           <dt className={MUTED}>Data kind</dt><dd>{dataKindText(run)}</dd>
           <dt className={MUTED}>Slice</dt><dd className="tabular-nums">{sliceText(run)}</dd>
           <dt className={MUTED}>As of</dt><dd className="tabular-nums">{asOf(run)}, run {run.manifest.run_id}</dd>
@@ -41,23 +43,23 @@ export function Trust({ run }: { run: Run }) {
           <dd>A value read with confidence below {run.manifest.config.confidence_floor} never decides shop again.</dd>
         </dl>
       </header>
-      <section aria-labelledby="accuracy-heading" className={cn(CARD, "overflow-x-auto")}>
-        <h2 id="accuracy-heading" className="px-3 pt-3 text-sm font-semibold">PDF values checked against CMS</h2>
-        <p className={cn(MUTED, "px-3")}>
+      <section aria-labelledby="accuracy-heading" tabIndex={0} className={cn(CARD, "overflow-x-auto")}>
+        <h2 id="accuracy-heading" className="panel-title">PDF values checked against CMS</h2>
+        <p className="panel-note">
           {accuracyScope(run)} Match rate counts only values both sides state comparably. Not comparable, not extracted, and not in CMS are counted apart.
         </p>
         {run.manifest.data_kind === "public" && (
-          <p className={cn(MUTED, "px-3 pt-1")}>
+          <p className="panel-note">
             CMS reports the OTC allowance on a shared card. An OTC match confirms the shared-card figure, not an OTC-only balance.
           </p>
         )}
-        <table className={cn(TABLE, "min-w-[860px]")}>
+        <table aria-labelledby="accuracy-heading" className={cn(TABLE, "min-w-[860px]")}>
           <thead>
             <tr>
-              <th className={TH}>Field</th>
-              <th className={TH}>Method</th>
-              {COUNTS.map(([key, label]) => <th key={key} className={cn(TH, "text-right")}>{label}</th>)}
-              <th className={cn(TH, "text-right")}>Match rate</th>
+              <th scope="col" className={TH}>Field</th>
+              <th scope="col" className={TH}>Method</th>
+              {COUNTS.map(([key, label]) => <th key={key} scope="col" className={cn(TH, "text-right")}>{label}</th>)}
+              <th scope="col" className={cn(TH, "text-right")}>Match rate</th>
             </tr>
           </thead>
           <tbody>
@@ -72,7 +74,7 @@ export function Trust({ run }: { run: Run }) {
           </tbody>
         </table>
       </section>
-      <section aria-labelledby="mismatch-heading" className={cn(CARD, "p-3")}>
+      <section aria-labelledby="mismatch-heading" className={cn(CARD, "review-panel")}>
         <h2 id="mismatch-heading" className="text-sm font-semibold">Where the PDF and CMS disagree</h2>
         {mismatches.length === 0 ? (
           <p className="mt-1 text-sm">No disagreements in this run.</p>
@@ -95,7 +97,7 @@ export function Trust({ run }: { run: Run }) {
           </ul>
         )}
       </section>
-      <section aria-labelledby="queue-heading" className={cn(CARD, "p-3")}>
+      <section aria-labelledby="queue-heading" className={cn(CARD, "review-panel")}>
         <h2 id="queue-heading" className="text-sm font-semibold">Review queue ({run.reviewQueue.length})</h2>
         {reviewGroups(run.reviewQueue).map(({ severity, count, kinds }) => (
           <div key={severity} className="mt-3 space-y-2">

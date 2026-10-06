@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { DirectionText, TABLE, TD, TH } from "@/components/change-parts";
+import { RunEyebrow } from "@/components/run-eyebrow";
 import { CARD } from "@/components/tiles";
 import { CATEGORIES, DIRECTIONS, changeCounts, changedRows, fieldLabel, valueText } from "@/lib/compare";
 import { plural } from "@/lib/overview";
@@ -13,22 +14,23 @@ export function Changes({ run, base = "" }: { run: Run; base?: string }) {
   const rows = changedRows(run);
   const { years } = run.manifest;
   return (
-    <div className="space-y-4">
-      <header>
-        <h1 className="text-2xl font-semibold">Where are costs moving across plans?</h1>
-        <p className="mt-1 text-sm text-slate-600 tabular-nums dark:text-slate-400">
+    <div className="report-page">
+      <header className="page-header">
+        <RunEyebrow run={run} />
+        <h1 className="page-title">Where are costs moving across plans?</h1>
+        <p className="page-context tabular-nums">
           Plan years {years.join(" to ")}, {plural(run.diffs.length, "plan")}, run {run.manifest.run_id}. Each
           field of each plan is counted once.
         </p>
       </header>
-      <section aria-labelledby="counts-heading" className={cn(CARD, "overflow-x-auto")}>
-        <h2 id="counts-heading" className="px-3 pt-3 text-sm font-semibold">Fields by category and direction</h2>
-        <table className={cn(TABLE, "min-w-[640px]")}>
+      <section aria-labelledby="counts-heading" tabIndex={0} className={cn(CARD, "overflow-x-auto")}>
+        <h2 id="counts-heading" className="panel-title">Fields by category and direction</h2>
+        <table aria-labelledby="counts-heading" className={cn(TABLE, "min-w-[640px]")}>
           <thead>
             <tr>
-              <th className={TH}>Category</th>
+              <th scope="col" className={TH}>Category</th>
               {DIRECTIONS.map(([direction]) => (
-                <th key={direction} className={cn(TH, "text-right")}><DirectionText direction={direction} /></th>
+                <th key={direction} scope="col" className={cn(TH, "text-right")}><DirectionText direction={direction} /></th>
               ))}
             </tr>
           </thead>
@@ -37,7 +39,7 @@ export function Changes({ run, base = "" }: { run: Run; base?: string }) {
               <tr key={category} aria-label={label}>
                 <th scope="row" className={cn(TD, "font-medium")}>{label}</th>
                 {DIRECTIONS.map(([direction]) => (
-                  <td key={direction} className={cn(TD, "text-right", counts[category][direction] === 0 && "text-slate-400 dark:text-slate-500")}>
+                  <td key={direction} className={cn(TD, "text-right", counts[category][direction] === 0 && "table-zero")}>
                     {counts[category][direction]}
                   </td>
                 ))}
@@ -46,21 +48,21 @@ export function Changes({ run, base = "" }: { run: Run; base?: string }) {
           </tbody>
         </table>
       </section>
-      <section aria-labelledby="list-heading" className={cn(CARD, "overflow-x-auto")}>
-        <h2 id="list-heading" className="px-3 pt-3 text-sm font-semibold">
+      <section aria-labelledby="list-heading" tabIndex={0} className={cn(CARD, "overflow-x-auto")}>
+        <h2 id="list-heading" className="panel-title">
           Changes and values needing review ({plural(rows.length, "field")})
         </h2>
         {rows.length === 0 ? (
           <p className="p-3 text-sm">No changes or values needing review.</p>
         ) : (
-          <table className={cn(TABLE, "min-w-[720px]")}>
+          <table aria-labelledby="list-heading" className={cn(TABLE, "min-w-[720px]")}>
             <thead>
               <tr>
-                <th className={TH}>Plan</th>
-                <th className={TH}>Field</th>
-                <th className={TH}>{years[0]}</th>
-                <th className={TH}>{years[years.length - 1]}</th>
-                <th className={TH}>Direction</th>
+                <th scope="col" className={TH}>Plan</th>
+                <th scope="col" className={TH}>Field</th>
+                <th scope="col" className={TH}>{years[0]}</th>
+                <th scope="col" className={TH}>{years[years.length - 1]}</th>
+                <th scope="col" className={TH}>Direction</th>
               </tr>
             </thead>
             <tbody>
@@ -69,7 +71,7 @@ export function Changes({ run, base = "" }: { run: Run; base?: string }) {
                   <td className={TD}>
                     <Link href={`${base}/plans/${plan}`} className="font-mono underline">{plan}</Link>
                     {newPlan && newPlan !== plan && (
-                      <span className="block text-xs text-slate-600 dark:text-slate-400">now {newPlan}</span>
+                      <span className="block text-xs muted">now {newPlan}</span>
                     )}
                   </td>
                   <td className={TD}>{fieldLabel(change.field)}</td>

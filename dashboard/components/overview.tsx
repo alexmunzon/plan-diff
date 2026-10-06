@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { SeverityBadge, type Tone } from "@/components/severity-badge";
+import { RunEyebrow } from "@/components/run-eyebrow";
 import { CARD, Tile } from "@/components/tiles";
 import { formatMoney } from "@/lib/money";
 import { overviewRows, plural, shopAgainText, summary, type OverviewRow } from "@/lib/overview";
@@ -18,15 +19,15 @@ function usageText(name: string, usage: ApiUsage): string {
 function PlanRow({ row, base }: { row: OverviewRow; base: string }) {
   const lines = row.reasons.length > 0 ? row.reasons : row.undecidedBecause;
   return (
-    <li aria-label={`Plan ${row.planId}`} className={cn(CARD, "grid gap-2 p-4 sm:grid-cols-[13rem_1fr_15rem] sm:gap-4")}>
+    <li aria-label={`Plan ${row.planId}`} className="plan-row">
       <div className="space-y-1">
-        <Link href={`${base}/plans/${row.planId}`} className="font-mono text-sm font-medium underline">{row.planId}</Link>
-        <p className="text-xs text-slate-600 dark:text-slate-400">
+        <Link href={`${base}/plans/${row.planId}`} className="plan-id font-mono text-sm underline">{row.planId}</Link>
+        <p className="text-xs muted">
           Shop again: <SeverityBadge tone={ANSWER_TONE(row.shopAgain)} label={shopAgainText(row.shopAgain)} />
         </p>
       </div>
       <div className="text-sm">
-        <p className="text-xs text-slate-600 dark:text-slate-400">
+        <p className="reason-label muted">
           {row.shopAgain === null && row.reasons.length === 0 ? "Why it is undecided" : "Why"}
         </p>
         {lines.length === 0 ? (
@@ -38,9 +39,9 @@ function PlanRow({ row, base }: { row: OverviewRow; base: string }) {
         )}
       </div>
       <dl className="grid grid-cols-[auto_1fr] gap-x-2 text-xs tabular-nums sm:text-right">
-        <dt className="text-slate-600 dark:text-slate-400">Crosswalk</dt>
+        <dt className="muted">Crosswalk</dt>
         <dd>{row.crosswalk}</dd>
-        <dt className="text-slate-600 dark:text-slate-400">Review</dt>
+        <dt className="muted">Review</dt>
         <dd>{row.reviewCount === 0 ? "No review items" : plural(row.reviewCount, "review item")}</dd>
       </dl>
     </li>
@@ -53,29 +54,34 @@ export function Overview({ run, base = "" }: { run: Run; base?: string }) {
   const rows = overviewRows(run);
   const { manifest } = run;
   return (
-    <div className="space-y-4">
-      <header>
-        <h1 className="text-2xl font-semibold">Which plans changed enough that a client should shop again?</h1>
-        <p className="mt-1 text-sm text-slate-600 tabular-nums dark:text-slate-400">
+    <div className="report-page">
+      <header className="page-header">
+        <RunEyebrow run={run} />
+        <h1 className="page-title">Which plans changed enough that a client should shop again?</h1>
+        <p className="page-context tabular-nums">
           Plan years {manifest.years.join(" to ")}, run {manifest.run_id}. Flagged plans come first.
         </p>
+        <div className="page-actions">
+          <Link href={`${base}/trust#queue-heading`} className="action-link action-primary">Review evidence</Link>
+          <Link href={`${base}/plans`} className="action-link">Compare plans</Link>
+        </div>
       </header>
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
+      <div className="metric-grid">
         <Tile label="Plans compared" value={String(totals.compared)} context={`${manifest.years.join(" vs ")}, by CMS crosswalk`} />
         <Tile label="Shop again" tone="error" value={String(totals.flagged)} context="Plans flagged with reasons" />
         <Tile label="Undecided" tone="warning" value={String(totals.undecided)} context="Need a person to review" />
         <Tile label="Review items" tone="info" value={String(totals.reviewItems)} context="Open in the review queue" />
-        <div className="col-span-2 lg:col-span-1">
-          <Tile label="Accuracy match rate" value={totals.matchRate} context={totals.matchContext} />
-        </div>
+      </div>
+      <div className="accuracy-summary">
+        <Tile label="Accuracy match rate" value={totals.matchRate} context={totals.matchContext} />
       </div>
       <section aria-labelledby="plans-heading">
-        <h2 id="plans-heading" className="sr-only">Plans</h2>
-        <ul className="space-y-3">
+        <h2 id="plans-heading" className="section-heading">Plans</h2>
+        <ul className={cn(CARD, "plan-list")}>
           {rows.map((row) => <PlanRow key={row.planId} row={row} base={base} />)}
         </ul>
       </section>
-      <p className="text-xs text-slate-600 tabular-nums dark:text-slate-400">
+      <p className="report-footer tabular-nums">
         {usageText("Jev", manifest.jev)}. {usageText("LLM", manifest.llm)}. {manifest.data_kind === "synthetic" ? "Synthetic test fixtures." : "Public Texas carrier documents and CMS files."}
       </p>
     </div>
