@@ -49,7 +49,7 @@ describe("data kind", () => {
     const run = await loadRunDir(DEMO_RUN_DIR);
     expect(run.manifest.data_kind).toBe("synthetic");
     run.manifest.data_kind = "public"; // still H9999 plan ids
-    expect(summary(run).matchContext).toBe("41 of 42 checked values, on 4 plans, as of 2026-10-05");
+    expect(summary(run).matchContext).toBe("41 of 42 comparable values, across 4 public plans, as of 2026-10-05. Extraction rules were tuned on these same documents, not held-out measured accuracy. 6 values not comparable and 0 values not extracted.");
   });
 
   it("refuses a manifest without a valid data kind", async () => {

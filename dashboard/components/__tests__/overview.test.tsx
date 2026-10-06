@@ -2,7 +2,8 @@ import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Overview } from "@/components/overview";
-import { DEMO_RUN_DIR, loadRunDir } from "@/lib/run-dir";
+import { DEMO_RUN_DIR, TEXAS_RUN_DIR, loadRunDir } from "@/lib/run-dir";
+import { TEXAS } from "@/lib/runs";
 
 async function show() {
   render(<Overview run={await loadRunDir(DEMO_RUN_DIR)} />);
@@ -54,5 +55,15 @@ describe("Overview", () => {
     expect(tile("Accuracy match rate").getByText("97.6%")).toBeInTheDocument();
     expect(tile("Accuracy match rate").getByText(/on synthetic fixtures/)).toBeInTheDocument();
     expect(screen.getByText(/Jev off, 0 calls, \$0\.00/)).toBeInTheDocument();
+  });
+
+  it("labels the public Texas match count as in-sample and separates unmeasured values", async () => {
+    render(<Overview run={await loadRunDir(TEXAS_RUN_DIR)} base={TEXAS.base} />);
+    const accuracy = tile("Accuracy match rate");
+    expect(accuracy.getByText("100.0%")).toBeInTheDocument();
+    expect(accuracy.getByText(/48 of 48 comparable values, across 2 public plans/)).toBeInTheDocument();
+    expect(accuracy.getByText(/tuned on these same documents, not held-out measured accuracy/i)).toBeInTheDocument();
+    expect(accuracy.getByText(/2 values not comparable and 10 values not extracted/)).toBeInTheDocument();
+    expect(screen.getByText(/Public Texas carrier documents and CMS files/)).toBeInTheDocument();
   });
 });

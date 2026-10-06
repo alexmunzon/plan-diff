@@ -345,6 +345,10 @@ def _pbp_value(row: dict[str, object], spec: PbpColumn, path: Path) -> _PbpOut:
                 out = {"amount_status": AmountStatus.MIXED.value}
             elif status is AmountStatus.MISSING:
                 out = {"amount_status": AmountStatus.PERCENT.value, "percent": pct}
+                if spec.coins_max_column is not None and spec.coins_max_column in row:
+                    top, top_status = money(spec.coins_max_column)
+                    if top_status is AmountStatus.VALUE:
+                        out["max_amount"] = top
     out["unit"] = _period(row, spec.period_column, str(path))
     return out
 
@@ -375,7 +379,12 @@ def read_pbp(
             tables[file] = raw.filter(pl.col("plan_id").is_in(wanted))
         return tables[file]
 
+    row_maps: dict[tuple[str, str | None], dict[str, dict[str, object]]] = {}
+
     def rows_for(spec: PbpColumn, name: FieldName) -> dict[str, dict[str, object]]:
+        key = (spec.file, spec.tier)
+        if key in row_maps:
+            return row_maps[key]
         rows = table(spec.file)
         path = directory / spec.file
         if spec.tier:
@@ -383,7 +392,8 @@ def read_pbp(
                 raise CmsFileError(f"{path}: missing columns for {name}")
             rows = rows.filter(pl.col(lay.tier) == spec.tier)
         _refuse_duplicates(rows, f"{path}: {name}")
-        return {str(r["plan_id"]): r for r in rows.to_dicts()}
+        row_maps[key] = {str(r["plan_id"]): r for r in rows.to_dicts()}
+        return row_maps[key]
 
     out: list[dict[str, object]] = []
     for name, first in lay.fields.items():

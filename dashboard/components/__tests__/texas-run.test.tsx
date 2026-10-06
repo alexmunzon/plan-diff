@@ -57,6 +57,15 @@ describe("Texas run", () => {
     expect(humana.getByRole("link", { name: "H0028-030" })).toHaveAttribute("href", "/texas/plans/H0028-030");
   });
 
+  it("explains public accuracy scope and the shared OTC card limitation on Trust", async () => {
+    render(<Trust run={await loadRunDir(TEXAS_RUN_DIR)} />);
+    expect(screen.getByText(/Extraction rules were tuned on these same public Texas documents/)).toBeInTheDocument();
+    expect(screen.getByText(/48 of 48 comparable matches are an in-sample check, not held-out measured accuracy/)).toBeInTheDocument();
+    expect(screen.getByText(/2 values are not comparable and 10 were not extracted/)).toBeInTheDocument();
+    expect(screen.getByText(/CMS reports the OTC allowance on a shared card/)).toBeInTheDocument();
+    expect(screen.getByText(/not an OTC-only balance/)).toBeInTheDocument();
+  });
+
   it("no page links to a PDF on this site; carrier links are https", async () => {
     const run = await loadRunDir(TEXAS_RUN_DIR);
     const pages = [

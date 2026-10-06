@@ -32,7 +32,7 @@ class FetchRefused(Exception):
 
 
 def make_client() -> httpx.Client:
-    return httpx.Client(timeout=config.FETCH_TIMEOUT_S, follow_redirects=True)
+    return httpx.Client(timeout=config.FETCH_TIMEOUT_S, follow_redirects=False)
 
 
 def file_name(doc: SourceDocument) -> str:
@@ -73,22 +73,35 @@ def _download(client: httpx.Client, doc: SourceDocument, out: Path, max_bytes: i
     try:
         with os.fdopen(fd, "wb") as fh:
             ua = {"User-Agent": USER_AGENT}
-            with client.stream("GET", str(doc.url), headers=ua) as response:
-                asked, landed = httpx.URL(str(doc.url)).host, response.url.host
-                if landed != asked:
-                    raise FetchRefused(
-                        f"{doc.document_id}: redirected from {asked} to {landed}, another host"
-                    )
-                response.raise_for_status()
-                declared = int(response.headers.get("Content-Length") or 0)
-                if declared > max_bytes:
-                    raise FetchRefused(f"{doc.document_id}: too large ({declared} bytes declared)")
-                size = 0
-                for chunk in response.iter_bytes():
-                    size += len(chunk)
-                    if size > max_bytes:
-                        raise FetchRefused(f"{doc.document_id}: too large (over {max_bytes} bytes)")
-                    fh.write(chunk)
+            url = httpx.URL(str(doc.url))
+            origin = (url.scheme, url.host, url.port)
+            for redirects in range(client.max_redirects + 1):
+                with client.stream("GET", url, headers=ua, follow_redirects=False) as response:
+                    if response.is_redirect and "location" in response.headers:
+                        target = url.join(response.headers["location"])
+                        if (target.scheme, target.host, target.port) != origin:
+                            raise FetchRefused(
+                                f"{doc.document_id}: redirect to {target.host} changes origin"
+                            )
+                        if redirects == client.max_redirects:
+                            raise FetchRefused(f"{doc.document_id}: too many redirects")
+                        url = target
+                        continue
+                    response.raise_for_status()
+                    declared = int(response.headers.get("Content-Length") or 0)
+                    if declared > max_bytes:
+                        raise FetchRefused(
+                            f"{doc.document_id}: too large ({declared} bytes declared)"
+                        )
+                    size = 0
+                    for chunk in response.iter_bytes():
+                        size += len(chunk)
+                        if size > max_bytes:
+                            raise FetchRefused(
+                                f"{doc.document_id}: too large (over {max_bytes} bytes)"
+                            )
+                        fh.write(chunk)
+                    break
     except BaseException:
         tmp.unlink(missing_ok=True)
         raise

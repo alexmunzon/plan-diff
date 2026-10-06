@@ -165,10 +165,12 @@ def _targets(
 ) -> tuple[list[tuple[Classification, BookletResult]], list[str]]:
     """The (classification, pages) to extract for each requested plan in one document, and the
     problems that send it to review instead (PR 15 booklets)."""
-    if result.status is ClassifyStatus.SURE and result.plan_id.value is not None:
+    named = set().union(*(plans_named(t) for t in texts))
+    if (result.status is ClassifyStatus.SURE or _only_plan_id_ambiguous(result)) and len(named) > 1:
+        candidates = sorted(named & set(plans))
+    elif result.status is ClassifyStatus.SURE and result.plan_id.value is not None:
         candidates = [result.plan_id.value]
     elif _only_plan_id_ambiguous(result):
-        named = set().union(*(plans_named(t) for t in texts))
         candidates = sorted(named & set(plans))
     else:
         return [], []
@@ -265,9 +267,15 @@ def merge_fields(
     for name in FieldName:
         found = [d.extraction.fields[name] for d in ordered if name in d.extraction.fields]
         if found:
+            found.sort(key=lambda value: value.citation.method == CitationMethod.LLM)
             fields[name] = found[0]
             others = [f for f in found[1:] if (f.value, f.unit) != (found[0].value, found[0].unit)]
             if others:
+                fields[name] = found[0].model_copy(
+                    update={
+                        "confidence": min(found[0].confidence, config.EXTRACT_CONFIDENCE_CONFLICT)
+                    }
+                )
                 review.append(_cross_document(name, found[0], others, ordered[0].classification))
     reported_missing: set[FieldName | None] = set()
     for doc in ordered:

@@ -14,7 +14,7 @@ import pdfplumber
 
 from plan_diff import config
 from plan_diff.classify import Classification
-from plan_diff.extract.values import FAMILIES, FieldParser, Parsed, parse_value, value_count
+from plan_diff.extract.values import DRUGS, FAMILIES, FieldParser, Parsed, parse_value, value_count
 from plan_diff.models import (
     Citation,
     CitationMethod,
@@ -55,6 +55,10 @@ _AMOUNT = re.compile(r"[$%\d]")
 _CAPS_HEADING = re.compile(config.EXTRACT_CAPS_HEADING)
 _DANGLING = re.compile(config.EXTRACT_DANGLING_PERIOD, re.IGNORECASE)
 _TIER_LINE = re.compile(r"^" + config.EXTRACT_TIER_DEDUCTIBLE, re.IGNORECASE)
+_NO_PART_D = re.compile(
+    r"^\s*(?:this\s+)?plan does not cover part d(?:\s+(?:benefits|drug coverage))?\s*[.!]?\s*$",
+    re.IGNORECASE,
+)
 _EXCLUDE = {f: re.compile(p, re.IGNORECASE) for f, p in config.EXTRACT_CELL_EXCLUDE.items()}
 _SECTION_ROWS = [
     (field, re.compile(start, re.IGNORECASE), re.compile(row, re.IGNORECASE), lines)
@@ -196,15 +200,26 @@ def extract_pages(page_texts: Sequence[str], classification: Classification) -> 
             )
         )
 
-    # PR 15: an Annual Notice of Change prints last year and next year side by side, so a row
-    # with two or more values is never read from it (the first value is last year's).
+    # ANOC values need current-year evidence in the row itself. A single prior-year amount
+    # or an unlabelled column is not evidence for the classified document's plan year.
     anoc = classification.document_type.value == "ANOC"
     for parser in (p for family in FAMILIES.values() for p in family):
         name = parser.field
         all_hits = _hits(pages, parser, drug_flags, skip_flags)
+        if parser in DRUGS and all_hits:
+            all_hits += [
+                _Hit(page_number, line, None)
+                for page_number, lines in enumerate(pages, start=1)
+                for line in lines
+                if _NO_PART_D.search(line)
+            ]
         if anoc:
             all_hits = [
-                _Hit(h.page, h.text, None) if value_count(h.text) > 1 else h for h in all_hits
+                _Hit(h.page, h.text, None)
+                if value_count(h.text) > 1
+                or set(re.findall(config.PLAN_YEAR_PATTERN, h.text)) != {str(year)}
+                else h
+                for h in all_hits
             ]
         read = [h for h in all_hits if h.parsed is not None]
         unread = [h for h in all_hits if h.parsed is None]
