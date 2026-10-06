@@ -93,9 +93,43 @@ def _check(o: RunOptions) -> Path:
     if not o.docs.is_dir() or not o.cms.is_dir():
         raise RunRefused(f"--docs {o.docs} and --cms {o.cms} must both be folders")
     final = o.out / o.run_id
+    if o.overwrite:
+        target = final.resolve()
+        sources = [o.docs.resolve(), o.cms.resolve()]
+        if o.sources is not None:
+            sources.append(o.sources.resolve())
+        if any(target == source or target in source.parents for source in sources):
+            raise RunRefused(f"{final} contains a run input; choose a different output folder")
     if final.exists() and not o.overwrite:
         raise RunRefused(f"{final} already exists and run folders are immutable; pass --overwrite")
     return final
+
+
+def _install_run(tmp: Path, final: Path, run_id: str) -> None:
+    """Install a complete run, keeping the prior one available until the swap succeeds."""
+    if not final.exists():
+        os.replace(tmp, final)
+        return
+    backup_root = Path(tempfile.mkdtemp(dir=final.parent, prefix=f".{run_id}.backup."))
+    backup = backup_root / run_id
+    try:
+        final.rename(backup)
+        try:
+            os.replace(tmp, final)
+        except OSError as swap_error:
+            try:
+                os.replace(backup, final)
+            except OSError as restore_error:
+                raise RunRefused(
+                    f"Could not replace or restore {final}; previous run remains at {backup}: "
+                    f"{restore_error}"
+                ) from swap_error
+            raise
+    finally:
+        if not backup.exists():
+            backup_root.rmdir()
+    if backup.exists():
+        shutil.rmtree(backup_root)
 
 
 def _source_urls(sources: Path | None) -> dict[str, str]:
@@ -344,9 +378,7 @@ def run(o: RunOptions, clock: Callable[[], datetime]) -> Path:
         for plan_id, d in diffs.items():
             (tmp / "diff" / f"{plan_id}.json").write_text(d.model_dump_json(indent=2) + "\n")
         write_review_queue(review, tmp / "review_queue.jsonl")
-        if final.exists():
-            shutil.rmtree(final)  # only with --overwrite (checked above), only this run id
-        os.replace(tmp, final)
+        _install_run(tmp, final, o.run_id)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     return final
