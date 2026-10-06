@@ -46,6 +46,24 @@ export function RunNav() {
           </li>
         ))}
       </ul>
+      <section aria-label="Run evidence" className="px-4 py-2 text-xs lg:px-6">
+        <h2 className="font-medium">Download run evidence</h2>
+        <p className="mt-1 text-slate-600 dark:text-slate-400">{current.label}. JSON only, no PDFs.</p>
+        <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-2 lg:flex-col">
+          {[["Manifest JSON", "manifest.json"], ["Accuracy JSON", "accuracy.json"], ["Review queue JSONL", "review_queue.jsonl"]].map(([label, file]) => (
+            <li key={file}><a className="underline" href={`/${current.folder}/${file}`} download>{label}</a></li>
+          ))}
+        </ul>
+      </section>
+      <section aria-label="Agency Data Trust Series" className="border-t border-slate-200 px-4 py-3 text-xs lg:px-6 dark:border-slate-800">
+        <h2 className="font-medium">Agency Data Trust Series</h2>
+        <p className="mt-1 text-slate-600 dark:text-slate-400">Separate demos, shared trust principles.</p>
+        <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-2 lg:flex-col">
+          <li><a className="underline" href="https://agency-intake-kit.vercel.app">1. Intake Kit</a></li>
+          <li><a className="underline" href="https://bob-resolve-nine.vercel.app">2. Bob Resolve</a></li>
+          <li aria-current="true">3. Plan Diff</li>
+        </ul>
+      </section>
     </>
   );
 }

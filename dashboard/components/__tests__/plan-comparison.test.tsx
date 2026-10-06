@@ -15,6 +15,18 @@ async function show(plan: string, change?: (run: Run) => void) {
 const row = (label: string) => within(screen.getByRole("row", { name: label }));
 
 describe("Plan comparison", () => {
+  it.each([
+    ["H9999-004", "Maximum out-of-pocket (in network)", "$3,400 / $5,900"],
+    ["H9999-001", "Specialist visit", "$45 per visit"],
+  ])("does not present %s uncertain values as confirmed unchanged", async (plan, label, source) => {
+    await show(plan);
+    const field = row(label);
+    expect(field.getByText("Needs review")).toBeInTheDocument();
+    expect(field.queryByText("No change")).not.toBeInTheDocument();
+    expect(field.getByText(`Source text: ${source}`)).toBeInTheDocument();
+    if (plan === "H9999-001") expect(field.getByText(/PDF and CMS disagree; value unconfirmed/)).toBeInTheDocument();
+  });
+
   it("example 1: H9999-001 shows the premium going up $25 with both pages cited", async () => {
     await show("H9999-001");
     expect(
