@@ -1,6 +1,7 @@
 import { CitationText, DirectionText, TABLE, TD, TH, ValueCell } from "@/components/change-parts";
 import { ANSWER_TONE } from "@/components/overview";
 import { SeverityBadge } from "@/components/severity-badge";
+import { RunEyebrow } from "@/components/run-eyebrow";
 import { CARD } from "@/components/tiles";
 import { categoryLabel, comparisonRows, displayDirection, fieldLabel, fieldWarning, reviewKindText } from "@/lib/compare";
 import { crosswalkText, shopAgainText } from "@/lib/overview";
@@ -15,22 +16,22 @@ function Verdict({ diff, run }: { diff: PlanDiff; run: Run }) {
   const undecided = diff.shop_again === null;
   const lines = undecided ? diff.review.filter((r) => r.severity === "high").map((r) => r.reason) : diff.reasons;
   return (
-    <section aria-label="Verdict" className={cn(CARD, "grid gap-3 p-4 sm:grid-cols-2")}>
+    <section aria-label="Verdict" className={cn(CARD, "verdict-panel grid gap-4 sm:grid-cols-2")}>
       <div className="space-y-1 text-sm">
-        <p className="text-xs text-slate-600 dark:text-slate-400">Crosswalk</p>
+        <p className="text-xs muted">Crosswalk</p>
         <p className="font-medium">{crosswalkText(diff)}</p>
         {diff.evidence.map((citation, i) => (
           <p key={i}>
             <CitationText citation={citation} manifest={run.manifest} />
-            {citation.text && <span className="text-xs text-slate-600 dark:text-slate-400">: {citation.text}</span>}
+            {citation.text && <span className="text-xs muted">: {citation.text}</span>}
           </p>
         ))}
       </div>
       <div className="space-y-1 text-sm">
-        <p className="text-xs text-slate-600 dark:text-slate-400">
+        <p className="text-xs muted">
           Shop again: <SeverityBadge tone={ANSWER_TONE(diff.shop_again)} label={shopAgainText(diff.shop_again)} />
         </p>
-        <p className="text-xs text-slate-600 dark:text-slate-400">{undecided ? "Why it is undecided" : "Why"}</p>
+        <p className="text-xs muted">{undecided ? "Why it is undecided" : "Why"}</p>
         {lines.length === 0 ? (
           <p>No change crossed a shop-again threshold.</p>
         ) : (
@@ -48,16 +49,17 @@ export function PlanComparison({ run, diff }: { run: Run; diff: PlanDiff }) {
   const { old_year: oldYear, new_year: newYear } = diff;
   const review = run.reviewQueue.filter((item) => item.plan_id === plan);
   return (
-    <div className="space-y-4">
-      <header>
-        <h1 className="text-2xl font-semibold">
+    <div className="report-page">
+      <header className="page-header">
+        <RunEyebrow run={run} />
+        <h1 className="page-title">
           What exactly changed between {oldYear} and {newYear} for this plan?
         </h1>
-        <p className="mt-1 font-mono text-sm text-slate-600 dark:text-slate-400">{plan}</p>
+        <p className="page-context font-mono">{plan}</p>
       </header>
       <Verdict diff={diff} run={run} />
-      <section aria-labelledby="fields-heading" className={cn(CARD, "overflow-x-auto")}>
-        <h2 id="fields-heading" className="px-3 pt-3 text-sm font-semibold">The 15 fields, side by side</h2>
+      <section aria-labelledby="fields-heading" tabIndex={0} className={cn(CARD, "overflow-x-auto")}>
+        <h2 id="fields-heading" className="panel-title">The 15 fields, side by side</h2>
         {diff.changes.length === 0 ? (
           <p className="p-3 text-sm">
             {diff.crosswalk_status === "terminated"
@@ -65,14 +67,14 @@ export function PlanComparison({ run, diff }: { run: Run; diff: PlanDiff }) {
               : "Nothing to compare: the plan was not diffed. See the review items below."}
           </p>
         ) : (
-          <table className={cn(TABLE, "min-w-[720px]")}>
+          <table aria-labelledby="fields-heading" className={cn(TABLE, "min-w-[720px]")}>
             <thead>
               <tr>
-                <th className={TH}>Field</th>
-                <th className={TH}>{oldYear}</th>
-                <th className={TH}>{newYear}</th>
-                <th className={TH}>Change</th>
-                <th className={TH}>Category</th>
+                <th scope="col" className={TH}>Field</th>
+                <th scope="col" className={TH}>{oldYear}</th>
+                <th scope="col" className={TH}>{newYear}</th>
+                <th scope="col" className={TH}>Change</th>
+                <th scope="col" className={TH}>Category</th>
               </tr>
             </thead>
             <tbody>
@@ -89,18 +91,18 @@ export function PlanComparison({ run, diff }: { run: Run; diff: PlanDiff }) {
           </table>
         )}
       </section>
-      <section aria-labelledby="review-heading" className={cn(CARD, "p-3")}>
+      <section aria-labelledby="review-heading" className={cn(CARD, "review-panel")}>
         <h2 id="review-heading" className="text-sm font-semibold">Review items for this plan</h2>
         {review.length === 0 ? (
           <p className="mt-1 text-sm">No review items.</p>
         ) : (
-          <ul className="mt-2 space-y-2 text-sm">
+          <ul className="review-list mt-3 space-y-4 text-sm">
             {review.map((item, i) => (
               <li key={i} className="space-y-0.5">
                 <p className="flex flex-wrap items-center gap-2">
                   <SeverityBadge tone={SEVERITY_TONE[item.severity]} label={sentence(item.severity)} />
                   <span className="font-medium">{reviewKindText(item.kind)}</span>
-                  <span className="text-xs text-slate-600 tabular-nums dark:text-slate-400">
+                  <span className="text-xs muted tabular-nums">
                     {[item.field && fieldLabel(item.field), item.year].filter(Boolean).join(", ")}
                   </span>
                 </p>
