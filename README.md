@@ -6,6 +6,10 @@ checks against CMS public data, and compares plan years using the CMS crosswalk.
 
 [Open the demo](https://plan-diff.vercel.app) · [Public Texas run](https://plan-diff.vercel.app/texas)
 
+For an asynchronous review, follow the five-minute walkthrough below, then inspect the downloaded
+run evidence. For development, start with [locked setup](#run-locally), the
+[documentation index](docs/README.md), [contributing](CONTRIBUTING.md), and [security](SECURITY.md).
+
 ## Status and scope
 
 The dashboard has Overview, Plan comparison, Changes, Trust, and Documents for two committed runs:
@@ -62,7 +66,8 @@ uncertainty stays visible even when another supported reason already flags the p
 You need Node 24 and [uv](https://docs.astral.sh/uv/), which manages Python 3.12.
 
 ```sh
-cd engine && uv sync && cd ../dashboard && npm ci && cd ..
+cd engine && uv sync --locked && cd ..
+cd dashboard && npm ci && cd ..
 npm run verify                # ruff, mypy, pytest, eslint, typecheck, vitest, production build
 npm run demo                  # regenerate only the deterministic synthetic JSON outputs
 cd dashboard && npm run dev   # http://localhost:3000 and /texas
@@ -70,6 +75,31 @@ cd dashboard && npm run dev   # http://localhost:3000 and /texas
 
 Both committed runs work without source downloads, credentials, or paid model calls. Tests do
 not use the network. `npm run demo` leaves the public Texas run untouched.
+Dependency installation requires registry access. Do not use `npm install` or an unlocked sync
+for the canonical quickstart. The root package only coordinates scripts and has no dependencies
+or lockfile; dashboard packages are locked in `dashboard/package-lock.json`, and Python packages
+in `engine/uv.lock`.
+
+## Architecture and repository map
+
+The Python CLI classifies public PDFs, extracts cited fields, validates against CMS, and compares
+years using the crosswalk. It writes a manifest plus plan, validation, diff, accuracy, and review
+outputs. The Next.js dashboard renders two committed JSON snapshots at build time. It does not
+run the parser, fetch carrier files, or call a model when a visitor opens a page.
+
+- `engine/src/plan_diff/`: CLI and schema models; `classify/`, `extract/`, `cms/`, `validate/`,
+  `diff/`, and `run/` separate the processing stages
+- `engine/tests/` and `fixtures/`: offline parser, validation, safety, and deterministic-run checks
+- `dashboard/app/` and `dashboard/components/`: routes and presentation, including `/texas`
+- `dashboard/lib/`: run loading, consistency checks, exact-money display, and comparisons
+- `dashboard/public/{demo-run,texas-run}/`: intentionally public, committed evidence snapshots
+- `sources/manifest.json`: source URLs, pinned hashes, and retrieval metadata
+- `data/raw/` and `runs/`: git-ignored local inputs and generated runs
+- `docs/`: schema, CMS mappings, source policy, methods, and historical implementation notes
+
+Run JSON is a build input, not an authenticated upload format. TypeScript checks basic shape,
+decimal text, and manifest counts; Python models define the canonical schema. Page citations and
+hashes establish traceability and byte identity, not correctness or fitness for a client decision.
 
 ## Evidence and safeguards
 
@@ -82,9 +112,13 @@ New downloads require approval of the exact file list and use the hash-checking 
 Raw files stay in git-ignored `data/raw/`. No PHI, private client data, or bulk PDFs belong here.
 Deterministic extraction takes precedence; disagreements and missing evidence stay in review.
 
-See [SPEC](SPEC.md), [schema](docs/schema.md), [sources](docs/sources.md), and
+See the [documentation index](docs/README.md), [SPEC](SPEC.md), [schema](docs/schema.md), [sources](docs/sources.md), and
 [public-run methods and limitations](docs/pr-15-notes.md). Optional Jev/LLM fallbacks, held-out
 validation on new layouts, ACA support, and broader production workflows remain future work.
+
+The 2026-10-06 dependency review found no production npm advisories, but the development toolchain
+retains the unpatched `braces` advisory GHSA-vfj7-8cjw-p6xm. See [SECURITY.md](SECURITY.md) for the
+bounded checks, trust boundaries, and remaining work. This demo is not a production security review.
 
 ## Agency Data Trust Series
 
