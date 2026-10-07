@@ -32,7 +32,8 @@ use mock transports. CI uses replay mode and never downloads carrier sources.
 - Do not read environment files, commit credentials, enable live/record model calls, or fetch new
   carrier files as part of routine verification. Downloads and paid calls need explicit approval.
 - Dependency changes need license review, intentional lockfile updates, and fresh checks. Do not
-  force audit fixes or introduce an unverified override for an advisory without an upstream fix.
+  force audit fixes or introduce an unverified override for an advisory without an upstream fix. The
+  braces fast-glob stand-in is the tested exception; see SECURITY.md.
 - Record lasting architectural decisions in `docs/adr/`. Publishing, merging, and deployment need
   the maintainer's explicit go-ahead; successful local checks do not authorize them.
 
