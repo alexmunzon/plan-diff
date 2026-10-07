@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { RunNav } from "@/components/run-nav";
-import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,16 +9,9 @@ export const metadata: Metadata = {
     "Which Medicare Advantage plans changed enough that a client should shop again? Carrier documents compared year over year, every value cited to its page. Public data only.",
 };
 
-// Runs before the first paint, so a dark page never flashes white. The saved choice wins;
-// without one (or with storage blocked) the system setting decides. Copied from agency-intake-kit.
-const THEME_SCRIPT = `(function(){var d=null;try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")d=t==="dark"}catch(e){}if(d===null)d=matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d)})()`;
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
-      </head>
+    <html lang="en" className="h-full antialiased">
       <body className="app-shell font-sans">
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <nav aria-label="Main" className="app-sidebar">
@@ -28,7 +20,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <p className="brand-title">plan-diff</p>
               <p className="brand-caption">Data Trust Series</p>
             </div>
-            <ThemeToggle />
           </div>
           <RunNav />
         </nav>

@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 
 /* Shared warm page, neutral panels, one action accent. Status colors convey meaning only. */
 @theme inline {
@@ -7,6 +6,7 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 :root {
+  color-scheme: light;
   --paper: #f6f5f2;
   --panel: #ffffff;
   --ink: #272727;
@@ -24,17 +24,6 @@
   --status-warning: #805600;
   --status-pass: #246442;
 }
-.dark {
-  color-scheme: dark;
-  --paper: #191919;
-  --panel: #242424;
-  --ink: #f5f5f5;
-  --muted: #b8b8b8;
-  --border: #767676;
-  --status-error: #ff9dae;
-  --status-warning: #e8c071;
-  --status-pass: #9cd5b2;
-}
 body { background: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.5; }
 a, button { transition: background-color 120ms, color 120ms, border-color 120ms; }
 a { text-underline-offset: 3px; }
@@ -47,10 +36,6 @@ a { text-underline-offset: 3px; }
 .brand-caption, .sidebar-label { color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .brand-caption { margin-top: 4px; }
 .sidebar-label { margin: 0 20px 8px; }
-.theme-toggle { display: flex; align-items: center; gap: 6px; flex-shrink: 0; border: 1px solid var(--border); border-radius: 6px; padding: 7px 8px; font-size: 11px; color: var(--ink); }
-.theme-toggle:hover { background: var(--paper); }
-.theme-toggle[aria-pressed="true"]:not(:disabled):not([aria-disabled="true"]) { background: var(--selected); color: var(--selected-ink); border-color: var(--border); }
-.theme-toggle[aria-pressed="true"]:not(:disabled):not([aria-disabled="true"]):hover { text-decoration: underline; }
 
 .run-switch, .page-navigation { display: flex; gap: 4px; overflow-x: auto; padding: 0 12px 16px; }
 .run-option { display: block; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; color: var(--muted); font-size: 11px; line-height: 1.45; }
@@ -154,7 +139,7 @@ a { text-underline-offset: 3px; }
   .sidebar-brand { padding-top: 16px; padding-bottom: 16px; }
   .page-header { padding: 20px; }
   .run-switch, .page-navigation { padding-bottom: 12px; }
-  .theme-toggle, .nav-item, .run-option, .action-link { min-height: 44px; }
+  .nav-item, .run-option, .action-link { min-height: 44px; }
   .run-option { display: flex; align-items: center; }
   .sidebar-section { padding: 16px; font-size: 12px; }
   .sidebar-section h2 { font-size: 12px; }

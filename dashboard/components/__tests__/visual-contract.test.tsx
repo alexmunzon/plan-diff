@@ -1,22 +1,23 @@
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
-import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 
+import RootLayout from "@/app/layout";
 import { Changes } from "@/components/changes";
 import { DirectionText } from "@/components/change-parts";
 import { Overview } from "@/components/overview";
 import { PlanPicker } from "@/components/plan-picker";
 import { RunNav } from "@/components/run-nav";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { DEMO_RUN_DIR, loadRunDir, TEXAS_RUN_DIR } from "@/lib/run-dir";
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/texas/changes" }));
 
 describe("consulting visual contract", () => {
-  it("keeps one shared light and dark palette, responsive shell, and keyboard focus treatment", async () => {
+  it("keeps one shared light palette, responsive shell, and keyboard focus treatment", async () => {
     const css = await readFile(path.join(process.cwd(), "app/globals.css"), "utf8");
-    for (const token of ["#272727", "#f6f5f2", "#8f202b", "#646464", "#858585", "#191919", "#242424", "#767676", "#f5f5f5", "#b8b8b8"]) {
+    for (const token of ["#272727", "#f6f5f2", "#ffffff", "#8f202b", "#646464", "#858585", "#b4233b", "#805600", "#246442"]) {
       expect(css.toLowerCase()).toContain(token);
     }
     expect(css).toContain(":focus-visible");
@@ -35,7 +36,7 @@ describe("consulting visual contract", () => {
   it("protects 375/390px touch targets and readable evidence without hiding content", async () => {
     const css = await readFile(path.join(process.cwd(), "app/globals.css"), "utf8");
     const mobile = css.slice(css.indexOf("@media (max-width: 1023px)"));
-    expect(mobile).toContain(".theme-toggle, .nav-item, .run-option, .action-link { min-height: 44px; }");
+    expect(mobile).toContain(".nav-item, .run-option, .action-link { min-height: 44px; }");
     expect(mobile).toContain(".sidebar-links a, .plan-id, .document-panel a, .evidence-table a");
     expect(mobile).toContain("font-size: 12px; line-height: 1.55;");
     expect(mobile).not.toMatch(/display:\s*none|overflow:\s*hidden|line-clamp/);
@@ -43,7 +44,7 @@ describe("consulting visual contract", () => {
     expect(mobile).toContain(".app-sidebar, .sidebar-support > * { min-width: 0; }");
   });
 
-  it("keeps actual theme text, status and action colors above AA contrast", async () => {
+  it("keeps actual light palette text, status and action colors above AA contrast", async () => {
     const luminance = (hex: string) => {
       const channels = [1, 3, 5].map((i) => Number.parseInt(hex.slice(i, i + 2), 16) / 255);
       const linear = channels.map((v) => v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
@@ -54,8 +55,7 @@ describe("consulting visual contract", () => {
       [...css.match(new RegExp(`${selector} [{]([^}]+)`))![1].matchAll(/--([\w-]+): ([^;]+);/g)]
         .map((match) => [match[1], match[2]]),
     );
-    const light = tokens(":root");
-    for (const theme of [light, { ...light, ...tokens("\\.dark") }]) {
+    for (const theme of [tokens(":root")]) {
       const color = (name: string): string => {
         const value = theme[name];
         return value.startsWith("var(") ? color(value.slice(6, -1)) : value;
@@ -82,17 +82,41 @@ describe("consulting visual contract", () => {
     expect(screen.getByRole("group", { name: "Accuracy match rate" })).toBeInTheDocument();
   });
 
-  it("keeps the saved theme and pressed state in sync across repeated changes", async () => {
-    document.documentElement.classList.remove("dark");
-    localStorage.clear();
-    render(<ThemeToggle />);
-    const toggle = screen.getByRole("button", { name: "Dark mode" });
-    fireEvent.click(toggle);
-    await waitFor(() => expect(toggle).toHaveAttribute("aria-pressed", "true"));
-    expect(localStorage.getItem("theme")).toBe("dark");
-    fireEvent.click(toggle);
-    await waitFor(() => expect(toggle).toHaveAttribute("aria-pressed", "false"));
-    expect(localStorage.getItem("theme")).toBe("light");
+  it("always renders the light palette with no dark mode toggle, script or styles", async () => {
+    const css = await readFile(path.join(process.cwd(), "app/globals.css"), "utf8");
+    expect(css).not.toMatch(/\.dark\b/);
+    expect(css).not.toMatch(/prefers-color-scheme/);
+    expect(css).not.toMatch(/@custom-variant\s+dark/);
+    expect(css).not.toMatch(/\.theme-toggle/);
+    expect(css).toMatch(/:root \{[^}]*color-scheme: light;/);
+    const layout = await readFile(path.join(process.cwd(), "app/layout.tsx"), "utf8");
+    expect(layout).not.toMatch(/prefers-color-scheme|localStorage|matchMedia|data-theme|ThemeToggle|theme-toggle/);
+    expect(layout).not.toMatch(/classList|["'\s]dark["'\s]/);
+    await expect(readFile(path.join(process.cwd(), "components/theme-toggle.tsx"), "utf8")).rejects.toThrow();
+    const sources = (await readdir(process.cwd(), { recursive: true }))
+      .filter((file) => /\.(tsx?|css)$/.test(file) && !/^(node_modules|\.next|vendor)\//.test(file) && !file.includes("__tests__"));
+    expect(sources.length).toBeGreaterThan(10);
+    for (const file of sources) {
+      const source = await readFile(path.join(process.cwd(), file), "utf8");
+      expect(source, file).not.toMatch(/(?<![\w-])dark:/);
+      expect(source, file).not.toMatch(/Dark mode/i);
+    }
+  });
+
+  it("ignores a stale stored dark preference and renders a shell with no dark mode control or theme script", () => {
+    localStorage.setItem("theme", "dark");
+    try {
+      const html = renderToStaticMarkup(<RootLayout params={Promise.resolve({})}><p>page</p></RootLayout>);
+      expect(html).toMatch(/^<html[^>]*class="h-full antialiased"/);
+      expect(html).not.toMatch(/<html[^>]*class="[^"]*\bdark\b/);
+      expect(html).not.toMatch(/<script/);
+      expect(html).not.toMatch(/dark mode/i);
+      expect(html).not.toMatch(/aria-pressed/);
+      expect(html).toContain("plan-diff");
+      expect(document.documentElement).not.toHaveClass("dark");
+    } finally {
+      localStorage.clear();
+    }
   });
 
   it("keeps both Changes tables, every direction, and zero counts discoverable by keyboard", async () => {
