@@ -41,8 +41,13 @@ Reviewed **2026-10-06**: [braces GHSA-vfj7-8cjw-p6xm](https://github.com/advisor
 (CVE-2026-93687) is a high-severity stack-exhaustion denial of service through deeply nested brace
 patterns. The reviewed advisory affects versions through 3.0.3 and lists **no patched release**.
 
-**Status: removed, not patched upstream.** braces is no longer installed. `dashboard/package-lock.json`
-has no braces or micromatch entry, and `npm audit` reports zero findings both in full (including
+**Status: braces package removed, one dormant bundled copy, not patched upstream.** No braces
+package is installed, but one copy remains bundled inside Vite, the test runner's build tool (a
+development dependency): Vite 8.3.2, and the newest release 8.3.3, compile chokidar 3.6.0 with
+braces 3.0.3 into `vite/dist/node/chunks/node.js`. Only Vite's file watcher calls it. `npm test` and
+CI run `vitest run`, which turns the watcher off, so it runs only in local watch mode, on this
+project's own file paths. npm audit cannot see bundled copies. It goes away when Vite ships a
+release without it. `dashboard/package-lock.json` has no braces or micromatch entry, and `npm audit` reports zero findings both in full (including
 development tools) and with `--omit=dev`. Before this change the bounded review found 0 production
 findings and the full audit reported this one advisory through several parent nodes.
 
@@ -51,8 +56,10 @@ The only path was lint tooling: `eslint-config-next` → `@next/eslint-plugin-ne
 `settings.next.rootDir` (this repo does not). An npm override (`"overrides": { "fast-glob": "$fast-glob" }`
 with a `file:` dev dependency) now gives the plugin a small local stand-in, `dashboard/vendor/fast-glob-shim`,
 built on Node's own `fs.globSync`. It is the same stand-in agency-intake-kit uses. It matches fast-glob
-3.3.1 on the recorded ordinary patterns (wildcards, `**`, character classes, plain folders, lists) and
-refuses brace or extglob patterns with a clear error instead of expanding them.
+3.3.1 on the recorded ordinary patterns (wildcards, `**`, character classes, plain and hidden folders,
+lists) and refuses brace or extglob patterns with a clear error instead of expanding them. Known
+differences: it does not descend into symlinked folders, and it drops a leading `./` from wildcard
+results.
 `dashboard/lib/__tests__/no-braces.test.ts` checks the lockfile, the resolution and the pattern results.
 All Next lint rules still run. No package version changed; 15 packages were removed.
 
