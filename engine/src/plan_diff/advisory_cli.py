@@ -1,6 +1,9 @@
 """Explicit offline sidecar command. Never alters canonical extraction artifacts."""
 
 import hashlib
+import io
+import os
+import stat
 from enum import StrEnum
 from pathlib import Path
 from typing import Annotated
@@ -26,7 +29,8 @@ def bound_request(request: Path, document: Path, manifest: Path, plan: Path) -> 
     run_bytes = manifest.read_bytes()
     run = RunManifest.model_validate_json(run_bytes)
     record = PlanRecord.model_validate_json(plan.read_bytes())
-    digest = hashlib.sha256(document.read_bytes()).hexdigest()
+    document_bytes = document.read_bytes()
+    digest = hashlib.sha256(document_bytes).hexdigest()
     if req.data_kind != "synthetic" or run.data_kind != "synthetic":
         raise ValueError("only explicitly synthetic artifacts are supported")
     if req.run_hash != hashlib.sha256(run_bytes).hexdigest() or req.document_hash != digest:
@@ -51,7 +55,7 @@ def bound_request(request: Path, document: Path, manifest: Path, plan: Path) -> 
     # County names never imply FIPS. This command cannot verify that extra binding.
     if req.county_fips is not None:
         raise ValueError("county FIPS binding is not supported by this command")
-    with pdfplumber.open(document) as pdf:
+    with pdfplumber.open(io.BytesIO(document_bytes)) as pdf:
         for page in req.pages:
             if page.page > len(pdf.pages):
                 raise ValueError("page outside source")
@@ -60,6 +64,17 @@ def bound_request(request: Path, document: Path, manifest: Path, plan: Path) -> 
                 raise ValueError("excerpt absent from source page")
     existing = record.fields.get(req.field)
     return req.model_copy(update={"deterministic_value": existing.value if existing else None})
+
+
+def read_response(path: Path) -> bytes:
+    """Read bounded regular fixture bytes without following a final symlink or blocking."""
+    flags = os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK
+    descriptor = os.open(path, flags)
+    with os.fdopen(descriptor, "rb") as stream:
+        if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
+            raise ValueError("response fixture must be a regular file")
+        # Preserve evaluate's pending-review outcome for oversized responses.
+        return stream.read(8193)
 
 
 @app.command("evaluate")
@@ -77,7 +92,7 @@ def evaluate_sidecar(
         blob = None
         if mode == Mode.REPLAY and response:
             try:
-                blob = response.read_bytes()
+                blob = read_response(response)
             except FileNotFoundError:
                 pass
         result = evaluate(req, mode=mode.value, response=blob)

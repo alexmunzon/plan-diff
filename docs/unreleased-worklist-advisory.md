@@ -26,3 +26,7 @@ No credentials, paid calls, live mode, output mutation or automatic approvals ar
 Malformed, absent, stale or ungrounded response fixtures remain pending review. No fixture is
 represented as an actual model result. Local metadata checks do not authenticate the author
 of an imported manifest or plan. Callers must use trusted generated synthetic artifacts.
+
+The advisory CLI hashes and extracts from the same captured PDF bytes. Replay response reads
+are bounded, nonblocking and restricted to regular files, refusing final symlinks and FIFOs
+with a CLI error. Oversized regular responses remain pending review.

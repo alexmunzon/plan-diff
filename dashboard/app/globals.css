@@ -178,3 +178,8 @@ button:disabled, [aria-disabled="true"] { background: var(--panel); color: var(-
 .technical-details summary { width: fit-content; cursor: pointer; min-height: 44px; display: list-item; align-content: center; }
 .technical-details summary:hover { text-decoration: underline; }
 ::selection { background: var(--accent); color: #f7f3eb; }
+
+/* Imported worklist controls retain visible boundaries in both themes. */
+.worklist-controls input, .worklist-controls select { max-width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin-top: 6px; background: var(--paper); color: var(--ink); min-height: 44px; }
+.worklist-controls input[type="file"] { display: block; width: 100%; }
+.worklist-controls input:not([type="file"]), .worklist-controls select { display: block; width: 100%; }

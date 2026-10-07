@@ -145,3 +145,44 @@ def test_handwritten_replay_sidecar(tmp_path: Path) -> None:
     assert data["status"] == "replayed"
     assert data["review_state"] == "needs_review"
     assert data["calls"] == 0
+
+
+def test_hash_and_pages_use_same_captured_pdf(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import io
+
+    import pdfplumber
+
+    from plan_diff import advisory_cli
+
+    paths = setup(tmp_path)
+    original = paths[1].read_bytes()
+    open_pdf = pdfplumber.open
+
+    def replace_before_open(source: io.BytesIO):
+        paths[1].write_bytes(b"changed after hash")
+        assert isinstance(source, io.BytesIO)
+        assert source.getvalue() == original
+        return open_pdf(source)
+
+    monkeypatch.setattr(advisory_cli.pdfplumber, "open", replace_before_open)
+    assert bound_request(*paths).document_hash == hashlib.sha256(original).hexdigest()
+
+
+def test_response_read_is_bounded_and_refuses_special_files(tmp_path: Path) -> None:
+    import os
+
+    from plan_diff.advisory_cli import read_response
+
+    large = tmp_path / "large.json"
+    large.write_bytes(b"x" * 100_000)
+    assert len(read_response(large)) == 8193
+    link = tmp_path / "link.json"
+    link.symlink_to(large)
+    with pytest.raises(OSError):
+        read_response(link)
+    fifo = tmp_path / "pipe.json"
+    os.mkfifo(fifo)
+    with pytest.raises(ValueError, match="regular file"):
+        read_response(fifo)
