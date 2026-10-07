@@ -16,17 +16,18 @@ vi.mock("next/navigation", () => ({ usePathname: () => "/texas/changes" }));
 describe("consulting visual contract", () => {
   it("keeps one shared light and dark palette, responsive shell, and keyboard focus treatment", async () => {
     const css = await readFile(path.join(process.cwd(), "app/globals.css"), "utf8");
-    for (const token of ["#272727", "#f6f5f2", "#8f202b", "#646464", "#858585", "#191919", "#242424", "#767676", "#f5f5f5", "#b8b8b8"]) {
+    for (const token of ["#30251f", "#f7f3eb", "#fffdf8", "#8f3d3d", "#6b5749", "#9a8370", "#403128", "#d3c0ad"]) {
       expect(css.toLowerCase()).toContain(token);
     }
-    expect(css).toContain(":focus-visible");
+    expect(css).toContain(":focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }");
+    expect(css).toMatch(/\.app-sidebar [{][^}]*--ink: #f7f3eb;[^}]*--muted: #d3c0ad;[^}]*--paper: #403128;[^}]*--panel: #30251f;/);
     expect(css).toContain("prefers-reduced-motion");
     expect(css).toContain("1320px");
     expect(css).toContain("232px");
-    expect(css).toContain("background: var(--primary); border-color: var(--border); color: #ffffff");
+    expect(css).toContain("background: var(--primary); border-color: var(--border); color: #f7f3eb");
     expect(css).not.toMatch(/--(?:navy|teal):/);
     const severity = await readFile(path.join(process.cwd(), "components/severity-badge.tsx"), "utf8");
-    expect(severity).not.toMatch(/#8f202b/i);
+    expect(severity).not.toMatch(/#8f3d3d/i);
     const layout = await readFile(path.join(process.cwd(), "app/layout.tsx"), "utf8");
     expect(layout).toContain('href="#main-content"');
     expect(layout).toContain('id="main-content"');
@@ -55,7 +56,7 @@ describe("consulting visual contract", () => {
         .map((match) => [match[1], match[2]]),
     );
     const light = tokens(":root");
-    for (const theme of [light, { ...light, ...tokens("\\.dark") }]) {
+    for (const theme of [light, { ...light, ...tokens("\\.dark") }, { ...light, ...tokens("\\.app-sidebar"), paper: light.sidebar }, { ...light, ...tokens("\\.app-sidebar") }]) {
       const color = (name: string): string => {
         const value = theme[name];
         return value.startsWith("var(") ? color(value.slice(6, -1)) : value;
@@ -65,12 +66,15 @@ describe("consulting visual contract", () => {
         return (light + 0.05) / (dark + 0.05);
       };
       for (const background of ["paper", "panel"]) {
-        for (const foreground of ["ink", "muted", "status-error", "status-warning", "status-pass"]) {
+        for (const foreground of theme.panel === light.sidebar
+          ? ["ink", "muted"]
+          : ["ink", "muted", "status-error", "status-warning", "status-pass"]) {
           expect(contrast(color(foreground), color(background)), `${foreground} on ${background}`).toBeGreaterThanOrEqual(4.5);
         }
         expect(contrast(color("border"), color(background)), `control border on ${background}`).toBeGreaterThanOrEqual(3);
       }
       expect(contrast(color("selected-ink"), color("primary"))).toBeGreaterThanOrEqual(4.5);
+      expect(contrast(color("ink"), color("paper")), "focus on page").toBeGreaterThanOrEqual(3);
     }
   });
 
