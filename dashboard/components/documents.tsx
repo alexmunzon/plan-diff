@@ -36,10 +36,15 @@ export function Documents({ run }: { run: Run }) {
             <dt className={MUTED}>Carrier</dt><dd>{row.carrier}</dd>
             <dt className={MUTED}>Plan</dt><dd>{row.plan}</dd>
             <dt className={MUTED}>Year</dt><dd className="tabular-nums">{row.year ?? "Not identified"}</dd>
-            <dt className={MUTED}>Type</dt><dd>{row.input.document_type ?? "Not identified"}</dd>
-            <dt className={MUTED}>Pages</dt><dd className="tabular-nums">{row.input.page_count ?? "Not known"}</dd>
-            <dt className={MUTED}>SHA-256</dt><dd className="font-mono text-xs break-all">{row.input.sha256}</dd>
           </dl>
+          <details className="technical-details">
+            <summary>Document technical details</summary>
+            <dl className="grid gap-x-4 gap-y-0.5 sm:grid-cols-[auto_1fr]">
+              <dt className={MUTED}>Type</dt><dd>{row.input.document_type ?? "Not identified"}</dd>
+              <dt className={MUTED}>Pages</dt><dd className="tabular-nums">{row.input.page_count ?? "Not known"}</dd>
+              <dt className={MUTED}>SHA-256</dt><dd className="font-mono text-xs break-all">{row.input.sha256}</dd>
+            </dl>
+          </details>
           {row.status && <p>{row.status}</p>}
           <p>{row.url ? <CarrierLink url={row.url} /> : <span className={MUTED}>{noLinkText(run)}</span>}</p>
           {row.values.length > 0 && (
