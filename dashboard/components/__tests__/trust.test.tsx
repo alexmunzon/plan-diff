@@ -65,6 +65,24 @@ describe("Trust", () => {
 });
 
 describe("Documents", () => {
+  it("keeps review status and page evidence outside a keyboard-focusable technical disclosure", async () => {
+    render(<Documents run={await demo()} />);
+    const region = screen.getByRole("region", { name: "H9999-001_2026_SB" });
+    const summary = within(region).getByText("Document technical details");
+    expect(summary.tagName).toBe("SUMMARY");
+    const details = summary.closest("details")!;
+    expect(details).not.toHaveAttribute("open");
+    summary.focus();
+    expect(summary).toHaveFocus();
+    expect(within(details).getByText(/^05038d3690dc/)).toBeInTheDocument();
+    expect(within(region).getByText("Specialist visit, page 1").closest("details")).toBeNull();
+    const status = screen.getByText("Not identified, in the review queue; no values used");
+    expect(status.closest("details")).toBeNull();
+    details.open = true;
+    expect(details).toHaveAttribute("open");
+    expect(within(region).getByText("Dental allowance, page 2").closest("details")).toBeNull();
+  });
+
   it("lists every document with its values and the synthetic note, never a link", async () => {
     render(<Documents run={await demo()} />);
     expect(screen.getByRole("heading", { level: 1, name: "Show me the page." })).toBeInTheDocument();

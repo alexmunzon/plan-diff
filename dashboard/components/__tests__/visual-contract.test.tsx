@@ -16,17 +16,17 @@ vi.mock("next/navigation", () => ({ usePathname: () => "/texas/changes" }));
 describe("consulting visual contract", () => {
   it("keeps one shared light and dark palette, responsive shell, and keyboard focus treatment", async () => {
     const css = await readFile(path.join(process.cwd(), "app/globals.css"), "utf8");
-    for (const token of ["#292524", "#f5f5f4", "#ff2727", "#af0505", "#57534e", "#d6d3d1", "#1c1917", "#fafaf9", "#c7c2bb", "#ffb3aa"]) {
+    for (const token of ["#272727", "#f6f5f2", "#8f202b", "#646464", "#858585", "#191919", "#242424", "#767676", "#f5f5f5", "#b8b8b8"]) {
       expect(css.toLowerCase()).toContain(token);
     }
     expect(css).toContain(":focus-visible");
     expect(css).toContain("prefers-reduced-motion");
     expect(css).toContain("1320px");
     expect(css).toContain("232px");
-    expect(css).toContain("background: var(--primary); border-color: var(--primary); color: #ffffff");
+    expect(css).toContain("background: var(--primary); border-color: var(--border); color: #ffffff");
     expect(css).not.toMatch(/--(?:navy|teal):/);
     const severity = await readFile(path.join(process.cwd(), "components/severity-badge.tsx"), "utf8");
-    expect(severity).not.toMatch(/#ff2727|#af0505/i);
+    expect(severity).not.toMatch(/#8f202b/i);
     const layout = await readFile(path.join(process.cwd(), "app/layout.tsx"), "utf8");
     expect(layout).toContain('href="#main-content"');
     expect(layout).toContain('id="main-content"');
@@ -43,21 +43,34 @@ describe("consulting visual contract", () => {
     expect(mobile).toContain(".app-sidebar, .sidebar-support > * { min-width: 0; }");
   });
 
-  it("keeps warm-neutral text and dark-red actions above AA contrast in both themes", () => {
+  it("keeps actual theme text, status and action colors above AA contrast", async () => {
     const luminance = (hex: string) => {
       const channels = [1, 3, 5].map((i) => Number.parseInt(hex.slice(i, i + 2), 16) / 255);
       const linear = channels.map((v) => v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
       return linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722;
     };
-    for (const [foreground, background] of [
-      ["#292524", "#ffffff"], ["#57534e", "#ffffff"], ["#57534e", "#efeeeb"],
-      ["#af0505", "#ffffff"], ["#292524", "#f5f5f4"], ["#fafaf9", "#292524"],
-      ["#c7c2bb", "#292524"], ["#fafaf9", "#1c1917"], ["#c7c2bb", "#1c1917"],
-      ["#c7c2bb", "#332e2a"], ["#ffb3aa", "#292524"], ["#fafaf9", "#433b37"],
-      ["#ffffff", "#af0505"], ["#ffffff", "#850404"],
-    ]) {
-      const [dark, light] = [luminance(foreground), luminance(background)].sort((a, b) => a - b);
-      expect((light + 0.05) / (dark + 0.05), `${foreground} on ${background}`).toBeGreaterThanOrEqual(4.5);
+    const css = await readFile(path.join(process.cwd(), "app/globals.css"), "utf8");
+    const tokens = (selector: string) => Object.fromEntries(
+      [...css.match(new RegExp(`${selector} [{]([^}]+)`))![1].matchAll(/--([\w-]+): ([^;]+);/g)]
+        .map((match) => [match[1], match[2]]),
+    );
+    const light = tokens(":root");
+    for (const theme of [light, { ...light, ...tokens("\\.dark") }]) {
+      const color = (name: string): string => {
+        const value = theme[name];
+        return value.startsWith("var(") ? color(value.slice(6, -1)) : value;
+      };
+      const contrast = (a: string, b: string) => {
+        const [dark, light] = [luminance(a), luminance(b)].sort((x, y) => x - y);
+        return (light + 0.05) / (dark + 0.05);
+      };
+      for (const background of ["paper", "panel"]) {
+        for (const foreground of ["ink", "muted", "status-error", "status-warning", "status-pass"]) {
+          expect(contrast(color(foreground), color(background)), `${foreground} on ${background}`).toBeGreaterThanOrEqual(4.5);
+        }
+        expect(contrast(color("border"), color(background)), `control border on ${background}`).toBeGreaterThanOrEqual(3);
+      }
+      expect(contrast(color("selected-ink"), color("primary"))).toBeGreaterThanOrEqual(4.5);
     }
   });
 
