@@ -58,8 +58,7 @@ with a `file:` dev dependency) now gives the plugin a small local stand-in, `das
 built on Node's own `fs.globSync`. It is the same stand-in agency-intake-kit uses. It matches fast-glob
 3.3.1 on the recorded ordinary patterns (wildcards, `**`, character classes, plain and hidden folders,
 lists) and refuses brace or extglob patterns with a clear error instead of expanding them. Known
-differences: it does not descend into symlinked folders, and it drops a leading `./` from wildcard
-results.
+difference: it skips symlinked folders, which fast-glob lists.
 `dashboard/lib/__tests__/no-braces.test.ts` checks the lockfile, the resolution and the pattern results.
 All Next lint rules still run. No package version changed; 15 packages were removed.
 
