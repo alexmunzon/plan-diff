@@ -116,8 +116,8 @@ See the [documentation index](docs/README.md), [SPEC](SPEC.md), [schema](docs/sc
 [public-run methods and limitations](docs/pr-15-notes.md). Optional Jev/LLM fallbacks, held-out
 validation on new layouts, ACA support, and broader production workflows remain future work.
 
-The 2026-10-06 dependency review found no production npm advisories, but the development toolchain
-retains the unpatched `braces` advisory GHSA-vfj7-8cjw-p6xm. See [SECURITY.md](SECURITY.md) for the
+The 2026-10-06 dependency review found no npm advisories. The unpatched `braces` advisory
+GHSA-vfj7-8cjw-p6xm was removed from the lint toolchain with a tested local stand-in. See [SECURITY.md](SECURITY.md) for the
 bounded checks, trust boundaries, and remaining work. This demo is not a production security review.
 
 ## Agency Data Trust Series

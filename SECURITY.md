@@ -37,13 +37,31 @@ Never send real client data to demonstrate a problem.
 
 ## Dependency review and known residual risk
 
-The bounded 2026-10-06 review of `dashboard/package-lock.json` found **0 production npm findings**
-with `npm audit --package-lock-only --ignore-scripts --omit=dev`. The full audit still reports the
-high-severity development-tool advisory [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
-(`braces`, CVE-2026-93687): deeply nested brace patterns can exhaust the stack. The reviewed advisory
-lists no patched version. Multiple affected parent nodes are not separate underlying advisories.
-No forced update or override is applied. Avoid untrusted glob patterns in affected tooling and
-recheck the advisory before the next dependency update; install/build tooling still carries risk.
+Reviewed **2026-10-06**: [braces GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
+(CVE-2026-93687) is a high-severity stack-exhaustion denial of service through deeply nested brace
+patterns. The reviewed advisory affects versions through 3.0.3 and lists **no patched release**.
+
+**Status: removed, not patched upstream.** braces is no longer installed. `dashboard/package-lock.json`
+has no braces or micromatch entry, and `npm audit` reports zero findings both in full (including
+development tools) and with `--omit=dev`. Before this change the bounded review found 0 production
+findings and the full audit reported this one advisory through several parent nodes.
+
+The only path was lint tooling: `eslint-config-next` → `@next/eslint-plugin-next` → `fast-glob` →
+`micromatch` → braces. The plugin calls fast-glob in one place, and only when an ESLint config sets
+`settings.next.rootDir` (this repo does not). An npm override (`"overrides": { "fast-glob": "$fast-glob" }`
+with a `file:` dev dependency) now gives the plugin a small local stand-in, `dashboard/vendor/fast-glob-shim`,
+built on Node's own `fs.globSync`. It is the same stand-in agency-intake-kit uses. It matches fast-glob
+3.3.1 on the recorded ordinary patterns (wildcards, `**`, character classes, plain folders, lists) and
+refuses brace or extglob patterns with a clear error instead of expanding them.
+`dashboard/lib/__tests__/no-braces.test.ts` checks the lockfile, the resolution and the pattern results.
+All Next lint rules still run. No package version changed; 15 packages were removed.
+
+This stand-in is our own code, not an upstream fix. Revisit it when Next or fast-glob changes: an
+`eslint-config-next` upgrade must keep the tests green, and if braces ships a fix, decide whether to
+return to upstream fast-glob. Do not use `npm audit fix --force`. Plan Diff has no advisory watch of
+its own: the weekly braces advisory workflow lives in agency-intake-kit
+(`.github/workflows/braces-advisory.yml`) and fails, emailing the owner, when a patched release ships
+or the advisory changes. When it fires, recheck this repo too.
 
 The same review found no known advisories for the 44 registry-locked Python packages. Known-advisory
 checks do not prove absence of unknown vulnerabilities, malicious packages, or runtime reachability.
