@@ -1,0 +1,1 @@
+Add integration contract 1.0.0 and a synthetic client-to-plan-change review worklist using explicit hash-pinned enrollment evidence and native Plan Diff artifacts. Missing coverage, unresolved identities, ambiguous joins, unsupported plans, and incomplete citations remain visible. No suitability recommendations, navigation changes, or CLI registration.

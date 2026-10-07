@@ -32,7 +32,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
           <RunNav />
         </nav>
-        <main id="main-content" tabIndex={-1} className="app-main">{children}</main>
+        <main id="main-content" tabIndex={-1} className="app-main">
+          <aside aria-label="Review scope" className="panel mb-6 p-4 text-sm muted">
+            Review the selected run&apos;s evidence. Plan changes are review signals; a client worklist needs separately supplied enrollment evidence. Browser review labels are not authenticated approval.
+          </aside>
+          {children}
+        </main>
       </body>
     </html>
   );

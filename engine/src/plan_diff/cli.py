@@ -14,9 +14,11 @@ from plan_diff import fetch as fetching
 from plan_diff import run as running
 from plan_diff.cms import CmsFileError
 from plan_diff.cms.unzip import UnzipRefused, unzip_cms
+from plan_diff.integration_cli import app as integration_app
 from plan_diff.models import TOP_LEVEL_MODELS
 
 app = typer.Typer(help="plan-diff. Public data only.", no_args_is_help=True)
+app.add_typer(integration_app, name="integration")
 schema_app = typer.Typer(help="The canonical plan schema.", no_args_is_help=True)
 app.add_typer(schema_app, name="schema")
 
