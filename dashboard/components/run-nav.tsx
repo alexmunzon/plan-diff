@@ -48,6 +48,7 @@ export function RunNav() {
           </li>
         ))}
       </ul>
+      <p><Link className="underline" href="/worklist">Broker worklist (synthetic)</Link></p>
       <div className="sidebar-support">
         <section aria-label="Run evidence" className="sidebar-section">
           <h2 className="font-medium">Download run evidence</h2>

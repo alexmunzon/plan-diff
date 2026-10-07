@@ -12,6 +12,10 @@ run evidence. For development, start with [locked setup](#run-locally), the
 
 ## Status and scope
 
+Unreleased local candidate: `/worklist` adds a browser-only synthetic broker worklist.
+The optional `advisory evaluate` command emits an offline review sidecar. See
+[scope and commands](docs/unreleased-worklist-advisory.md). These additions are not deployed.
+
 The dashboard has Overview, Plan comparison, Changes, Trust, and Documents for two committed runs:
 
 - **Synthetic**, at `/`: four made-up plans, generated PDFs, and CMS-shaped fixtures. Shows known

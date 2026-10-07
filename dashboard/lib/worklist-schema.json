@@ -1,0 +1,972 @@
+{
+  "$defs": {
+    "Artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "size_bytes"
+      ],
+      "title": "Artifact",
+      "type": "object"
+    },
+    "ChangeCategory": {
+      "enum": [
+        "premium",
+        "deductible",
+        "moop",
+        "copays",
+        "drugs",
+        "allowances"
+      ],
+      "title": "ChangeCategory",
+      "type": "string"
+    },
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "minLength": 1,
+          "title": "Document Id",
+          "type": "string"
+        },
+        "page": {
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "method": {
+          "$ref": "#/$defs/CitationMethod"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        }
+      },
+      "required": [
+        "document_id",
+        "page",
+        "method"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "CitationMethod": {
+      "enum": [
+        "rule",
+        "llm",
+        "cms",
+        "human"
+      ],
+      "title": "CitationMethod",
+      "type": "string"
+    },
+    "Coinsurance": {
+      "additionalProperties": false,
+      "description": "A percent of the cost, 0 to 100.",
+      "properties": {
+        "kind": {
+          "const": "coinsurance",
+          "default": "coinsurance",
+          "title": "Kind",
+          "type": "string"
+        },
+        "percent": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "decimal_places": 2,
+          "ge": 0,
+          "le": 100,
+          "title": "Percent"
+        }
+      },
+      "required": [
+        "percent"
+      ],
+      "title": "Coinsurance",
+      "type": "object"
+    },
+    "Copay": {
+      "additionalProperties": false,
+      "description": "A fixed dollar amount per unit (the unit lives on ExtractedField).",
+      "properties": {
+        "kind": {
+          "const": "copay",
+          "default": "copay",
+          "title": "Kind",
+          "type": "string"
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "decimal_places": 2,
+          "ge": 0,
+          "max_digits": 12,
+          "title": "Amount"
+        }
+      },
+      "required": [
+        "amount"
+      ],
+      "title": "Copay",
+      "type": "object"
+    },
+    "Coverage": {
+      "additionalProperties": false,
+      "properties": {
+        "agency_id": {
+          "minLength": 1,
+          "title": "Agency Id",
+          "type": "string"
+        },
+        "client_id": {
+          "minLength": 1,
+          "title": "Client Id",
+          "type": "string"
+        },
+        "policy_id": {
+          "minLength": 1,
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "plan_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Plan Id"
+        },
+        "plan_year": {
+          "anyOf": [
+            {
+              "maximum": 2100,
+              "minimum": 2000,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Plan Year"
+        },
+        "county": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "County"
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        }
+      },
+      "required": [
+        "agency_id",
+        "client_id",
+        "policy_id",
+        "plan_id",
+        "plan_year",
+        "county",
+        "provenance"
+      ],
+      "title": "Coverage",
+      "type": "object"
+    },
+    "CrosswalkStatus": {
+      "enum": [
+        "new",
+        "continuing",
+        "consolidated",
+        "service_area_reduced",
+        "service_area_expanded",
+        "terminated"
+      ],
+      "title": "CrosswalkStatus",
+      "type": "string"
+    },
+    "Direction": {
+      "enum": [
+        "up",
+        "down",
+        "same",
+        "added",
+        "removed",
+        "not_comparable"
+      ],
+      "title": "Direction",
+      "type": "string"
+    },
+    "ExtractedField": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/FieldName"
+        },
+        "value": {
+          "discriminator": {
+            "mapping": {
+              "coinsurance": "#/$defs/Coinsurance",
+              "copay": "#/$defs/Copay",
+              "money": "#/$defs/Money",
+              "not_covered": "#/$defs/NotCovered"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Money"
+            },
+            {
+              "$ref": "#/$defs/Copay"
+            },
+            {
+              "$ref": "#/$defs/Coinsurance"
+            },
+            {
+              "$ref": "#/$defs/NotCovered"
+            }
+          ],
+          "title": "Value"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Unit"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "citation": {
+          "$ref": "#/$defs/Citation"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "unit",
+        "citation",
+        "confidence"
+      ],
+      "title": "ExtractedField",
+      "type": "object"
+    },
+    "FieldChange": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "$ref": "#/$defs/FieldName"
+        },
+        "old": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExtractedField"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "new": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExtractedField"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "category": {
+          "$ref": "#/$defs/ChangeCategory"
+        },
+        "direction": {
+          "$ref": "#/$defs/Direction"
+        }
+      },
+      "required": [
+        "field",
+        "old",
+        "new",
+        "category",
+        "direction"
+      ],
+      "title": "FieldChange",
+      "type": "object"
+    },
+    "FieldName": {
+      "enum": [
+        "monthly_premium",
+        "medical_deductible",
+        "moop_in_network",
+        "pcp_copay",
+        "specialist_copay",
+        "emergency_room",
+        "urgent_care",
+        "inpatient_stay",
+        "outpatient_surgery",
+        "drug_deductible",
+        "drug_tier_1",
+        "drug_tier_2",
+        "drug_tier_3",
+        "dental_allowance",
+        "otc_allowance"
+      ],
+      "title": "FieldName",
+      "type": "string"
+    },
+    "Issue": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "record_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Record Ids",
+          "type": "array"
+        },
+        "artifact": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Artifact"
+        },
+        "artifact_row": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Artifact Row"
+        },
+        "review_state": {
+          "default": "needs_review",
+          "enum": [
+            "not_reviewed",
+            "needs_review",
+            "approved",
+            "rejected",
+            "blocked"
+          ],
+          "title": "Review State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "title": "Issue",
+      "type": "object"
+    },
+    "Money": {
+      "additionalProperties": false,
+      "description": "A dollar amount such as a premium, deductible, MOOP, or allowance.",
+      "properties": {
+        "kind": {
+          "const": "money",
+          "default": "money",
+          "title": "Kind",
+          "type": "string"
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "decimal_places": 2,
+          "ge": 0,
+          "max_digits": 12,
+          "title": "Amount"
+        }
+      },
+      "required": [
+        "amount"
+      ],
+      "title": "Money",
+      "type": "object"
+    },
+    "NotCovered": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "not_covered",
+          "default": "not_covered",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "NotCovered",
+      "type": "object"
+    },
+    "PlanDiff": {
+      "additionalProperties": false,
+      "properties": {
+        "old_plan_id": {
+          "anyOf": [
+            {
+              "pattern": "^[HR][0-9]{4}-[0-9]{3}(-(00[1-9]|0[1-9][0-9]|[1-9][0-9]{2}))?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Old Plan Id"
+        },
+        "new_plan_id": {
+          "anyOf": [
+            {
+              "pattern": "^[HR][0-9]{4}-[0-9]{3}(-(00[1-9]|0[1-9][0-9]|[1-9][0-9]{2}))?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "New Plan Id"
+        },
+        "old_year": {
+          "maximum": 2100,
+          "minimum": 2006,
+          "title": "Old Year",
+          "type": "integer"
+        },
+        "new_year": {
+          "maximum": 2100,
+          "minimum": 2006,
+          "title": "New Year",
+          "type": "integer"
+        },
+        "crosswalk_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CrosswalkStatus"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/$defs/FieldChange"
+          },
+          "title": "Changes",
+          "type": "array"
+        },
+        "shop_again": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Shop Again"
+        },
+        "reasons": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "evidence": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "review": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ReviewItem"
+          },
+          "title": "Review",
+          "type": "array"
+        }
+      },
+      "required": [
+        "old_plan_id",
+        "new_plan_id",
+        "old_year",
+        "new_year",
+        "crosswalk_status",
+        "changes",
+        "shop_again",
+        "reasons"
+      ],
+      "title": "PlanDiff",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "source_file": {
+          "minLength": 1,
+          "title": "Source File",
+          "type": "string"
+        },
+        "sheet": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sheet"
+        },
+        "row_number": {
+          "minimum": 1,
+          "title": "Row Number",
+          "type": "integer"
+        },
+        "raw_hash": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Raw Hash",
+          "type": "string"
+        },
+        "run_id": {
+          "minLength": 1,
+          "title": "Run Id",
+          "type": "string"
+        },
+        "mapping_version": {
+          "minLength": 1,
+          "title": "Mapping Version",
+          "type": "string"
+        },
+        "artifact": {
+          "minLength": 1,
+          "title": "Artifact",
+          "type": "string"
+        },
+        "artifact_row": {
+          "minimum": 1,
+          "title": "Artifact Row",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "source_file",
+        "sheet",
+        "row_number",
+        "raw_hash",
+        "run_id",
+        "mapping_version",
+        "artifact",
+        "artifact_row"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "ReviewItem": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/ReviewKind"
+        },
+        "plan_id": {
+          "anyOf": [
+            {
+              "pattern": "^[HR][0-9]{4}-[0-9]{3}(-(00[1-9]|0[1-9][0-9]|[1-9][0-9]{2}))?$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Plan Id"
+        },
+        "year": {
+          "anyOf": [
+            {
+              "maximum": 2100,
+              "minimum": 2006,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Year"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldName"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "reason": {
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        }
+      },
+      "required": [
+        "kind",
+        "plan_id",
+        "year",
+        "field",
+        "evidence",
+        "reason",
+        "severity"
+      ],
+      "title": "ReviewItem",
+      "type": "object"
+    },
+    "ReviewKind": {
+      "enum": [
+        "pdf_cms_mismatch",
+        "rule_llm_disagree",
+        "not_extracted",
+        "conflicting_values",
+        "unclassified_document",
+        "unknown_period",
+        "crosswalk_row_missing",
+        "shop_again_uncertain",
+        "unexpected_unit",
+        "not_comparable"
+      ],
+      "title": "ReviewKind",
+      "type": "string"
+    },
+    "Severity": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "Unit": {
+      "enum": [
+        "per_visit",
+        "per_day",
+        "per_stay",
+        "per_month",
+        "per_quarter",
+        "per_half_year",
+        "per_year",
+        "per_prescription"
+      ],
+      "title": "Unit",
+      "type": "string"
+    },
+    "WorkItem": {
+      "additionalProperties": false,
+      "properties": {
+        "item_id": {
+          "minLength": 1,
+          "title": "Item Id",
+          "type": "string"
+        },
+        "client_id": {
+          "minLength": 1,
+          "title": "Client Id",
+          "type": "string"
+        },
+        "client_record_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Client Record Id"
+        },
+        "policy_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Policy Id"
+        },
+        "coverage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Coverage"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "identity_state": {
+          "title": "Identity State",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "ready_for_review",
+            "needs_review",
+            "unsupported"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "review_state": {
+          "const": "needs_review",
+          "default": "needs_review",
+          "title": "Review State",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "plan_diff": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PlanDiff"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "plan_artifact": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Plan Artifact"
+        }
+      },
+      "required": [
+        "item_id",
+        "client_id",
+        "client_record_id",
+        "policy_id",
+        "coverage",
+        "identity_state",
+        "state",
+        "reasons",
+        "plan_diff",
+        "plan_artifact"
+      ],
+      "title": "WorkItem",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "agency_id": {
+      "minLength": 1,
+      "title": "Agency Id",
+      "type": "string"
+    },
+    "run_id": {
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "intake_run_id": {
+      "minLength": 1,
+      "title": "Intake Run Id",
+      "type": "string"
+    },
+    "bob_run_id": {
+      "minLength": 1,
+      "title": "Bob Run Id",
+      "type": "string"
+    },
+    "plan_run_id": {
+      "minLength": 1,
+      "title": "Plan Run Id",
+      "type": "string"
+    },
+    "data_kind": {
+      "const": "synthetic",
+      "default": "synthetic",
+      "title": "Data Kind",
+      "type": "string"
+    },
+    "packet_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Packet Sha256",
+      "type": "string"
+    },
+    "coverage_artifact": {
+      "$ref": "#/$defs/Artifact"
+    },
+    "plan_artifacts": {
+      "items": {
+        "$ref": "#/$defs/Artifact"
+      },
+      "title": "Plan Artifacts",
+      "type": "array"
+    },
+    "items": {
+      "items": {
+        "$ref": "#/$defs/WorkItem"
+      },
+      "title": "Items",
+      "type": "array"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/Issue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "purpose": {
+      "const": "synthetic review worklist; no suitability recommendation",
+      "default": "synthetic review worklist; no suitability recommendation",
+      "title": "Purpose",
+      "type": "string"
+    }
+  },
+  "required": [
+    "agency_id",
+    "run_id",
+    "intake_run_id",
+    "bob_run_id",
+    "plan_run_id",
+    "packet_sha256",
+    "coverage_artifact",
+    "plan_artifacts",
+    "items",
+    "issues"
+  ],
+  "title": "Worklist",
+  "type": "object"
+}
