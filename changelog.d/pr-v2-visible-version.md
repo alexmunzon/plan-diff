@@ -1,0 +1,1 @@
+- Add a visible, accessible V2 badge beside the app title. No behavior or data changes.
