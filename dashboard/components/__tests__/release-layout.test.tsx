@@ -27,6 +27,8 @@ describe("Release navigation", () => {
     const html = renderToStaticMarkup(<RootLayout params={Promise.resolve({})}>page</RootLayout>);
     const doc = new DOMParser().parseFromString(html, "text/html");
     const scope = doc.querySelector('[aria-label="Review scope"]');
+    expect(scope?.textContent).toContain("Human review required");
+    expect(scope?.textContent).not.toContain("Synthetic");
     expect(scope?.textContent).toContain("Plan changes are review signals");
     expect(scope?.textContent).toContain("separately supplied enrollment evidence");
     expect(scope?.textContent).toContain("Browser review labels are not authenticated approval");

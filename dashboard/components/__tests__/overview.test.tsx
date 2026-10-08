@@ -46,7 +46,16 @@ describe("Overview", () => {
     const last = within(screen.getByRole("listitem", { name: "Plan H9999-004" }));
     expect(last.getByText("Undecided, needs review")).toBeInTheDocument();
     expect(last.queryByText("No change flag")).not.toBeInTheDocument();
-    expect(last.getByText(/Maximum out-of-pocket cannot decide shop again/)).toBeInTheDocument();
+    expect(last.getByText("Maximum out-of-pocket change flag needs review: 2027 value read with confidence 0.6, below 0.7")).toBeVisible();
+    const original = last.getByText("maximum out-of-pocket cannot decide shop again: 2027 value read with confidence 0.6, below 0.7");
+    expect(original).not.toBeVisible();
+    const disclosure = last.getByText("Original recorded reason");
+    disclosure.focus();
+    expect(disclosure).toHaveFocus();
+    fireEvent.click(disclosure);
+    expect(original).toBeVisible();
+    fireEvent.click(disclosure);
+    expect(original).not.toBeVisible();
   });
 
   it("keeps technical metrics collapsed, with synthetic caveats when opened repeatedly", async () => {

@@ -81,6 +81,7 @@ describe("consulting visual contract", () => {
   it.each([[DEMO_RUN_DIR, "", "Synthetic demo"], [TEXAS_RUN_DIR, "/texas", "Public Texas run"]])("explains the run and offers a direct review action on %s", async (dir, base, label) => {
     render(<Overview run={await loadRunDir(dir)} base={base} />);
     expect(screen.getByText(label)).toBeInTheDocument();
+    expect(screen.queryByText(base === "/texas" ? "Synthetic demo" : "Public Texas run")).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Review evidence" })).toHaveAttribute("href", `${base}/trust#queue-heading`);
     expect(screen.getByRole("link", { name: "Compare plan changes" })).toHaveAttribute("href", `${base}/plans`);
     expect(screen.getByRole("heading", { name: "Plans", level: 2 })).toBeVisible();

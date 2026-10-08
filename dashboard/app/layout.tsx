@@ -5,7 +5,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "plan-diff",
+  title: "Plan Diff",
   description:
     "Compare Medicare Advantage plan changes for broker review. Carrier documents compared year over year, every value cited to its page. Public data only; not suitability recommendations.",
 };
@@ -25,16 +25,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <nav aria-label="Main" className="app-sidebar">
           <div className="sidebar-brand">
             <div>
-              <p className="brand-title">plan-diff <span data-version-badge className="ml-1 inline-block rounded border border-current px-1.5 py-0.5 align-middle text-[10px] font-semibold tracking-wide"><span aria-hidden="true">V2</span><span className="sr-only">Version 2</span></span></p>
+              <p className="brand-title">Plan Diff <span data-version-badge className="ml-1 inline-block rounded border border-current px-1.5 py-0.5 align-middle text-[10px] font-semibold tracking-wide"><span aria-hidden="true">V2</span><span className="sr-only">Version 2</span></span></p>
               <p className="brand-caption">Data Trust Series</p>
             </div>
-            <ThemeToggle />
           </div>
           <RunNav />
+          <div className="sidebar-footer"><ThemeToggle /></div>
         </nav>
         <main id="main-content" tabIndex={-1} className="app-main">
           <aside aria-label="Review scope" className="panel mb-6 p-4 text-sm muted">
-            Review the selected run&apos;s evidence. Plan changes are review signals; a client worklist needs separately supplied enrollment evidence. Browser review labels are not authenticated approval.
+            Human review required. Plan changes are review signals; a client worklist needs separately supplied enrollment evidence. Browser review labels are not authenticated approval.
           </aside>
           {children}
         </main>

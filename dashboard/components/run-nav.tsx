@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftRight, Columns3, Download, FileText, LayoutDashboard, ShieldCheck } from "lucide-react";
+import { ArrowLeftRight, Columns3, ClipboardList, Download, FileText, LayoutDashboard, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -48,7 +48,9 @@ export function RunNav() {
           </li>
         ))}
       </ul>
-      <p><Link className="underline" href="/worklist">Broker worklist (synthetic)</Link></p>
+      <ul aria-label="Broker workflow" className="page-navigation">
+        <li><NavLink href="/worklist" label="Broker worklist (synthetic)" icon={ClipboardList} /></li>
+      </ul>
       <div className="sidebar-support">
         <details className="sidebar-section technical-details">
           <summary className="font-medium">Download technical evidence</summary>
@@ -63,7 +65,7 @@ export function RunNav() {
           <h2 className="font-medium">Agency Data Trust Series</h2>
           <p className="mt-2">Separate demos, shared trust principles.</p>
           <ul className="sidebar-links">
-            <li><a className="underline" href="https://agency-intake-kit.vercel.app">1. Intake Kit</a></li>
+            <li><a className="underline" href="https://agency-intake-kit.vercel.app">1. Agency Intake Kit</a></li>
             <li><a className="underline" href="https://bob-resolve-nine.vercel.app">2. Bob Resolve</a></li>
             <li aria-current="true">3. Plan Diff</li>
           </ul>

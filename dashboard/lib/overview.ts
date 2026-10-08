@@ -11,8 +11,6 @@ export function reviewFlagText(value: boolean | null): string {
 
 const ORDER = (value: boolean | null) => (value === true ? 0 : value === null ? 1 : 2);
 
-const sentence = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
-
 export function crosswalkText(diff: PlanDiff): string {
   const next = diff.new_plan_id ?? "no plan";
   switch (diff.crosswalk_status) {
@@ -42,9 +40,9 @@ export function overviewRows(run: Run): OverviewRow[] {
     return {
       planId,
       shopAgain: diff.shop_again,
-      reasons: diff.reasons.map(sentence),
+      reasons: diff.reasons,
       undecidedBecause:
-        diff.shop_again === null ? diff.review.filter((r) => r.severity === "high").map((r) => sentence(r.reason)) : [],
+        diff.shop_again === null ? diff.review.filter((r) => r.severity === "high").map((r) => r.reason) : [],
       crosswalk: crosswalkText(diff),
       // Counted by the plan's own (old) id, so a consolidated plan does not repeat its new plan's items.
       reviewCount: run.reviewQueue.filter((item) => item.plan_id === planId).length,

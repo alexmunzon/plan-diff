@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { PlanComparison } from "@/components/plan-comparison";
@@ -60,7 +60,16 @@ describe("Plan comparison", () => {
     const verdict = within(screen.getByRole("region", { name: "Review signal" }));
     expect(verdict.getByText("Undecided, needs review")).toBeInTheDocument();
     expect(verdict.queryByText("No change flag")).not.toBeInTheDocument();
-    expect(verdict.getByText(/Maximum out-of-pocket cannot decide shop again/)).toBeInTheDocument();
+    expect(verdict.getByText("Maximum out-of-pocket change flag needs review: 2027 value read with confidence 0.6, below 0.7")).toBeVisible();
+    const original = verdict.getByText("maximum out-of-pocket cannot decide shop again: 2027 value read with confidence 0.6, below 0.7");
+    expect(original).not.toBeVisible();
+    const disclosure = verdict.getByText("Original recorded reason");
+    disclosure.focus();
+    expect(disclosure).toHaveFocus();
+    fireEvent.click(disclosure);
+    expect(original).toBeVisible();
+    fireEvent.click(disclosure);
+    expect(original).not.toBeVisible();
     expect(row("Maximum out-of-pocket (in network)").getByText("Read with confidence 0.6, below 0.7")).toBeInTheDocument();
     expect(screen.getAllByText(/Read with confidence/)).toHaveLength(1); // only below the floor
     expect(screen.getByText("Change flag needs review")).toBeInTheDocument();

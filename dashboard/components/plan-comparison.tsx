@@ -1,5 +1,6 @@
 import { CitationText, DirectionText, TABLE, TD, TH, ValueCell } from "@/components/change-parts";
 import { ANSWER_TONE } from "@/components/overview";
+import { ReviewReason } from "@/components/review-reason";
 import { SeverityBadge } from "@/components/severity-badge";
 import { RunEyebrow } from "@/components/run-eyebrow";
 import { CARD } from "@/components/tiles";
@@ -36,7 +37,7 @@ function ReviewSignal({ diff, run }: { diff: PlanDiff; run: Run }) {
           <p>No change crossed a review threshold.</p>
         ) : (
           <ul className="list-disc pl-4">
-            {lines.map((line) => <li key={line}>{sentence(line)}</li>)}
+            {lines.map((line) => <li key={line}><ReviewReason reason={line} /></li>)}
           </ul>
         )}
       </div>
@@ -107,7 +108,7 @@ export function PlanComparison({ run, diff }: { run: Run; diff: PlanDiff }) {
                     {[item.field && fieldLabel(item.field), item.year].filter(Boolean).join(", ")}
                   </span>
                 </p>
-                <p>{sentence(item.reason)}</p>
+                <ReviewReason reason={item.reason} />
                 <p className="flex flex-wrap gap-x-3">
                   {item.evidence.map((citation, j) => <CitationText key={j} citation={citation} manifest={run.manifest} />)}
                 </p>
