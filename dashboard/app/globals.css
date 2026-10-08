@@ -136,7 +136,7 @@ a { text-underline-offset: 3px; }
 }
 @media (min-width: 1024px) {
   .app-shell { flex-direction: row; }
-  .app-sidebar { width: 232px; flex-shrink: 0; }
+  .app-sidebar { position: sticky; top: 0; width: 232px; flex-shrink: 0; height: 100dvh; overflow-y: auto; align-self: flex-start; }
   .run-switch, .page-navigation { flex-direction: column; overflow-x: visible; }
   .sidebar-links { flex-direction: column; }
   .sidebar-support { display: block; }
