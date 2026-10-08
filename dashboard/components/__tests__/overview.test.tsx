@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Overview } from "@/components/overview";
@@ -15,8 +15,11 @@ describe("Overview", () => {
   it("asks the first-screen question", async () => {
     await show();
     expect(
-      screen.getByRole("heading", { level: 1, name: "Which plans changed enough that a client should shop again?" }),
+      screen.getByRole("heading", { level: 1, name: "Which plan changes need broker review?" }),
     ).toBeInTheDocument();
+    expect(screen.getByText(/Flags are not suitability recommendations/)).toBeVisible();
+    expect(screen.getByRole("link", { name: "Compare plan changes" })).toHaveClass("action-primary");
+    expect(screen.getByRole("link", { name: "Review evidence" })).not.toHaveClass("action-primary");
   });
 
   it("shows flagged plans first, then the undecided one, each with reasons and status", async () => {
@@ -29,7 +32,7 @@ describe("Overview", () => {
       "Plan H9999-004",
     ]);
     const first = within(rows[0]);
-    expect(first.getByText("Yes")).toBeInTheDocument();
+    expect(first.getByText("Flagged for review")).toBeInTheDocument();
     expect(first.getByText("Premium up $25 a month")).toBeInTheDocument();
     expect(first.getByText("Renews as H9999-001")).toBeInTheDocument();
     expect(first.getByText("5 review items")).toBeInTheDocument();
@@ -42,23 +45,37 @@ describe("Overview", () => {
     await show();
     const last = within(screen.getByRole("listitem", { name: "Plan H9999-004" }));
     expect(last.getByText("Undecided, needs review")).toBeInTheDocument();
-    expect(last.queryByText("No")).not.toBeInTheDocument();
+    expect(last.queryByText("No change flag")).not.toBeInTheDocument();
     expect(last.getByText(/Maximum out-of-pocket cannot decide shop again/)).toBeInTheDocument();
   });
 
-  it("shows the summary tiles with the accuracy labeled as synthetic", async () => {
+  it("keeps technical metrics collapsed, with synthetic caveats when opened repeatedly", async () => {
     await show();
     expect(tile("Plans compared").getByText("4")).toBeInTheDocument();
-    expect(tile("Shop again").getByText("3")).toBeInTheDocument();
+    expect(tile("Flagged for review").getByText("3")).toBeInTheDocument();
     expect(tile("Undecided").getByText("1")).toBeInTheDocument();
     expect(tile("Review items").getByText("10")).toBeInTheDocument();
+    const toggle = screen.getByText("Run technical details");
+    const details = toggle.closest("details")!;
+    expect(details).not.toHaveAttribute("open");
+    expect(screen.getByText("97.6%")).not.toBeVisible();
+    expect(screen.getByText(/Jev off, 0 calls, \$0\.00/)).not.toBeVisible();
+    toggle.focus();
+    expect(toggle).toHaveFocus();
+    fireEvent.click(toggle);
     expect(tile("Accuracy match rate").getByText("97.6%")).toBeInTheDocument();
     expect(tile("Accuracy match rate").getByText(/on synthetic fixtures/)).toBeInTheDocument();
-    expect(screen.getByText(/Jev off, 0 calls, \$0\.00/)).toBeInTheDocument();
+    expect(screen.getByText(/Jev off, 0 calls, \$0\.00/)).toBeVisible();
+    fireEvent.click(toggle);
+    expect(details).not.toHaveAttribute("open");
+    fireEvent.click(toggle);
+    expect(screen.getByText("97.6%")).toBeVisible();
+    expect(screen.getByRole("listitem", { name: "Plan H9999-001" }).closest("details")).toBeNull();
   });
 
   it("labels the public Texas match count as in-sample and separates unmeasured values", async () => {
     render(<Overview run={await loadRunDir(TEXAS_RUN_DIR)} base={TEXAS.base} />);
+    fireEvent.click(screen.getByText("Run technical details"));
     const accuracy = tile("Accuracy match rate");
     expect(accuracy.getByText("100.0%")).toBeInTheDocument();
     expect(accuracy.getByText(/48 of 48 comparable values, across 2 public plans/)).toBeInTheDocument();

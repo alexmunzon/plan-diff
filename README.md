@@ -1,6 +1,6 @@
 # plan-diff
 
-Which Medicare Advantage plans changed enough that a client should shop again? plan-diff reads
+Which Medicare Advantage plan changes need broker review? plan-diff reads
 public carrier benefit documents, keeps a document-and-page citation on every extracted value,
 checks against CMS public data, and compares plan years using the CMS crosswalk.
 
@@ -25,7 +25,8 @@ The dashboard has Overview, Plan comparison, Changes, Trust, and Documents for t
 
 This is a read-only recruiting demo. It has no client records, enrollment workflow, or live refresh.
 The dashboard reads committed outputs at build time. Jev and LLM calls are off in both runs.
-Shop again is a broker review flag, not suitability or coverage advice or an automatic client worklist.
+Change flags are broker review signals, not suitability or coverage advice or an automatic client worklist.
+The recorded `shop_again` field and its thresholds are unchanged; the UI labels it as a review flag.
 
 ## Five-minute walkthrough
 
@@ -44,7 +45,8 @@ Shop again is a broker review flag, not suitability or coverage advice or an aut
 5. Open [Texas Trust](https://plan-diff.vercel.app/texas/trust), then
    [Documents](https://plan-diff.vercel.app/texas/documents). Inspect the review queue and follow
    a carrier citation to its original HTTPS PDF page. Synthetic documents have no external PDF.
-   The navigation also downloads the selected run's manifest, accuracy JSON, and review JSONL.
+   Open "Download technical evidence" in the navigation for the run's manifest, accuracy JSON,
+   and review JSONL. Overview's "Run technical details" holds match-rate caveats and model usage.
 
 The Changes page groups changes by benefit category. Switching runs keeps the page navigation
 inside that run. Unknown plan URLs show a recovery page. Missing plan/diff files and mismatched

@@ -40,7 +40,7 @@ export function Trust({ run }: { run: Run }) {
           <dt className={MUTED}>Slice</dt><dd className="tabular-nums">{sliceText(run)}</dd>
           <dt className={MUTED}>As of</dt><dd className="tabular-nums">{asOf(run)}, run {run.manifest.run_id}</dd>
           <dt className={MUTED}>Confidence floor</dt>
-          <dd>A value read with confidence below {run.manifest.config.confidence_floor} never decides shop again.</dd>
+          <dd>A value read with confidence below {run.manifest.config.confidence_floor} never decides a change flag.</dd>
         </dl>
       </header>
       <section aria-labelledby="accuracy-heading" tabIndex={0} className={cn(CARD, "overflow-x-auto")}>

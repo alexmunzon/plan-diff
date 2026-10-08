@@ -50,15 +50,15 @@ export function RunNav() {
       </ul>
       <p><Link className="underline" href="/worklist">Broker worklist (synthetic)</Link></p>
       <div className="sidebar-support">
-        <section aria-label="Run evidence" className="sidebar-section">
-          <h2 className="font-medium">Download run evidence</h2>
+        <details className="sidebar-section technical-details">
+          <summary className="font-medium">Download technical evidence</summary>
           <p className="mt-2">{current.label}. JSON only, no PDFs.</p>
           <ul className="sidebar-links">
             {[["Manifest JSON", "manifest.json"], ["Accuracy JSON", "accuracy.json"], ["Review queue JSONL", "review_queue.jsonl"]].map(([label, file]) => (
               <li key={file}><a className="flex items-center gap-2 underline" href={`/${current.folder}/${file}`} download><Download aria-hidden className="size-3" />{label}</a></li>
             ))}
           </ul>
-        </section>
+        </details>
         <section aria-label="Agency Data Trust Series" className="sidebar-section">
           <h2 className="font-medium">Agency Data Trust Series</h2>
           <p className="mt-2">Separate demos, shared trust principles.</p>

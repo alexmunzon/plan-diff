@@ -4,7 +4,7 @@ import { SeverityBadge, type Tone } from "@/components/severity-badge";
 import { RunEyebrow } from "@/components/run-eyebrow";
 import { CARD, Tile } from "@/components/tiles";
 import { formatMoney } from "@/lib/money";
-import { overviewRows, plural, shopAgainText, summary, type OverviewRow } from "@/lib/overview";
+import { overviewRows, plural, reviewFlagText, summary, type OverviewRow } from "@/lib/overview";
 import type { Run } from "@/lib/run-loader";
 import type { ApiUsage } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -23,7 +23,7 @@ function PlanRow({ row, base }: { row: OverviewRow; base: string }) {
       <div className="space-y-1">
         <Link href={`${base}/plans/${row.planId}`} className="plan-id font-mono text-sm underline">{row.planId}</Link>
         <p className="text-xs muted">
-          Shop again: <SeverityBadge tone={ANSWER_TONE(row.shopAgain)} label={shopAgainText(row.shopAgain)} />
+          <SeverityBadge tone={ANSWER_TONE(row.shopAgain)} label={reviewFlagText(row.shopAgain)} />
         </p>
       </div>
       <div className="text-sm">
@@ -31,7 +31,7 @@ function PlanRow({ row, base }: { row: OverviewRow; base: string }) {
           {row.shopAgain === null && row.reasons.length === 0 ? "Why it is undecided" : "Why"}
         </p>
         {lines.length === 0 ? (
-          <p>No change crossed a shop-again threshold.</p>
+          <p>No change crossed a review threshold.</p>
         ) : (
           <ul className="list-disc pl-4">
             {lines.map((line) => <li key={line}>{line}</li>)}
@@ -57,23 +57,23 @@ export function Overview({ run, base = "" }: { run: Run; base?: string }) {
     <div className="report-page">
       <header className="page-header">
         <RunEyebrow run={run} />
-        <h1 className="page-title">Which plans changed enough that a client should shop again?</h1>
+        <h1 className="page-title">Which plan changes need broker review?</h1>
+        <p className="page-context">
+          Compare cited changes and check unresolved evidence before broker review. Flags are not suitability recommendations.
+        </p>
         <p className="page-context tabular-nums">
           Plan years {manifest.years.join(" to ")}, run {manifest.run_id}. Flagged plans come first.
         </p>
         <div className="page-actions">
-          <Link href={`${base}/trust#queue-heading`} className="action-link action-primary">Review evidence</Link>
-          <Link href={`${base}/plans`} className="action-link">Compare plans</Link>
+          <Link href={`${base}/plans`} className="action-link action-primary">Compare plan changes</Link>
+          <Link href={`${base}/trust#queue-heading`} className="action-link">Review evidence</Link>
         </div>
       </header>
       <div className="metric-grid">
         <Tile label="Plans compared" value={String(totals.compared)} context={`${manifest.years.join(" vs ")}, by CMS crosswalk`} />
-        <Tile label="Shop again" tone="error" value={String(totals.flagged)} context="Plans flagged with reasons" />
+        <Tile label="Flagged for review" tone="error" value={String(totals.flagged)} context="Plans with a change flag and reasons" />
         <Tile label="Undecided" tone="warning" value={String(totals.undecided)} context="Need a person to review" />
         <Tile label="Review items" tone="info" value={String(totals.reviewItems)} context="Open in the review queue" />
-      </div>
-      <div className="accuracy-summary">
-        <Tile label="Accuracy match rate" value={totals.matchRate} context={totals.matchContext} />
       </div>
       <section aria-labelledby="plans-heading">
         <h2 id="plans-heading" className="section-heading">Plans</h2>
@@ -81,9 +81,15 @@ export function Overview({ run, base = "" }: { run: Run; base?: string }) {
           {rows.map((row) => <PlanRow key={row.planId} row={row} base={base} />)}
         </ul>
       </section>
-      <p className="report-footer tabular-nums">
-        {usageText("Jev", manifest.jev)}. {usageText("LLM", manifest.llm)}. {manifest.data_kind === "synthetic" ? "Synthetic test fixtures." : "Public Texas carrier documents and CMS files."}
-      </p>
+      <details className="technical-details">
+        <summary>Run technical details</summary>
+        <div className="accuracy-summary">
+          <Tile label="Accuracy match rate" value={totals.matchRate} context={totals.matchContext} />
+        </div>
+        <p className="report-footer tabular-nums">
+          {usageText("Jev", manifest.jev)}. {usageText("LLM", manifest.llm)}. {manifest.data_kind === "synthetic" ? "Synthetic test fixtures." : "Public Texas carrier documents and CMS files."}
+        </p>
+      </details>
     </div>
   );
 }

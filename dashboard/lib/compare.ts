@@ -134,7 +134,7 @@ export function comparisonRows(diff: PlanDiff): { name: string; label: string; c
 }
 
 const REVIEW_KINDS: Record<string, string> = {
-  shop_again_uncertain: "Cannot decide shop again",
+  shop_again_uncertain: "Change flag needs review",
   pdf_cms_mismatch: "PDF and CMS disagree",
   not_comparable: "Cannot be checked against CMS",
   conflicting_values: "Two values in one cell",

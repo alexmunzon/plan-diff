@@ -7,7 +7,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "plan-diff",
   description:
-    "Which Medicare Advantage plans changed enough that a client should shop again? Carrier documents compared year over year, every value cited to its page. Public data only.",
+    "Compare Medicare Advantage plan changes for broker review. Carrier documents compared year over year, every value cited to its page. Public data only; not suitability recommendations.",
 };
 
 // Runs before the first paint, so a dark page never flashes white. The saved choice wins;

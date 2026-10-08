@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { describe, expect, it } from "vitest";
 
 import { formatMoney } from "@/lib/money";
-import { overviewRows, shopAgainText, summary } from "@/lib/overview";
+import { overviewRows, reviewFlagText, summary } from "@/lib/overview";
 import { DEMO_RUN_DIR, loadRunDir } from "@/lib/run-dir";
 import { parseRun, type RunFiles } from "@/lib/run-loader";
 
@@ -118,9 +118,9 @@ describe("overview data", () => {
   });
 
   it("never reads undecided as no", () => {
-    expect(shopAgainText(null)).toBe("Undecided, needs review");
-    expect(shopAgainText(true)).toBe("Yes");
-    expect(shopAgainText(false)).toBe("No");
+    expect(reviewFlagText(null)).toBe("Undecided, needs review");
+    expect(reviewFlagText(true)).toBe("Flagged for review");
+    expect(reviewFlagText(false)).toBe("No change flag");
   });
 
   it("summarizes the run with a labeled match rate", async () => {
