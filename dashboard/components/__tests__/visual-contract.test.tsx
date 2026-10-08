@@ -33,6 +33,20 @@ describe("consulting visual contract", () => {
     expect(layout).toContain('id="main-content"');
   });
 
+  it("keeps the desktop sidebar within the viewport and independently scrollable", async () => {
+    const css = await readFile(path.join(process.cwd(), "app/globals.css"), "utf8");
+    const desktop = css.slice(css.indexOf("@media (min-width: 1024px)"), css.indexOf("@media (prefers-reduced-motion"));
+    const sidebar = desktop.match(/\.app-sidebar \{([^}]+)\}/)![1];
+    for (const declaration of ["position: sticky", "top: 0", "height: 100dvh", "overflow-y: auto", "align-self: flex-start"]) {
+      expect(sidebar).toContain(declaration);
+    }
+    // The compact layout keeps natural page flow and its existing horizontal navigation.
+    const baseSidebar = css.match(/\.app-sidebar \{([^}]+)\}/)![1];
+    expect(baseSidebar).not.toMatch(/position: sticky|height: 100dvh|overflow-y: auto/);
+    const mobile = css.slice(css.indexOf("@media (max-width: 1023px)"));
+    expect(mobile).not.toMatch(/position: sticky|height: 100dvh|overflow-y: auto/);
+  });
+
   it("protects 375/390px touch targets and readable evidence without hiding content", async () => {
     const css = await readFile(path.join(process.cwd(), "app/globals.css"), "utf8");
     const mobile = css.slice(css.indexOf("@media (max-width: 1023px)"));
