@@ -1,4 +1,5 @@
 import { CitationText, TABLE, TD, TH } from "@/components/change-parts";
+import { ReviewReason } from "@/components/review-reason";
 import { SeverityBadge } from "@/components/severity-badge";
 import { RunEyebrow } from "@/components/run-eyebrow";
 import { CARD } from "@/components/tiles";
@@ -112,7 +113,7 @@ export function Trust({ run }: { run: Run }) {
                   {items.map((item, i) => (
                     <li key={i}>
                       <span className="font-mono">{item.plan_id ?? "No plan"}</span>
-                      {[item.field && fieldLabel(item.field), item.year].filter(Boolean).map((part) => `, ${part}`)}: {item.reason}{" "}
+                      {[item.field && fieldLabel(item.field), item.year].filter(Boolean).map((part) => `, ${part}`)}: <ReviewReason reason={item.reason} />{" "}
                       {item.evidence.map((citation, j) => (
                         <span key={j} className="mr-2"><CitationText citation={citation} manifest={run.manifest} /></span>
                       ))}

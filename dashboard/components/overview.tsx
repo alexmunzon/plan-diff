@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ReviewReason } from "@/components/review-reason";
 import { SeverityBadge, type Tone } from "@/components/severity-badge";
 import { RunEyebrow } from "@/components/run-eyebrow";
 import { CARD, Tile } from "@/components/tiles";
@@ -34,7 +35,7 @@ function PlanRow({ row, base }: { row: OverviewRow; base: string }) {
           <p>No change crossed a review threshold.</p>
         ) : (
           <ul className="list-disc pl-4">
-            {lines.map((line) => <li key={line}>{line}</li>)}
+            {lines.map((line) => <li key={line}><ReviewReason reason={line} /></li>)}
           </ul>
         )}
       </div>

@@ -15,7 +15,7 @@ vi.mock("next/navigation", () => ({ usePathname: () => "/texas/trust" }));
 describe("recruiting demo acceptance", () => {
   it("links the other two builds and downloads this run's inspectable evidence", async () => {
     render(<RunNav />);
-    expect(screen.getByRole("link", { name: "1. Intake Kit" })).toHaveAttribute("href", "https://agency-intake-kit.vercel.app");
+    expect(screen.getByRole("link", { name: "1. Agency Intake Kit" })).toHaveAttribute("href", "https://agency-intake-kit.vercel.app");
     expect(screen.getByRole("link", { name: "2. Bob Resolve" })).toHaveAttribute("href", "https://bob-resolve-nine.vercel.app");
     fireEvent.click(screen.getByText("Download technical evidence"));
     for (const [label, file] of [["Manifest JSON", "manifest.json"], ["Accuracy JSON", "accuracy.json"], ["Review queue JSONL", "review_queue.jsonl"]]) {
