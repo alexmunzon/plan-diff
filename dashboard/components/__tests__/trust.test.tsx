@@ -46,7 +46,7 @@ describe("Trust", () => {
   it("groups the review queue by severity and kind, each kind explained", async () => {
     render(<Trust run={await demo()} />);
     expect(screen.getByRole("heading", { name: "Review queue (10)" })).toBeInTheDocument();
-    const high = within(screen.getByRole("group", { name: "High: Cannot decide shop again" }));
+    const high = within(screen.getByRole("group", { name: "High: Change flag needs review" }));
     expect(high.getByText(/left undecided instead of guessed/)).toBeInTheDocument();
     const notComparable = within(screen.getByRole("group", { name: "Medium: Cannot be checked against CMS" }));
     expect(notComparable.getAllByRole("listitem")).toHaveLength(6);
@@ -58,7 +58,7 @@ describe("Trust", () => {
       r.manifest.config.confidence_floor = 0.5;
     });
     render(<Trust run={run} />);
-    expect(screen.getByText("A value read with confidence below 0.5 never decides shop again.")).toBeInTheDocument();
+    expect(screen.getByText("A value read with confidence below 0.5 never decides a change flag.")).toBeInTheDocument();
     render(<PlanComparison run={run} diff={diffFor(run, "H9999-004")!} />);
     expect(screen.queryByText(/Read with confidence 0.6/)).not.toBeInTheDocument(); // 0.6 is above 0.5
   });

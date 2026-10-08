@@ -31,7 +31,7 @@ export const accuracyLabel = (row: AccuracyRow) => `${row.field ? fieldLabel(row
 /** Plain-language meaning of each review kind, shown once per group. */
 export const REVIEW_EXPLANATIONS: Record<string, string> = {
   shop_again_uncertain:
-    "A value that can decide shop again is missing, unclear, read with low confidence, or disagrees with CMS, so the answer is left undecided instead of guessed.",
+    "A value that can decide a change flag is missing, unclear, read with low confidence, or disagrees with CMS, so the flag is left undecided instead of guessed.",
   pdf_cms_mismatch:
     "The carrier document and the CMS file give different values. Both are shown and neither is picked. Check the page before quoting.",
   not_comparable:

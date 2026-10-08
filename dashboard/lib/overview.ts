@@ -3,10 +3,10 @@ import type { PlanDiff } from "@/lib/types";
 
 // Turns a run into what the Overview shows. Kept apart from the page so it is easy to test.
 
-/** Undecided is its own answer. It is never shown as "No". */
-export function shopAgainText(value: boolean | null): string {
+/** Review signals retain the recorded flag; they do not decide client suitability. */
+export function reviewFlagText(value: boolean | null): string {
   if (value === null) return "Undecided, needs review";
-  return value ? "Yes" : "No";
+  return value ? "Flagged for review" : "No change flag";
 }
 
 const ORDER = (value: boolean | null) => (value === true ? 0 : value === null ? 1 : 2);

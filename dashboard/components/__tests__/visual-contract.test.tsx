@@ -82,8 +82,9 @@ describe("consulting visual contract", () => {
     render(<Overview run={await loadRunDir(dir)} base={base} />);
     expect(screen.getByText(label)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Review evidence" })).toHaveAttribute("href", `${base}/trust#queue-heading`);
+    expect(screen.getByRole("link", { name: "Compare plan changes" })).toHaveAttribute("href", `${base}/plans`);
     expect(screen.getByRole("heading", { name: "Plans", level: 2 })).toBeVisible();
-    expect(screen.getByRole("group", { name: "Accuracy match rate" })).toBeInTheDocument();
+    expect(screen.getByText("Run technical details").closest("details")).not.toHaveAttribute("open");
   });
 
   it("keeps the saved theme and pressed state in sync across repeated changes", async () => {
@@ -122,6 +123,11 @@ describe("consulting visual contract", () => {
     render(<RunNav />);
     expect(screen.getByRole("link", { name: "Changes" })).toHaveAttribute("aria-current", "page");
     expect(screen.getByRole("link", { name: "Plan comparison" })).toHaveAttribute("href", "/texas/plans");
+    const disclosure = screen.getByText("Download technical evidence");
+    expect(disclosure.closest("details")).not.toHaveAttribute("open");
+    disclosure.focus();
+    expect(disclosure).toHaveFocus();
+    fireEvent.click(disclosure);
     expect(screen.getByRole("link", { name: "Review queue JSONL" })).toHaveAttribute("download");
   });
 

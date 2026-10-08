@@ -17,6 +17,7 @@ describe("recruiting demo acceptance", () => {
     render(<RunNav />);
     expect(screen.getByRole("link", { name: "1. Intake Kit" })).toHaveAttribute("href", "https://agency-intake-kit.vercel.app");
     expect(screen.getByRole("link", { name: "2. Bob Resolve" })).toHaveAttribute("href", "https://bob-resolve-nine.vercel.app");
+    fireEvent.click(screen.getByText("Download technical evidence"));
     for (const [label, file] of [["Manifest JSON", "manifest.json"], ["Accuracy JSON", "accuracy.json"], ["Review queue JSONL", "review_queue.jsonl"]]) {
       const link = screen.getByRole("link", { name: label });
       expect(link).toHaveAttribute("href", `/texas-run/${file}`);

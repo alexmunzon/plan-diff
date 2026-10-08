@@ -4,7 +4,7 @@ import { SeverityBadge } from "@/components/severity-badge";
 import { RunEyebrow } from "@/components/run-eyebrow";
 import { CARD } from "@/components/tiles";
 import { categoryLabel, comparisonRows, displayDirection, fieldLabel, fieldWarning, reviewKindText } from "@/lib/compare";
-import { crosswalkText, shopAgainText } from "@/lib/overview";
+import { crosswalkText, reviewFlagText } from "@/lib/overview";
 import type { Run } from "@/lib/run-loader";
 import type { PlanDiff } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -12,11 +12,11 @@ import { cn } from "@/lib/utils";
 const SEVERITY_TONE = { high: "error", medium: "warning", low: "info" } as const;
 const sentence = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
-function Verdict({ diff, run }: { diff: PlanDiff; run: Run }) {
+function ReviewSignal({ diff, run }: { diff: PlanDiff; run: Run }) {
   const undecided = diff.shop_again === null;
   const lines = undecided ? diff.review.filter((r) => r.severity === "high").map((r) => r.reason) : diff.reasons;
   return (
-    <section aria-label="Verdict" className={cn(CARD, "verdict-panel grid gap-4 sm:grid-cols-2")}>
+    <section aria-label="Review signal" className={cn(CARD, "verdict-panel grid gap-4 sm:grid-cols-2")}>
       <div className="space-y-1 text-sm">
         <p className="text-xs muted">Crosswalk</p>
         <p className="font-medium">{crosswalkText(diff)}</p>
@@ -29,11 +29,11 @@ function Verdict({ diff, run }: { diff: PlanDiff; run: Run }) {
       </div>
       <div className="space-y-1 text-sm">
         <p className="text-xs muted">
-          Shop again: <SeverityBadge tone={ANSWER_TONE(diff.shop_again)} label={shopAgainText(diff.shop_again)} />
+          <SeverityBadge tone={ANSWER_TONE(diff.shop_again)} label={reviewFlagText(diff.shop_again)} />
         </p>
         <p className="text-xs muted">{undecided ? "Why it is undecided" : "Why"}</p>
         {lines.length === 0 ? (
-          <p>No change crossed a shop-again threshold.</p>
+          <p>No change crossed a review threshold.</p>
         ) : (
           <ul className="list-disc pl-4">
             {lines.map((line) => <li key={line}>{sentence(line)}</li>)}
@@ -56,8 +56,9 @@ export function PlanComparison({ run, diff }: { run: Run; diff: PlanDiff }) {
           What exactly changed between {oldYear} and {newYear} for this plan?
         </h1>
         <p className="page-context font-mono">{plan}</p>
+        <p className="page-context">A broker must review the evidence before deciding next steps. Change flags are not suitability recommendations.</p>
       </header>
-      <Verdict diff={diff} run={run} />
+      <ReviewSignal diff={diff} run={run} />
       <section aria-labelledby="fields-heading" tabIndex={0} className={cn(CARD, "overflow-x-auto")}>
         <h2 id="fields-heading" className="panel-title">The 15 fields, side by side</h2>
         {diff.changes.length === 0 ? (

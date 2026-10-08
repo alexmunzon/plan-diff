@@ -53,7 +53,7 @@ describe("Texas run", () => {
     const rows = screen.getAllByRole("listitem", { name: /^Plan / });
     expect(rows).toHaveLength(2);
     const humana = within(screen.getByRole("listitem", { name: "Plan H0028-030" }));
-    expect(humana.getByText("Yes")).toBeInTheDocument();
+    expect(humana.getByText("Flagged for review")).toBeInTheDocument();
     expect(humana.getByRole("link", { name: "H0028-030" })).toHaveAttribute("href", "/texas/plans/H0028-030");
   });
 

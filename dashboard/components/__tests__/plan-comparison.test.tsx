@@ -40,15 +40,16 @@ describe("Plan comparison", () => {
     expect(premium.getByText("H9999-001_2026_SB, page 1")).toBeInTheDocument();
     expect(premium.getByText("H9999-001_2027_SB, page 1")).toBeInTheDocument();
     expect(screen.getAllByRole("row")).toHaveLength(16); // header plus the 15 fields
-    const verdict = within(screen.getByRole("region", { name: "Verdict" }));
-    expect(verdict.getByText("Yes")).toBeInTheDocument();
+    const verdict = within(screen.getByRole("region", { name: "Review signal" }));
+    expect(verdict.getByText("Flagged for review")).toBeInTheDocument();
+    expect(screen.getByText(/A broker must review the evidence/)).toBeVisible();
     expect(verdict.getByText("Premium up $25 a month")).toBeInTheDocument();
     expect(verdict.getByText("CMS file crosswalk_2027.csv, row 1")).toBeInTheDocument();
   });
 
   it("example 2: H9999-002 says consolidated, never terminated", async () => {
     await show("H9999-002");
-    const verdict = within(screen.getByRole("region", { name: "Verdict" }));
+    const verdict = within(screen.getByRole("region", { name: "Review signal" }));
     expect(verdict.getByText("Consolidated into H9999-001")).toBeInTheDocument();
     expect(verdict.getByText("Plan consolidated into H9999-001")).toBeInTheDocument();
     expect(screen.queryByText(/terminated/i)).not.toBeInTheDocument();
@@ -56,13 +57,25 @@ describe("Plan comparison", () => {
 
   it("undecided H9999-004 says so in words, with the reason and the low confidence value", async () => {
     await show("H9999-004");
-    const verdict = within(screen.getByRole("region", { name: "Verdict" }));
+    const verdict = within(screen.getByRole("region", { name: "Review signal" }));
     expect(verdict.getByText("Undecided, needs review")).toBeInTheDocument();
-    expect(verdict.queryByText("No")).not.toBeInTheDocument();
+    expect(verdict.queryByText("No change flag")).not.toBeInTheDocument();
     expect(verdict.getByText(/Maximum out-of-pocket cannot decide shop again/)).toBeInTheDocument();
     expect(row("Maximum out-of-pocket (in network)").getByText("Read with confidence 0.6, below 0.7")).toBeInTheDocument();
     expect(screen.getAllByText(/Read with confidence/)).toHaveLength(1); // only below the floor
-    expect(screen.getByText("Cannot decide shop again")).toBeInTheDocument();
+    expect(screen.getByText("Change flag needs review")).toBeInTheDocument();
+  });
+
+  it("keeps a below-threshold change visible without suggesting client suitability", async () => {
+    await show("H9999-001", (run) => {
+      run.diffs[0].shop_again = false;
+      run.diffs[0].reasons = [];
+    });
+    const signal = within(screen.getByRole("region", { name: "Review signal" }));
+    expect(signal.getByText("No change flag")).toBeInTheDocument();
+    expect(signal.getByText("No change crossed a review threshold.")).toBeInTheDocument();
+    expect(row("Monthly premium").getByText("$25.00 a month")).toBeInTheDocument();
+    expect(screen.getByText(/A broker must review the evidence/)).toBeVisible();
   });
 
   it("shows not comparable in words and lists the plan's review items", async () => {
