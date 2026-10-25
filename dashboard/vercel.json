@@ -3,7 +3,8 @@
   "git": {
     "deploymentEnabled": {
       "facelift-v1-consulting": false,
-      "repo-hygiene-v1": false
+      "repo-hygiene-v1": false,
+      "pr-18-citation-audit": false
     }
   }
 }

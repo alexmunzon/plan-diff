@@ -34,7 +34,7 @@ const SEVERITIES = ["low", "medium", "high"];
 const DATA_KINDS = ["synthetic", "public"];
 const MONEY_KEYS = ["amount", "percent", "cost_usd", "premium_up", "moop_up", "drug_deductible_up"];
 
-function check(ok: boolean, where: string, problem: string): void {
+export function check(ok: boolean, where: string, problem: string): void {
   if (!ok) throw new Error(`${where}: ${problem}`);
 }
 
@@ -47,7 +47,7 @@ export function parseJson(text: string, where: string): unknown {
   }
 }
 
-function object(value: unknown, where: string, keys: string[]): Record<string, unknown> {
+export function object(value: unknown, where: string, keys: string[]): Record<string, unknown> {
   check(typeof value === "object" && value !== null && !Array.isArray(value), where, "expected an object");
   const record = value as Record<string, unknown>;
   for (const key of keys) check(key in record, where, `missing ${key}`);
@@ -55,7 +55,7 @@ function object(value: unknown, where: string, keys: string[]): Record<string, u
 }
 
 /** Walks the whole value: any amount, percent, or cost must be decimal text, never a JSON number. */
-function moneyIsText(value: unknown, where: string): void {
+export function moneyIsText(value: unknown, where: string): void {
   if (Array.isArray(value)) return value.forEach((item) => moneyIsText(item, where));
   if (typeof value !== "object" || value === null) return;
   for (const [key, inner] of Object.entries(value)) {

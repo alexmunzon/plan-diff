@@ -10,5 +10,8 @@ export default defineConfig({
     setupFiles: ["./vitest.setup.ts"],
     include: ["**/*.test.{ts,tsx}"],
     exclude: ["node_modules/**", ".next/**", "e2e/**"],
+    // jsdom renders of the full sidebar can pass 5s when the machine is busy (verify runs files
+    // in parallel); a slow render is not a failure, a wrong one still is.
+    testTimeout: 20_000,
   },
 });
