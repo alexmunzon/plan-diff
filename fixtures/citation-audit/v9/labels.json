@@ -1,0 +1,9 @@
+{
+  "schema_version": "citation-audit-labels-v1",
+  "labels": {
+    "R-not-covered-benefit": {
+      "verdict": "needs_human_review",
+      "rationale": "Text and typed evidence name different benefits; no support for the insulin statement."
+    }
+  }
+}

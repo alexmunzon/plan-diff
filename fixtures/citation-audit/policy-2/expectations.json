@@ -1,0 +1,120 @@
+{
+ "schema_version": "citation-audit-expectations-v1",
+ "policy": "unknown effective dates go to a person (Alex, 2026-10-25)",
+ "applies_to": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "overrides": {
+  "d01": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "d02": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "d03": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "d04": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "d39": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "d40": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "d46": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "d48": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "c12": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "d16": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so it cannot be shown to support the claim on the date in question."
+  },
+  "d05": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so its different value cannot be shown to contradict the claim."
+  },
+  "d20": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so its different value cannot be shown to contradict the claim."
+  },
+  "d22": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so its different value cannot be shown to contradict the claim."
+  },
+  "d32": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim, so its different value cannot be shown to contradict the claim."
+  },
+  "d17": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim; the uncited EOC's $30 also has unknown dates, so it is unclear evidence, not a conflict."
+  },
+  "d41": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the 2025 citation is the wrong year and the 2026 one has unknown dates."
+  },
+  "d44": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim; the CMS mismatch is listed but the cited row cannot support on its own."
+  },
+  "d49": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim; neither document has declared dates, so neither side can be shown to apply."
+  },
+  "c10": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim; the uncited $25 row also has unknown dates."
+  },
+  "A5": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): document a's dates cover the claim, but b's $30 row has unknown dates: unclear evidence that blocks support, not a conflict."
+  },
+  "A6": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim."
+  },
+  "d25": {
+   "verdict": "needs_human_review",
+   "parts": {
+    "monthly_premium": "needs_human_review",
+    "specialist_copay": "needs_human_review"
+   },
+   "rationale": "Policy 2 (unknown effective dates go to a person): the cited document declares no effective dates covering the claim; both parts go to a person."
+  },
+  "d26": {
+   "verdict": "insufficient_evidence",
+   "parts": {
+    "monthly_premium": "needs_human_review",
+    "dental_allowance": "insufficient_evidence"
+   },
+   "rationale": "Policy 2 (unknown effective dates go to a person): the premium part goes to a person; the dental row is still missing, so the claim stays insufficient."
+  },
+  "c11": {
+   "verdict": "unverifiable",
+   "parts": {
+    "monthly_premium": "needs_human_review",
+    "specialist_copay": "needs_human_review",
+    "dental_allowance": "unverifiable"
+   },
+   "rationale": "Policy 2 (unknown effective dates go to a person): premium and specialist go to a person; the dental source still cannot be checked, which comes first in claim precedence."
+  }
+ }
+}

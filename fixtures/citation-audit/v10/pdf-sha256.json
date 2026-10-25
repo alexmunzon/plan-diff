@@ -1,0 +1,20 @@
+{
+  "DCR-asof": {
+    "a": "fba8535449dd14de639f989543351fc09b90ee9844473d352aa2fc87acea3485"
+  },
+  "DCR-asof-positive": {
+    "a": "fba8535449dd14de639f989543351fc09b90ee9844473d352aa2fc87acea3485"
+  },
+  "DCR-condition-positive": {
+    "a": "0bba2c1644cbe8df92b235ed5369eafe8b9c97e2b5abc6e1c1aa05f6407ee831"
+  },
+  "DCR-condition-swap": {
+    "a": "0bba2c1644cbe8df92b235ed5369eafe8b9c97e2b5abc6e1c1aa05f6407ee831"
+  },
+  "DCR-geography": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+  },
+  "DCR-geography-positive": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+  }
+}

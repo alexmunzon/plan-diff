@@ -1,0 +1,15 @@
+{
+  "head": "40baca72515006e88d41f21050329fa39d37e60b",
+  "scope": "Uncommitted repair on recorded HEAD; temp-only independent contract probes, exposed synthetic demo.",
+  "source_sha256": {
+    "engine/src/plan_diff/audit/runner.py": "c0fdf3afa6255edfe167d670ecc5ba5493e5f46db0249e343a79e2cf44028e3d",
+    "dashboard/lib/audit.ts": "5352a9efd7ea3f6cf37c96ca9e11ba3842b387525f4795895dfac095ab9bc2e5",
+    "dashboard/lib/audit-dir.ts": "130c532f2094632552370c9dbb21dce5e2c3122573037fe0fcbbf4f14d12403d"
+  },
+  "cases": {
+    "unchanged": "Both readers accept; two revisions chain; audit and manifest unchanged.",
+    "crlf_only": "Both readers reject; adjudications directory absent.",
+    "missing_version": "Both readers reject; adjudications directory absent."
+  },
+  "limits": "Exact byte consistency only; no author authenticity, browser, or model evaluation."
+}

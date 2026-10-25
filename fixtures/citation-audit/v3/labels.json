@@ -1,0 +1,30 @@
+{
+ "schema_version": "citation-audit-labels-v1",
+ "rubric": "../v1/rubric.md",
+ "labels": {
+  "B1": {
+   "verdict": "needs_human_review",
+   "rationale": "The prose swaps the benefits' amounts despite correct typed parts."
+  },
+  "B2": {
+   "verdict": "needs_human_review",
+   "rationale": "The claim contains negation absent from its typed part."
+  },
+  "B3": {
+   "verdict": "needs_human_review",
+   "rationale": "The preceding page establishes an unresolved out-of-network section."
+  },
+  "B4": {
+   "verdict": "needs_human_review",
+   "rationale": "Relevant qualified contrary evidence cannot be silently discarded."
+  },
+  "B5": {
+   "verdict": "needs_human_review",
+   "rationale": "Unknown declared identity does not establish that contrary evidence is inapplicable."
+  },
+  "B6": {
+   "verdict": "conflicting_evidence",
+   "rationale": "Another plan's document cannot dismiss the applicable conflicting row."
+  }
+ }
+}

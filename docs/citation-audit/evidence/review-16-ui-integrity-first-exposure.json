@@ -1,0 +1,23 @@
+{
+  "schema_version": "citation-audit-review-v1",
+  "scope": "dashboard artifact consistency",
+  "actor": "independent AI UI review, expanded with builder-authored regression tests",
+  "exposure": "exposed regression, not untouched holdout or human validation",
+  "command": "node node_modules/vitest/vitest.mjs run --configLoader runner lib/__tests__/audit.test.ts",
+  "before_repair": {
+    "tests_failed": 8,
+    "tests_passed": 22,
+    "failure": "parseAudit accepted all eight inconsistent supported artifacts instead of throwing",
+    "cases": [
+      "failed wording check",
+      "unknown wording check",
+      "missing wording check",
+      "unknown effective dates under policy 2",
+      "missing cited document",
+      "unreadable cited document",
+      "missing plan/year check",
+      "live contrary evidence"
+    ]
+  },
+  "raw_local_log_sha256": "95909b06f11b0b2bf7a46e8a5676f86bfc700e2f803fff1292d70da5d160781f"
+}

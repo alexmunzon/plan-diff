@@ -1,0 +1,24 @@
+import json,time,statistics,sys,tempfile
+from pathlib import Path
+from audit_cases import build_case
+from plan_diff.audit.checks import Policy,audit_claim,text_check
+from plan_diff.audit.runner import code_hash
+plan=json.loads(Path('/tmp/plan-diff-deep-claim-probe-plan.json').read_text())
+with tempfile.TemporaryDirectory(dir='/tmp') as tmp:
+ start=time.perf_counter()
+ built=[build_case(p['case'],Path(tmp)/p['case']['case_id']) for p in plan['probes']]
+ construction=time.perf_counter()-start
+ reads=sum(b.corpus.reads for b in built)
+ timings=[];checks=[]
+ for repeat in range(7):
+  start=time.perf_counter()
+  for i in range(100):
+   for b in built:audit_claim(b.claim,b.corpus,Policy())
+  timings.append(time.perf_counter()-start)
+  start=time.perf_counter()
+  for i in range(100):
+   for b in built:
+    for p in b.claim.parts:text_check(b.claim,p)
+  checks.append(time.perf_counter()-start)
+ result={'label':sys.argv[1],'audit_code_sha256':code_hash(),'workload':'same six predeclared probes; 7 samples of 100 repetitions; 600 claims/sample; PDFs built once per process; text_check timing excludes optional corpus identity names','construction_seconds':construction,'audit_samples_seconds':timings,'audit_median_seconds':statistics.median(timings),'text_samples_seconds':checks,'text_median_seconds':statistics.median(checks),'pdf_reads_before':reads,'pdf_reads_after':sum(b.corpus.reads for b in built),'results':{b.claim.claim_id:audit_claim(b.claim,b.corpus,Policy()).verdict.value for b in built}}
+ Path(sys.argv[2]).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))

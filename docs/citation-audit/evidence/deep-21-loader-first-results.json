@@ -1,0 +1,126 @@
+{
+  "manifest_hashes": [
+    "claims",
+    "audit_code",
+    "policy",
+    "evidence_meta",
+    "run_manifest",
+    "run_validation"
+  ],
+  "cases": [
+    {
+      "test": "unchanged",
+      "accepted": true,
+      "claim_id": "demo-01-premium-2027",
+      "verdict": "supported",
+      "before": {
+        "text": "Gold HMO (H9999-001) premium is $25 per month in 2027.",
+        "parts": [
+          {
+            "part_id": "monthly_premium",
+            "benefit": "monthly_premium",
+            "value": {
+              "kind": "money",
+              "amount": "25.00"
+            },
+            "unit": "per_month",
+            "network": null,
+            "conditions": []
+          }
+        ]
+      },
+      "after": {
+        "text": "Gold HMO (H9999-001) premium is $25 per month in 2027.",
+        "parts": [
+          {
+            "part_id": "monthly_premium",
+            "benefit": "monthly_premium",
+            "value": {
+              "kind": "money",
+              "amount": "25.00"
+            },
+            "unit": "per_month",
+            "network": null,
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "test": "claim_text_changed",
+      "accepted": true,
+      "claim_id": "demo-01-premium-2027",
+      "verdict": "supported",
+      "before": {
+        "text": "Gold HMO (H9999-001) premium is $25 per month in 2027.",
+        "parts": [
+          {
+            "part_id": "monthly_premium",
+            "benefit": "monthly_premium",
+            "value": {
+              "kind": "money",
+              "amount": "25.00"
+            },
+            "unit": "per_month",
+            "network": null,
+            "conditions": []
+          }
+        ]
+      },
+      "after": {
+        "text": "The monthly premium is $999.",
+        "parts": [
+          {
+            "part_id": "monthly_premium",
+            "benefit": "monthly_premium",
+            "value": {
+              "kind": "money",
+              "amount": "25.00"
+            },
+            "unit": "per_month",
+            "network": null,
+            "conditions": []
+          }
+        ]
+      }
+    },
+    {
+      "test": "typed_amount_changed",
+      "accepted": true,
+      "claim_id": "demo-01-premium-2027",
+      "verdict": "supported",
+      "before": {
+        "text": "Gold HMO (H9999-001) premium is $25 per month in 2027.",
+        "parts": [
+          {
+            "part_id": "monthly_premium",
+            "benefit": "monthly_premium",
+            "value": {
+              "kind": "money",
+              "amount": "25.00"
+            },
+            "unit": "per_month",
+            "network": null,
+            "conditions": []
+          }
+        ]
+      },
+      "after": {
+        "text": "Gold HMO (H9999-001) premium is $25 per month in 2027.",
+        "parts": [
+          {
+            "part_id": "monthly_premium",
+            "benefit": "monthly_premium",
+            "value": {
+              "kind": "money",
+              "amount": "999.00"
+            },
+            "unit": "per_month",
+            "network": null,
+            "conditions": []
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,399 @@
+{
+ "schema_version": "citation-audit-cases-v1",
+ "data_kind": "synthetic",
+ "cases": [
+  {
+   "case_id": "B1",
+   "split": "challenge-3",
+   "taxonomy": "compound_swapped",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month",
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "B1",
+    "text": "Premium is $45 and specialist visits cost $25.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     },
+     {
+      "part_id": "specialist",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "B2",
+   "split": "challenge-3",
+   "taxonomy": "unicode_negation",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "B2",
+    "text": "Specialist visits do ｎｏｔ cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "specialist",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "B3",
+   "split": "challenge-3",
+   "taxonomy": "cross_page_network",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "OUT-OF-NETWORK BENEFITS"
+      ],
+      [
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "B3",
+    "text": "In-network specialist visits cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "specialist",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit",
+      "network": "in_network"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 2
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "B4",
+   "split": "challenge-3",
+   "taxonomy": "qualified_contrary_failed_citation",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    },
+    {
+     "document_id": "b",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $60 per visit except telehealth"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    },
+    {
+     "document_id": "b",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "B4",
+    "text": "Specialist visits cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "specialist",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     },
+     {
+      "document_id": "b",
+      "page": 1,
+      "quote": "fabricated"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "B5",
+   "split": "challenge-3",
+   "taxonomy": "unknown_identity_contrary",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "b",
+     "plan_id": null,
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Gold HMO H9999-001",
+       "Monthly plan premium $30 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    },
+    {
+     "document_id": "b",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "B5",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "B6",
+   "split": "challenge-3",
+   "taxonomy": "wrong_plan_superseder",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "b",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $30 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "c",
+     "plan_id": "H9999-002",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $50 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    },
+    {
+     "document_id": "b",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    },
+    {
+     "document_id": "c",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31",
+     "supersedes": [
+      "b"
+     ]
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "B6",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  }
+ ]
+}

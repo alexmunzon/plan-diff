@@ -1,0 +1,707 @@
+{
+ "schema_version": "citation-audit-cases-v1",
+ "data_kind": "synthetic",
+ "cases": [
+  {
+   "case_id": "q01",
+   "split": "regression",
+   "taxonomy": "supported_dated",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q01",
+    "text": "H9999-001 premium is $25 per month in 2026.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q02",
+   "split": "regression",
+   "taxonomy": "supported_dated",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q02",
+    "text": "Specialist visits cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q03",
+   "split": "regression",
+   "taxonomy": "effective_date",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-06-30"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q03",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q04",
+   "split": "regression",
+   "taxonomy": "source_conflict",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "sb",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "eoc",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "EOC",
+     "pages": [
+      [
+       "Monthly plan premium $30 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "sb",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    },
+    {
+     "document_id": "eoc",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q04",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "sb",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q05",
+   "split": "regression",
+   "taxonomy": "contradicted",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q05",
+    "text": "Specialist visits cost $40 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "40"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q06",
+   "split": "regression",
+   "taxonomy": "compound_supported",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month",
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q06",
+    "text": "Premium is $25 per month and specialist visits cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     },
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q07",
+   "split": "regression",
+   "taxonomy": "effective_date",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q07",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q08",
+   "split": "regression",
+   "taxonomy": "effective_date",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q08",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q09",
+   "split": "regression",
+   "taxonomy": "pdf_cms_conflict",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [
+    {
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "field": "specialist_copay",
+     "file": "pbp_b7_health_prof.txt",
+     "row": 1,
+     "reason": "PDF $45 per visit, CMS $40 per visit"
+    }
+   ],
+   "claim": {
+    "claim_id": "q09",
+    "text": "Specialist visits cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q10",
+   "split": "regression",
+   "taxonomy": "supported_tier",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Tier 2 generic drugs $8 per prescription"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q10",
+    "text": "Tier 2 generic drugs cost $8 per prescription.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "drug_tier_2",
+      "benefit": "drug_tier_2",
+      "value": {
+       "kind": "copay",
+       "amount": "8"
+      },
+      "unit": "per_prescription"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q11",
+   "split": "regression",
+   "taxonomy": "unclear_contrary",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "sb",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "eoc",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "EOC",
+     "pages": [
+      [
+       "Monthly plan premium $30 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "sb",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q11",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "sb",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q12",
+   "split": "regression",
+   "taxonomy": "wrong_plan",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-002",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q12",
+    "text": "H9999-001 premium is $25 per month in 2026.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "q45",
+   "split": "regression",
+   "taxonomy": "booklet_pages",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "book",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Gold HMO H9999-001",
+       "Monthly plan premium $25 per month"
+      ],
+      [
+       "Silver HMO H9999-002",
+       "Monthly plan premium $40 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "book",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "q45",
+    "text": "H9999-001 premium is $40 per month in 2026.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "40"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "book",
+      "page": 2
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "test": "unchanged",
+    "accepted": true,
+    "record": "/tmp/plan-diff-deep-adjudication-cwuxf8n4/unchanged/adjudications/0001.json",
+    "revision_created": true
+  },
+  {
+    "test": "empty_object",
+    "accepted": true,
+    "record": "/tmp/plan-diff-deep-adjudication-cwuxf8n4/empty_object/adjudications/0001.json",
+    "revision_created": true
+  },
+  {
+    "test": "truncated_manifest",
+    "accepted": true,
+    "record": "/tmp/plan-diff-deep-adjudication-cwuxf8n4/truncated_manifest/adjudications/0001.json",
+    "revision_created": true
+  },
+  {
+    "test": "wrong_audit_id",
+    "accepted": true,
+    "record": "/tmp/plan-diff-deep-adjudication-cwuxf8n4/wrong_audit_id/adjudications/0001.json",
+    "revision_created": true
+  },
+  {
+    "test": "incomplete_status",
+    "accepted": true,
+    "record": "/tmp/plan-diff-deep-adjudication-cwuxf8n4/incomplete_status/adjudications/0001.json",
+    "revision_created": true
+  },
+  {
+    "test": "typed_amount_changed",
+    "accepted": true,
+    "record": "/tmp/plan-diff-deep-adjudication-cwuxf8n4/typed_amount_changed/adjudications/0001.json",
+    "revision_created": true
+  }
+]

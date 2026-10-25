@@ -1,0 +1,17 @@
+{
+  "R-benefit": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+  },
+  "R-equal-amount-swapped-units": {
+    "a": "dde0fd8f5e21caaa27a2177683fdc453c2fa41638592f6414fbf3e77d46d241e"
+  },
+  "R-omitted-condition": {
+    "a": "a4841de646f6076c063dca70e1554bfea0eccedcdd5cdd462c9639845b6e0507"
+  },
+  "R-plan": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+  },
+  "R-unrelated": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+  }
+}

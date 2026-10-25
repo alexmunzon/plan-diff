@@ -184,3 +184,18 @@ button:disabled, [aria-disabled="true"] { background: var(--panel); color: var(-
 .worklist-controls input, .worklist-controls select { max-width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin-top: 6px; background: var(--paper); color: var(--ink); min-height: 44px; }
 .worklist-controls input[type="file"] { display: block; width: 100%; }
 .worklist-controls input:not([type="file"]), .worklist-controls select { display: block; width: 100%; }
+
+/* PR 18: citation audit review */
+.audit-layout { display: grid; gap: 16px; }
+@media (min-width: 1100px) { .audit-layout { grid-template-columns: minmax(280px, 2fr) 3fr; align-items: start; } }
+.audit-chip { min-height: 44px; border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 13px; background: var(--paper); color: var(--ink); }
+.audit-chip[aria-pressed="true"] { background: var(--selected); color: var(--selected-ink); font-weight: 650; }
+.audit-chip:disabled { opacity: .55; cursor: not-allowed; }
+.audit-claim { display: block; width: 100%; min-height: 44px; text-align: left; border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; background: var(--paper); color: var(--ink); }
+.audit-claim[aria-current="true"] { border-color: var(--ink); box-shadow: inset 3px 0 0 var(--ink); }
+.audit-chip:focus-visible, .audit-claim:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.audit-part, .audit-source { border-top: 1px solid var(--border); padding-top: 12px; overflow-wrap: anywhere; }
+.audit-checks { display: block; overflow-x: auto; border-collapse: collapse; }
+.audit-checks th, .audit-checks td { padding: 4px 8px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+.audit-checks tr[data-outcome="fail"] td:nth-child(3) { color: var(--status-error, inherit); }
+.audit-weakened { border: 1px solid var(--border); border-left: 4px solid var(--status-error, var(--ink)); border-radius: 6px; padding: 10px 12px; }

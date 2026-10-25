@@ -1,0 +1,21 @@
+{
+ "schema_version": "citation-audit-labels-v1",
+ "labels": {
+  "P2R5": {
+   "verdict": "conflicting_evidence",
+   "rationale": "A replacement with unverified identity, unreadable bytes, or ambiguous year context cannot suppress the dated disagreement."
+  },
+  "P2R6": {
+   "verdict": "conflicting_evidence",
+   "rationale": "A replacement with unverified identity, unreadable bytes, or ambiguous year context cannot suppress the dated disagreement."
+  },
+  "P2R7": {
+   "verdict": "conflicting_evidence",
+   "rationale": "A replacement with unverified identity, unreadable bytes, or ambiguous year context cannot suppress the dated disagreement."
+  },
+  "P2R8": {
+   "verdict": "conflicting_evidence",
+   "rationale": "A replacement with unverified identity, unreadable bytes, or ambiguous year context cannot suppress the dated disagreement."
+  }
+ }
+}

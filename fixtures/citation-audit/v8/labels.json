@@ -1,0 +1,25 @@
+{
+  "schema_version": "citation-audit-labels-v1",
+  "labels": {
+    "R-benefit": {
+      "verdict": "needs_human_review",
+      "rationale": "Text names a different benefit than the typed premium."
+    },
+    "R-unrelated": {
+      "verdict": "needs_human_review",
+      "rationale": "Text names an unrepresented benefit."
+    },
+    "R-plan": {
+      "verdict": "needs_human_review",
+      "rationale": "Text names a different plan and year than the typed context."
+    },
+    "R-omitted-condition": {
+      "verdict": "needs_human_review",
+      "rationale": "Text omits the days 1 to 5 restriction required by typed condition and cited row."
+    },
+    "R-equal-amount-swapped-units": {
+      "verdict": "needs_human_review",
+      "rationale": "Text swaps the units across two benefits with equal amounts; neither typed association is expressed."
+    }
+  }
+}

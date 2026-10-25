@@ -1,0 +1,13 @@
+{
+ "schema_version": "citation-audit-labels-v1",
+ "labels": {
+  "P2R9": {
+   "verdict": "conflicting_evidence",
+   "rationale": "Circular supersession establishes no unambiguous authority order; the dated disagreement must remain visible."
+  },
+  "P2R10": {
+   "verdict": "conflicting_evidence",
+   "rationale": "Circular supersession establishes no unambiguous authority order; the dated disagreement must remain visible."
+  }
+ }
+}

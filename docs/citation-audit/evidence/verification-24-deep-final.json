@@ -1,0 +1,34 @@
+{
+  "baseline_commit": "40baca72515006e88d41f21050329fa39d37e60b",
+  "audit_code_sha256": "1834b463eca52878cc2630424c03f5b13dace83cb8c858eb5ffd3dcced62d8db",
+  "command": "UV_CACHE_DIR=/tmp/plan-diff-uv-cache UV_NO_SYNC=1 RUFF_NO_CACHE=true MYPY_CACHE_DIR=/tmp/plan-diff-mypy-cache PYTHONDONTWRITEBYTECODE=1 PYTEST_ADDOPTS='-p no:cacheprovider' PYTHONPATH=engine/src:engine/tests npm run verify",
+  "exit_code": 0,
+  "engine_tests_passed": 683,
+  "engine_tests_skipped": 1,
+  "dashboard_tests_passed": 175,
+  "dashboard_test_files": 18,
+  "checks": [
+    "ruff lint",
+    "ruff format",
+    "mypy 43 source files",
+    "pytest",
+    "eslint",
+    "next typegen",
+    "tsc",
+    "vitest",
+    "production build 21 pages"
+  ],
+  "raw_local_log_sha256": {
+    "plan-diff-deep-first-targeted.log": "9f8c7117ae7e0b28e0771c408def885d870aff9d619efba75decc59750ff158f",
+    "plan-diff-deep-targeted-1.log": "7882bc4865f656a2d02a0e6c845a99e82a13e42ef7f3c50f3f73453049c2a8a7",
+    "plan-diff-deep-full-verify.log": "fd7635cea23fcc4df1ef6f2fe09e2ce26deff04262cabfd886ef92468e84c9eb",
+    "plan-diff-deep-final-full-verify.log": "904d4df93b2a065c9fbbcd1336d1909854df8be2fe0c663e91066a9ec53dccc9"
+  },
+  "earlier_first_targeted_result": "14 failed, 3 passed before implementation; retained locally",
+  "earlier_repair_result": "203 passed, 2 failed: omitted coinsurance recognition and unchanged-demo comparison; retained locally",
+  "intermediate_full_verification": "679 passed, 1 skipped; 175 dashboard passed, before independent repair review exposed remaining wording defect",
+  "generated_output": "standard ignored build output at existing path; supported escalation, no cache deletion or redirection",
+  "browser": "browser-24-deep-final.json",
+  "independent_claim_reconciliation": "deep-24-claim-reconciliation.json",
+  "publication": "not yet pushed at receipt creation"
+}

@@ -1,0 +1,2728 @@
+{
+  "audit_code_sha256": "4d77669fd03d00cf753e45095b81c78e33f8afc7385ebed380a369970b70941b",
+  "captured_at": "2026-10-25T17:07:29.190861+00:00",
+  "plan_sha256": "e7126418792cd502bbe13ceff1f8ec4cac262855227864463e7c04104d87b120",
+  "results": [
+    {
+      "actual": {
+        "claim": {
+          "as_of": "2026-06-01",
+          "claim_id": "DCR-geography",
+          "parts": [
+            {
+              "benefit": "specialist_copay",
+              "conditions": [],
+              "network": null,
+              "part_id": "specialist_copay",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45.00",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "Specialist visits cost $45 per visit nationwide.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "unknown",
+                "reason": "the text contains wording outside its declared parts: 'nationwide'"
+              }
+            ],
+            "contrary": [],
+            "part_id": "specialist_copay",
+            "reasons": [
+              "the claim's text says more than its typed part",
+              "the text contains wording outside its declared parts: 'nationwide'"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover the claim's date 2026-06-01"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Specialist visits $45 per visit"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $45.00 per visit"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [
+              "the text contains wording outside its declared parts: 'nationwide'"
+            ],
+            "verdict": "needs_human_review"
+          }
+        ],
+        "reasons": [
+          "the claim's text says more than its typed part",
+          "the text contains wording outside its declared parts: 'nationwide'"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run. Unknown: the text contains wording outside its declared parts: 'nationwide'.",
+        "verdict": "needs_human_review"
+      },
+      "audit_wall_seconds": 0.0023203331511467695,
+      "case": {
+        "author": "independent AI post-build claim review",
+        "case_id": "DCR-geography",
+        "claim": {
+          "as_of": "2026-06-01",
+          "claim_id": "DCR-geography",
+          "parts": [
+            {
+              "benefit": "specialist_copay",
+              "part_id": "specialist_copay",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "Specialist visits cost $45 per visit nationwide.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Specialist visits $45 per visit"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "unconsumed_geography"
+      },
+      "expected": "needs_human_review",
+      "expected_reason": "The cited row states a cost but no nationwide availability; free text adds an unrepresented geographic promise.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+      },
+      "pdf_text": {
+        "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nJanuary 1, 2026 to December 31, 2026\nBenefit What you pay\nSpecialist visits $45 per visit\nPage 1 of 1"
+        ]
+      }
+    },
+    {
+      "actual": {
+        "claim": {
+          "as_of": "2026-06-01",
+          "claim_id": "DCR-geography-positive",
+          "parts": [
+            {
+              "benefit": "specialist_copay",
+              "conditions": [],
+              "network": null,
+              "part_id": "specialist_copay",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45.00",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "Specialist visits cost $45 per visit.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "pass",
+                "reason": "the text says what the typed parts say"
+              }
+            ],
+            "contrary": [],
+            "part_id": "specialist_copay",
+            "reasons": [
+              "a cited row states exactly the claimed value in an applicable document"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover the claim's date 2026-06-01"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Specialist visits $45 per visit"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $45.00 per visit"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [],
+            "verdict": "supported"
+          }
+        ],
+        "reasons": [
+          "a cited row states exactly the claimed value in an applicable document"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run.",
+        "verdict": "supported"
+      },
+      "audit_wall_seconds": 0.0003785837907344103,
+      "case": {
+        "author": "independent AI post-build claim review",
+        "case_id": "DCR-geography-positive",
+        "claim": {
+          "as_of": "2026-06-01",
+          "claim_id": "DCR-geography-positive",
+          "parts": [
+            {
+              "benefit": "specialist_copay",
+              "part_id": "specialist_copay",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "Specialist visits cost $45 per visit.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Specialist visits $45 per visit"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "unconsumed_geography_positive"
+      },
+      "expected": "supported",
+      "expected_reason": "The claim states exactly the cited specialist amount and unit without an additional geographic promise.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+      },
+      "pdf_text": {
+        "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nJanuary 1, 2026 to December 31, 2026\nBenefit What you pay\nSpecialist visits $45 per visit\nPage 1 of 1"
+        ]
+      }
+    },
+    {
+      "actual": {
+        "claim": {
+          "as_of": "2026-03-01",
+          "claim_id": "DCR-asof",
+          "parts": [
+            {
+              "benefit": "monthly_premium",
+              "conditions": [],
+              "network": null,
+              "part_id": "monthly_premium",
+              "unit": "per_month",
+              "value": {
+                "amount": "25.00",
+                "kind": "money"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "H9999-001 premium is $25 per month as of December 1, 2026.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "unknown",
+                "reason": "the explicit as-of date does not match the declared date in a recognized format"
+              }
+            ],
+            "contrary": [],
+            "part_id": "monthly_premium",
+            "reasons": [
+              "the claim's text says more than its typed part",
+              "the explicit as-of date does not match the declared date in a recognized format"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover the claim's date 2026-03-01"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Monthly plan premium $25 per month"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $25.00 per month"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [
+              "the explicit as-of date does not match the declared date in a recognized format"
+            ],
+            "verdict": "needs_human_review"
+          }
+        ],
+        "reasons": [
+          "the claim's text says more than its typed part",
+          "the explicit as-of date does not match the declared date in a recognized format"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run. Unknown: the explicit as-of date does not match the declared date in a recognized format.",
+        "verdict": "needs_human_review"
+      },
+      "audit_wall_seconds": 0.00045591709204018116,
+      "case": {
+        "author": "independent AI post-build claim review",
+        "case_id": "DCR-asof",
+        "claim": {
+          "as_of": "2026-03-01",
+          "claim_id": "DCR-asof",
+          "parts": [
+            {
+              "benefit": "monthly_premium",
+              "part_id": "monthly_premium",
+              "unit": "per_month",
+              "value": {
+                "amount": "25",
+                "kind": "money"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "H9999-001 premium is $25 per month as of December 1, 2026.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "bare": true,
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Example Health Plan 2026 Summary of Benefits",
+                "Gold HMO H9999-001",
+                "Effective January 1, 2026 to June 30, 2026",
+                "Benefit What you pay",
+                "Monthly plan premium $25 per month"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-06-30"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "text_asof_mismatch"
+      },
+      "expected": "needs_human_review",
+      "expected_reason": "The free-text date is December 1 but typed as_of is March 1; the declared evidence ends June 30. A matching year cannot establish this date-specific claim.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "fba8535449dd14de639f989543351fc09b90ee9844473d352aa2fc87acea3485"
+      },
+      "pdf_text": {
+        "fba8535449dd14de639f989543351fc09b90ee9844473d352aa2fc87acea3485": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nEffective January 1, 2026 to June 30, 2026\nBenefit What you pay\nMonthly plan premium $25 per month\nPage 1 of 1"
+        ]
+      }
+    },
+    {
+      "actual": {
+        "claim": {
+          "as_of": "2026-03-01",
+          "claim_id": "DCR-asof-positive",
+          "parts": [
+            {
+              "benefit": "monthly_premium",
+              "conditions": [],
+              "network": null,
+              "part_id": "monthly_premium",
+              "unit": "per_month",
+              "value": {
+                "amount": "25.00",
+                "kind": "money"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "H9999-001 premium is $25 per month as of March 1, 2026.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "pass",
+                "reason": "the text says what the typed parts say"
+              }
+            ],
+            "contrary": [],
+            "part_id": "monthly_premium",
+            "reasons": [
+              "a cited row states exactly the claimed value in an applicable document"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover the claim's date 2026-03-01"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Monthly plan premium $25 per month"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $25.00 per month"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [],
+            "verdict": "supported"
+          }
+        ],
+        "reasons": [
+          "a cited row states exactly the claimed value in an applicable document"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run.",
+        "verdict": "supported"
+      },
+      "audit_wall_seconds": 0.0003770841285586357,
+      "case": {
+        "author": "independent AI post-build claim review",
+        "case_id": "DCR-asof-positive",
+        "claim": {
+          "as_of": "2026-03-01",
+          "claim_id": "DCR-asof-positive",
+          "parts": [
+            {
+              "benefit": "monthly_premium",
+              "part_id": "monthly_premium",
+              "unit": "per_month",
+              "value": {
+                "amount": "25",
+                "kind": "money"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "H9999-001 premium is $25 per month as of March 1, 2026.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "bare": true,
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Example Health Plan 2026 Summary of Benefits",
+                "Gold HMO H9999-001",
+                "Effective January 1, 2026 to June 30, 2026",
+                "Benefit What you pay",
+                "Monthly plan premium $25 per month"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-06-30"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "text_asof_positive"
+      },
+      "expected": "supported",
+      "expected_reason": "The free-text date and typed March 1 as_of agree, and that date is inside the explicitly stated evidence period.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "fba8535449dd14de639f989543351fc09b90ee9844473d352aa2fc87acea3485"
+      },
+      "pdf_text": {
+        "fba8535449dd14de639f989543351fc09b90ee9844473d352aa2fc87acea3485": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nEffective January 1, 2026 to June 30, 2026\nBenefit What you pay\nMonthly plan premium $25 per month\nPage 1 of 1"
+        ]
+      }
+    },
+    {
+      "actual": {
+        "claim": {
+          "as_of": null,
+          "claim_id": "DCR-condition-swap",
+          "parts": [
+            {
+              "benefit": "inpatient_stay",
+              "conditions": [
+                "days 1 to 5"
+              ],
+              "network": null,
+              "part_id": "hospital",
+              "unit": "per_day",
+              "value": {
+                "amount": "325.00",
+                "kind": "copay"
+              }
+            },
+            {
+              "benefit": "specialist_copay",
+              "conditions": [
+                "without referral"
+              ],
+              "network": null,
+              "part_id": "specialist",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45.00",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "Inpatient hospital stay is $325 per day without referral and specialist visits cost $45 per visit for days 1 to 5.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "unknown",
+                "reason": "this benefit's clause omits or misplaces a typed condition"
+              }
+            ],
+            "contrary": [],
+            "part_id": "hospital",
+            "reasons": [
+              "the claim's text says more than its typed part",
+              "this benefit's clause omits or misplaces a typed condition"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover plan year 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Inpatient hospital stay $325 per day, days 1 to 5"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $325.00 per day"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "conditions_present",
+                    "outcome": "pass",
+                    "reason": "every stated condition is in the row"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [
+              "this benefit's clause omits or misplaces a typed condition"
+            ],
+            "verdict": "needs_human_review"
+          },
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "unknown",
+                "reason": "this benefit's clause omits or misplaces a typed condition"
+              }
+            ],
+            "contrary": [],
+            "part_id": "specialist",
+            "reasons": [
+              "the claim's text says more than its typed part",
+              "this benefit's clause omits or misplaces a typed condition"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover plan year 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Specialist visits $45 per visit without referral"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $45.00 per visit"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "conditions_present",
+                    "outcome": "pass",
+                    "reason": "every stated condition is in the row"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [
+              "this benefit's clause omits or misplaces a typed condition"
+            ],
+            "verdict": "needs_human_review"
+          }
+        ],
+        "reasons": [
+          "hospital: needs_human_review",
+          "specialist: needs_human_review",
+          "the claim's text says more than its typed part",
+          "this benefit's clause omits or misplaces a typed condition"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run. Unknown: this benefit's clause omits or misplaces a typed condition.",
+        "verdict": "needs_human_review"
+      },
+      "audit_wall_seconds": 0.001140583073720336,
+      "case": {
+        "author": "independent AI post-build claim review",
+        "case_id": "DCR-condition-swap",
+        "claim": {
+          "claim_id": "DCR-condition-swap",
+          "parts": [
+            {
+              "benefit": "inpatient_stay",
+              "conditions": [
+                "days 1 to 5"
+              ],
+              "part_id": "hospital",
+              "unit": "per_day",
+              "value": {
+                "amount": "325",
+                "kind": "copay"
+              }
+            },
+            {
+              "benefit": "specialist_copay",
+              "conditions": [
+                "without referral"
+              ],
+              "part_id": "specialist",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "Inpatient hospital stay is $325 per day without referral and specialist visits cost $45 per visit for days 1 to 5.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Inpatient hospital stay $325 per day, days 1 to 5",
+                "Specialist visits $45 per visit without referral"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "condition_association"
+      },
+      "expected": "needs_human_review",
+      "expected_reason": "Free text attaches the no-referral condition to hospital and the days restriction to specialist, opposite the typed parts and cited rows. Global condition occurrence is insufficient.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "0bba2c1644cbe8df92b235ed5369eafe8b9c97e2b5abc6e1c1aa05f6407ee831"
+      },
+      "pdf_text": {
+        "0bba2c1644cbe8df92b235ed5369eafe8b9c97e2b5abc6e1c1aa05f6407ee831": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nJanuary 1, 2026 to December 31, 2026\nBenefit What you pay\nInpatient hospital stay $325 per day, days 1 to 5\nSpecialist visits $45 per visit without referral\nPage 1 of 1"
+        ]
+      }
+    },
+    {
+      "actual": {
+        "claim": {
+          "as_of": null,
+          "claim_id": "DCR-condition-positive",
+          "parts": [
+            {
+              "benefit": "inpatient_stay",
+              "conditions": [
+                "days 1 to 5"
+              ],
+              "network": null,
+              "part_id": "hospital",
+              "unit": "per_day",
+              "value": {
+                "amount": "325.00",
+                "kind": "copay"
+              }
+            },
+            {
+              "benefit": "specialist_copay",
+              "conditions": [
+                "without referral"
+              ],
+              "network": null,
+              "part_id": "specialist",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45.00",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "Inpatient hospital stay is $325 per day for days 1 to 5 and specialist visits cost $45 per visit without referral.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "pass",
+                "reason": "the text says what the typed parts say"
+              }
+            ],
+            "contrary": [],
+            "part_id": "hospital",
+            "reasons": [
+              "a cited row states exactly the claimed value in an applicable document"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover plan year 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Inpatient hospital stay $325 per day, days 1 to 5"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $325.00 per day"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "conditions_present",
+                    "outcome": "pass",
+                    "reason": "every stated condition is in the row"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [],
+            "verdict": "supported"
+          },
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "pass",
+                "reason": "the text says what the typed parts say"
+              }
+            ],
+            "contrary": [],
+            "part_id": "specialist",
+            "reasons": [
+              "a cited row states exactly the claimed value in an applicable document"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover plan year 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Specialist visits $45 per visit without referral"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $45.00 per visit"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "conditions_present",
+                    "outcome": "pass",
+                    "reason": "every stated condition is in the row"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [],
+            "verdict": "supported"
+          }
+        ],
+        "reasons": [
+          "hospital: supported",
+          "specialist: supported",
+          "a cited row states exactly the claimed value in an applicable document"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run.",
+        "verdict": "supported"
+      },
+      "audit_wall_seconds": 0.0011277501471340656,
+      "case": {
+        "author": "independent AI post-build claim review",
+        "case_id": "DCR-condition-positive",
+        "claim": {
+          "claim_id": "DCR-condition-positive",
+          "parts": [
+            {
+              "benefit": "inpatient_stay",
+              "conditions": [
+                "days 1 to 5"
+              ],
+              "part_id": "hospital",
+              "unit": "per_day",
+              "value": {
+                "amount": "325",
+                "kind": "copay"
+              }
+            },
+            {
+              "benefit": "specialist_copay",
+              "conditions": [
+                "without referral"
+              ],
+              "part_id": "specialist",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "Inpatient hospital stay is $325 per day for days 1 to 5 and specialist visits cost $45 per visit without referral.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Inpatient hospital stay $325 per day, days 1 to 5",
+                "Specialist visits $45 per visit without referral"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "condition_association_positive"
+      },
+      "expected": "supported",
+      "expected_reason": "Both benefit amounts, units and per-benefit conditions agree with their own cited rows.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "0bba2c1644cbe8df92b235ed5369eafe8b9c97e2b5abc6e1c1aa05f6407ee831"
+      },
+      "pdf_text": {
+        "0bba2c1644cbe8df92b235ed5369eafe8b9c97e2b5abc6e1c1aa05f6407ee831": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nJanuary 1, 2026 to December 31, 2026\nBenefit What you pay\nInpatient hospital stay $325 per day, days 1 to 5\nSpecialist visits $45 per visit without referral\nPage 1 of 1"
+        ]
+      }
+    },
+    {
+      "actual": {
+        "claim": {
+          "as_of": null,
+          "claim_id": "DCR2-foreign-condition",
+          "parts": [
+            {
+              "benefit": "inpatient_stay",
+              "conditions": [
+                "days 1 to 5"
+              ],
+              "network": null,
+              "part_id": "hospital",
+              "unit": "per_day",
+              "value": {
+                "amount": "325.00",
+                "kind": "copay"
+              }
+            },
+            {
+              "benefit": "specialist_copay",
+              "conditions": [
+                "without referral"
+              ],
+              "network": null,
+              "part_id": "specialist",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45.00",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "Inpatient hospital stay is $325 per day for days 1 to 5 without referral and specialist visits cost $45 per visit without referral.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "pass",
+                "reason": "the text says what the typed parts say"
+              }
+            ],
+            "contrary": [],
+            "part_id": "hospital",
+            "reasons": [
+              "a cited row states exactly the claimed value in an applicable document"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover plan year 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Inpatient hospital stay $325 per day, days 1 to 5"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $325.00 per day"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "conditions_present",
+                    "outcome": "pass",
+                    "reason": "every stated condition is in the row"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [],
+            "verdict": "supported"
+          },
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "pass",
+                "reason": "the text says what the typed parts say"
+              }
+            ],
+            "contrary": [],
+            "part_id": "specialist",
+            "reasons": [
+              "a cited row states exactly the claimed value in an applicable document"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover plan year 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Specialist visits $45 per visit without referral"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $45.00 per visit"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "conditions_present",
+                    "outcome": "pass",
+                    "reason": "every stated condition is in the row"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [],
+            "verdict": "supported"
+          }
+        ],
+        "reasons": [
+          "hospital: supported",
+          "specialist: supported",
+          "a cited row states exactly the claimed value in an applicable document"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run.",
+        "verdict": "supported"
+      },
+      "audit_wall_seconds": 0.0011754578445106745,
+      "case": {
+        "author": "independent AI post-build claim review",
+        "case_id": "DCR2-foreign-condition",
+        "claim": {
+          "claim_id": "DCR2-foreign-condition",
+          "parts": [
+            {
+              "benefit": "inpatient_stay",
+              "conditions": [
+                "days 1 to 5"
+              ],
+              "part_id": "hospital",
+              "unit": "per_day",
+              "value": {
+                "amount": "325",
+                "kind": "copay"
+              }
+            },
+            {
+              "benefit": "specialist_copay",
+              "conditions": [
+                "without referral"
+              ],
+              "part_id": "specialist",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "Inpatient hospital stay is $325 per day for days 1 to 5 without referral and specialist visits cost $45 per visit without referral.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Inpatient hospital stay $325 per day, days 1 to 5",
+                "Specialist visits $45 per visit without referral"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "condition_association_positive"
+      },
+      "expected": "needs_human_review",
+      "expected_reason": "The hospital clause adds without-referral even though that condition belongs only to the specialist part and source row. Repeating it correctly for specialist cannot support hospital.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "0bba2c1644cbe8df92b235ed5369eafe8b9c97e2b5abc6e1c1aa05f6407ee831"
+      },
+      "pdf_text": {
+        "0bba2c1644cbe8df92b235ed5369eafe8b9c97e2b5abc6e1c1aa05f6407ee831": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nJanuary 1, 2026 to December 31, 2026\nBenefit What you pay\nInpatient hospital stay $325 per day, days 1 to 5\nSpecialist visits $45 per visit without referral\nPage 1 of 1"
+        ]
+      }
+    },
+    {
+      "actual": {
+        "claim": {
+          "as_of": "2026-06-01",
+          "claim_id": "DCR2-leading-date-name",
+          "parts": [
+            {
+              "benefit": "specialist_copay",
+              "conditions": [],
+              "network": null,
+              "part_id": "specialist_copay",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45.00",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "As of June 1, 2026, Gold HMO specialist visits cost $45 per visit.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "unknown",
+                "reason": "the text contains wording outside its declared parts: 'gold hmo'"
+              }
+            ],
+            "contrary": [],
+            "part_id": "specialist_copay",
+            "reasons": [
+              "the claim's text says more than its typed part",
+              "the text contains wording outside its declared parts: 'gold hmo'"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover the claim's date 2026-06-01"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Specialist visits $45 per visit"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $45.00 per visit"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [
+              "the text contains wording outside its declared parts: 'gold hmo'"
+            ],
+            "verdict": "needs_human_review"
+          }
+        ],
+        "reasons": [
+          "the claim's text says more than its typed part",
+          "the text contains wording outside its declared parts: 'gold hmo'"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run. Unknown: the text contains wording outside its declared parts: 'gold hmo'.",
+        "verdict": "needs_human_review"
+      },
+      "audit_wall_seconds": 0.0003873750101774931,
+      "case": {
+        "author": "builder",
+        "case_id": "DCR2-leading-date-name",
+        "claim": {
+          "as_of": "2026-06-01",
+          "claim_id": "DCR2-leading-date-name",
+          "parts": [
+            {
+              "benefit": "specialist_copay",
+              "part_id": "specialist_copay",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "As of June 1, 2026, Gold HMO specialist visits cost $45 per visit.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Specialist visits $45 per visit"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "supported_dated"
+      },
+      "expected": "supported",
+      "expected_reason": "The leading as-of date equals typed June 1; the first page explicitly names Gold HMO H9999-001. Same identity and fact, sentence-order variation only.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+      },
+      "pdf_text": {
+        "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nJanuary 1, 2026 to December 31, 2026\nBenefit What you pay\nSpecialist visits $45 per visit\nPage 1 of 1"
+        ]
+      }
+    },
+    {
+      "actual": {
+        "claim": {
+          "as_of": "2026-06-01",
+          "claim_id": "DCR2-typed-network",
+          "parts": [
+            {
+              "benefit": "specialist_copay",
+              "conditions": [],
+              "network": "in_network",
+              "part_id": "specialist_copay",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45.00",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "In-network specialist visits cost $45 per visit.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "unknown",
+                "reason": "the text contains wording outside its declared parts: '-network'"
+              }
+            ],
+            "contrary": [],
+            "part_id": "specialist_copay",
+            "reasons": [
+              "the claim's text says more than its typed part",
+              "the text contains wording outside its declared parts: '-network'"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover the claim's date 2026-06-01"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Specialist visits $45 per visit"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $45.00 per visit"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [
+              "the text contains wording outside its declared parts: '-network'"
+            ],
+            "verdict": "needs_human_review"
+          }
+        ],
+        "reasons": [
+          "the claim's text says more than its typed part",
+          "the text contains wording outside its declared parts: '-network'"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run. Unknown: the text contains wording outside its declared parts: '-network'.",
+        "verdict": "needs_human_review"
+      },
+      "audit_wall_seconds": 0.0003690409939736128,
+      "case": {
+        "author": "builder",
+        "case_id": "DCR2-typed-network",
+        "claim": {
+          "as_of": "2026-06-01",
+          "claim_id": "DCR2-typed-network",
+          "parts": [
+            {
+              "benefit": "specialist_copay",
+              "network": "in_network",
+              "part_id": "specialist_copay",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "In-network specialist visits cost $45 per visit.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Specialist visits $45 per visit"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "supported_dated"
+      },
+      "expected": "supported",
+      "expected_reason": "The text explicitly states the typed in_network constraint already used by this deterministic source lane; no extra condition is added.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+      },
+      "pdf_text": {
+        "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nJanuary 1, 2026 to December 31, 2026\nBenefit What you pay\nSpecialist visits $45 per visit\nPage 1 of 1"
+        ]
+      }
+    },
+    {
+      "actual": {
+        "claim": {
+          "as_of": null,
+          "claim_id": "DCR2-extra-unit",
+          "parts": [
+            {
+              "benefit": "monthly_premium",
+              "conditions": [],
+              "network": null,
+              "part_id": "monthly_premium",
+              "unit": "per_month",
+              "value": {
+                "amount": "25.00",
+                "kind": "money"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1,
+              "parts": [],
+              "quote": null,
+              "sha256": null
+            }
+          ],
+          "text": "H9999-001 premium is $25 per month per year in 2026.",
+          "year": 2026
+        },
+        "model_lane": "not_run",
+        "origin": "deterministic_rules_v1",
+        "parts": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "text_matches_parts",
+                "outcome": "unknown",
+                "reason": "this benefit's clause states a unit different from its typed part"
+              }
+            ],
+            "contrary": [],
+            "part_id": "monthly_premium",
+            "reasons": [
+              "the claim's text says more than its typed part",
+              "this benefit's clause states a unit different from its typed part"
+            ],
+            "sources": [
+              {
+                "checks": [
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "source_resolves",
+                    "outcome": "pass",
+                    "reason": "the document is in the run"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "hash_matches",
+                    "outcome": "pass",
+                    "reason": "bytes match the run's SHA-256"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_in_range",
+                    "outcome": "pass",
+                    "reason": "page 1 exists"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": null
+                    },
+                    "name": "plan_year_matches",
+                    "outcome": "pass",
+                    "reason": "the document is for 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "effective_date_applies",
+                    "outcome": "pass",
+                    "reason": "the declared dates cover plan year 2026"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "not_superseded",
+                    "outcome": "pass",
+                    "reason": "no document is declared to supersede it"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": {
+                      "document_id": "a",
+                      "kind": "pdf_page",
+                      "page": 1,
+                      "printed_page": null,
+                      "row": "Monthly plan premium $25 per month"
+                    },
+                    "name": "row_found",
+                    "outcome": "pass",
+                    "reason": "one row found"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "row_in_grammar",
+                    "outcome": "pass",
+                    "reason": "one value"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "network_matches",
+                    "outcome": "pass",
+                    "reason": "an in-network claim; rows read in-network"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "page_has_no_qualifiers",
+                    "outcome": "pass",
+                    "reason": "no qualifying wording on the page"
+                  },
+                  {
+                    "lane": "deterministic",
+                    "location": null,
+                    "name": "value_matches",
+                    "outcome": "pass",
+                    "reason": "the row states exactly $25.00 per month"
+                  }
+                ],
+                "source_index": 0,
+                "verdict": "supported"
+              }
+            ],
+            "unknowns": [
+              "this benefit's clause states a unit different from its typed part"
+            ],
+            "verdict": "needs_human_review"
+          }
+        ],
+        "reasons": [
+          "the claim's text says more than its typed part",
+          "this benefit's clause states a unit different from its typed part"
+        ],
+        "uncertainty": "Deterministic rules only; the model lane was not run. Unknown: this benefit's clause states a unit different from its typed part.",
+        "verdict": "needs_human_review"
+      },
+      "audit_wall_seconds": 0.0003463339526206255,
+      "case": {
+        "author": "builder",
+        "case_id": "DCR2-extra-unit",
+        "claim": {
+          "claim_id": "DCR2-extra-unit",
+          "parts": [
+            {
+              "benefit": "monthly_premium",
+              "part_id": "monthly_premium",
+              "unit": "per_month",
+              "value": {
+                "amount": "25",
+                "kind": "money"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "H9999-001 premium is $25 per month per year in 2026.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Monthly plan premium $25 per month"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "supported_dated"
+      },
+      "expected": "needs_human_review",
+      "expected_reason": "The benefit clause states both per_month and per_year but its typed part has only per_month.",
+      "pdf_reads": 1,
+      "pdf_sha256": {
+        "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+      },
+      "pdf_text": {
+        "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5": [
+          "Example Health Plan 2026 Summary of Benefits\nGold HMO H9999-001\nJanuary 1, 2026 to December 31, 2026\nBenefit What you pay\nMonthly plan premium $25 per month\nPage 1 of 1"
+        ]
+      }
+    }
+  ],
+  "scope": "original six repair checks plus four fixed new probes; exposed synthetic AI review, not human or heldout"
+}

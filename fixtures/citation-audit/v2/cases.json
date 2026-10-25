@@ -1,0 +1,543 @@
+{
+ "schema_version": "citation-audit-cases-v1",
+ "data_kind": "synthetic",
+ "cases": [
+  {
+   "case_id": "A1",
+   "split": "challenge-2",
+   "taxonomy": "compound_swapped",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month",
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "A1",
+    "text": "Premium is $45 per month and specialist visits cost $25 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     },
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "A2",
+   "split": "challenge-2",
+   "taxonomy": "units_period",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $45 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "A2",
+    "text": "Specialist visits cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "A3",
+   "split": "challenge-2",
+   "taxonomy": "footnote",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $45¹ per visit",
+       "¹ Telehealth rates differ"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "A3",
+    "text": "Specialist visits cost $451 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "451"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "A4",
+   "split": "challenge-2",
+   "taxonomy": "wrong_section",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Prescription drug benefits",
+       "Deductible $0 per year"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "A4",
+    "text": "The medical deductible is $0 per year.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "medical_deductible",
+      "benefit": "medical_deductible",
+      "value": {
+       "kind": "money",
+       "amount": "0"
+      },
+      "unit": "per_year"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "A5",
+   "split": "challenge-2",
+   "taxonomy": "source_conflict",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "b",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $30 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "A5",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "as_of": "2026-06-01",
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     },
+     {
+      "document_id": "b",
+      "page": 1,
+      "quote": "fabricated"
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "A6",
+   "split": "challenge-2",
+   "taxonomy": "superseded",
+   "author": "astra-quality-reviewer",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "b",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $30 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "c",
+     "plan_id": "H9999-001",
+     "year": 2027,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $50 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "c",
+     "effective_from": "2027-01-01",
+     "supersedes": [
+      "b"
+     ]
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "A6",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "p01",
+   "split": "regression",
+   "taxonomy": "negation",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "The following services are not covered.",
+       "Specialist visits $45 per visit"
+      ]
+     ]
+    }
+   ],
+   "meta": [],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "p01",
+    "text": "Specialist visits cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "p02",
+   "split": "regression",
+   "taxonomy": "exception",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $45 per visit",
+       "Except visits without a referral."
+      ]
+     ]
+    }
+   ],
+   "meta": [],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "p02",
+    "text": "Specialist visits cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "p04",
+   "split": "regression",
+   "taxonomy": "shared_allowance",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "DENTAL, VISION AND OTC SHARE ONE BALANCE",
+       "OTC allowance $50 monthly"
+      ]
+     ]
+    }
+   ],
+   "meta": [],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "p04",
+    "text": "The OTC allowance is $50 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "otc_allowance",
+      "benefit": "otc_allowance",
+      "value": {
+       "kind": "money",
+       "amount": "50"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "p07",
+   "split": "regression",
+   "taxonomy": "footnote",
+   "author": "builder",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Specialist visits $45¹ per visit",
+       "¹ A referral is required."
+      ]
+     ]
+    }
+   ],
+   "meta": [],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "p07",
+    "text": "Specialist visits cost $45 per visit.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "specialist_copay",
+      "benefit": "specialist_copay",
+      "value": {
+       "kind": "copay",
+       "amount": "45"
+      },
+      "unit": "per_visit"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  }
+ ]
+}

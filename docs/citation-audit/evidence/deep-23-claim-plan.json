@@ -1,0 +1,242 @@
+{
+  "planned_at": "2026-10-25T17:07:24.594572+00:00",
+  "audit_code_sha256": "4d77669fd03d00cf753e45095b81c78e33f8afc7385ebed380a369970b70941b",
+  "probes": [
+    {
+      "case": {
+        "author": "independent AI post-build claim review",
+        "case_id": "DCR2-foreign-condition",
+        "claim": {
+          "claim_id": "DCR2-foreign-condition",
+          "parts": [
+            {
+              "benefit": "inpatient_stay",
+              "conditions": [
+                "days 1 to 5"
+              ],
+              "part_id": "hospital",
+              "unit": "per_day",
+              "value": {
+                "amount": "325",
+                "kind": "copay"
+              }
+            },
+            {
+              "benefit": "specialist_copay",
+              "conditions": [
+                "without referral"
+              ],
+              "part_id": "specialist",
+              "unit": "per_visit",
+              "value": {
+                "amount": "45",
+                "kind": "copay"
+              }
+            }
+          ],
+          "plan_id": "H9999-001",
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ],
+          "text": "Inpatient hospital stay is $325 per day for days 1 to 5 without referral and specialist visits cost $45 per visit without referral.",
+          "year": 2026
+        },
+        "cms_conflicts": [],
+        "documents": [
+          {
+            "document_id": "a",
+            "document_type": "SB",
+            "pages": [
+              [
+                "Inpatient hospital stay $325 per day, days 1 to 5",
+                "Specialist visits $45 per visit without referral"
+              ]
+            ],
+            "plan_id": "H9999-001",
+            "year": 2026
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "split": "regression",
+        "taxonomy": "condition_association_positive"
+      },
+      "expected": "needs_human_review",
+      "expected_reason": "The hospital clause adds without-referral even though that condition belongs only to the specialist part and source row. Repeating it correctly for specialist cannot support hospital."
+    },
+    {
+      "case": {
+        "case_id": "DCR2-leading-date-name",
+        "split": "regression",
+        "taxonomy": "supported_dated",
+        "author": "builder",
+        "documents": [
+          {
+            "document_id": "a",
+            "plan_id": "H9999-001",
+            "year": 2026,
+            "document_type": "SB",
+            "pages": [
+              [
+                "Specialist visits $45 per visit"
+              ]
+            ]
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "cms_conflicts": [],
+        "claim": {
+          "claim_id": "DCR2-leading-date-name",
+          "text": "As of June 1, 2026, Gold HMO specialist visits cost $45 per visit.",
+          "plan_id": "H9999-001",
+          "year": 2026,
+          "as_of": "2026-06-01",
+          "parts": [
+            {
+              "part_id": "specialist_copay",
+              "benefit": "specialist_copay",
+              "value": {
+                "kind": "copay",
+                "amount": "45"
+              },
+              "unit": "per_visit"
+            }
+          ],
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ]
+        }
+      },
+      "expected": "supported",
+      "expected_reason": "The leading as-of date equals typed June 1; the first page explicitly names Gold HMO H9999-001. Same identity and fact, sentence-order variation only."
+    },
+    {
+      "case": {
+        "case_id": "DCR2-typed-network",
+        "split": "regression",
+        "taxonomy": "supported_dated",
+        "author": "builder",
+        "documents": [
+          {
+            "document_id": "a",
+            "plan_id": "H9999-001",
+            "year": 2026,
+            "document_type": "SB",
+            "pages": [
+              [
+                "Specialist visits $45 per visit"
+              ]
+            ]
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "cms_conflicts": [],
+        "claim": {
+          "claim_id": "DCR2-typed-network",
+          "text": "In-network specialist visits cost $45 per visit.",
+          "plan_id": "H9999-001",
+          "year": 2026,
+          "as_of": "2026-06-01",
+          "parts": [
+            {
+              "part_id": "specialist_copay",
+              "benefit": "specialist_copay",
+              "value": {
+                "kind": "copay",
+                "amount": "45"
+              },
+              "unit": "per_visit",
+              "network": "in_network"
+            }
+          ],
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ]
+        }
+      },
+      "expected": "supported",
+      "expected_reason": "The text explicitly states the typed in_network constraint already used by this deterministic source lane; no extra condition is added."
+    },
+    {
+      "case": {
+        "case_id": "DCR2-extra-unit",
+        "split": "regression",
+        "taxonomy": "supported_dated",
+        "author": "builder",
+        "documents": [
+          {
+            "document_id": "a",
+            "plan_id": "H9999-001",
+            "year": 2026,
+            "document_type": "SB",
+            "pages": [
+              [
+                "Monthly plan premium $25 per month"
+              ]
+            ]
+          }
+        ],
+        "meta": [
+          {
+            "document_id": "a",
+            "effective_from": "2026-01-01",
+            "effective_to": "2026-12-31"
+          }
+        ],
+        "cms_conflicts": [],
+        "claim": {
+          "claim_id": "DCR2-extra-unit",
+          "text": "H9999-001 premium is $25 per month per year in 2026.",
+          "plan_id": "H9999-001",
+          "year": 2026,
+          "parts": [
+            {
+              "part_id": "monthly_premium",
+              "benefit": "monthly_premium",
+              "value": {
+                "kind": "money",
+                "amount": "25"
+              },
+              "unit": "per_month"
+            }
+          ],
+          "sources": [
+            {
+              "document_id": "a",
+              "page": 1
+            }
+          ]
+        }
+      },
+      "expected": "needs_human_review",
+      "expected_reason": "The benefit clause states both per_month and per_year but its typed part has only per_month."
+    }
+  ],
+  "scope": "four targeted probes with expected reasoning written before first execution"
+}

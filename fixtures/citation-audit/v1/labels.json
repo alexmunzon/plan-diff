@@ -1,0 +1,263 @@
+{
+ "schema_version": "citation-audit-labels-v1",
+ "rubric": "rubric.md",
+ "labels": {
+  "d01": {
+   "verdict": "supported",
+   "rationale": "Exact typed value in one plain row of an applicable document."
+  },
+  "d02": {
+   "verdict": "supported",
+   "rationale": "Coinsurance percent matches exactly."
+  },
+  "d03": {
+   "verdict": "supported",
+   "rationale": "Zero is a real stated value, distinct from missing."
+  },
+  "d04": {
+   "verdict": "supported",
+   "rationale": "Declared condition appears verbatim in the row; nothing else unexplained."
+  },
+  "d05": {
+   "verdict": "contradicted",
+   "rationale": "Same unit, different amount, clean row."
+  },
+  "d06": {
+   "verdict": "insufficient_evidence",
+   "rationale": "Cited page has no specialist row."
+  },
+  "d07": {
+   "verdict": "insufficient_evidence",
+   "rationale": "Missing evidence is never read as zero."
+  },
+  "d08": {
+   "verdict": "insufficient_evidence",
+   "rationale": "Row exists on page 2; the citation says page 1."
+  },
+  "d09": {
+   "verdict": "insufficient_evidence",
+   "rationale": "Cited page does not exist."
+  },
+  "d10": {
+   "verdict": "insufficient_evidence",
+   "rationale": "Quoted words are not on the page."
+  },
+  "d11": {
+   "verdict": "insufficient_evidence",
+   "rationale": "Quote is true, but the implants condition is not in the evidence."
+  },
+  "d12": {
+   "verdict": "inapplicable_version",
+   "rationale": "Cited document is another plan."
+  },
+  "d13": {
+   "verdict": "inapplicable_version",
+   "rationale": "Cited document is another plan year."
+  },
+  "d14": {
+   "verdict": "inapplicable_version",
+   "rationale": "Declared effective window ends before the claim date."
+  },
+  "d15": {
+   "verdict": "inapplicable_version",
+   "rationale": "An explicitly superseding amendment is in effect on the claim date."
+  },
+  "d16": {
+   "verdict": "supported",
+   "rationale": "The amendment is not yet in effect, so the original applies and the amendment is dismissed."
+  },
+  "d17": {
+   "verdict": "conflicting_evidence",
+   "rationale": "SB and EOC disagree and no metadata establishes authority."
+  },
+  "d18": {
+   "verdict": "needs_human_review",
+   "rationale": "The column header says out-of-network; the claim is in-network."
+  },
+  "d19": {
+   "verdict": "needs_human_review",
+   "rationale": "Different period: not comparable, so neither supported nor contradicted."
+  },
+  "d20": {
+   "verdict": "contradicted",
+   "rationale": "Evidence is coinsurance, not a copay."
+  },
+  "d21": {
+   "verdict": "needs_human_review",
+   "rationale": "Rules read in-network rows only."
+  },
+  "d22": {
+   "verdict": "contradicted",
+   "rationale": "The row says not covered."
+  },
+  "d23": {
+   "verdict": "needs_human_review",
+   "rationale": "Exception wording in the row is outside the grammar."
+  },
+  "d24": {
+   "verdict": "needs_human_review",
+   "rationale": "A shared allowance is not shown to be a dedicated one."
+  },
+  "d25": {
+   "verdict": "contradicted",
+   "rationale": "One part supported, one contradicted.",
+   "parts": {
+    "monthly_premium": "supported",
+    "specialist_copay": "contradicted"
+   }
+  },
+  "d26": {
+   "verdict": "insufficient_evidence",
+   "rationale": "One part supported, one without evidence.",
+   "parts": {
+    "monthly_premium": "supported",
+    "dental_allowance": "insufficient_evidence"
+   }
+  },
+  "d27": {
+   "verdict": "unverifiable",
+   "rationale": "The cited file was not supplied."
+  },
+  "d28": {
+   "verdict": "unverifiable",
+   "rationale": "File bytes differ from the recorded hash."
+  },
+  "d29": {
+   "verdict": "unverifiable",
+   "rationale": "The PDF cannot be opened."
+  },
+  "d30": {
+   "verdict": "insufficient_evidence",
+   "rationale": "No citation at all."
+  },
+  "d31": {
+   "verdict": "unverifiable",
+   "rationale": "Cited document is not part of the run."
+  },
+  "d32": {
+   "verdict": "contradicted",
+   "rationale": "Injected page text is data; the real row says $2,000."
+  },
+  "d33": {
+   "verdict": "needs_human_review",
+   "rationale": "Two unlabeled amounts; the first is not proof."
+  },
+  "d34": {
+   "verdict": "needs_human_review",
+   "rationale": "A footnote marker may qualify the row."
+  },
+  "d35": {
+   "verdict": "needs_human_review",
+   "rationale": "Two candidate rows; a person must pick."
+  },
+  "d36": {
+   "verdict": "needs_human_review",
+   "rationale": "The document's plan is unknown."
+  },
+  "d37": {
+   "verdict": "needs_human_review",
+   "rationale": "No typed value to check."
+  },
+  "d38": {
+   "verdict": "unverifiable",
+   "rationale": "Claim cites different bytes than the run read."
+  },
+  "d39": {
+   "verdict": "supported",
+   "rationale": "Allowance with its own stated period."
+  },
+  "d40": {
+   "verdict": "supported",
+   "rationale": "Drug tier row, exact."
+  },
+  "d41": {
+   "verdict": "supported",
+   "rationale": "One source is the wrong year; the other applies and supports."
+  },
+  "d42": {
+   "verdict": "needs_human_review",
+   "rationale": "The text claims scope the typed part does not carry."
+  },
+  "d43": {
+   "verdict": "needs_human_review",
+   "rationale": "Typed value disagrees with the claim's own words."
+  },
+  "d44": {
+   "verdict": "conflicting_evidence",
+   "rationale": "The run recorded CMS disagreeing with the PDF."
+  },
+  "d45": {
+   "verdict": "inapplicable_version",
+   "rationale": "Page 2 belongs to another plan in the booklet."
+  },
+  "d46": {
+   "verdict": "supported",
+   "rationale": "Page 2 is H9999-002's page in the booklet."
+  },
+  "d47": {
+   "verdict": "needs_human_review",
+   "rationale": "An ANOC can carry the prior year's amounts."
+  },
+  "d48": {
+   "verdict": "supported",
+   "rationale": "Supported; location must carry the declared printed label S-3."
+  },
+  "d49": {
+   "verdict": "conflicting_evidence",
+   "rationale": "Mirror of d17: citing the other document must not change the verdict."
+  },
+  "c01": {
+   "verdict": "needs_human_review",
+   "rationale": "Negation governs the row from outside it."
+  },
+  "c02": {
+   "verdict": "needs_human_review",
+   "rationale": "Exception scope is unresolved."
+  },
+  "c03": {
+   "verdict": "needs_human_review",
+   "rationale": "The row cannot establish the claimed network."
+  },
+  "c04": {
+   "verdict": "needs_human_review",
+   "rationale": "Dedicated allowance is unsupported."
+  },
+  "c05": {
+   "verdict": "needs_human_review",
+   "rationale": "One amount with alternative periods and eligibility conditions."
+  },
+  "c06": {
+   "verdict": "needs_human_review",
+   "rationale": "Multiple amounts; the first candidate is not proof."
+  },
+  "c07": {
+   "verdict": "needs_human_review",
+   "rationale": "Footnote removal must not remove the restriction."
+  },
+  "c08": {
+   "verdict": "needs_human_review",
+   "rationale": "Range schedule exceeds the single-value grammar."
+  },
+  "c09": {
+   "verdict": "insufficient_evidence",
+   "rationale": "The supplied quotation is not on the page."
+  },
+  "c10": {
+   "verdict": "conflicting_evidence",
+   "rationale": "Both applicable, authority unknown; citation choice must not decide."
+  },
+  "c11": {
+   "verdict": "contradicted",
+   "rationale": "Conjunction contradicted; components keep their own statuses.",
+   "parts": {
+    "monthly_premium": "supported",
+    "specialist_copay": "contradicted",
+    "dental_allowance": "unverifiable"
+   }
+  },
+  "c12": {
+   "verdict": "supported",
+   "rationale": "Zero survives; disabled model checks do not block a positive."
+  }
+ }
+}

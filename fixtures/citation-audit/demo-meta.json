@@ -1,0 +1,47 @@
+{
+ "schema_version": "evidence-meta-v1",
+ "documents": [
+  {
+   "document_id": "H9999-001_2026_SB",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+  },
+  {
+   "document_id": "H9999-001_2027_SB",
+   "effective_from": "2027-01-01",
+   "effective_to": "2027-12-31",
+   "note": "Synthetic demo SB; its own page 1 prints January 1, 2027 to December 31, 2027."
+  },
+  {
+   "document_id": "H9999-002_2026_SB",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+  },
+  {
+   "document_id": "H9999-003_2026_SB",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+  },
+  {
+   "document_id": "H9999-004_2026_SB",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+  },
+  {
+   "document_id": "H9999-004_2027_SB",
+   "effective_from": "2027-01-01",
+   "effective_to": "2027-12-31",
+   "note": "Synthetic demo SB; its own page 1 prints January 1, 2027 to December 31, 2027."
+  },
+  {
+   "document_id": "unlabeled_2026_SB",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+  }
+ ]
+}

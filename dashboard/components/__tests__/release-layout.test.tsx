@@ -12,7 +12,7 @@ describe("Release navigation", () => {
     const html = renderToStaticMarkup(<RootLayout params={Promise.resolve({})}>page</RootLayout>);
     const doc = new DOMParser().parseFromString(html, "text/html");
     const links = [...doc.querySelectorAll('ul[aria-label="Pages"] a')];
-    expect(links).toHaveLength(5);
+    expect(links).toHaveLength(6); // PR 18 adds Citation audit
     for (const link of links) {
       const href = link.getAttribute("href")!;
       expect(href).toMatch(/^\/texas(?:\/|$)/);

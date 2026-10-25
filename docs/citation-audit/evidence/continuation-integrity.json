@@ -1,0 +1,13 @@
+{
+ "original_frozen_files_unchanged": 32,
+ "serialized_lane_integrity": {
+  "audit": [],
+  "baseline": [],
+  "policy_1_legacy": []
+ },
+ "freeze_problems": [],
+ "current_code_and_demo_hash_match": true,
+ "candidate_text_files_scanned": 89,
+ "pattern_findings": [],
+ "scan_limits": "Pattern screen only; full publication review remains required. Local coordination and .env* excluded without reading."
+}

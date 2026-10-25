@@ -1,0 +1,62 @@
+{
+ "schema_version": "citation-audit-labels-v1",
+ "rubric": "../v1/rubric.md and ../policy-2/README.md",
+ "labels": {
+  "q01": {
+   "verdict": "supported",
+   "rationale": "Dates cover the whole plan year and no as-of date is needed."
+  },
+  "q02": {
+   "verdict": "supported",
+   "rationale": "The as-of date is inside declared dates."
+  },
+  "q03": {
+   "verdict": "needs_human_review",
+   "rationale": "No as-of date and the dates cover only half the plan year."
+  },
+  "q04": {
+   "verdict": "conflicting_evidence",
+   "rationale": "Two dated, applicable documents disagree; nothing says which controls."
+  },
+  "q05": {
+   "verdict": "contradicted",
+   "rationale": "A dated, applicable row states $45."
+  },
+  "q06": {
+   "verdict": "supported",
+   "rationale": "Each amount sits with its own benefit and unit; both rows are dated.",
+   "parts": {
+    "monthly_premium": "supported",
+    "specialist_copay": "supported"
+   }
+  },
+  "q07": {
+   "verdict": "needs_human_review",
+   "rationale": "Only a start date is declared; the end is unknown."
+  },
+  "q08": {
+   "verdict": "needs_human_review",
+   "rationale": "Only a start date is declared, so it is unknown whether the document still applies on the as-of date."
+  },
+  "q09": {
+   "verdict": "conflicting_evidence",
+   "rationale": "The dated row supports the claim, but the run recorded CMS reading differently."
+  },
+  "q10": {
+   "verdict": "supported",
+   "rationale": "A dated tier row states exactly the claim."
+  },
+  "q11": {
+   "verdict": "needs_human_review",
+   "rationale": "The EOC's $30 has unknown dates: it may or may not apply, so a person must look."
+  },
+  "q12": {
+   "verdict": "inapplicable_version",
+   "rationale": "The dated document is for another plan."
+  },
+  "q45": {
+   "verdict": "inapplicable_version",
+   "rationale": "The cited page belongs to another plan in a dated booklet."
+  }
+ }
+}

@@ -1,0 +1,78 @@
+{
+ "stage": "before continuation fixes",
+ "data_kind": "synthetic",
+ "rows": [
+  {
+   "case_id": "P2R1",
+   "predicted": "supported",
+   "expected": "conflicting_evidence",
+   "parts": {
+    "monthly_premium": "supported"
+   }
+  },
+  {
+   "case_id": "P2R2",
+   "predicted": "contradicted",
+   "expected": "conflicting_evidence",
+   "parts": {
+    "monthly_premium": "contradicted"
+   }
+  },
+  {
+   "case_id": "P2R3",
+   "predicted": "supported",
+   "expected": "conflicting_evidence",
+   "parts": {
+    "monthly_premium": "supported"
+   }
+  },
+  {
+   "case_id": "P2R4",
+   "predicted": "supported",
+   "expected": "supported",
+   "parts": {
+    "monthly_premium": "supported"
+   }
+  },
+  {
+   "case_id": "d15",
+   "predicted": "inapplicable_version",
+   "expected": "needs_human_review",
+   "parts": {
+    "monthly_premium": "inapplicable_version"
+   }
+  }
+ ],
+ "saved_eval08_problems": [
+  "d26: predicted parts differ from the claim's parts",
+  "c11: predicted parts differ from the claim's parts"
+ ],
+ "pdf_sha256": {
+  "P2R1": {
+   "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+   "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+   "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+  },
+  "P2R2": {
+   "a": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906",
+   "b": "685f719f0526e77ec8eed3fa5acf7df3ef4c1adf8ba3bfa0704978cfc4aeec9f",
+   "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+  },
+  "P2R3": {
+   "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+   "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+   "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+  },
+  "P2R4": {
+   "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+   "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+   "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+  },
+  "d15": {
+   "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+   "b": "cd8820af5694c981bc83479a4e6479403f909e7d29af85961ee1c0378e2d39b5"
+  }
+ },
+ "model_lane": "not_run",
+ "human_adjudication": "not_run"
+}

@@ -1,0 +1,271 @@
+{
+  "schema_version": "citation-audit-cases-v1",
+  "cases": [
+    {
+      "author": "continuation independent AI engine reviewer",
+      "case_id": "R-benefit",
+      "claim": {
+        "claim_id": "R-benefit",
+        "parts": [
+          {
+            "benefit": "monthly_premium",
+            "part_id": "monthly_premium",
+            "unit": "per_month",
+            "value": {
+              "amount": "25",
+              "kind": "money"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1,
+            "quote": "Monthly plan premium $25 per month"
+          }
+        ],
+        "text": "The medical deductible is $25 per month.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Monthly plan premium $25 per month"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "claim_decomposition_mismatch"
+    },
+    {
+      "author": "continuation independent AI engine reviewer",
+      "case_id": "R-unrelated",
+      "claim": {
+        "claim_id": "R-unrelated",
+        "parts": [
+          {
+            "benefit": "monthly_premium",
+            "part_id": "monthly_premium",
+            "unit": "per_month",
+            "value": {
+              "amount": "25",
+              "kind": "money"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1,
+            "quote": "Monthly plan premium $25 per month"
+          }
+        ],
+        "text": "Insulin costs $25 per month.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Monthly plan premium $25 per month"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "claim_decomposition_mismatch"
+    },
+    {
+      "author": "continuation independent AI engine reviewer",
+      "case_id": "R-plan",
+      "claim": {
+        "claim_id": "R-plan",
+        "parts": [
+          {
+            "benefit": "monthly_premium",
+            "part_id": "monthly_premium",
+            "unit": "per_month",
+            "value": {
+              "amount": "25",
+              "kind": "money"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1,
+            "quote": "Monthly plan premium $25 per month"
+          }
+        ],
+        "text": "H8888-002 premium is $25 per month in 2027.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Monthly plan premium $25 per month"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "claim_decomposition_mismatch"
+    },
+    {
+      "author": "continuation independent AI engine reviewer",
+      "case_id": "R-omitted-condition",
+      "claim": {
+        "claim_id": "R-omitted-condition",
+        "parts": [
+          {
+            "benefit": "inpatient_stay",
+            "conditions": [
+              "days 1 to 5"
+            ],
+            "part_id": "inpatient_stay",
+            "unit": "per_day",
+            "value": {
+              "amount": "325",
+              "kind": "copay"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1
+          }
+        ],
+        "text": "Inpatient hospital stay is $325 per day.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Inpatient hospital stay $325 per day, days 1 to 5"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "claim_decomposition_mismatch"
+    },
+    {
+      "author": "continuation independent AI engine reviewer",
+      "case_id": "R-equal-amount-swapped-units",
+      "claim": {
+        "claim_id": "R-equal-amount-swapped-units",
+        "parts": [
+          {
+            "benefit": "monthly_premium",
+            "part_id": "monthly_premium",
+            "unit": "per_month",
+            "value": {
+              "amount": "25",
+              "kind": "money"
+            }
+          },
+          {
+            "benefit": "specialist_copay",
+            "part_id": "specialist_copay",
+            "unit": "per_visit",
+            "value": {
+              "amount": "25",
+              "kind": "copay"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1
+          }
+        ],
+        "text": "Premium is $25 per visit and specialist visits cost $25 per month.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Monthly plan premium $25 per month",
+              "Specialist visits $25 per visit"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "claim_decomposition_mismatch"
+    }
+  ]
+}

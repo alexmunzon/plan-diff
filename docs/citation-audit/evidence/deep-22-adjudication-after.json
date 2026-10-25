@@ -1,0 +1,38 @@
+[
+  {
+    "test": "unchanged",
+    "accepted": true,
+    "record": "/tmp/plan-diff-deep-adjudication-1bjfr71x/unchanged/adjudications/0001.json",
+    "revision_created": true
+  },
+  {
+    "test": "empty_object",
+    "accepted": false,
+    "error": "not a completed v2 audit; regenerate legacy or incomplete output from its inputs",
+    "revision_created": false
+  },
+  {
+    "test": "truncated_manifest",
+    "accepted": false,
+    "error": "not a completed v2 audit; regenerate legacy or incomplete output from its inputs",
+    "revision_created": false
+  },
+  {
+    "test": "wrong_audit_id",
+    "accepted": false,
+    "error": "audit bytes or identity differ from the completion manifest",
+    "revision_created": false
+  },
+  {
+    "test": "incomplete_status",
+    "accepted": false,
+    "error": "not a completed v2 audit; regenerate legacy or incomplete output from its inputs",
+    "revision_created": false
+  },
+  {
+    "test": "typed_amount_changed",
+    "accepted": false,
+    "error": "audit bytes or identity differ from the completion manifest",
+    "revision_created": false
+  }
+]

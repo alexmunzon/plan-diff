@@ -1,0 +1,36 @@
+{
+  "label": "final-repaired",
+  "audit_code_sha256": "1834b463eca52878cc2630424c03f5b13dace83cb8c858eb5ffd3dcced62d8db",
+  "workload": "same six predeclared probes; 7 samples of 100 repetitions; 600 claims/sample; PDFs built once per process; text_check timing excludes optional corpus identity names",
+  "construction_seconds": 0.025103250052779913,
+  "audit_samples_seconds": [
+    0.3129714580718428,
+    0.3024087909143418,
+    0.3048332501202822,
+    0.3063034999649972,
+    0.3142842911183834,
+    0.7175861659925431,
+    0.9746656659990549
+  ],
+  "audit_median_seconds": 0.3129714580718428,
+  "text_samples_seconds": [
+    0.05534108309075236,
+    0.05490804207511246,
+    0.05509891686961055,
+    0.05518925003707409,
+    0.05882866703905165,
+    0.15459620812907815,
+    0.11028695804998279
+  ],
+  "text_median_seconds": 0.05534108309075236,
+  "pdf_reads_before": 6,
+  "pdf_reads_after": 6,
+  "results": {
+    "DCR-geography": "needs_human_review",
+    "DCR-geography-positive": "supported",
+    "DCR-asof": "needs_human_review",
+    "DCR-asof-positive": "supported",
+    "DCR-condition-swap": "needs_human_review",
+    "DCR-condition-positive": "supported"
+  }
+}

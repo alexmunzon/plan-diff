@@ -1,0 +1,21 @@
+{
+  "source_snapshot_matches": true,
+  "cases": [
+    {
+      "case": "unchanged",
+      "accepted": true,
+      "claims": 8,
+      "first_verdict": "supported"
+    },
+    {
+      "case": "crlf_only",
+      "accepted": false,
+      "error": "audit.json: audit bytes differ from the completion manifest"
+    },
+    {
+      "case": "missing_version",
+      "accepted": false,
+      "error": "audit_manifest.json: a completed v2 manifest is required; regenerate legacy output from its inputs"
+    }
+  ]
+}

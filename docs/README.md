@@ -12,6 +12,8 @@ scope. These documents support asynchronous review without requiring a live pres
 - [Sources and fetching](sources.md): pinned public sources, download approval, and raw-file policy
 - [Public Texas methods](pr-15-notes.md): source-specific tuning, manual checks, and limitations
 - [Safety review](../changelog.d/audit-20261005-safety.md): bounded run-folder and evidence safeguards
+- [Citation audit](citation-audit.md): checking whether a cited page supports a benefit claim, with
+  synthetic evaluation evidence and limitations ([decision record](adr/citation-audit.md))
 - [Contributing](../CONTRIBUTING.md): reproducible setup and the verification gate
 - [Security](../SECURITY.md): data boundaries, private reporting, and known dependency risk
 

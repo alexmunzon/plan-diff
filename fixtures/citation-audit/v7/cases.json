@@ -1,0 +1,200 @@
+{
+ "schema_version": "citation-audit-cases-v1",
+ "cases": [
+  {
+   "case_id": "P2R9",
+   "split": "regression",
+   "taxonomy": "cyclic_supersession",
+   "author": "continuation builder, final reflection",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "b",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "EOC",
+     "pages": [
+      [
+       "Monthly plan premium $30 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "c",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "OTHER",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    },
+    {
+     "document_id": "b",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31",
+     "supersedes": [
+      "c"
+     ]
+    },
+    {
+     "document_id": "c",
+     "supersedes": [
+      "b"
+     ],
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "P2R9",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  },
+  {
+   "case_id": "P2R10",
+   "split": "regression",
+   "taxonomy": "cyclic_supersession",
+   "author": "continuation builder, final reflection",
+   "documents": [
+    {
+     "document_id": "a",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "SB",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "b",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "EOC",
+     "pages": [
+      [
+       "Monthly plan premium $30 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "c",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "OTHER",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    },
+    {
+     "document_id": "d",
+     "plan_id": "H9999-001",
+     "year": 2026,
+     "document_type": "OTHER",
+     "pages": [
+      [
+       "Monthly plan premium $25 per month"
+      ]
+     ]
+    }
+   ],
+   "meta": [
+    {
+     "document_id": "a",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    },
+    {
+     "document_id": "b",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31",
+     "supersedes": [
+      "d"
+     ]
+    },
+    {
+     "document_id": "c",
+     "supersedes": [
+      "b"
+     ],
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31"
+    },
+    {
+     "document_id": "d",
+     "effective_from": "2026-01-01",
+     "effective_to": "2026-12-31",
+     "supersedes": [
+      "c"
+     ]
+    }
+   ],
+   "cms_conflicts": [],
+   "claim": {
+    "claim_id": "P2R10",
+    "text": "Premium is $25 per month.",
+    "plan_id": "H9999-001",
+    "year": 2026,
+    "parts": [
+     {
+      "part_id": "monthly_premium",
+      "benefit": "monthly_premium",
+      "value": {
+       "kind": "money",
+       "amount": "25"
+      },
+      "unit": "per_month"
+     }
+    ],
+    "sources": [
+     {
+      "document_id": "a",
+      "page": 1
+     }
+    ]
+   }
+  }
+ ]
+}

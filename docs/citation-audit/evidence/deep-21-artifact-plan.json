@@ -1,0 +1,9 @@
+{
+  "baseline": "40baca72515006e88d41f21050329fa39d37e60b",
+  "acceptance": [
+    "Unchanged complete artifact pair loads.",
+    "Change to displayed claim text or typed amount without replacing manifest is refused before display.",
+    "Invalid completion manifest is refused before any adjudication directory or revision is created."
+  ],
+  "limits": "Consistency relative to retained manifest, not authenticity. Synthetic exposed demo only."
+}

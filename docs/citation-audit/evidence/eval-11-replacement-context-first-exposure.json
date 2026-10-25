@@ -1,0 +1,54 @@
+{
+ "stage": "before replacement-context repair",
+ "data_kind": "synthetic",
+ "model_lane": "not_run",
+ "human_adjudication": "not_run",
+ "rows": [
+  {
+   "case_id": "P2R5",
+   "predicted": "supported",
+   "expected": "conflicting_evidence"
+  },
+  {
+   "case_id": "P2R6",
+   "predicted": "supported",
+   "expected": "conflicting_evidence"
+  },
+  {
+   "case_id": "P2R7",
+   "predicted": "supported",
+   "expected": "conflicting_evidence"
+  },
+  {
+   "case_id": "P2R8",
+   "predicted": "supported",
+   "expected": "conflicting_evidence"
+  }
+ ],
+ "pdf_sha256": {
+  "P2R5": {
+   "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+   "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+   "c": "56d9d0b63ea434062484bc9eced20ccd3c585944635458c0f900779196d17491"
+  },
+  "P2R6": {
+   "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+   "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+   "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+  },
+  "P2R7": {
+   "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+   "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+   "c": "7f592137a2691b846c95af0f2f75f6fda87ce614347d5e55f4385cca2e608100"
+  },
+  "P2R8": {
+   "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+   "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+   "c": "20a1f9432fbfe4083f33f147ac1c13e26ef99ea7c75b1306cf65e02ccf76b684"
+  }
+ },
+ "freeze": {
+  "cases.json": "34b6961be1a336fcf9806ec41e2ef521c75bdc00ffee95f3e5ae8575ac84297e",
+  "labels.json": "8faa996b043dd939fa31d09bb550fbb5075604e5920e2e1e9f8371db5dc3e408"
+ }
+}

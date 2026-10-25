@@ -1,0 +1,37 @@
+{
+ "workload": "demo run PDFs, demo claims repeated",
+ "machine": "local macOS, single process",
+ "peak_rss_mb_whole_process": 179.8,
+ "rows": [
+  {
+   "claims": 8,
+   "claims_file_bytes": 3422,
+   "pdfs": 7,
+   "pdf_bytes": 20661,
+   "pdf_reads": 7,
+   "pages_read": 14,
+   "wall_seconds": 0.136,
+   "audit_json_bytes": 60231
+  },
+  {
+   "claims": 100,
+   "claims_file_bytes": 41767,
+   "pdfs": 7,
+   "pdf_bytes": 20661,
+   "pdf_reads": 7,
+   "pages_read": 14,
+   "wall_seconds": 0.23,
+   "audit_json_bytes": 695592
+  },
+  {
+   "claims": 500,
+   "claims_file_bytes": 209367,
+   "pdfs": 7,
+   "pdf_bytes": 20661,
+   "pdf_reads": 7,
+   "pages_read": 14,
+   "wall_seconds": 0.546,
+   "audit_json_bytes": 3467244
+  }
+ ]
+}

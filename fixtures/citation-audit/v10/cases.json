@@ -1,0 +1,351 @@
+{
+  "schema_version": "citation-audit-cases-v1",
+  "cases": [
+    {
+      "author": "independent AI post-build claim review",
+      "case_id": "DCR-geography",
+      "claim": {
+        "as_of": "2026-06-01",
+        "claim_id": "DCR-geography",
+        "parts": [
+          {
+            "benefit": "specialist_copay",
+            "part_id": "specialist_copay",
+            "unit": "per_visit",
+            "value": {
+              "amount": "45",
+              "kind": "copay"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1
+          }
+        ],
+        "text": "Specialist visits cost $45 per visit nationwide.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Specialist visits $45 per visit"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "unconsumed_geography"
+    },
+    {
+      "author": "independent AI post-build claim review",
+      "case_id": "DCR-geography-positive",
+      "claim": {
+        "as_of": "2026-06-01",
+        "claim_id": "DCR-geography-positive",
+        "parts": [
+          {
+            "benefit": "specialist_copay",
+            "part_id": "specialist_copay",
+            "unit": "per_visit",
+            "value": {
+              "amount": "45",
+              "kind": "copay"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1
+          }
+        ],
+        "text": "Specialist visits cost $45 per visit.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Specialist visits $45 per visit"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "unconsumed_geography_positive"
+    },
+    {
+      "author": "independent AI post-build claim review",
+      "case_id": "DCR-asof",
+      "claim": {
+        "as_of": "2026-03-01",
+        "claim_id": "DCR-asof",
+        "parts": [
+          {
+            "benefit": "monthly_premium",
+            "part_id": "monthly_premium",
+            "unit": "per_month",
+            "value": {
+              "amount": "25",
+              "kind": "money"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1
+          }
+        ],
+        "text": "H9999-001 premium is $25 per month as of December 1, 2026.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "bare": true,
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Example Health Plan 2026 Summary of Benefits",
+              "Gold HMO H9999-001",
+              "Effective January 1, 2026 to June 30, 2026",
+              "Benefit What you pay",
+              "Monthly plan premium $25 per month"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-06-30"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "text_asof_mismatch"
+    },
+    {
+      "author": "independent AI post-build claim review",
+      "case_id": "DCR-asof-positive",
+      "claim": {
+        "as_of": "2026-03-01",
+        "claim_id": "DCR-asof-positive",
+        "parts": [
+          {
+            "benefit": "monthly_premium",
+            "part_id": "monthly_premium",
+            "unit": "per_month",
+            "value": {
+              "amount": "25",
+              "kind": "money"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1
+          }
+        ],
+        "text": "H9999-001 premium is $25 per month as of March 1, 2026.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "bare": true,
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Example Health Plan 2026 Summary of Benefits",
+              "Gold HMO H9999-001",
+              "Effective January 1, 2026 to June 30, 2026",
+              "Benefit What you pay",
+              "Monthly plan premium $25 per month"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-06-30"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "text_asof_positive"
+    },
+    {
+      "author": "independent AI post-build claim review",
+      "case_id": "DCR-condition-swap",
+      "claim": {
+        "claim_id": "DCR-condition-swap",
+        "parts": [
+          {
+            "benefit": "inpatient_stay",
+            "conditions": [
+              "days 1 to 5"
+            ],
+            "part_id": "hospital",
+            "unit": "per_day",
+            "value": {
+              "amount": "325",
+              "kind": "copay"
+            }
+          },
+          {
+            "benefit": "specialist_copay",
+            "conditions": [
+              "without referral"
+            ],
+            "part_id": "specialist",
+            "unit": "per_visit",
+            "value": {
+              "amount": "45",
+              "kind": "copay"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1
+          }
+        ],
+        "text": "Inpatient hospital stay is $325 per day without referral and specialist visits cost $45 per visit for days 1 to 5.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Inpatient hospital stay $325 per day, days 1 to 5",
+              "Specialist visits $45 per visit without referral"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "condition_association"
+    },
+    {
+      "author": "independent AI post-build claim review",
+      "case_id": "DCR-condition-positive",
+      "claim": {
+        "claim_id": "DCR-condition-positive",
+        "parts": [
+          {
+            "benefit": "inpatient_stay",
+            "conditions": [
+              "days 1 to 5"
+            ],
+            "part_id": "hospital",
+            "unit": "per_day",
+            "value": {
+              "amount": "325",
+              "kind": "copay"
+            }
+          },
+          {
+            "benefit": "specialist_copay",
+            "conditions": [
+              "without referral"
+            ],
+            "part_id": "specialist",
+            "unit": "per_visit",
+            "value": {
+              "amount": "45",
+              "kind": "copay"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1
+          }
+        ],
+        "text": "Inpatient hospital stay is $325 per day for days 1 to 5 and specialist visits cost $45 per visit without referral.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Inpatient hospital stay $325 per day, days 1 to 5",
+              "Specialist visits $45 per visit without referral"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "condition_association_positive"
+    }
+  ]
+}

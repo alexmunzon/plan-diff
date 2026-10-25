@@ -1,0 +1,11 @@
+{
+  "scope": "final reconciliation of existing ten frozen probes",
+  "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=engine/src:engine/tests engine/.venv/bin/python -B /tmp/plan-diff-deep-claim-final-reconciliation.py",
+  "exit_code": 1,
+  "failure": "AssertionError: source changed during reconciliation",
+  "guard": "before == after and initial_code_hash == code_hash()",
+  "guard_position": "after ten audit executions, before final receipt write",
+  "audit_results_retained": false,
+  "interpretation": "No pass claimed; audit source stability was not established. Parent confirmed formatting occurred concurrently and now confirms sources quiescent. No result outcome is inferred from the failed attempt.",
+  "parent_confirmed_final_code_sha256": "1834b463eca52878cc2630424c03f5b13dace83cb8c858eb5ffd3dcced62d8db"
+}

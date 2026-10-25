@@ -1,0 +1,219 @@
+{
+ "schema_version": "citation-claims-v1",
+ "data_kind": "synthetic",
+ "claims": [
+  {
+   "claim_id": "demo-01-premium-2027",
+   "text": "Gold HMO (H9999-001) premium is $25 per month in 2027.",
+   "plan_id": "H9999-001",
+   "year": 2027,
+   "parts": [
+    {
+     "part_id": "monthly_premium",
+     "benefit": "monthly_premium",
+     "value": {
+      "kind": "money",
+      "amount": "25"
+     },
+     "unit": "per_month"
+    }
+   ],
+   "sources": [
+    {
+     "document_id": "H9999-001_2027_SB",
+     "page": 1,
+     "quote": "Monthly plan premium $25 per month"
+    }
+   ]
+  },
+  {
+   "claim_id": "demo-02-premium-wrong-year",
+   "text": "Gold HMO (H9999-001) premium is $25 per month in 2026.",
+   "plan_id": "H9999-001",
+   "year": 2026,
+   "parts": [
+    {
+     "part_id": "monthly_premium",
+     "benefit": "monthly_premium",
+     "value": {
+      "kind": "money",
+      "amount": "25"
+     },
+     "unit": "per_month"
+    }
+   ],
+   "sources": [
+    {
+     "document_id": "H9999-001_2027_SB",
+     "page": 1,
+     "quote": "Monthly plan premium $25 per month"
+    }
+   ]
+  },
+  {
+   "claim_id": "demo-03-specialist",
+   "text": "A Gold HMO specialist visit costs $45 per visit in 2026.",
+   "plan_id": "H9999-001",
+   "year": 2026,
+   "parts": [
+    {
+     "part_id": "specialist_copay",
+     "benefit": "specialist_copay",
+     "value": {
+      "kind": "copay",
+      "amount": "45"
+     },
+     "unit": "per_visit"
+    }
+   ],
+   "sources": [
+    {
+     "document_id": "H9999-001_2026_SB",
+     "page": 1
+    }
+   ]
+  },
+  {
+   "claim_id": "demo-04-platinum-moop",
+   "text": "Platinum HMO (H9999-004) in-network maximum out-of-pocket is $3,400 per year in 2027.",
+   "plan_id": "H9999-004",
+   "year": 2027,
+   "parts": [
+    {
+     "part_id": "moop_in_network",
+     "benefit": "moop_in_network",
+     "value": {
+      "kind": "money",
+      "amount": "3400"
+     },
+     "unit": "per_year",
+     "conditions": [
+      "in-network"
+     ]
+    }
+   ],
+   "sources": [
+    {
+     "document_id": "H9999-004_2027_SB",
+     "page": 1
+    }
+   ]
+  },
+  {
+   "claim_id": "demo-05-dental-wrong-page",
+   "text": "Gold HMO dental allowance is $2,000 per year in 2026.",
+   "plan_id": "H9999-001",
+   "year": 2026,
+   "parts": [
+    {
+     "part_id": "dental_allowance",
+     "benefit": "dental_allowance",
+     "value": {
+      "kind": "money",
+      "amount": "2000"
+     },
+     "unit": "per_year"
+    }
+   ],
+   "sources": [
+    {
+     "document_id": "H9999-001_2026_SB",
+     "page": 1
+    }
+   ]
+  },
+  {
+   "claim_id": "demo-06-compound",
+   "text": "Gold HMO premium is $0 per month and Tier 2 generic drugs are $5 per prescription in 2026.",
+   "plan_id": "H9999-001",
+   "year": 2026,
+   "parts": [
+    {
+     "part_id": "monthly_premium",
+     "benefit": "monthly_premium",
+     "value": {
+      "kind": "money",
+      "amount": "0"
+     },
+     "unit": "per_month"
+    },
+    {
+     "part_id": "drug_tier_2",
+     "benefit": "drug_tier_2",
+     "value": {
+      "kind": "copay",
+      "amount": "5"
+     },
+     "unit": "per_prescription"
+    }
+   ],
+   "sources": [
+    {
+     "document_id": "H9999-001_2026_SB",
+     "page": 1,
+     "parts": [
+      "monthly_premium"
+     ]
+    },
+    {
+     "document_id": "H9999-001_2026_SB",
+     "page": 2,
+     "parts": [
+      "drug_tier_2"
+     ]
+    }
+   ]
+  },
+  {
+   "claim_id": "demo-07-fabricated-quote",
+   "text": "Gold HMO inpatient stay is $325 per day for days 1 to 5 in 2026.",
+   "plan_id": "H9999-001",
+   "year": 2026,
+   "parts": [
+    {
+     "part_id": "inpatient_stay",
+     "benefit": "inpatient_stay",
+     "value": {
+      "kind": "copay",
+      "amount": "325"
+     },
+     "unit": "per_day",
+     "conditions": [
+      "days 1 to 5"
+     ]
+    }
+   ],
+   "sources": [
+    {
+     "document_id": "H9999-001_2026_SB",
+     "page": 1,
+     "quote": "Inpatient hospital stay $325 per day, days 1 to 10"
+    }
+   ]
+  },
+  {
+   "claim_id": "demo-08-otc",
+   "text": "Silver HMO (H9999-002) OTC allowance is $150 per year in 2026.",
+   "plan_id": "H9999-002",
+   "year": 2026,
+   "parts": [
+    {
+     "part_id": "otc_allowance",
+     "benefit": "otc_allowance",
+     "value": {
+      "kind": "money",
+      "amount": "150"
+     },
+     "unit": "per_year"
+    }
+   ],
+   "sources": [
+    {
+     "document_id": "H9999-002_2026_SB",
+     "page": 2,
+     "quote": "Over-the-counter (OTC) allowance $150 per year"
+    }
+   ]
+  }
+ ]
+}

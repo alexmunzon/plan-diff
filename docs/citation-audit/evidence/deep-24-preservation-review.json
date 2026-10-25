@@ -1,0 +1,536 @@
+{
+  "baseline_commit": "40baca72515006e88d41f21050329fa39d37e60b",
+  "head": "40baca72515006e88d41f21050329fa39d37e60b",
+  "branch": "pr-18-citation-audit",
+  "frozen_files_compared": 69,
+  "frozen_all_equal": true,
+  "comparisons": [
+    {
+      "path": "docs/citation-audit/evidence/bench-01.json",
+      "baseline_sha256": "b1dc216e274b98db91d6e32eb3ec91935672fed8862ea920ba12cf91c7901bcc",
+      "current_sha256": "b1dc216e274b98db91d6e32eb3ec91935672fed8862ea920ba12cf91c7901bcc",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/bench-02-after-quality-a-fixes.json",
+      "baseline_sha256": "e47b9ab0e7b6ae120ee817cf0c5a39510917623ca357c1fead946e15752de085",
+      "current_sha256": "e47b9ab0e7b6ae120ee817cf0c5a39510917623ca357c1fead946e15752de085",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/bench-03-after-quality-b-fixes.json",
+      "baseline_sha256": "f9822abdba503dd4b895fdb72fa5f4c060df23de625da86352b76d5bff913e2e",
+      "current_sha256": "f9822abdba503dd4b895fdb72fa5f4c060df23de625da86352b76d5bff913e2e",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/bench-04-continuation.json",
+      "baseline_sha256": "516c44e72aed371880799f3b4e6644dbf7004d4a050cfb21d6770e3e3da90a47",
+      "current_sha256": "516c44e72aed371880799f3b4e6644dbf7004d4a050cfb21d6770e3e3da90a47",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/bench-05-final.json",
+      "baseline_sha256": "52bd60e4bb1f661e8c45e991e349dbcb4cf4d67d5da65602f50c952bb69b067f",
+      "current_sha256": "52bd60e4bb1f661e8c45e991e349dbcb4cf4d67d5da65602f50c952bb69b067f",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/browser-20-served-artifacts.json",
+      "baseline_sha256": "76cb6708ddc1da2f1fe1af099bb99a7500fa26d8e4f3ca207172d8fd30b72a09",
+      "current_sha256": "76cb6708ddc1da2f1fe1af099bb99a7500fa26d8e4f3ca207172d8fd30b72a09",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/continuation-integrity.json",
+      "baseline_sha256": "1c87ed004b4d4ea45aeb5f311cb27ef7bc35876f915c89c6bab70b48299b6fb1",
+      "current_sha256": "1c87ed004b4d4ea45aeb5f311cb27ef7bc35876f915c89c6bab70b48299b6fb1",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-01-first-run.json",
+      "baseline_sha256": "a30ad2ac649520a05feeb87727af9067c8992bb2e6013a3e6bbf8b87b0e29eda",
+      "current_sha256": "a30ad2ac649520a05feeb87727af9067c8992bb2e6013a3e6bbf8b87b0e29eda",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-02-after-d21-fix.json",
+      "baseline_sha256": "9538b2eb217abecc299975a5414ffc19967ea1ea85b62acea15294cacd98e1d7",
+      "current_sha256": "9538b2eb217abecc299975a5414ffc19967ea1ea85b62acea15294cacd98e1d7",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-03-astra-quality-cases-first-exposure.json",
+      "baseline_sha256": "90ece3b9db9e2f4b255ed06e41315f6456567fed18901b0afe30cf115e0d0072",
+      "current_sha256": "90ece3b9db9e2f4b255ed06e41315f6456567fed18901b0afe30cf115e0d0072",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-04-v2-added-before-fixes.json",
+      "baseline_sha256": "075005d841275cc441f2233c27cc047595655a243c4ff8e552589a1d878a6f97",
+      "current_sha256": "075005d841275cc441f2233c27cc047595655a243c4ff8e552589a1d878a6f97",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-05-after-quality-a-fixes.json",
+      "baseline_sha256": "f394e185afd10460b6a3784cbb0254b4fe81686a3d5d386f959f75297116782f",
+      "current_sha256": "f394e185afd10460b6a3784cbb0254b4fe81686a3d5d386f959f75297116782f",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-06-v3-added-before-fixes.json",
+      "baseline_sha256": "f89985c30dd2a59b92d463add9233cfb82f88a17f96b1e98ad196bd2c5ddff04",
+      "current_sha256": "f89985c30dd2a59b92d463add9233cfb82f88a17f96b1e98ad196bd2c5ddff04",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-07-after-quality-b-fixes.json",
+      "baseline_sha256": "966150a58240fe0a536b86c3e48d86a75082c09031887fd1627cfe801975f594",
+      "current_sha256": "966150a58240fe0a536b86c3e48d86a75082c09031887fd1627cfe801975f594",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-08-policy-2-first-run.json",
+      "baseline_sha256": "ca1e7d8a47bcd547cdb4c8e6f62fc319e7741e0ad15ff838a0f10a88d1fbb87a",
+      "current_sha256": "ca1e7d8a47bcd547cdb4c8e6f62fc319e7741e0ad15ff838a0f10a88d1fbb87a",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-09-policy-2-review-first-exposure.json",
+      "baseline_sha256": "229e4542440afa4467dbff8f53382b26ec04a45340c40c6d4ad5d1ef54f14580",
+      "current_sha256": "229e4542440afa4467dbff8f53382b26ec04a45340c40c6d4ad5d1ef54f14580",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-10-after-policy2-review-fixes.json",
+      "baseline_sha256": "1320bb975dd400d01f2c3983b4392ffd0c239cd380a9a892334862b330ec2d23",
+      "current_sha256": "1320bb975dd400d01f2c3983b4392ffd0c239cd380a9a892334862b330ec2d23",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-11-replacement-context-first-exposure.json",
+      "baseline_sha256": "e1f6de7bd0242b3d912bf3dd7fb171e2c3d90eb2d979ecdf5b625750f48d4f89",
+      "current_sha256": "e1f6de7bd0242b3d912bf3dd7fb171e2c3d90eb2d979ecdf5b625750f48d4f89",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-12-after-replacement-context-fixes.json",
+      "baseline_sha256": "5de0242e57c7095dfaa7fd11a6ebb9ffa7dc71d561c73dd33f60c00786dc4934",
+      "current_sha256": "5de0242e57c7095dfaa7fd11a6ebb9ffa7dc71d561c73dd33f60c00786dc4934",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-13-reflection-cycle-first-exposure.json",
+      "baseline_sha256": "6f9de42e1cca135744845b8e2970916a9bd55767e058de9ab1bb6fab9036fdec",
+      "current_sha256": "6f9de42e1cca135744845b8e2970916a9bd55767e058de9ab1bb6fab9036fdec",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-14-after-reflection-fixes.json",
+      "baseline_sha256": "5511a4bd27a7616d439b50b76d7e21375b3e7db0f7403a9762ea66bc216412f9",
+      "current_sha256": "5511a4bd27a7616d439b50b76d7e21375b3e7db0f7403a9762ea66bc216412f9",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-17-after-decomposition-fixes.json",
+      "baseline_sha256": "9972e67497ec6e38a11a2e67e700079cc59ca8f37c1b448f878d46666ae554d7",
+      "current_sha256": "9972e67497ec6e38a11a2e67e700079cc59ca8f37c1b448f878d46666ae554d7",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/eval-19-after-final-review-fixes.json",
+      "baseline_sha256": "ba1adb11e01cf17a96e3abbee66aa0bb0907a2ae60cafedb0280add4ae63183a",
+      "current_sha256": "ba1adb11e01cf17a96e3abbee66aa0bb0907a2ae60cafedb0280add4ae63183a",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/review-15-decomposition-first-exposure.json",
+      "baseline_sha256": "ea10b0e85b885ebfba1d1bbff21f97a57070bda80084fdb3719f3e4405f89585",
+      "current_sha256": "ea10b0e85b885ebfba1d1bbff21f97a57070bda80084fdb3719f3e4405f89585",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/review-16-ui-integrity-first-exposure.json",
+      "baseline_sha256": "54635872295707d2916ee128b29908c25d2473874c40cc2ec440a66a6d20cccd",
+      "current_sha256": "54635872295707d2916ee128b29908c25d2473874c40cc2ec440a66a6d20cccd",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/review-18-not-covered-first-exposure.json",
+      "baseline_sha256": "fd601c33169fe226690ee9aaf888b8d0701eeaed7def856af1d56adee1ef15e0",
+      "current_sha256": "fd601c33169fe226690ee9aaf888b8d0701eeaed7def856af1d56adee1ef15e0",
+      "equal": true
+    },
+    {
+      "path": "docs/citation-audit/evidence/verification-20-final.json",
+      "baseline_sha256": "3b1d9ce51022235cf274385c8348f321ed5ce0a06f9caf3f721212ea8b044c7f",
+      "current_sha256": "3b1d9ce51022235cf274385c8348f321ed5ce0a06f9caf3f721212ea8b044c7f",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/policy-2/README.md",
+      "baseline_sha256": "3fe3d27b421294e76a48f0220607210fad5201d7f3adeb8a34ceffc44476a1fd",
+      "current_sha256": "3fe3d27b421294e76a48f0220607210fad5201d7f3adeb8a34ceffc44476a1fd",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/policy-2/REVISION-2.md",
+      "baseline_sha256": "fb659989a0c20026b431d50c5c1ebddba940842f61755314eee8b85cad62d57e",
+      "current_sha256": "fb659989a0c20026b431d50c5c1ebddba940842f61755314eee8b85cad62d57e",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/policy-2/expectations-r2.json",
+      "baseline_sha256": "a470e4f32024e5b87efa04cc143c6689b427573b3e3fd12ecddd91468f98a85e",
+      "current_sha256": "a470e4f32024e5b87efa04cc143c6689b427573b3e3fd12ecddd91468f98a85e",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/policy-2/expectations.json",
+      "baseline_sha256": "4a21d3029d73e27df0bc86a99f2b4f3fd742064693385defa4035c508f329e22",
+      "current_sha256": "4a21d3029d73e27df0bc86a99f2b4f3fd742064693385defa4035c508f329e22",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/rubric-freeze.json",
+      "baseline_sha256": "8e84925fc4f0d0311f95cce0277b7ace38baafbbdcb50204686b48373ca0dc6b",
+      "current_sha256": "8e84925fc4f0d0311f95cce0277b7ace38baafbbdcb50204686b48373ca0dc6b",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v1/PROVENANCE.md",
+      "baseline_sha256": "5973f4b0bd9e8fa75a63c5a278884610d1b641e9d0eb623a669bf4f276e29d3f",
+      "current_sha256": "5973f4b0bd9e8fa75a63c5a278884610d1b641e9d0eb623a669bf4f276e29d3f",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v1/cases.json",
+      "baseline_sha256": "e564713f765a5934ad1623fe86ea140fc20fb3be8bab56f9fab876f2e2a74d86",
+      "current_sha256": "e564713f765a5934ad1623fe86ea140fc20fb3be8bab56f9fab876f2e2a74d86",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v1/labels.json",
+      "baseline_sha256": "1df06eb4735a0a063447fcb189e7d441552c9a5530c7537ef1c645bf4fc3f38c",
+      "current_sha256": "1df06eb4735a0a063447fcb189e7d441552c9a5530c7537ef1c645bf4fc3f38c",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v1/pdf-sha256.json",
+      "baseline_sha256": "f6d7fe169d0cb42534cf44589524be6699b5da6e4d37322fb3ea00389f0aa39c",
+      "current_sha256": "f6d7fe169d0cb42534cf44589524be6699b5da6e4d37322fb3ea00389f0aa39c",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v1/rubric.md",
+      "baseline_sha256": "eb89499e463cf815a7a2d1ad8f3cf345d530fbcc0247b6826eb7878b9acdeb86",
+      "current_sha256": "eb89499e463cf815a7a2d1ad8f3cf345d530fbcc0247b6826eb7878b9acdeb86",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v2/PROVENANCE.md",
+      "baseline_sha256": "937ea0d47306a1555231843622bd070ba2b76b0f9db9d9200e264e53a379c308",
+      "current_sha256": "937ea0d47306a1555231843622bd070ba2b76b0f9db9d9200e264e53a379c308",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v2/cases.json",
+      "baseline_sha256": "a25a6e631a0dc8b58e2dfb0994b18301861fb14232e1e804adf1ef8155840ae9",
+      "current_sha256": "a25a6e631a0dc8b58e2dfb0994b18301861fb14232e1e804adf1ef8155840ae9",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v2/labels.json",
+      "baseline_sha256": "76820755a8c20630a984fc919b5f4501712dd23d4cbf868e30b5d07ec390cd6a",
+      "current_sha256": "76820755a8c20630a984fc919b5f4501712dd23d4cbf868e30b5d07ec390cd6a",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v2/pdf-sha256.json",
+      "baseline_sha256": "7347b47fd38903eddce45ffaf244f4af742fa5587e7d5f6906a7f899bdca5e10",
+      "current_sha256": "7347b47fd38903eddce45ffaf244f4af742fa5587e7d5f6906a7f899bdca5e10",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v3/PROVENANCE.md",
+      "baseline_sha256": "e43827f71091077a0f6989142aba8ba6123df9f699e148c58dc442a5d4dd47f9",
+      "current_sha256": "e43827f71091077a0f6989142aba8ba6123df9f699e148c58dc442a5d4dd47f9",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v3/cases.json",
+      "baseline_sha256": "8764b84eaf71789061207fb0aa979f24ade2a46398c6a3d5d35844b1ed6517b1",
+      "current_sha256": "8764b84eaf71789061207fb0aa979f24ade2a46398c6a3d5d35844b1ed6517b1",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v3/labels.json",
+      "baseline_sha256": "3564340f283572eddfc49405c62b87973ce15d055a8a566e16af61d140c675b5",
+      "current_sha256": "3564340f283572eddfc49405c62b87973ce15d055a8a566e16af61d140c675b5",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v3/pdf-sha256.json",
+      "baseline_sha256": "8452676cbf4326073c23e57fc0a45816a25e4d494f9b171eb192b5b31a6e693d",
+      "current_sha256": "8452676cbf4326073c23e57fc0a45816a25e4d494f9b171eb192b5b31a6e693d",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v4/PROVENANCE.md",
+      "baseline_sha256": "1611b61e81953755c706dc4d680a24a0c2e64bb4ef7256e8834c07a13a959046",
+      "current_sha256": "1611b61e81953755c706dc4d680a24a0c2e64bb4ef7256e8834c07a13a959046",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v4/cases.json",
+      "baseline_sha256": "250a6725560607b692849e1b46b8ba5b0c5aa7e625b4667d86d3bd1581e87ce4",
+      "current_sha256": "250a6725560607b692849e1b46b8ba5b0c5aa7e625b4667d86d3bd1581e87ce4",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v4/labels.json",
+      "baseline_sha256": "50105ea54eba262ec5a2a56fd975ddb7e1e5fdce065a8c4c73c5acb02bb91096",
+      "current_sha256": "50105ea54eba262ec5a2a56fd975ddb7e1e5fdce065a8c4c73c5acb02bb91096",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v4/pdf-sha256.json",
+      "baseline_sha256": "5577ee511d3226930fc44ce93846fd1e32a64a3e10a92f00b860484aaf899f96",
+      "current_sha256": "5577ee511d3226930fc44ce93846fd1e32a64a3e10a92f00b860484aaf899f96",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v5/PROVENANCE.md",
+      "baseline_sha256": "c8b620caed18b0b81f7b3d771bd10090d713f352a351af8c0df57b3148fa6d46",
+      "current_sha256": "c8b620caed18b0b81f7b3d771bd10090d713f352a351af8c0df57b3148fa6d46",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v5/cases.json",
+      "baseline_sha256": "e695ed66f6494c58a5f4fa594465eb6119758827332692d4bc5f8519d8917cb4",
+      "current_sha256": "e695ed66f6494c58a5f4fa594465eb6119758827332692d4bc5f8519d8917cb4",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v5/labels.json",
+      "baseline_sha256": "222d23864b6390252dbba4da349a21e2e4a6bed90e51b5b350bde980a5e514cd",
+      "current_sha256": "222d23864b6390252dbba4da349a21e2e4a6bed90e51b5b350bde980a5e514cd",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v5/pdf-sha256.json",
+      "baseline_sha256": "e72d84db8191783dd35c002ad458e7932ce913538bd7efdcfaaf551f91d1ff66",
+      "current_sha256": "e72d84db8191783dd35c002ad458e7932ce913538bd7efdcfaaf551f91d1ff66",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v6/PROVENANCE.md",
+      "baseline_sha256": "c7f23d44ce913eded36ef0ae3f011ef50f746e4f65f21823ec0ed3df6143d883",
+      "current_sha256": "c7f23d44ce913eded36ef0ae3f011ef50f746e4f65f21823ec0ed3df6143d883",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v6/cases.json",
+      "baseline_sha256": "34b6961be1a336fcf9806ec41e2ef521c75bdc00ffee95f3e5ae8575ac84297e",
+      "current_sha256": "34b6961be1a336fcf9806ec41e2ef521c75bdc00ffee95f3e5ae8575ac84297e",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v6/labels.json",
+      "baseline_sha256": "8faa996b043dd939fa31d09bb550fbb5075604e5920e2e1e9f8371db5dc3e408",
+      "current_sha256": "8faa996b043dd939fa31d09bb550fbb5075604e5920e2e1e9f8371db5dc3e408",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v6/pdf-sha256.json",
+      "baseline_sha256": "a133dd5e08c6e11298b645dd8fcbddc8033a9ebb17b62e6e757f0cc856d4414c",
+      "current_sha256": "a133dd5e08c6e11298b645dd8fcbddc8033a9ebb17b62e6e757f0cc856d4414c",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v7/PROVENANCE.md",
+      "baseline_sha256": "b4afbad281542cbc5f38350885fdad281eb55f33d3488d55e7b326d1577709fd",
+      "current_sha256": "b4afbad281542cbc5f38350885fdad281eb55f33d3488d55e7b326d1577709fd",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v7/cases.json",
+      "baseline_sha256": "e939f89b6407510db9d11457d82ed4e804773ea31ed7ceb982f4d30c66d7c895",
+      "current_sha256": "e939f89b6407510db9d11457d82ed4e804773ea31ed7ceb982f4d30c66d7c895",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v7/labels.json",
+      "baseline_sha256": "4276f8febfeb3f0beaf1261c35bba5f755823b164105726d405fa5b446320f0c",
+      "current_sha256": "4276f8febfeb3f0beaf1261c35bba5f755823b164105726d405fa5b446320f0c",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v7/pdf-sha256.json",
+      "baseline_sha256": "aedf56167e63aa40a61c9eb77209d75117b2ea2585161f1ad5b03c1e8f00c7a4",
+      "current_sha256": "aedf56167e63aa40a61c9eb77209d75117b2ea2585161f1ad5b03c1e8f00c7a4",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v8/PROVENANCE.md",
+      "baseline_sha256": "7f3ab9fd7b51fb3b5f3518310f874efa93d1e95ff0dc2830eb736e6034fcd652",
+      "current_sha256": "7f3ab9fd7b51fb3b5f3518310f874efa93d1e95ff0dc2830eb736e6034fcd652",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v8/cases.json",
+      "baseline_sha256": "503579006149ca677b1d89d1cf7512bd23c82ac1588e6316704667fe1e997526",
+      "current_sha256": "503579006149ca677b1d89d1cf7512bd23c82ac1588e6316704667fe1e997526",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v8/labels.json",
+      "baseline_sha256": "0dbfb09e70791f77eb8d896b5b7c77dc60f6fafa45d4cde2b8bceaedc26ba230",
+      "current_sha256": "0dbfb09e70791f77eb8d896b5b7c77dc60f6fafa45d4cde2b8bceaedc26ba230",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v8/pdf-sha256.json",
+      "baseline_sha256": "7709fcc71dfc84d193f99e598d87f5c81555c5c2c8f3cca6f57d309b1c2b7ac7",
+      "current_sha256": "7709fcc71dfc84d193f99e598d87f5c81555c5c2c8f3cca6f57d309b1c2b7ac7",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v9/PROVENANCE.md",
+      "baseline_sha256": "f073d44372a24ad0ce1369ad78f81d88f014463e2ba30bde1f77f6d972269a39",
+      "current_sha256": "f073d44372a24ad0ce1369ad78f81d88f014463e2ba30bde1f77f6d972269a39",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v9/cases.json",
+      "baseline_sha256": "7ad2d549a4a6f892d79eb8038c858e0bd427f0d2defb6c9f0b850a49c29f8941",
+      "current_sha256": "7ad2d549a4a6f892d79eb8038c858e0bd427f0d2defb6c9f0b850a49c29f8941",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v9/labels.json",
+      "baseline_sha256": "dbd12e69a450788871a3bc9202dfab9757344b991f8fc5f193a2b2b2ea89ba61",
+      "current_sha256": "dbd12e69a450788871a3bc9202dfab9757344b991f8fc5f193a2b2b2ea89ba61",
+      "equal": true
+    },
+    {
+      "path": "fixtures/citation-audit/v9/pdf-sha256.json",
+      "baseline_sha256": "95f37c7a59c283c46a4c9892b73401a19b9daa7b9df6e85621434699c13e757f",
+      "current_sha256": "95f37c7a59c283c46a4c9892b73401a19b9daa7b9df6e85621434699c13e757f",
+      "equal": true
+    }
+  ],
+  "snapshot_files": [
+    {
+      "path": "dashboard/lib/__tests__/audit.test.ts",
+      "sha256": "1bf61ce99bdd1b9701defaf7e6e193e58655338e422bfa883a00689f0b629ffe",
+      "bytes": 11150
+    },
+    {
+      "path": "dashboard/lib/audit-dir.ts",
+      "sha256": "130c532f2094632552370c9dbb21dce5e2c3122573037fe0fcbbf4f14d12403d",
+      "bytes": 2721
+    },
+    {
+      "path": "dashboard/lib/audit.ts",
+      "sha256": "5352a9efd7ea3f6cf37c96ca9e11ba3842b387525f4795895dfac095ab9bc2e5",
+      "bytes": 16419
+    },
+    {
+      "path": "dashboard/public/demo-run-audit/audit_manifest.json",
+      "sha256": "55347dd4c7fb11e53327bcfde1f8de5d5a1e68357be1114b2f4438f3a790a94a",
+      "bytes": 2063
+    },
+    {
+      "path": "docs/citation-audit/deep-improvement-plan.md",
+      "sha256": "b8b901c1933d51a8dea6f632368930db8e62f758fe924e70e371ac81b0bb9bdb",
+      "bytes": 3062
+    },
+    {
+      "path": "docs/citation-audit/evidence/deep-21-adjudication-first-results.json",
+      "sha256": "0b73a2ba367114708cc88bd20d19360778f49ec9e96293eaddefbb11ec451813",
+      "bytes": 1142
+    },
+    {
+      "path": "docs/citation-audit/evidence/deep-21-artifact-plan.json",
+      "sha256": "d51d67f7bbc7fac7e01aac8f98b136034104195e7578ffa623cbb66ab7c39993",
+      "bytes": 446
+    },
+    {
+      "path": "docs/citation-audit/evidence/deep-21-benchmark-before.json",
+      "sha256": "52540540b69a09eeaa6fc9d9eb2b9f93eb7bcfb812eb35eda3c72c786f5a4ad4",
+      "bytes": 1143
+    },
+    {
+      "path": "docs/citation-audit/evidence/deep-21-claim-first-results.json",
+      "sha256": "d62cd1aaf68276ed89da4d44eb0c06628b566535ddd9585267d54c0bd7735007",
+      "bytes": 56994
+    },
+    {
+      "path": "docs/citation-audit/evidence/deep-21-claim-plan.json",
+      "sha256": "bcabb1728d41c03d4c398c68a6f4cc932dabb5f46a2fcbdade6ebe8f11213af1",
+      "bytes": 11176
+    },
+    {
+      "path": "docs/citation-audit/evidence/deep-21-loader-first-results.json",
+      "sha256": "34e0e19cc0e13374079364e2636fc27a009117dfebfeb0201d4964c29842637e",
+      "bytes": 3132
+    },
+    {
+      "path": "engine/src/plan_diff/audit/checks.py",
+      "sha256": "a68460693ee365138084f9eda29ecc7636da0ed1da91f2860b5d830f995f253e",
+      "bytes": 47157
+    },
+    {
+      "path": "engine/src/plan_diff/audit/runner.py",
+      "sha256": "c0fdf3afa6255edfe167d670ecc5ba5493e5f46db0249e343a79e2cf44028e3d",
+      "bytes": 12643
+    },
+    {
+      "path": "engine/tests/audit_cases.py",
+      "sha256": "776d6b213c92f2192aec937c164c1339331b251ceff8ccea78f8e01703b54d1d",
+      "bytes": 8325
+    },
+    {
+      "path": "engine/tests/unit/test_citation_audit.py",
+      "sha256": "a5465c9982f0ee2fdd48b4b96739effd0453efc00995809ac00ff8b892d8b95c",
+      "bytes": 38620
+    },
+    {
+      "path": "fixtures/citation-audit/v10/PROVENANCE.md",
+      "sha256": "8c4371d8878ff9c36df826066b381aea9e934053445108aceb66f9b3ce50f922",
+      "bytes": 728
+    },
+    {
+      "path": "fixtures/citation-audit/v10/cases.json",
+      "sha256": "9ca21d3f631340f322bbd9049db39edabf185dcd24d345efc957af1fa8e91240",
+      "bytes": 8953
+    },
+    {
+      "path": "fixtures/citation-audit/v10/labels.json",
+      "sha256": "7f2fda1b61012f263288652905797084b18017baf981892d1322dc9254219bff",
+      "bytes": 1360
+    },
+    {
+      "path": "fixtures/citation-audit/v10/pdf-sha256.json",
+      "sha256": "8545af0ed6bb5c749dd9ea530b85b7dcb88f6a0852aeb3bcf5069a246453c3cf",
+      "bytes": 637
+    }
+  ],
+  "scan_findings": [],
+  "exclusions": "Private coordination/handoff files, environment files, all unrelated untracked files. No .env file read. Pattern scan is not a comprehensive secrets guarantee. Snapshot while root edits; recheck final staged bytes.",
+  "comparison_groups": {
+    "fixtures/citation-audit/v": 37,
+    "fixtures/citation-audit/policy-2/": 4,
+    "fixtures/citation-audit/rubric-freeze.json": 1,
+    "docs/citation-audit/evidence/": 27
+  },
+  "changed_since_snapshot": [],
+  "manual_review": {
+    "read": "All intended tracked source/test diffs and new deep-improvement plan, v10 provenance and baseline artifact/benchmark receipts; v10 cases/labels/PDF hashes compared directly to predeclared plan and first results.",
+    "findings": [
+      "Current demo manifest records a pre-formatting audit_code hash. Refresh after source settles; exact audit bytes digest already matches."
+    ],
+    "not_claimed": "No independent human evaluation, no broad security audit, no final staged-content approval, no remote/CI or browser verification."
+  }
+}

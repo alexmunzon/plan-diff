@@ -12,9 +12,14 @@ run evidence. For development, start with [locked setup](#run-locally), the
 
 ## Status and scope
 
-Unreleased local candidate: `/worklist` adds a browser-only synthetic broker worklist.
+The [worklist demo](https://plan-diff.vercel.app/worklist) is a browser-only synthetic broker worklist.
 The optional `advisory evaluate` command emits an offline review sidecar. See
-[scope and commands](docs/unreleased-worklist-advisory.md). These additions are not deployed.
+[scope and commands](docs/unreleased-worklist-advisory.md). Advisory evaluation remains an offline CLI.
+
+The offline `audit` command checks whether each declared benefit claim is supported by the page it
+cites, in the right plan, year, and version. See the [citation audit runbook](docs/citation-audit.md).
+The `/audit` view uses synthetic evidence only. Release status, exact deployment commit and hosted
+verification are recorded in [PR 18](https://github.com/alexmunzon/plan-diff/pull/18).
 
 The dashboard has Overview, Plan comparison, Changes, Trust, and Documents for two committed runs:
 
@@ -133,3 +138,13 @@ Separate demos, shared trust principles. No data is transferred between these ap
 1. [Intake Kit](https://agency-intake-kit.vercel.app): inspect carrier intake and validation
 2. [Bob Resolve](https://bob-resolve-nine.vercel.app): inspect record matching and review
 3. [Plan Diff](https://plan-diff.vercel.app): inspect benefit changes and source evidence
+
+## Development and continuity
+
+The current continuation uses one project session with bounded internal Astra reviews. Read
+the workspace's AGENTS.md, CLAUDE.md and local project state before editing; these local
+coordination notes preserve ownership, approval boundaries and explicit holds. Handoffs carry
+working context without migrating original conversation history. Product architecture and
+reproducible evidence are in the [citation audit runbook](docs/citation-audit.md).
+The [deferred deeper review](docs/citation-audit/deep-improvement-report.md) records measured
+wording and artifact-consistency repairs, retained failures and remaining limits.

@@ -71,7 +71,7 @@ def _is_label(line: str) -> bool:
     return any(label.match(line) for label in _ANY_LABEL)
 
 
-def _drug_section_flags(pages: Sequence[list[str]]) -> list[list[bool]]:
+def drug_section_flags(pages: Sequence[list[str]]) -> list[list[bool]]:
     """For each line, whether it sits inside a drug section (Review 2). A heading is a whole line
     with no amount that is not a field label; the section runs across pages until a medical one."""
     in_drug, flags = False, []
@@ -86,6 +86,23 @@ def _drug_section_flags(pages: Sequence[list[str]]) -> list[list[bool]]:
                     in_drug = False
             page_flags.append(in_drug)
         flags.append(page_flags)
+    return flags
+
+
+def drug_section_label(parser: FieldParser) -> re.Pattern[str]:
+    """The field's row label inside a drug section: stricter for EXTRACT_DRUG_SECTION_LABELS."""
+    scoped = config.EXTRACT_DRUG_SECTION_LABELS.get(parser.field.value)
+    return re.compile(scoped, re.IGNORECASE) if scoped else parser.label
+
+
+def skip_section_flags(pages: Sequence[list[str]]) -> list[list[bool]]:
+    """For each line, whether it sits in a section whose rows are never read (insulin table)."""
+    flags = [[False] * len(lines) for lines in pages]
+    for start, length in _SKIP:
+        skip = _sections(pages, start, length)
+        flags = [
+            [a or b for a, b in zip(x, y, strict=True)] for x, y in zip(flags, skip, strict=True)
+        ]
     return flags
 
 
@@ -131,8 +148,7 @@ def _hits(
     drug_flags: list[list[bool]],
     skip_flags: list[list[bool]],
 ) -> list[_Hit]:
-    scoped = config.EXTRACT_DRUG_SECTION_LABELS.get(parser.field.value)
-    drug_label = re.compile(scoped, re.IGNORECASE) if scoped else parser.label
+    drug_label = drug_section_label(parser)
     exclude = _EXCLUDE.get(parser.field.value)
     hits: list[_Hit] = []
     for page_number, lines in enumerate(pages, start=1):
@@ -175,14 +191,8 @@ def extract_pages(page_texts: Sequence[str], classification: Classification) -> 
     # PR 15: en and em dashes become a plain hyphen, so no quoted snippet carries one (docs rule).
     plain = [t.replace("\u2013", "-").replace("\u2014", "-") for t in page_texts]
     pages = [[ln.strip() for ln in text.splitlines() if ln.strip()] for text in plain]
-    drug_flags = _drug_section_flags(pages)
-    skip_flags = [[False] * len(lines) for lines in pages]
-    for start, length in _SKIP:
-        skip = _sections(pages, start, length)
-        skip_flags = [
-            [a or b for a, b in zip(x, y, strict=True)]
-            for x, y in zip(skip_flags, skip, strict=True)
-        ]
+    drug_flags = drug_section_flags(pages)
+    skip_flags = skip_section_flags(pages)
     year = classification.year.value
     fields: dict[FieldName, ExtractedField] = {}
     review: list[ReviewItem] = []

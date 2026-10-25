@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftRight, Columns3, ClipboardList, Download, FileText, LayoutDashboard, ShieldCheck } from "lucide-react";
+import { ArrowLeftRight, Columns3, ClipboardList, Download, FileSearch, FileText, LayoutDashboard, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -14,6 +14,7 @@ const PAGES = [
   { label: "Changes", page: "/changes", icon: ArrowLeftRight },
   { label: "Trust", page: "/trust", icon: ShieldCheck },
   { label: "Documents", page: "/documents", icon: FileText },
+  { label: "Citation audit", page: "/audit", icon: FileSearch },
 ];
 
 // PR 15: pick a run, then a page in that run. The demo stays the default; the page links follow
