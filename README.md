@@ -12,13 +12,14 @@ run evidence. For development, start with [locked setup](#run-locally), the
 
 ## Status and scope
 
-Unreleased local candidate: `/worklist` adds a browser-only synthetic broker worklist.
+The [worklist demo](https://plan-diff.vercel.app/worklist) is a browser-only synthetic broker worklist.
 The optional `advisory evaluate` command emits an offline review sidecar. See
-[scope and commands](docs/unreleased-worklist-advisory.md). These additions are not deployed.
+[scope and commands](docs/unreleased-worklist-advisory.md). Advisory evaluation remains an offline CLI.
 
 The offline `audit` command checks whether each declared benefit claim is supported by the page it
 cites, in the right plan, year, and version. See the [citation audit runbook](docs/citation-audit.md).
-Synthetic evidence only; not deployed.
+The `/audit` view uses synthetic evidence only. Release status, exact deployment commit and hosted
+verification are recorded in [PR 18](https://github.com/alexmunzon/plan-diff/pull/18).
 
 The dashboard has Overview, Plan comparison, Changes, Trust, and Documents for two committed runs:
 

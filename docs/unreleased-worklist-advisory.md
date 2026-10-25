@@ -1,4 +1,4 @@
-# Unreleased offline review candidate
+# Synthetic worklist demo and offline advisory
 
 `/worklist` displays the existing integration worklist, including unresolved identities,
 missing coverage/year/county, unsupported plans and orphan outcomes. State/reason filters

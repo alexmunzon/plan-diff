@@ -8,7 +8,9 @@ advice, eligibility, enrollment, or a recommendation for any person's plan.
 Design decision and precedence rules: [adr/citation-audit.md](adr/citation-audit.md).
 
 Current checkpoint: [deferred deeper review and measured improvements](citation-audit/deep-improvement-report.md),
-following the passing [continuation baseline](citation-audit/continuation-report.md). This feature is not deployed.
+following the passing [continuation baseline](citation-audit/continuation-report.md). Current release
+status, exact deployment commit and hosted verification are recorded in
+[PR 18](https://github.com/alexmunzon/plan-diff/pull/18).
 
 ## Reproduce it (offline, synthetic, no model calls)
 
@@ -180,8 +182,8 @@ run; about 7.2 KB of output per claim at 500 claims.
 
 What these numbers do not show: the cases were written by the builder and an AI reviewer after a
 first draft of the code existed, so they are not independent labels or an untouched holdout. No
-human adjudication, inter-rater agreement, model-lane accuracy, or public deployment has been
-performed. Hosted CI is reported separately in the draft PR. Nothing here shows healthcare correctness in general.
+human adjudication, inter-rater agreement or model-lane accuracy has been measured. Hosted CI and
+deployment status are reported separately in PR 18. Nothing here shows healthcare correctness in general.
 
 ## Data and label provenance
 
@@ -274,10 +276,10 @@ applicable plan/year/booklet context before they may dismiss another document.
 ## Portfolio statement
 
 Plan Diff includes an offline audit of typed benefit claims against their cited pages and
-declared context. The latest 106 exposed synthetic cases agree with their labels, including five
-supported positives; 66 require human review. It has zero false support on 101 negative cases,
-while a citation-exists baseline wrongly supports 93. Repeated independent AI reviews exposed
+declared context. Eval-24's 116 exposed synthetic cases agree with their labels, including ten
+supported positives; 71 abstain. It has zero false support on 106 negative cases.
+Repeated independent AI reviews exposed
 false-support paths, with failures preserved before repairs. This is regression evidence, not
 human validation or accuracy on real carrier documents. Full local verification passes and the
 production UI was checked, subject to the download-event limitation in the continuation report.
-The addition is not deployed.
+See PR 18 for current hosted release evidence. Deployment does not establish independent accuracy.
