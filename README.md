@@ -145,3 +145,5 @@ the workspace's AGENTS.md, CLAUDE.md and local project state before editing; the
 coordination notes preserve ownership, approval boundaries and explicit holds. Handoffs carry
 working context without migrating original conversation history. Product architecture and
 reproducible evidence are in the [citation audit runbook](docs/citation-audit.md).
+The [deferred deeper review](docs/citation-audit/deep-improvement-report.md) records measured
+wording and artifact-consistency repairs, retained failures and remaining limits.

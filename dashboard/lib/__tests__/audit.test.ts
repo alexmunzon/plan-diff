@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 
-import { parseAudit, VERDICTS, weakenedPolicy } from "@/lib/audit";
+import { parseAudit as parseBoundAudit, VERDICTS, weakenedPolicy, type RunBinding } from "@/lib/audit";
 import { auditDir, checkPolicy, loadAudit } from "@/lib/audit-dir";
 import { DEMO_RUN_DIR } from "@/lib/run-dir";
 import { DEMO, TEXAS } from "@/lib/runs";
@@ -32,6 +32,16 @@ vi.mock("node:fs/promises", async (importOriginal) => {
 });
 
 type Files = { audit: string; manifest: string };
+const sha = (text: string) => createHash("sha256").update(text).digest("hex");
+
+// These synthetic structural/negative-policy controls intentionally rebind their changed
+// bytes so each existing semantic gate is still exercised. Corruption tests below retain
+// the original manifest and call the real parser directly.
+function parseAudit(files: Files, run: RunBinding) {
+  const manifest = JSON.parse(files.manifest);
+  manifest.hashes.audit = sha(files.audit);
+  return parseBoundAudit({ ...files, manifest: JSON.stringify(manifest) }, run, sha(files.audit));
+}
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const edit = (f: Files, change: (audit: any) => void) => {
   const audit = JSON.parse(f.audit);
@@ -40,6 +50,29 @@ const edit = (f: Files, change: (audit: any) => void) => {
 };
 
 describe("citation audit loader", () => {
+  it.each(["text", "amount", "whitespace"])("refuses changed %s bytes with the retained manifest", async (fault) => {
+    const good = await files();
+    const changed = fault === "whitespace" ? { ...good, audit: good.audit + "\n" }
+      : edit(good, (a) => {
+        if (fault === "text") a.claims[0].claim.text = "The premium is $999.";
+        else a.claims[0].claim.parts[0].value.amount = "999.00";
+      });
+    const run = await binding();
+    expect(() => parseBoundAudit(good, run, sha(good.audit))).not.toThrow();
+    expect(() => parseBoundAudit(changed, run, sha(changed.audit))).toThrow(/audit bytes differ/);
+  });
+
+  it.each(["missing_version", "legacy", "unknown_version", "missing_digest", "invalid_digest"])("refuses %s completion metadata", async (fault) => {
+    const good = await files();
+    const manifest = JSON.parse(good.manifest);
+    if (fault === "missing_version") delete manifest.schema_version;
+    if (fault === "legacy") manifest.schema_version = "citation-audit-manifest-v1";
+    if (fault === "unknown_version") manifest.schema_version = "unknown";
+    if (fault === "missing_digest") delete manifest.hashes.audit;
+    if (fault === "invalid_digest") manifest.hashes.audit = "invalid";
+    const run = await binding();
+    expect(() => parseBoundAudit({ ...good, manifest: JSON.stringify(manifest) }, run, sha(good.audit))).toThrow(/v2 manifest|missing audit|audit bytes differ/);
+  });
   it("loads the demo audit, bound to the committed demo run", async () => {
     const audit = await loadAudit(DEMO);
     expect(audit?.sidecar.claims).toHaveLength(8);

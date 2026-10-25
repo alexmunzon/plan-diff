@@ -1,5 +1,8 @@
 # Citation audit continuation: results and reflection
 
+This is the preserved build baseline at commit `40baca7`. The separately requested
+[deferred deeper pass](deep-improvement-plan.md) starts from that baseline and retains its evidence.
+
 The existing build was continued from migration handoffs on `pr-18-citation-audit`.
 Original conversation histories were not transferred. Local implementation and verification
 are complete within the synthetic, deterministic scope below. This is not a real-carrier,

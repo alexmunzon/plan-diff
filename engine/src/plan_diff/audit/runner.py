@@ -16,7 +16,7 @@ from importlib import metadata
 from pathlib import Path
 from typing import Annotated, Literal
 
-from pydantic import AwareDatetime, Field, TypeAdapter, ValidationError
+from pydantic import AwareDatetime, Field, TypeAdapter, ValidationError, field_validator
 
 from plan_diff import __version__, config
 from plan_diff.audit.checks import NOTICE, Policy, audit_claim
@@ -59,7 +59,7 @@ CODE_FILES = (
 
 
 class AuditManifest(StrictModel):
-    schema_version: Literal["citation-audit-manifest-v1"] = "citation-audit-manifest-v1"
+    schema_version: Literal["citation-audit-manifest-v2"]
     audit_id: NonEmpty
     status: Literal["complete"]  # a folder only exists once the audit finished
     started_at: AwareDatetime
@@ -68,7 +68,7 @@ class AuditManifest(StrictModel):
     engine_version: NonEmpty
     git_commit: NonEmpty  # "unknown" outside a git checkout
     git_dirty: bool | None
-    hashes: dict[str, Sha256]  # claims, metadata, run manifest, audit code, policy
+    hashes: dict[str, Sha256]  # exact audit bytes, claims, metadata, run, code, policy
     documents: dict[str, Sha256]
     pdf_reads: Annotated[int, Field(ge=0)]
     pages_read: Annotated[int, Field(ge=0)]
@@ -78,6 +78,13 @@ class AuditManifest(StrictModel):
     libraries: dict[
         str, str
     ]  # installed versions of the PDF and model libraries that read evidence
+
+    @field_validator("hashes")
+    @classmethod
+    def output_digest_required(cls, value: dict[str, str]) -> dict[str, str]:
+        if "audit" not in value:
+            raise ValueError("the completed audit must fingerprint its emitted audit bytes")
+        return value
 
 
 # Third-party code that can change what a page reads as; its versions go into the manifest.
@@ -163,7 +170,7 @@ def audit(
     corpus: Corpus | None = None,
     run_manifest: RunManifest | None = None,
 ) -> Path:
-    """Validate every input first, audit each claim, then install the folder in one swap."""
+    """Validate inputs, audit claims, then write an exclusive folder with completion last."""
     final = _check_out(o)
     started = clock()
     raw_claims = _read(o.claims, o.limits, "claims file")
@@ -207,8 +214,11 @@ def audit(
         counts=verdicts | {"claims": len(results)},
         notice=NOTICE,
     )
+    audit_bytes = (sidecar.model_dump_json(indent=2) + "\n").encode("utf-8")
+    hashes["audit"] = sha256_bytes(audit_bytes)
     commit, dirty = _git()
     manifest = AuditManifest(
+        schema_version="citation-audit-manifest-v2",
         audit_id=o.audit_id,
         status="complete",
         started_at=started,
@@ -231,7 +241,7 @@ def audit(
     except FileExistsError:
         raise AuditRefused(f"{final} already exists and audit folders are immutable") from None
     try:
-        (final / "audit.json").write_text(sidecar.model_dump_json(indent=2) + "\n")
+        (final / "audit.json").write_bytes(audit_bytes)
         # Written last: a folder without it never finished, and readers refuse it.
         (final / "audit_manifest.json").write_text(manifest.model_dump_json(indent=2) + "\n")
     except Exception as error:
@@ -273,10 +283,18 @@ def _check_chain(
 
 def adjudicate(folder: Path, adjudication: dict[str, object]) -> Path:
     """Add one reviewer revision as adjudications/NNNN.json. audit.json is never touched."""
-    if not (folder / "audit_manifest.json").is_file():
-        raise AuditRefused(f"{folder} is not a finished audit")
-    audit_bytes = (folder / "audit.json").read_bytes()
-    sidecar = AuditSidecar.model_validate_json(audit_bytes)
+    try:
+        manifest = AuditManifest.model_validate_json((folder / "audit_manifest.json").read_bytes())
+        audit_bytes = (folder / "audit.json").read_bytes()
+        sidecar = AuditSidecar.model_validate_json(audit_bytes)
+    except (OSError, ValidationError) as error:
+        raise AuditRefused(
+            "not a completed v2 audit; regenerate legacy or incomplete output from its inputs"
+        ) from error
+    if manifest.audit_id != sidecar.audit_id or manifest.hashes["audit"] != sha256_bytes(
+        audit_bytes
+    ):
+        raise AuditRefused("audit bytes or identity differ from the completion manifest")
     claim_id = adjudication.get("claim_id")
     computed = {c.claim.claim_id: c.verdict for c in sidecar.claims}
     if claim_id not in computed:

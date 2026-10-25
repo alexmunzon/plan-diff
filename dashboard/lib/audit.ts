@@ -109,6 +109,7 @@ export interface AuditSidecar {
 }
 
 export interface AuditManifest {
+  schema_version: "citation-audit-manifest-v2";
   audit_id: string;
   status: "complete";
   started_at: string;
@@ -147,17 +148,20 @@ export const weakenedPolicy = (sidecar: AuditSidecar) => POLICY_KEYS.filter((k) 
 
 export interface RunBinding { runId: string; dataKind: string; manifestSha256: string; validationSha256: string }
 
-/** Parses an audit folder's two files and binds them to the run whose manifest and validation hash as given. */
-export function parseAudit(files: { audit: string; manifest: string }, run: RunBinding): Audit {
+/** Validate structure and the completion contract. The server supplies a digest of the raw
+ * audit bytes, before UTF-8 decoding. This binds files, not the authenticity of their author. */
+export function parseAudit(files: { audit: string; manifest: string }, run: RunBinding, auditSha256: string): Audit {
   const where = AUDIT_FILES.audit;
   const sidecar = object(parseJson(files.audit, where), where, ["schema_version", "audit_id", "data_kind", "run_id", "policy", "documents", "claims", "counts", "notice"]);
   check(sidecar.schema_version === "citation-audit-v1", where, "unknown schema_version");
   const manifest = object(parseJson(files.manifest, AUDIT_FILES.manifest), AUDIT_FILES.manifest, ["audit_id", "status", "command", "engine_version", "git_commit", "git_dirty", "hashes", "pdf_reads", "pages_read", "claims", "verdicts", "model_lane"]);
+  check(manifest.schema_version === "citation-audit-manifest-v2", AUDIT_FILES.manifest, "a completed v2 manifest is required; regenerate legacy output from its inputs");
   check(typeof manifest.git_commit === "string" && typeof manifest.engine_version === "string", AUDIT_FILES.manifest, "commit and engine version must be text");
   check(manifest.status === "complete", AUDIT_FILES.manifest, "the audit did not finish");
   check(manifest.model_lane === "not_run", AUDIT_FILES.manifest, "only audits with the model lane not run are shown");
   check(manifest.audit_id === sidecar.audit_id, AUDIT_FILES.manifest, "audit_id differs from audit.json");
-  const hashes = manifest.hashes as Record<string, string>;
+  const hashes = object(manifest.hashes, AUDIT_FILES.manifest, ["audit"]) as Record<string, string>;
+  check(typeof hashes.audit === "string" && /^[0-9a-f]{64}$/.test(hashes.audit) && hashes.audit === auditSha256, where, "audit bytes differ from the completion manifest");
   check(hashes.run_manifest === run.manifestSha256, where, "this audit was made for a different run");
   check(hashes.run_validation === run.validationSha256, where, "this audit was made from different CMS validation results");
   const policy = object(sidecar.policy, `${where} policy`, [...POLICY_KEYS]);

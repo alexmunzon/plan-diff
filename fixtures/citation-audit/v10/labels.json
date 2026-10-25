@@ -1,0 +1,29 @@
+{
+  "schema_version": "citation-audit-labels-v1",
+  "labels": {
+    "DCR-geography": {
+      "verdict": "needs_human_review",
+      "rationale": "The cited row states a cost but no nationwide availability; free text adds an unrepresented geographic promise."
+    },
+    "DCR-geography-positive": {
+      "verdict": "supported",
+      "rationale": "The claim states exactly the cited specialist amount and unit without an additional geographic promise."
+    },
+    "DCR-asof": {
+      "verdict": "needs_human_review",
+      "rationale": "The free-text date is December 1 but typed as_of is March 1; the declared evidence ends June 30. A matching year cannot establish this date-specific claim."
+    },
+    "DCR-asof-positive": {
+      "verdict": "supported",
+      "rationale": "The free-text date and typed March 1 as_of agree, and that date is inside the explicitly stated evidence period."
+    },
+    "DCR-condition-swap": {
+      "verdict": "needs_human_review",
+      "rationale": "Free text attaches the no-referral condition to hospital and the days restriction to specialist, opposite the typed parts and cited rows. Global condition occurrence is insufficient."
+    },
+    "DCR-condition-positive": {
+      "verdict": "supported",
+      "rationale": "Both benefit amounts, units and per-benefit conditions agree with their own cited rows."
+    }
+  }
+}

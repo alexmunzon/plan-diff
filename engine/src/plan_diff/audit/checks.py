@@ -449,7 +449,108 @@ def _tie_problem(claim: Claim, part: ClaimPart, said: list[_Said]) -> str | None
     return None
 
 
-def text_check(claim: Claim, part: ClaimPart) -> Check:
+def _phrase_pattern(text: str) -> str:
+    return r"(?<!\w)" + re.escape(norm(text).lower()) + r"(?!\w)"
+
+
+def _wording_problem(claim: Claim, part: ClaimPart, corpus: Corpus | None) -> str | None:
+    """Recognize a deliberately small claim grammar; leftover words are not evidence.
+
+    Amount association is checked separately. Each condition and every stated unit must be
+    inside its own benefit clause. Repeated labels and prose outside this grammar abstain.
+    This is coverage of declared wording, not a general language/entailment parser.
+    """
+    text = norm(claim.text).lower()
+    labels = sorted(
+        (m.start(), m.end(), p.part_id)
+        for p in claim.parts
+        for m in _CLAIM_LABELS[p.benefit].finditer(text)
+    )
+    own = [i for i, (_, _, pid) in enumerate(labels) if pid == part.part_id]
+    if len(own) != 1:
+        return "the text must name this benefit once in an unambiguous clause"
+    i = own[0]
+    start = labels[i][0] if i else 0
+    end = labels[i + 1][0] if i + 1 < len(labels) else len(text)
+    clause = text[start:end]
+    if any(not re.search(_phrase_pattern(c), clause) for c in part.conditions):
+        return "this benefit's clause omits or misplaces a typed condition"
+    units = {_UNIT_OF[m.group()] for m in _PHRASE.finditer(clause)}
+    if units - {part.unit.value if part.unit else None}:
+        return "this benefit's clause states a unit different from its typed part"
+    kinds = set(re.findall(r"\b(?:copay|coinsurance)\b", clause))
+    if kinds - {part.value.kind if part.value else None}:
+        return "this benefit's clause states a payment kind different from its typed part"
+
+    # Only an explicit date equal to the declared as_of is consumed. A matching year alone
+    # cannot make a different day (or a date with no typed as_of) disappear.
+    if claim.as_of is not None:
+        day = claim.as_of
+        months = (
+            "january february march april may june july august september october november december"
+        ).split()
+        for spelling in (day.isoformat(), f"{months[day.month - 1]} {day.day}, {day.year}"):
+            text = re.sub(_phrase_pattern(f"as of {spelling}"), lambda m: " " * len(m[0]), text)
+    if re.search(r"\bas of\b", text):
+        return "the explicit as-of date does not match the declared date in a recognized format"
+
+    # A display name is allowed only in the identity prefix, and only when a matching plan's
+    # PDF first page explicitly prints '<name> HMO/PPO <plan id>' on one line. Do not strip
+    # arbitrary proper nouns or qualifying prose. This reuses already-read page text.
+    if corpus is not None and labels:
+        prefix = text[: labels[0][0]]
+        identity = prefix
+        first_part = next(p for p in claim.parts if p.part_id == labels[0][2])
+        for condition in first_part.conditions:
+            identity = re.sub(_phrase_pattern(condition), " ", identity)
+        identity = norm(identity).strip(" ,;")
+        for doc in corpus.documents.values():
+            if not doc.readable or (doc.plan_id, doc.year) != (claim.plan_id, claim.year):
+                continue
+            pages = corpus.pages.get(doc.sha256, ())
+            for line in pages[0].splitlines() if pages else ():
+                match = re.fullmatch(
+                    r"(.{1,100}\b(?:hmo|ppo)\)?)\s+" + re.escape(claim.plan_id.lower()),
+                    norm(line).lower(),
+                )
+                if match and re.fullmatch(
+                    r"(?:a |an |the )?"
+                    + re.escape(match[1])
+                    + r"(?:\s*\(?"
+                    + re.escape(claim.plan_id.lower())
+                    + r"\)?)?\s*",
+                    identity,
+                ):
+                    text = " " * len(prefix) + text[len(prefix) :]
+                    break
+    # Consume conditions only where their own benefit was named. Global removal would hide
+    # a specialist-only condition also asserted for hospital care in a compound claim.
+    clauses = []
+    for index, (_, _, pid) in enumerate(labels):
+        p = next(p for p in claim.parts if p.part_id == pid)
+        start = labels[index][0] if index else 0
+        end = labels[index + 1][0] if index + 1 < len(labels) else len(text)
+        clause = text[start:end]
+        for condition in p.conditions:
+            clause = re.sub(_phrase_pattern(condition), " ", clause)
+        if p.network is not None:
+            network = p.network.replace("_", "[- ]")
+            clause = re.sub(r"\b" + network + r"\b", " ", clause)
+        clauses.append(_CLAIM_LABELS[p.benefit].sub(" ", clause))
+    text = " ".join(clauses)
+    text = re.sub(_phrase_pattern(claim.plan_id), " ", text)
+    text = re.sub(r"\bin (?:plan year )?" + str(claim.year) + r"\b", " ", text)
+    text = _AMOUNT.sub(" ", text)
+    text = _PHRASE.sub(" ", text)
+    text = re.sub(r"\b(?:not covered|copay|coinsurance)\b", " ", text)
+    text = re.sub(r"\b(?:a|an|the|is|are|cost|costs|and|for|in)\b", " ", text)
+    remaining = re.sub(r"[\s.,:;()]+", " ", text).strip()
+    if remaining:
+        return f"the text contains wording outside its declared parts: {remaining!r}"
+    return None
+
+
+def text_check(claim: Claim, part: ClaimPart, corpus: Corpus | None = None) -> Check:
     """The claim's own words must say no more than its typed parts (decomposition is declared)."""
     said = _said(claim.text)
     stated = {s.amount for s in said}
@@ -487,6 +588,8 @@ def text_check(claim: Claim, part: ClaimPart) -> Check:
     if unexplained:
         why = f"the text says {unexplained}, which no typed condition carries"
         return _check("text_matches_parts", "unknown", why)
+    if (problem := _wording_problem(claim, part, corpus)) is not None:
+        return _check("text_matches_parts", "unknown", problem)
     return _check("text_matches_parts", "pass", "the text says what the typed parts say")
 
 
@@ -828,7 +931,7 @@ def _decide(verdicts: list[Verdict], other: OtherEvidence, policy: Policy) -> tu
 
 
 def audit_part(claim: Claim, part: ClaimPart, corpus: Corpus, policy: Policy) -> PartResult:
-    part_checks = [text_check(claim, part)] if policy.require_support else []
+    part_checks = [text_check(claim, part, corpus)] if policy.require_support else []
     results = []
     for i, source in enumerate(claim.sources):
         if source.parts and part.part_id not in source.parts:

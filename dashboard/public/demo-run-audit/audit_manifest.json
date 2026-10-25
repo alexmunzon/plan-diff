@@ -1,5 +1,5 @@
 {
-  "schema_version": "citation-audit-manifest-v1",
+  "schema_version": "citation-audit-manifest-v2",
   "audit_id": "demo-audit",
   "status": "complete",
   "started_at": "2026-10-05T12:00:00Z",
@@ -10,15 +10,16 @@
     "audit-demo"
   ],
   "engine_version": "0.1.0",
-  "git_commit": "fdc9ebb542a5cc0a2a87a539a288b50be5592370",
+  "git_commit": "40baca72515006e88d41f21050329fa39d37e60b",
   "git_dirty": true,
   "hashes": {
     "claims": "bc14fdcca52014375c7955e7405887754789b1f2b087fdccd31de012932a02a7",
-    "audit_code": "718d50d83e643ddf0ed0a49247aa08acbedf1d6b3236438237221f16a7fd7130",
+    "audit_code": "1834b463eca52878cc2630424c03f5b13dace83cb8c858eb5ffd3dcced62d8db",
     "policy": "b19a2baba4bd04cc4b4017317ba209d0be70483dcb192c327c1807109df91c19",
     "evidence_meta": "9b71c2cb1ae6da3921b8a2c3ed5879ccc7b598c1a909ca83a5a9477a8443a71c",
     "run_manifest": "48676ca510af4bbefd0af17031bdba8714d6f858ff9559dd8aa9e8d64c1db8ea",
-    "run_validation": "4db7e110f16dfc97a294bbc39d92284b90bb954e8adaa27c59e35ec81fea9e1f"
+    "run_validation": "4db7e110f16dfc97a294bbc39d92284b90bb954e8adaa27c59e35ec81fea9e1f",
+    "audit": "e75c57551e0014d54df413cfcbe3db4867be649b1c641a62d4194b740213a120"
   },
   "documents": {
     "H9999-001_2026_SB": "05038d3690dcf5e67df30d6434ff4bc8dbc078ea9c19707e4e88f7bb582b5eed",

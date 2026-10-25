@@ -1,0 +1,44 @@
+{
+  "audit_code_sha256": "1834b463eca52878cc2630424c03f5b13dace83cb8c858eb5ffd3dcced62d8db",
+  "manifest_schema": "citation-audit-manifest-v2",
+  "served_files": [
+    {
+      "file": "audit.json",
+      "status": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "bytes": 59626,
+      "sha256": "e75c57551e0014d54df413cfcbe3db4867be649b1c641a62d4194b740213a120",
+      "matches_disk": true
+    },
+    {
+      "file": "audit_manifest.json",
+      "status": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "bytes": 2063,
+      "sha256": "e8b36ac689b5201088b3cf9fd491e05c4fd9869e35689cb9655664aed40c2a4e",
+      "matches_disk": true
+    }
+  ],
+  "browser": {
+    "provider": "hidden in-app browser",
+    "routes": [
+      "/audit",
+      "/texas/audit"
+    ],
+    "supported_detail_quote_page_hash": true,
+    "conflict_filter_cms_evidence": true,
+    "keyboard_enter_compound_part_verdicts": true,
+    "needs_person_filter": true,
+    "no_audit_public_run": true,
+    "narrow_viewport": {
+      "width": 390,
+      "height": 844,
+      "document_scroll_width": 390
+    },
+    "console_errors_warnings": [],
+    "temporary_tab_closed": true,
+    "viewport_reset": true,
+    "chrome_focus_taken": false,
+    "os_download_confirmation": "not retested; prior supported browser download methods timed out; endpoint bytes verified instead"
+  }
+}

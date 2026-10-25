@@ -10,3 +10,5 @@
 - Correct the omitted d15 expectation in a separate frozen revision, validate serialized evaluation identity and verdicts, enforce override scope and rubric hashes, and isolate the scoring-forgery control.
 - Bind claim amounts and not-covered statements to their named benefits, units, explicit plan/year and conditions; retain six additional exposed review cases and first failures.
 - Refuse inconsistent supported dashboard artifacts while keeping intentionally weakened evaluation lanes visibly labeled. Disable automatic Vercel deployment for this review branch.
+- Require recognized claim wording and clause-local conditions, units, payment kinds and network wording; check explicit as-of dates and preserve ten exposed post-build probes with their original failures.
+- Bind exact audit bytes in completion manifest v2 and validate before display or adjudication. Preserve historical v1 artifacts; regenerate from original inputs for current use.

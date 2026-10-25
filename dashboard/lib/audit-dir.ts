@@ -22,7 +22,7 @@ export async function loadAudit(run: RunChoice): Promise<Audit | null> {
   }
   const read = async (name: string) => {
     try {
-      return await readFile(path.join(dir, name), "utf8");
+      return await readFile(path.join(dir, name));
     } catch {
       throw new Error(`Incomplete audit: could not read ${name} in ${dir}`);
     }
@@ -32,9 +32,12 @@ export async function loadAudit(run: RunChoice): Promise<Audit | null> {
   const validation = await readFile(path.join(runDir, FILE_NAMES.validation));
   const parsed = JSON.parse(runManifest.toString("utf8")) as { run_id: string; data_kind: string };
   const sha = (bytes: Buffer | string) => createHash("sha256").update(bytes).digest("hex");
+  const auditBytes = await read(AUDIT_FILES.audit);
+  const manifestBytes = await read(AUDIT_FILES.manifest);
   const audit = parseAudit(
-    { audit: await read(AUDIT_FILES.audit), manifest: await read(AUDIT_FILES.manifest) },
+    { audit: auditBytes.toString("utf8"), manifest: manifestBytes.toString("utf8") },
     { runId: parsed.run_id, dataKind: parsed.data_kind, manifestSha256: sha(runManifest), validationSha256: sha(validation) },
+    sha(auditBytes),
   );
   checkPolicy(audit);
   return audit;

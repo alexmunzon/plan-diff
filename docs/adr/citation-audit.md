@@ -73,6 +73,14 @@ exists. Adding one needs Alex's approval of a provider, budget, and calibration 
 Reviewer corrections are separate numbered files (`adjudications/0001.json`, ...), each naming
 the audit file hash and the previous revision hash. `audit.json` is never rewritten.
 
+The deferred post-build review found unsupported wording and mismatched artifact bytes could
+survive earlier gates. Claim checks now require bounded recognized wording, with conditions,
+units and payment kinds attached to their benefit clause and an explicit as-of date equal to
+the declared date. Unrecognized wording abstains. Completion manifest v2 binds the exact emitted
+audit bytes; both UI and adjudication validate that binding, status and identity before acting.
+V1 artifacts remain historical evidence and require regeneration into a new folder for current
+use. The digest is a consistency check, not authentication of jointly replaced files.
+
 ## Consequences
 
 - Real carrier pages often carry qualifying wording that this narrow grammar sends to a person.

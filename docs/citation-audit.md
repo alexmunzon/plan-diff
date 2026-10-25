@@ -7,10 +7,8 @@ advice, eligibility, enrollment, or a recommendation for any person's plan.
 
 Design decision and precedence rules: [adr/citation-audit.md](adr/citation-audit.md).
 
-Current checkpoint: [continuation results and reflection](citation-audit/continuation-report.md).
-The latest 106-case synthetic regression run and full local verification pass. The production
-UI was checked in a hidden browser at desktop and narrow widths; download-event confirmation
-remains limited, with both served JSON payloads verified byte-for-byte. This feature is not deployed.
+Current checkpoint: [deferred deeper review and measured improvements](citation-audit/deep-improvement-report.md),
+following the passing [continuation baseline](citation-audit/continuation-report.md). This feature is not deployed.
 
 ## Reproduce it (offline, synthetic, no model calls)
 
@@ -29,8 +27,8 @@ committed `dashboard/public/demo-run` byte for byte, audits
 npm run audit-eval -- ../docs/citation-audit/evidence/eval-NN-name.json
 ```
 
-Runs the 106 cases (61 in `fixtures/citation-audit/v1`, 10 in `v2`, 6 in `v3`, 13 in `v4`,
-4 in `v5`, 4 in `v6`, 2 in `v7`, 5 in `v8`, and 1 in `v9`) through
+Runs the 116 exposed cases (61 in `fixtures/citation-audit/v1`, 10 in `v2`, 6 in `v3`, 13 in `v4`,
+4 in `v5`, 4 in `v6`, 2 in `v7`, 5 in `v8`, 1 in `v9`, 6 in `v10`, and 4 in `v11`) through
 the audit, the citation-exists-only baseline, and every negative control, and scores them against
 the frozen labels with the policy 2 expectations (`fixtures/citation-audit/policy-2/`) applied on
 top. It also runs policy 1 on v1 to v3 against their original frozen labels alone. Refuses to overwrite an existing file. Checks each set's cases and labels against the
@@ -73,7 +71,7 @@ pytest. Prefixing engine commands with `PYTHONPATH=src` (run from `engine/`) wor
 ## Outputs
 
 `audits/NAME/audit.json` (sidecar) and `audits/NAME/audit_manifest.json` (status, commit and
-dirty state, SHA-256 of claims, metadata, run manifest, run validation, audit code, and policy,
+dirty state, SHA-256 of exact emitted audit bytes, claims, metadata, run manifest, run validation, audit code, and policy,
 the full command with its arguments, timestamps, PDFs and pages read, verdict counts). The audit
 code hash covers the audit package and the plan_diff modules it uses to read rows, values,
 booklet pages, documents, and run files (`runner.CODE_FILES`), and the manifest records the
@@ -83,6 +81,21 @@ case builder, fixture metadata, rubric, and addendum. The dashboard shows an aud
 and validation.json hashes match the run, and warns on the page when any safeguard was switched
 off. The manifest is written last; a
 folder without it never finished. Folders are exclusive and never inside the run.
+
+Current completion manifests use `citation-audit-manifest-v2`; the sidecar remains
+`citation-audit-v1`. Both display and adjudication require the explicit v2 version, complete
+status, matching audit identity, and `hashes.audit` matching the exact audit file bytes, including
+whitespace. Legacy v1 or incomplete output must be regenerated from its original inputs into a
+new audit folder. Preserve the old output as historical evidence; do not add a hash to it and
+call it newly verified. This checks consistency against a retained manifest, not authenticity
+against someone who can replace both files.
+
+Claim wording uses a bounded grammar: each benefit clause must carry its own declared conditions,
+units and payment kind. Explicit as-of wording must match the typed date (ISO date or English
+month/day/year). Unrecognized substantive wording goes to human review, including geographic
+promises. A display name is recognized only in an identity prefix corroborated by the matching
+plan/year PDF header. These restrictions may abstain on valid paraphrases; they are not a general
+semantic proof or an automatic decomposition of prose.
 
 Reviewer corrections: `plan_diff.audit.runner.adjudicate` adds `adjudications/0001.json`, then
 `0002.json`, each naming the audit's hash and the previous revision's hash. The computed verdict

@@ -15,7 +15,14 @@ from plan_diff.audit.checks import Policy, audit_claim, norm, residue
 from plan_diff.audit.evaluate import gates, problems, report, summarize
 from plan_diff.audit.evidence import AuditRefused, Limits
 from plan_diff.audit.models import AuditSidecar, Claim, ClaimSet
-from plan_diff.audit.runner import CODE_FILES, AuditOptions, adjudicate, audit, code_hash
+from plan_diff.audit.runner import (
+    CODE_FILES,
+    AuditOptions,
+    adjudicate,
+    audit,
+    code_hash,
+    sha256_bytes,
+)
 from plan_diff.cli import app
 
 CASES = load_cases()
@@ -240,6 +247,72 @@ def test_adjudication_is_a_new_revision_and_never_rewrites_the_audit(
     assert two["parent_sha256"] is not None
     with pytest.raises(AuditRefused, match="not in this audit"):
         adjudicate(folder, entry | {"claim_id": "nope"})
+
+
+@pytest.mark.parametrize(
+    "fault",
+    [
+        "text",
+        "amount",
+        "whitespace",
+        "empty",
+        "truncated",
+        "id",
+        "status",
+        "version",
+        "legacy",
+        "digest",
+        "missing_digest",
+    ],
+)
+def test_adjudication_requires_bound_completed_output(
+    tmp_path: Path, demo: Path, fault: str
+) -> None:
+    folder = audit(_options(tmp_path, demo), lambda: NOW)
+    audit_path, manifest_path = folder / "audit.json", folder / "audit_manifest.json"
+    raw = audit_path.read_bytes()
+    manifest = json.loads(manifest_path.read_text())
+    assert manifest["hashes"].get("audit") == sha256_bytes(raw)
+    if fault in {"text", "amount"}:
+        sidecar = json.loads(raw)
+        claim = sidecar["claims"][0]["claim"]
+        if fault == "text":
+            claim["text"] = "The premium is $999."
+        else:
+            claim["parts"][0]["value"]["amount"] = "999.00"
+        audit_path.write_text(json.dumps(sidecar))
+    elif fault == "whitespace":
+        audit_path.write_bytes(raw + b"\n")
+    elif fault in {"empty", "truncated"}:
+        manifest_path.write_text("{}" if fault == "empty" else '{"status":')
+    else:
+        if fault == "id":
+            manifest["audit_id"] = "another-audit"
+        elif fault == "status":
+            manifest["status"] = "incomplete"
+        elif fault == "version":
+            del manifest["schema_version"]
+        elif fault == "legacy":
+            manifest["schema_version"] = "citation-audit-manifest-v1"
+        elif fault == "missing_digest":
+            manifest["hashes"].pop("audit")
+        else:
+            manifest["hashes"]["audit"] = "0" * 64
+        manifest_path.write_text(json.dumps(manifest))
+    before = {p.name: p.read_bytes() for p in folder.iterdir()}
+    with pytest.raises(AuditRefused):
+        adjudicate(
+            folder,
+            {
+                "claim_id": "demo-01-premium-2027",
+                "verdict": "needs_human_review",
+                "reviewer": "synthetic test",
+                "note": "test only",
+                "at": "2026-10-25",
+            },
+        )
+    assert not (folder / "adjudications").exists()
+    assert {p.name: p.read_bytes() for p in folder.iterdir()} == before
 
 
 def test_cli_audit_writes_folder_and_refuses_cleanly(tmp_path: Path, demo: Path) -> None:

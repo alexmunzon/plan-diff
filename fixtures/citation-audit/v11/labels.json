@@ -1,0 +1,21 @@
+{
+  "labels": {
+    "DCR2-extra-unit": {
+      "rationale": "The benefit clause states both per_month and per_year but its typed part has only per_month.",
+      "verdict": "needs_human_review"
+    },
+    "DCR2-foreign-condition": {
+      "rationale": "The hospital clause adds without-referral even though that condition belongs only to the specialist part and source row. Repeating it correctly for specialist cannot support hospital.",
+      "verdict": "needs_human_review"
+    },
+    "DCR2-leading-date-name": {
+      "rationale": "The leading as-of date equals typed June 1; the first page explicitly names Gold HMO H9999-001. Same identity and fact, sentence-order variation only.",
+      "verdict": "supported"
+    },
+    "DCR2-typed-network": {
+      "rationale": "The text explicitly states the typed in_network constraint already used by this deterministic source lane; no extra condition is added.",
+      "verdict": "supported"
+    }
+  },
+  "schema_version": "citation-audit-labels-v1"
+}

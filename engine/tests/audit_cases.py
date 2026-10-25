@@ -26,7 +26,7 @@ REPO = Path(__file__).resolve().parents[2]
 FIXTURES = REPO / "fixtures" / "citation-audit"
 CASES_DIR = FIXTURES / "v1"
 # Each set is frozen on its own (PROVENANCE.md in its folder); a later set adds cases, never edits.
-CASE_SETS = tuple(FIXTURES / f"v{n}" for n in range(1, 10))
+CASE_SETS = tuple(FIXTURES / f"v{n}" for n in range(1, 12))
 # The sets written before policy 2 (Alex, 2026-10-25). Their frozen labels are policy 1's
 # expectations; policy-2/expectations.json lists the cases whose expected verdict changes.
 POLICY_1_SETS = CASE_SETS[:3]

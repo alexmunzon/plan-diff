@@ -1,0 +1,28 @@
+{
+  "producer_manifest_schema": "citation-audit-manifest-v2",
+  "producer_exact_digest_matches": true,
+  "cases": [
+    {
+      "case": "unchanged",
+      "accepted": true,
+      "revision_count": 2,
+      "chain_matches": true,
+      "adjudication_directory_exists": true,
+      "inputs_unchanged": true
+    },
+    {
+      "case": "crlf_only",
+      "accepted": false,
+      "error": "audit bytes or identity differ from the completion manifest",
+      "adjudication_directory_exists": false,
+      "inputs_unchanged": true
+    },
+    {
+      "case": "missing_version",
+      "accepted": false,
+      "error": "not a completed v2 audit; regenerate legacy or incomplete output from its inputs",
+      "adjudication_directory_exists": false,
+      "inputs_unchanged": true
+    }
+  ]
+}
