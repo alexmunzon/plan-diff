@@ -1,0 +1,44 @@
+{
+  "scope": "final local verification and hidden in-app browser",
+  "command": "npm run verify (environment documented in continuation-report.md)",
+  "exit_code": 0,
+  "engine": {
+    "passed": 662,
+    "skipped": 1
+  },
+  "dashboard": {
+    "passed": 167,
+    "files": 18
+  },
+  "lint_types_build": "passed",
+  "raw_verification_log_sha256": "7ca2b4431c93f5a7722b4459224e0811430fcf2ef19c26d24d5c3c681e186775",
+  "original_frozen_files_unchanged": 32,
+  "browser": {
+    "routes": [
+      "/audit",
+      "/texas",
+      "/texas/audit"
+    ],
+    "checked": [
+      "supported exact source/page/quote",
+      "conflict filter and contrary CMS evidence",
+      "keyboard activation",
+      "compound part verdicts",
+      "human-review cases",
+      "no-audit public-run state"
+    ],
+    "narrow_viewport": {
+      "width": 390,
+      "height": 844,
+      "document_scroll_width": 390
+    },
+    "console_errors_or_warnings": [],
+    "download_event": "two supported methods timed out; OS download completion unconfirmed",
+    "json_endpoints": "HTTP 200, JSON parses, bytes match recorded artifacts"
+  },
+  "review_closure": {
+    "engine": "six reported decomposition cases repaired; targeted honest positives remain supported",
+    "loader": "735 existing envelopes accepted, eight inconsistent default-policy artifacts rejected",
+    "limits": "bounded repair checks, not two clean whole-product reviews or human calibration"
+  }
+}

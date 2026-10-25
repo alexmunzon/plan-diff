@@ -1,0 +1,6449 @@
+{
+ "audit": {
+  "gates": {
+   "floor_exact_agreement": true,
+   "floor_supported_recall": true,
+   "hard_complete_inventory": true,
+   "hard_no_false_supported": true
+  },
+  "inputs": {
+   "audit_code": "4c4cbcf9a424167e86849b54a28e048b34d95a319676dacc62cc7857e44c65e1",
+   "case_builder": "5d9205e5886bbf1369735c34aad2654fad32810471b2defd3ce8afd6ada3e8ce",
+   "evaluation_harness": "f43735494f128e68ce60f84c9b8d5d71a85884be0265e7da23818766929b2882",
+   "labels_policy": "2",
+   "policy-2/README.md": "3fe3d27b421294e76a48f0220607210fad5201d7f3adeb8a34ceffc44476a1fd",
+   "policy-2/REVISION-2.md": "fb659989a0c20026b431d50c5c1ebddba940842f61755314eee8b85cad62d57e",
+   "policy-2/expectations-r2.json": "a470e4f32024e5b87efa04cc143c6689b427573b3e3fd12ecddd91468f98a85e",
+   "policy-2/expectations.json": "4a21d3029d73e27df0bc86a99f2b4f3fd742064693385defa4035c508f329e22",
+   "rubric-freeze.json": "8e84925fc4f0d0311f95cce0277b7ace38baafbbdcb50204686b48373ca0dc6b",
+   "v1/PROVENANCE.md": "5973f4b0bd9e8fa75a63c5a278884610d1b641e9d0eb623a669bf4f276e29d3f",
+   "v1/cases.json": "e564713f765a5934ad1623fe86ea140fc20fb3be8bab56f9fab876f2e2a74d86",
+   "v1/labels.json": "1df06eb4735a0a063447fcb189e7d441552c9a5530c7537ef1c645bf4fc3f38c",
+   "v1/pdf-sha256.json": "f6d7fe169d0cb42534cf44589524be6699b5da6e4d37322fb3ea00389f0aa39c",
+   "v1/rubric.md": "eb89499e463cf815a7a2d1ad8f3cf345d530fbcc0247b6826eb7878b9acdeb86",
+   "v2/PROVENANCE.md": "937ea0d47306a1555231843622bd070ba2b76b0f9db9d9200e264e53a379c308",
+   "v2/cases.json": "a25a6e631a0dc8b58e2dfb0994b18301861fb14232e1e804adf1ef8155840ae9",
+   "v2/labels.json": "76820755a8c20630a984fc919b5f4501712dd23d4cbf868e30b5d07ec390cd6a",
+   "v2/pdf-sha256.json": "7347b47fd38903eddce45ffaf244f4af742fa5587e7d5f6906a7f899bdca5e10",
+   "v3/PROVENANCE.md": "e43827f71091077a0f6989142aba8ba6123df9f699e148c58dc442a5d4dd47f9",
+   "v3/cases.json": "8764b84eaf71789061207fb0aa979f24ade2a46398c6a3d5d35844b1ed6517b1",
+   "v3/labels.json": "3564340f283572eddfc49405c62b87973ce15d055a8a566e16af61d140c675b5",
+   "v3/pdf-sha256.json": "8452676cbf4326073c23e57fc0a45816a25e4d494f9b171eb192b5b31a6e693d",
+   "v4/PROVENANCE.md": "1611b61e81953755c706dc4d680a24a0c2e64bb4ef7256e8834c07a13a959046",
+   "v4/cases.json": "250a6725560607b692849e1b46b8ba5b0c5aa7e625b4667d86d3bd1581e87ce4",
+   "v4/labels.json": "50105ea54eba262ec5a2a56fd975ddb7e1e5fdce065a8c4c73c5acb02bb91096",
+   "v4/pdf-sha256.json": "5577ee511d3226930fc44ce93846fd1e32a64a3e10a92f00b860484aaf899f96",
+   "v5/PROVENANCE.md": "c8b620caed18b0b81f7b3d771bd10090d713f352a351af8c0df57b3148fa6d46",
+   "v5/cases.json": "e695ed66f6494c58a5f4fa594465eb6119758827332692d4bc5f8519d8917cb4",
+   "v5/labels.json": "222d23864b6390252dbba4da349a21e2e4a6bed90e51b5b350bde980a5e514cd",
+   "v5/pdf-sha256.json": "e72d84db8191783dd35c002ad458e7932ce913538bd7efdcfaaf551f91d1ff66",
+   "v6/PROVENANCE.md": "c7f23d44ce913eded36ef0ae3f011ef50f746e4f65f21823ec0ed3df6143d883",
+   "v6/cases.json": "34b6961be1a336fcf9806ec41e2ef521c75bdc00ffee95f3e5ae8575ac84297e",
+   "v6/labels.json": "8faa996b043dd939fa31d09bb550fbb5075604e5920e2e1e9f8371db5dc3e408",
+   "v6/pdf-sha256.json": "a133dd5e08c6e11298b645dd8fcbddc8033a9ebb17b62e6e757f0cc856d4414c",
+   "v7/PROVENANCE.md": "b4afbad281542cbc5f38350885fdad281eb55f33d3488d55e7b326d1577709fd",
+   "v7/cases.json": "e939f89b6407510db9d11457d82ed4e804773ea31ed7ceb982f4d30c66d7c895",
+   "v7/labels.json": "4276f8febfeb3f0beaf1261c35bba5f755823b164105726d405fa5b446320f0c",
+   "v7/pdf-sha256.json": "aedf56167e63aa40a61c9eb77209d75117b2ea2585161f1ad5b03c1e8f00c7a4"
+  },
+  "integrity_problems": [],
+  "lane": "audit",
+  "pdf_sha256": {
+   "A1": {
+    "a": "9a27f6788ffa78a88bdd5229ea031b3548386ea11eec07a5086e44c048949d1c"
+   },
+   "A2": {
+    "a": "a3dc51cfa0ae8ad5f64c02c5cfb9eb719aef2a50fc7b2478c0fa7ddcb76c451c"
+   },
+   "A3": {
+    "a": "3163da8c1791c65fa197aca04d9830793c0f97cc9721be833768a8b9b0a1efc1"
+   },
+   "A4": {
+    "a": "7b35d69f7b4bffcc72e7b9b5789d04da393f2359784140ac565930af64b902d4"
+   },
+   "A5": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906"
+   },
+   "A6": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906",
+    "c": "4798ffdf1c5ce907b02de3bb8b96ab5eb8106da8d7980ffb6d02e79eef2d912d"
+   },
+   "B1": {
+    "a": "9a27f6788ffa78a88bdd5229ea031b3548386ea11eec07a5086e44c048949d1c"
+   },
+   "B2": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+   },
+   "B3": {
+    "a": "5de574dbbd1fcf1803655a1a7065eb8f3faa82e5769104064b5127b242623280"
+   },
+   "B4": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130",
+    "b": "246f57e185db26b8c53e8972b5319ea80c2aeb65c56d0a2d60b5d8628c6dc147"
+   },
+   "B5": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "58bf375b0d4d759957e67edb4792f9b2fe2834160099ca8559c421b3e4f03bac"
+   },
+   "B6": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906",
+    "c": "9e03b52258b2de8a0c60e4a8ab7b7305fc9ed908ab36bade68e0a6c237033d85"
+   },
+   "P2R1": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R10": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf",
+    "d": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R2": {
+    "a": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906",
+    "b": "685f719f0526e77ec8eed3fa5acf7df3ef4c1adf8ba3bfa0704978cfc4aeec9f",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R3": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R4": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R5": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "56d9d0b63ea434062484bc9eced20ccd3c585944635458c0f900779196d17491"
+   },
+   "P2R6": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R7": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "7f592137a2691b846c95af0f2f75f6fda87ce614347d5e55f4385cca2e608100"
+   },
+   "P2R8": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "20a1f9432fbfe4083f33f147ac1c13e26ef99ea7c75b1306cf65e02ccf76b684"
+   },
+   "P2R9": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "c01": {
+    "a": "cde86a0f33fb0479f210c60f290869a681827a323fc96b32e53156963b21486b"
+   },
+   "c02": {
+    "a": "1f76e15306d51a080ad76b6a8d093122b488732fdf15a6fd26d5a27aa39fcb85"
+   },
+   "c03": {
+    "a": "638ca07c246bd56ea455d4902daf9d25455e5b775bac9383dacdd2cd98654aa7"
+   },
+   "c04": {
+    "a": "0aaaea5354b015435b816dc99d1e7a185bb0137aa58e5b0bd6d1dee5cc1e94ba"
+   },
+   "c05": {
+    "a": "dd3b371adc5456746dbf0627652da8b7c62b76f8a209c270a365d878755be8b2"
+   },
+   "c06": {
+    "a": "b34b0a8cde8cc0ee3326fec70d6054e5eaffe4033f5c16cb5b19ebb45c94b815"
+   },
+   "c07": {
+    "a": "d567467e72860594ebabf048c355ef35c480181be60f7ea069734342530fa832"
+   },
+   "c08": {
+    "a": "1d371f689ff949698b326d8d8bcadcc3b620f5c6a58525eae89a862e1a189e90"
+   },
+   "c09": {
+    "a": "5a87585d8ad8cf45fbcf9e6fe825de216d24cb283155a3cfa20fa4c1c2936bd3"
+   },
+   "c10": {
+    "a": "5a87585d8ad8cf45fbcf9e6fe825de216d24cb283155a3cfa20fa4c1c2936bd3",
+    "b": "685f719f0526e77ec8eed3fa5acf7df3ef4c1adf8ba3bfa0704978cfc4aeec9f"
+   },
+   "c11": {
+    "a": "c0f81365a92805dcefb673d224f6b19a228f010dd85fa829342c68f99d7454b2",
+    "dental": "82969ee145b27af7ac522097d2716d80cd055ea6f67ae8f109d3a1752929e79f"
+   },
+   "c12": {
+    "a": "49129b9b452c58883c40b03db7cdc6567690e3e913a0d0bf66e8a3003bd1fc3d"
+   },
+   "d01": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d02": {
+    "a": "acc8e494771da54bd1c44e8c4b52e850c1f0e11dd5a14aa541ea387a8a614022"
+   },
+   "d03": {
+    "a": "ee9ec31f544694d3d9c0ccef73610fc3406fba085422a23478bc3c0b40f4b9b0"
+   },
+   "d04": {
+    "a": "a4841de646f6076c063dca70e1554bfea0eccedcdd5cdd462c9639845b6e0507"
+   },
+   "d05": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d06": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d07": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d08": {
+    "a": "b594d7752521c08fc82b00881a812a55b8ca52a34296b9eb7a8a1405335799db"
+   },
+   "d09": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d10": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d11": {
+    "a": "1188069f53e02cb92f3bd7da95e2c2c5262129144f0f645e230851db000ecb0f"
+   },
+   "d12": {
+    "a": "85b5200d79074c9407c27a12f61601545ca3c01ee2a3984bd60efe6650159a61"
+   },
+   "d13": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d14": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d15": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "cd8820af5694c981bc83479a4e6479403f909e7d29af85961ee1c0378e2d39b5"
+   },
+   "d16": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "cd8820af5694c981bc83479a4e6479403f909e7d29af85961ee1c0378e2d39b5"
+   },
+   "d17": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d18": {
+    "a": "8fed01765d009231e36b67399d15febc4c7c3a3579ad4d1f41f5011a299109bb"
+   },
+   "d19": {
+    "a": "4a15642f8174792de60c068c366271c9e635cd9fa5b7947a71ab17ace6075efe"
+   },
+   "d20": {
+    "a": "acc8e494771da54bd1c44e8c4b52e850c1f0e11dd5a14aa541ea387a8a614022"
+   },
+   "d21": {
+    "a": "bc30051a1f012ba5c823c740173b3023f628f7633fbfd53c2aad8aeae0451f50"
+   },
+   "d22": {
+    "a": "6b9c4430d9db14ddab96e74335a0459c65e33adb38c0f7dece54a6849341a798"
+   },
+   "d23": {
+    "a": "96496f3c3a1c7ad13b1bbb63d718be94019a8806233a4e0b88a287d40ed2d545"
+   },
+   "d24": {
+    "a": "fe99084fd69a64662a97986100c58d3fa19501148f37f8be396b956339c8b190"
+   },
+   "d25": {
+    "a": "dd576c8b7a660916c129edb11c15d2d01553b888ec8f08302e357d39fa3b2009"
+   },
+   "d26": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d27": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d28": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d29": {
+    "a": "7f592137a2691b846c95af0f2f75f6fda87ce614347d5e55f4385cca2e608100"
+   },
+   "d30": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d31": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d32": {
+    "a": "c47b338a543ddf79c5af3f4c6b8929c8853387b15c456eb15c2a624b5c9a3eca"
+   },
+   "d33": {
+    "a": "40d5e21c43471fa276a852e961d88688762a93e6bd61177f00ab539fa585b4be"
+   },
+   "d34": {
+    "a": "2b3cfc37c3098bcedc24580bef53f46f5bff01244c52ab5f8b7e63b80b8f4382"
+   },
+   "d35": {
+    "a": "ee4194c242d424ac6e6e9e0f73b8c88d7a7eb46f250056cdc0e18a3089e01a46"
+   },
+   "d36": {
+    "a": "7f180eb2db4ac3204397d5ca65b76582ff476df35278257137a3391a2dce866a"
+   },
+   "d37": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d38": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d39": {
+    "a": "4a15642f8174792de60c068c366271c9e635cd9fa5b7947a71ab17ace6075efe"
+   },
+   "d40": {
+    "a": "f89f8beec0e58962aeafe4c12fff8767ef4c0cbc89124110415b30eaca6124a0"
+   },
+   "d41": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "old": "0e1ef2cc1d2fbb126ef89e1120cff223386d6c2623743993095b9761abcc289f"
+   },
+   "d42": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d43": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d44": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d45": {
+    "book": "9cd64e1e1e945ce47fb795ebd7c33820989ccd9abfa2e7e3ebc33fe39d10822a"
+   },
+   "d46": {
+    "book": "9cd64e1e1e945ce47fb795ebd7c33820989ccd9abfa2e7e3ebc33fe39d10822a"
+   },
+   "d47": {
+    "a": "20a1f9432fbfe4083f33f147ac1c13e26ef99ea7c75b1306cf65e02ccf76b684"
+   },
+   "d48": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d49": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "p01": {
+    "a": "cde86a0f33fb0479f210c60f290869a681827a323fc96b32e53156963b21486b"
+   },
+   "p02": {
+    "a": "1f76e15306d51a080ad76b6a8d093122b488732fdf15a6fd26d5a27aa39fcb85"
+   },
+   "p04": {
+    "a": "0aaaea5354b015435b816dc99d1e7a185bb0137aa58e5b0bd6d1dee5cc1e94ba"
+   },
+   "p07": {
+    "a": "d567467e72860594ebabf048c355ef35c480181be60f7ea069734342530fa832"
+   },
+   "q01": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q02": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+   },
+   "q03": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q04": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q05": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+   },
+   "q06": {
+    "a": "9a27f6788ffa78a88bdd5229ea031b3548386ea11eec07a5086e44c048949d1c"
+   },
+   "q07": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q08": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q09": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+   },
+   "q10": {
+    "a": "f89f8beec0e58962aeafe4c12fff8767ef4c0cbc89124110415b30eaca6124a0"
+   },
+   "q11": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q12": {
+    "a": "85b5200d79074c9407c27a12f61601545ca3c01ee2a3984bd60efe6650159a61"
+   },
+   "q45": {
+    "book": "0e47c66b91d7be613ac8a671aa75bc56d972236fe9b70391fc10bd85b8b02ee3"
+   }
+  },
+  "policy": {
+   "check_contrary": true,
+   "check_effective_dates": true,
+   "check_plan_year": true,
+   "require_support": true,
+   "unknown_blocks": true,
+   "unknown_dates_block": true
+  },
+  "rows": [
+   {
+    "author": "builder",
+    "case_id": "d01",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "supported"
+   },
+   {
+    "author": "builder",
+    "case_id": "d02",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "outpatient_surgery": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "supported"
+   },
+   {
+    "author": "builder",
+    "case_id": "d03",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "medical_deductible": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "supported_zero"
+   },
+   {
+    "author": "builder",
+    "case_id": "d04",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "inpatient_stay": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "supported_condition"
+   },
+   {
+    "author": "builder",
+    "case_id": "d05",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "contradicted"
+   },
+   {
+    "author": "builder",
+    "case_id": "d06",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "specialist_copay": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "absent_evidence"
+   },
+   {
+    "author": "builder",
+    "case_id": "d07",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "medical_deductible": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "missing_vs_zero"
+   },
+   {
+    "author": "builder",
+    "case_id": "d08",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "specialist_copay": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_page"
+   },
+   {
+    "author": "builder",
+    "case_id": "d09",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "specialist_copay": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_offset"
+   },
+   {
+    "author": "builder",
+    "case_id": "d10",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "specialist_copay": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "fabricated_quote"
+   },
+   {
+    "author": "builder",
+    "case_id": "d11",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "dental_allowance": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "extrapolated"
+   },
+   {
+    "author": "builder",
+    "case_id": "d12",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_plan"
+   },
+   {
+    "author": "builder",
+    "case_id": "d13",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_year"
+   },
+   {
+    "author": "builder",
+    "case_id": "d14",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "dev",
+    "taxonomy": "effective_date"
+   },
+   {
+    "author": "builder",
+    "case_id": "d15",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "superseded"
+   },
+   {
+    "author": "builder",
+    "case_id": "d16",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "amendment_not_yet"
+   },
+   {
+    "author": "builder",
+    "case_id": "d17",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "d18",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "table_header"
+   },
+   {
+    "author": "builder",
+    "case_id": "d19",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "otc_allowance": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "units_period"
+   },
+   {
+    "author": "builder",
+    "case_id": "d20",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "outpatient_surgery": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "value_kind"
+   },
+   {
+    "author": "builder",
+    "case_id": "d21",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "network"
+   },
+   {
+    "author": "builder",
+    "case_id": "d22",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "dental_allowance": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "negation"
+   },
+   {
+    "author": "builder",
+    "case_id": "d23",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "exception"
+   },
+   {
+    "author": "builder",
+    "case_id": "d24",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "dental_allowance": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "shared_allowance"
+   },
+   {
+    "author": "builder",
+    "case_id": "d25",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {
+     "monthly_premium": "needs_human_review",
+     "specialist_copay": "needs_human_review"
+    },
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review",
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "compound_partial"
+   },
+   {
+    "author": "builder",
+    "case_id": "d26",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {
+     "dental_allowance": "insufficient_evidence",
+     "monthly_premium": "needs_human_review"
+    },
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "dental_allowance": "insufficient_evidence",
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "compound_partial"
+   },
+   {
+    "author": "builder",
+    "case_id": "d27",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "unavailable_source"
+   },
+   {
+    "author": "builder",
+    "case_id": "d28",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "truncated_artifact"
+   },
+   {
+    "author": "builder",
+    "case_id": "d29",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "malformed_artifact"
+   },
+   {
+    "author": "builder",
+    "case_id": "d30",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "monthly_premium": "insufficient_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "absent_evidence"
+   },
+   {
+    "author": "builder",
+    "case_id": "d31",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "unavailable_source"
+   },
+   {
+    "author": "builder",
+    "case_id": "d32",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "dental_allowance": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "prompt_injection"
+   },
+   {
+    "author": "builder",
+    "case_id": "d33",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "moop_in_network": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "multi_amount"
+   },
+   {
+    "author": "builder",
+    "case_id": "d34",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "emergency_room": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "builder",
+    "case_id": "d35",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "duplicate_rows"
+   },
+   {
+    "author": "builder",
+    "case_id": "d36",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_applicability"
+   },
+   {
+    "author": "builder",
+    "case_id": "d37",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "p": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "untyped_claim"
+   },
+   {
+    "author": "builder",
+    "case_id": "d38",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "hash_mismatch"
+   },
+   {
+    "author": "builder",
+    "case_id": "d39",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "otc_allowance": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "supported_period"
+   },
+   {
+    "author": "builder",
+    "case_id": "d40",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "drug_tier_2": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "supported_tier"
+   },
+   {
+    "author": "builder",
+    "case_id": "d41",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "supported_second_source"
+   },
+   {
+    "author": "builder",
+    "case_id": "d42",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "text_overstates"
+   },
+   {
+    "author": "builder",
+    "case_id": "d43",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "text_mismatch"
+   },
+   {
+    "author": "builder",
+    "case_id": "d44",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "pdf_cms_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "d45",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "regression",
+    "taxonomy": "booklet_pages"
+   },
+   {
+    "author": "builder",
+    "case_id": "d46",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "booklet_pages"
+   },
+   {
+    "author": "builder",
+    "case_id": "d47",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "anoc_two_years"
+   },
+   {
+    "author": "builder",
+    "case_id": "d48",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "printed_page"
+   },
+   {
+    "author": "builder",
+    "case_id": "d49",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c01",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "negation"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c02",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "exception"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c03",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "network"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c04",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "otc_allowance": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "shared_allowance"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c05",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "otc_allowance": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "units_period"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c06",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "multi_amount"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c07",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c08",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "inpatient_stay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "multi_amount"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c09",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "monthly_premium": "insufficient_evidence"
+    },
+    "split": "challenge",
+    "taxonomy": "fabricated_quote"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c10",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c11",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {
+     "dental_allowance": "unverifiable",
+     "monthly_premium": "needs_human_review",
+     "specialist_copay": "needs_human_review"
+    },
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "dental_allowance": "unverifiable",
+     "monthly_premium": "needs_human_review",
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "compound_partial"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c12",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "supported_zero"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A1",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review",
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge-2",
+    "taxonomy": "compound_swapped"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A2",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge-2",
+    "taxonomy": "units_period"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A3",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge-2",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A4",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "medical_deductible": "insufficient_evidence"
+    },
+    "split": "challenge-2",
+    "taxonomy": "wrong_section"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A5",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "challenge-2",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A6",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "challenge-2",
+    "taxonomy": "superseded"
+   },
+   {
+    "author": "builder",
+    "case_id": "p01",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "negation"
+   },
+   {
+    "author": "builder",
+    "case_id": "p02",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "exception"
+   },
+   {
+    "author": "builder",
+    "case_id": "p04",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "otc_allowance": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "shared_allowance"
+   },
+   {
+    "author": "builder",
+    "case_id": "p07",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B1",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "premium": "needs_human_review",
+     "specialist": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "compound_swapped"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B2",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "unicode_negation"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B3",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "cross_page_network"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B4",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "qualified_contrary_failed_citation"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B5",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "premium": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "unknown_identity_contrary"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B6",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "premium": "conflicting_evidence"
+    },
+    "split": "challenge-3",
+    "taxonomy": "wrong_plan_superseder"
+   },
+   {
+    "author": "builder",
+    "case_id": "q01",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_dated"
+   },
+   {
+    "author": "builder",
+    "case_id": "q02",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_dated"
+   },
+   {
+    "author": "builder",
+    "case_id": "q03",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "effective_date"
+   },
+   {
+    "author": "builder",
+    "case_id": "q04",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "q05",
+    "correct": true,
+    "expected": "contradicted",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "contradicted",
+    "predicted_parts": {
+     "specialist_copay": "contradicted"
+    },
+    "split": "regression",
+    "taxonomy": "contradicted"
+   },
+   {
+    "author": "builder",
+    "case_id": "q06",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {
+     "monthly_premium": "supported",
+     "specialist_copay": "supported"
+    },
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported",
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "compound_supported"
+   },
+   {
+    "author": "builder",
+    "case_id": "q07",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "effective_date"
+   },
+   {
+    "author": "builder",
+    "case_id": "q08",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "effective_date"
+   },
+   {
+    "author": "builder",
+    "case_id": "q09",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "specialist_copay": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "pdf_cms_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "q10",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "drug_tier_2": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_tier"
+   },
+   {
+    "author": "builder",
+    "case_id": "q11",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "unclear_contrary"
+   },
+   {
+    "author": "builder",
+    "case_id": "q12",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "regression",
+    "taxonomy": "wrong_plan"
+   },
+   {
+    "author": "builder",
+    "case_id": "q45",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "regression",
+    "taxonomy": "booklet_pages"
+   },
+   {
+    "author": "independent-ai-reviewer (Astra policy2-engine; serialized by continuation builder)",
+    "case_id": "P2R1",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_dates_superseder"
+   },
+   {
+    "author": "independent-ai-reviewer (Astra policy2-engine; serialized by continuation builder)",
+    "case_id": "P2R2",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_dates_superseder"
+   },
+   {
+    "author": "independent-ai-reviewer (Astra policy2-engine; serialized by continuation builder)",
+    "case_id": "P2R3",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_dates_superseder"
+   },
+   {
+    "author": "independent-ai-reviewer (Astra policy2-engine; serialized by continuation builder)",
+    "case_id": "P2R4",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_dates_superseder"
+   },
+   {
+    "author": "independent-ai-reviewer (continuation supersession review; serialized by builder)",
+    "case_id": "P2R5",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "unverifiable_superseder_unknown_year"
+   },
+   {
+    "author": "independent-ai-reviewer (continuation supersession review; serialized by builder)",
+    "case_id": "P2R6",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "unverifiable_superseder_missing"
+   },
+   {
+    "author": "independent-ai-reviewer (continuation supersession review; serialized by builder)",
+    "case_id": "P2R7",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "unverifiable_superseder_corrupt"
+   },
+   {
+    "author": "independent-ai-reviewer (continuation supersession review; serialized by builder)",
+    "case_id": "P2R8",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "unverifiable_superseder_anoc"
+   },
+   {
+    "author": "continuation builder, final reflection",
+    "case_id": "P2R9",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "cyclic_supersession"
+   },
+   {
+    "author": "continuation builder, final reflection",
+    "case_id": "P2R10",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "cyclic_supersession"
+   }
+  ],
+  "schema_version": "citation-audit-eval-v1",
+  "summary": {
+   "abstention": {
+    "count": 60,
+    "denominator": 100,
+    "rate": 0.6
+   },
+   "by_split": {
+    "challenge": {
+     "cases": 12,
+     "correct": 12,
+     "false_supported": 0
+    },
+    "challenge-2": {
+     "cases": 6,
+     "correct": 6,
+     "false_supported": 0
+    },
+    "challenge-3": {
+     "cases": 6,
+     "correct": 6,
+     "false_supported": 0
+    },
+    "dev": {
+     "cases": 24,
+     "correct": 24,
+     "false_supported": 0
+    },
+    "regression": {
+     "cases": 52,
+     "correct": 52,
+     "false_supported": 0
+    }
+   },
+   "by_taxonomy": {
+    "absent_evidence": {
+     "cases": 2,
+     "correct": 2
+    },
+    "amendment_not_yet": {
+     "cases": 1,
+     "correct": 1
+    },
+    "anoc_two_years": {
+     "cases": 1,
+     "correct": 1
+    },
+    "booklet_pages": {
+     "cases": 3,
+     "correct": 3
+    },
+    "compound_partial": {
+     "cases": 3,
+     "correct": 3
+    },
+    "compound_supported": {
+     "cases": 1,
+     "correct": 1
+    },
+    "compound_swapped": {
+     "cases": 2,
+     "correct": 2
+    },
+    "contradicted": {
+     "cases": 2,
+     "correct": 2
+    },
+    "cross_page_network": {
+     "cases": 1,
+     "correct": 1
+    },
+    "cyclic_supersession": {
+     "cases": 2,
+     "correct": 2
+    },
+    "duplicate_rows": {
+     "cases": 1,
+     "correct": 1
+    },
+    "effective_date": {
+     "cases": 4,
+     "correct": 4
+    },
+    "exception": {
+     "cases": 3,
+     "correct": 3
+    },
+    "extrapolated": {
+     "cases": 1,
+     "correct": 1
+    },
+    "fabricated_quote": {
+     "cases": 2,
+     "correct": 2
+    },
+    "footnote": {
+     "cases": 4,
+     "correct": 4
+    },
+    "hash_mismatch": {
+     "cases": 1,
+     "correct": 1
+    },
+    "malformed_artifact": {
+     "cases": 1,
+     "correct": 1
+    },
+    "missing_vs_zero": {
+     "cases": 1,
+     "correct": 1
+    },
+    "multi_amount": {
+     "cases": 3,
+     "correct": 3
+    },
+    "negation": {
+     "cases": 3,
+     "correct": 3
+    },
+    "network": {
+     "cases": 2,
+     "correct": 2
+    },
+    "pdf_cms_conflict": {
+     "cases": 2,
+     "correct": 2
+    },
+    "printed_page": {
+     "cases": 1,
+     "correct": 1
+    },
+    "prompt_injection": {
+     "cases": 1,
+     "correct": 1
+    },
+    "qualified_contrary_failed_citation": {
+     "cases": 1,
+     "correct": 1
+    },
+    "shared_allowance": {
+     "cases": 3,
+     "correct": 3
+    },
+    "source_conflict": {
+     "cases": 5,
+     "correct": 5
+    },
+    "superseded": {
+     "cases": 2,
+     "correct": 2
+    },
+    "supported": {
+     "cases": 2,
+     "correct": 2
+    },
+    "supported_condition": {
+     "cases": 1,
+     "correct": 1
+    },
+    "supported_dated": {
+     "cases": 2,
+     "correct": 2
+    },
+    "supported_period": {
+     "cases": 1,
+     "correct": 1
+    },
+    "supported_second_source": {
+     "cases": 1,
+     "correct": 1
+    },
+    "supported_tier": {
+     "cases": 2,
+     "correct": 2
+    },
+    "supported_zero": {
+     "cases": 2,
+     "correct": 2
+    },
+    "table_header": {
+     "cases": 1,
+     "correct": 1
+    },
+    "text_mismatch": {
+     "cases": 1,
+     "correct": 1
+    },
+    "text_overstates": {
+     "cases": 1,
+     "correct": 1
+    },
+    "truncated_artifact": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unavailable_source": {
+     "cases": 2,
+     "correct": 2
+    },
+    "unclear_contrary": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unicode_negation": {
+     "cases": 1,
+     "correct": 1
+    },
+    "units_period": {
+     "cases": 3,
+     "correct": 3
+    },
+    "unknown_applicability": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unknown_dates_superseder": {
+     "cases": 4,
+     "correct": 4
+    },
+    "unknown_identity_contrary": {
+     "cases": 1,
+     "correct": 1
+    },
+    "untyped_claim": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unverifiable_superseder_anoc": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unverifiable_superseder_corrupt": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unverifiable_superseder_missing": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unverifiable_superseder_unknown_year": {
+     "cases": 1,
+     "correct": 1
+    },
+    "value_kind": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_offset": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_page": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_plan": {
+     "cases": 2,
+     "correct": 2
+    },
+    "wrong_plan_superseder": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_section": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_year": {
+     "cases": 1,
+     "correct": 1
+    }
+   },
+   "cases": 100,
+   "conflict_detection": {
+    "count": 12,
+    "denominator": 12,
+    "rate": 1.0
+   },
+   "confusion": {
+    "conflicting_evidence -> conflicting_evidence": 12,
+    "contradicted -> contradicted": 1,
+    "inapplicable_version -> inapplicable_version": 6,
+    "insufficient_evidence -> insufficient_evidence": 10,
+    "needs_human_review -> needs_human_review": 60,
+    "supported -> supported": 5,
+    "unverifiable -> unverifiable": 6
+   },
+   "exact_agreement": {
+    "count": 100,
+    "denominator": 100,
+    "rate": 1.0
+   },
+   "false_supported": {
+    "count": 0,
+    "denominator": 95,
+    "rate": 0.0,
+    "wilson_95": [
+     0.0,
+     0.0389
+    ]
+   },
+   "location_correct": {
+    "count": 6,
+    "denominator": 6,
+    "rate": 1.0
+   },
+   "part_false_supported": {
+    "count": 0,
+    "denominator": 4,
+    "rate": 0.0
+   },
+   "supported_precision": {
+    "count": 5,
+    "denominator": 5,
+    "rate": 1.0
+   },
+   "supported_recall": {
+    "count": 5,
+    "denominator": 5,
+    "rate": 1.0
+   }
+  },
+  "wall_seconds": 0.599
+ },
+ "baseline": {
+  "gates": {
+   "floor_exact_agreement": false,
+   "floor_supported_recall": true,
+   "hard_complete_inventory": true,
+   "hard_no_false_supported": false
+  },
+  "inputs": {
+   "audit_code": "4c4cbcf9a424167e86849b54a28e048b34d95a319676dacc62cc7857e44c65e1",
+   "case_builder": "5d9205e5886bbf1369735c34aad2654fad32810471b2defd3ce8afd6ada3e8ce",
+   "evaluation_harness": "f43735494f128e68ce60f84c9b8d5d71a85884be0265e7da23818766929b2882",
+   "labels_policy": "2",
+   "policy-2/README.md": "3fe3d27b421294e76a48f0220607210fad5201d7f3adeb8a34ceffc44476a1fd",
+   "policy-2/REVISION-2.md": "fb659989a0c20026b431d50c5c1ebddba940842f61755314eee8b85cad62d57e",
+   "policy-2/expectations-r2.json": "a470e4f32024e5b87efa04cc143c6689b427573b3e3fd12ecddd91468f98a85e",
+   "policy-2/expectations.json": "4a21d3029d73e27df0bc86a99f2b4f3fd742064693385defa4035c508f329e22",
+   "rubric-freeze.json": "8e84925fc4f0d0311f95cce0277b7ace38baafbbdcb50204686b48373ca0dc6b",
+   "v1/PROVENANCE.md": "5973f4b0bd9e8fa75a63c5a278884610d1b641e9d0eb623a669bf4f276e29d3f",
+   "v1/cases.json": "e564713f765a5934ad1623fe86ea140fc20fb3be8bab56f9fab876f2e2a74d86",
+   "v1/labels.json": "1df06eb4735a0a063447fcb189e7d441552c9a5530c7537ef1c645bf4fc3f38c",
+   "v1/pdf-sha256.json": "f6d7fe169d0cb42534cf44589524be6699b5da6e4d37322fb3ea00389f0aa39c",
+   "v1/rubric.md": "eb89499e463cf815a7a2d1ad8f3cf345d530fbcc0247b6826eb7878b9acdeb86",
+   "v2/PROVENANCE.md": "937ea0d47306a1555231843622bd070ba2b76b0f9db9d9200e264e53a379c308",
+   "v2/cases.json": "a25a6e631a0dc8b58e2dfb0994b18301861fb14232e1e804adf1ef8155840ae9",
+   "v2/labels.json": "76820755a8c20630a984fc919b5f4501712dd23d4cbf868e30b5d07ec390cd6a",
+   "v2/pdf-sha256.json": "7347b47fd38903eddce45ffaf244f4af742fa5587e7d5f6906a7f899bdca5e10",
+   "v3/PROVENANCE.md": "e43827f71091077a0f6989142aba8ba6123df9f699e148c58dc442a5d4dd47f9",
+   "v3/cases.json": "8764b84eaf71789061207fb0aa979f24ade2a46398c6a3d5d35844b1ed6517b1",
+   "v3/labels.json": "3564340f283572eddfc49405c62b87973ce15d055a8a566e16af61d140c675b5",
+   "v3/pdf-sha256.json": "8452676cbf4326073c23e57fc0a45816a25e4d494f9b171eb192b5b31a6e693d",
+   "v4/PROVENANCE.md": "1611b61e81953755c706dc4d680a24a0c2e64bb4ef7256e8834c07a13a959046",
+   "v4/cases.json": "250a6725560607b692849e1b46b8ba5b0c5aa7e625b4667d86d3bd1581e87ce4",
+   "v4/labels.json": "50105ea54eba262ec5a2a56fd975ddb7e1e5fdce065a8c4c73c5acb02bb91096",
+   "v4/pdf-sha256.json": "5577ee511d3226930fc44ce93846fd1e32a64a3e10a92f00b860484aaf899f96",
+   "v5/PROVENANCE.md": "c8b620caed18b0b81f7b3d771bd10090d713f352a351af8c0df57b3148fa6d46",
+   "v5/cases.json": "e695ed66f6494c58a5f4fa594465eb6119758827332692d4bc5f8519d8917cb4",
+   "v5/labels.json": "222d23864b6390252dbba4da349a21e2e4a6bed90e51b5b350bde980a5e514cd",
+   "v5/pdf-sha256.json": "e72d84db8191783dd35c002ad458e7932ce913538bd7efdcfaaf551f91d1ff66",
+   "v6/PROVENANCE.md": "c7f23d44ce913eded36ef0ae3f011ef50f746e4f65f21823ec0ed3df6143d883",
+   "v6/cases.json": "34b6961be1a336fcf9806ec41e2ef521c75bdc00ffee95f3e5ae8575ac84297e",
+   "v6/labels.json": "8faa996b043dd939fa31d09bb550fbb5075604e5920e2e1e9f8371db5dc3e408",
+   "v6/pdf-sha256.json": "a133dd5e08c6e11298b645dd8fcbddc8033a9ebb17b62e6e757f0cc856d4414c",
+   "v7/PROVENANCE.md": "b4afbad281542cbc5f38350885fdad281eb55f33d3488d55e7b326d1577709fd",
+   "v7/cases.json": "e939f89b6407510db9d11457d82ed4e804773ea31ed7ceb982f4d30c66d7c895",
+   "v7/labels.json": "4276f8febfeb3f0beaf1261c35bba5f755823b164105726d405fa5b446320f0c",
+   "v7/pdf-sha256.json": "aedf56167e63aa40a61c9eb77209d75117b2ea2585161f1ad5b03c1e8f00c7a4"
+  },
+  "integrity_problems": [],
+  "lane": "baseline_citation_exists",
+  "pdf_sha256": {
+   "A1": {
+    "a": "9a27f6788ffa78a88bdd5229ea031b3548386ea11eec07a5086e44c048949d1c"
+   },
+   "A2": {
+    "a": "a3dc51cfa0ae8ad5f64c02c5cfb9eb719aef2a50fc7b2478c0fa7ddcb76c451c"
+   },
+   "A3": {
+    "a": "3163da8c1791c65fa197aca04d9830793c0f97cc9721be833768a8b9b0a1efc1"
+   },
+   "A4": {
+    "a": "7b35d69f7b4bffcc72e7b9b5789d04da393f2359784140ac565930af64b902d4"
+   },
+   "A5": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906"
+   },
+   "A6": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906",
+    "c": "4798ffdf1c5ce907b02de3bb8b96ab5eb8106da8d7980ffb6d02e79eef2d912d"
+   },
+   "B1": {
+    "a": "9a27f6788ffa78a88bdd5229ea031b3548386ea11eec07a5086e44c048949d1c"
+   },
+   "B2": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+   },
+   "B3": {
+    "a": "5de574dbbd1fcf1803655a1a7065eb8f3faa82e5769104064b5127b242623280"
+   },
+   "B4": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130",
+    "b": "246f57e185db26b8c53e8972b5319ea80c2aeb65c56d0a2d60b5d8628c6dc147"
+   },
+   "B5": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "58bf375b0d4d759957e67edb4792f9b2fe2834160099ca8559c421b3e4f03bac"
+   },
+   "B6": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906",
+    "c": "9e03b52258b2de8a0c60e4a8ab7b7305fc9ed908ab36bade68e0a6c237033d85"
+   },
+   "P2R1": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R10": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf",
+    "d": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R2": {
+    "a": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906",
+    "b": "685f719f0526e77ec8eed3fa5acf7df3ef4c1adf8ba3bfa0704978cfc4aeec9f",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R3": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R4": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R5": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "56d9d0b63ea434062484bc9eced20ccd3c585944635458c0f900779196d17491"
+   },
+   "P2R6": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "P2R7": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "7f592137a2691b846c95af0f2f75f6fda87ce614347d5e55f4385cca2e608100"
+   },
+   "P2R8": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "20a1f9432fbfe4083f33f147ac1c13e26ef99ea7c75b1306cf65e02ccf76b684"
+   },
+   "P2R9": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "c": "4ea08aee1aec28bdb0734500e3b4cac3691752238666f97fb16084217e619dcf"
+   },
+   "c01": {
+    "a": "cde86a0f33fb0479f210c60f290869a681827a323fc96b32e53156963b21486b"
+   },
+   "c02": {
+    "a": "1f76e15306d51a080ad76b6a8d093122b488732fdf15a6fd26d5a27aa39fcb85"
+   },
+   "c03": {
+    "a": "638ca07c246bd56ea455d4902daf9d25455e5b775bac9383dacdd2cd98654aa7"
+   },
+   "c04": {
+    "a": "0aaaea5354b015435b816dc99d1e7a185bb0137aa58e5b0bd6d1dee5cc1e94ba"
+   },
+   "c05": {
+    "a": "dd3b371adc5456746dbf0627652da8b7c62b76f8a209c270a365d878755be8b2"
+   },
+   "c06": {
+    "a": "b34b0a8cde8cc0ee3326fec70d6054e5eaffe4033f5c16cb5b19ebb45c94b815"
+   },
+   "c07": {
+    "a": "d567467e72860594ebabf048c355ef35c480181be60f7ea069734342530fa832"
+   },
+   "c08": {
+    "a": "1d371f689ff949698b326d8d8bcadcc3b620f5c6a58525eae89a862e1a189e90"
+   },
+   "c09": {
+    "a": "5a87585d8ad8cf45fbcf9e6fe825de216d24cb283155a3cfa20fa4c1c2936bd3"
+   },
+   "c10": {
+    "a": "5a87585d8ad8cf45fbcf9e6fe825de216d24cb283155a3cfa20fa4c1c2936bd3",
+    "b": "685f719f0526e77ec8eed3fa5acf7df3ef4c1adf8ba3bfa0704978cfc4aeec9f"
+   },
+   "c11": {
+    "a": "c0f81365a92805dcefb673d224f6b19a228f010dd85fa829342c68f99d7454b2",
+    "dental": "82969ee145b27af7ac522097d2716d80cd055ea6f67ae8f109d3a1752929e79f"
+   },
+   "c12": {
+    "a": "49129b9b452c58883c40b03db7cdc6567690e3e913a0d0bf66e8a3003bd1fc3d"
+   },
+   "d01": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d02": {
+    "a": "acc8e494771da54bd1c44e8c4b52e850c1f0e11dd5a14aa541ea387a8a614022"
+   },
+   "d03": {
+    "a": "ee9ec31f544694d3d9c0ccef73610fc3406fba085422a23478bc3c0b40f4b9b0"
+   },
+   "d04": {
+    "a": "a4841de646f6076c063dca70e1554bfea0eccedcdd5cdd462c9639845b6e0507"
+   },
+   "d05": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d06": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d07": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d08": {
+    "a": "b594d7752521c08fc82b00881a812a55b8ca52a34296b9eb7a8a1405335799db"
+   },
+   "d09": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d10": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d11": {
+    "a": "1188069f53e02cb92f3bd7da95e2c2c5262129144f0f645e230851db000ecb0f"
+   },
+   "d12": {
+    "a": "85b5200d79074c9407c27a12f61601545ca3c01ee2a3984bd60efe6650159a61"
+   },
+   "d13": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d14": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d15": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "cd8820af5694c981bc83479a4e6479403f909e7d29af85961ee1c0378e2d39b5"
+   },
+   "d16": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "cd8820af5694c981bc83479a4e6479403f909e7d29af85961ee1c0378e2d39b5"
+   },
+   "d17": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d18": {
+    "a": "8fed01765d009231e36b67399d15febc4c7c3a3579ad4d1f41f5011a299109bb"
+   },
+   "d19": {
+    "a": "4a15642f8174792de60c068c366271c9e635cd9fa5b7947a71ab17ace6075efe"
+   },
+   "d20": {
+    "a": "acc8e494771da54bd1c44e8c4b52e850c1f0e11dd5a14aa541ea387a8a614022"
+   },
+   "d21": {
+    "a": "bc30051a1f012ba5c823c740173b3023f628f7633fbfd53c2aad8aeae0451f50"
+   },
+   "d22": {
+    "a": "6b9c4430d9db14ddab96e74335a0459c65e33adb38c0f7dece54a6849341a798"
+   },
+   "d23": {
+    "a": "96496f3c3a1c7ad13b1bbb63d718be94019a8806233a4e0b88a287d40ed2d545"
+   },
+   "d24": {
+    "a": "fe99084fd69a64662a97986100c58d3fa19501148f37f8be396b956339c8b190"
+   },
+   "d25": {
+    "a": "dd576c8b7a660916c129edb11c15d2d01553b888ec8f08302e357d39fa3b2009"
+   },
+   "d26": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d27": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d28": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d29": {
+    "a": "7f592137a2691b846c95af0f2f75f6fda87ce614347d5e55f4385cca2e608100"
+   },
+   "d30": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d31": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d32": {
+    "a": "c47b338a543ddf79c5af3f4c6b8929c8853387b15c456eb15c2a624b5c9a3eca"
+   },
+   "d33": {
+    "a": "40d5e21c43471fa276a852e961d88688762a93e6bd61177f00ab539fa585b4be"
+   },
+   "d34": {
+    "a": "2b3cfc37c3098bcedc24580bef53f46f5bff01244c52ab5f8b7e63b80b8f4382"
+   },
+   "d35": {
+    "a": "ee4194c242d424ac6e6e9e0f73b8c88d7a7eb46f250056cdc0e18a3089e01a46"
+   },
+   "d36": {
+    "a": "7f180eb2db4ac3204397d5ca65b76582ff476df35278257137a3391a2dce866a"
+   },
+   "d37": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d38": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d39": {
+    "a": "4a15642f8174792de60c068c366271c9e635cd9fa5b7947a71ab17ace6075efe"
+   },
+   "d40": {
+    "a": "f89f8beec0e58962aeafe4c12fff8767ef4c0cbc89124110415b30eaca6124a0"
+   },
+   "d41": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "old": "0e1ef2cc1d2fbb126ef89e1120cff223386d6c2623743993095b9761abcc289f"
+   },
+   "d42": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d43": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d44": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d45": {
+    "book": "9cd64e1e1e945ce47fb795ebd7c33820989ccd9abfa2e7e3ebc33fe39d10822a"
+   },
+   "d46": {
+    "book": "9cd64e1e1e945ce47fb795ebd7c33820989ccd9abfa2e7e3ebc33fe39d10822a"
+   },
+   "d47": {
+    "a": "20a1f9432fbfe4083f33f147ac1c13e26ef99ea7c75b1306cf65e02ccf76b684"
+   },
+   "d48": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d49": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "p01": {
+    "a": "cde86a0f33fb0479f210c60f290869a681827a323fc96b32e53156963b21486b"
+   },
+   "p02": {
+    "a": "1f76e15306d51a080ad76b6a8d093122b488732fdf15a6fd26d5a27aa39fcb85"
+   },
+   "p04": {
+    "a": "0aaaea5354b015435b816dc99d1e7a185bb0137aa58e5b0bd6d1dee5cc1e94ba"
+   },
+   "p07": {
+    "a": "d567467e72860594ebabf048c355ef35c480181be60f7ea069734342530fa832"
+   },
+   "q01": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q02": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+   },
+   "q03": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q04": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q05": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+   },
+   "q06": {
+    "a": "9a27f6788ffa78a88bdd5229ea031b3548386ea11eec07a5086e44c048949d1c"
+   },
+   "q07": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q08": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q09": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+   },
+   "q10": {
+    "a": "f89f8beec0e58962aeafe4c12fff8767ef4c0cbc89124110415b30eaca6124a0"
+   },
+   "q11": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "q12": {
+    "a": "85b5200d79074c9407c27a12f61601545ca3c01ee2a3984bd60efe6650159a61"
+   },
+   "q45": {
+    "book": "0e47c66b91d7be613ac8a671aa75bc56d972236fe9b70391fc10bd85b8b02ee3"
+   }
+  },
+  "policy": {
+   "check_contrary": true,
+   "check_effective_dates": true,
+   "check_plan_year": true,
+   "require_support": false,
+   "unknown_blocks": true,
+   "unknown_dates_block": true
+  },
+  "rows": [
+   {
+    "author": "builder",
+    "case_id": "d01",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "supported"
+   },
+   {
+    "author": "builder",
+    "case_id": "d02",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "outpatient_surgery": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "supported"
+   },
+   {
+    "author": "builder",
+    "case_id": "d03",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "medical_deductible": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "supported_zero"
+   },
+   {
+    "author": "builder",
+    "case_id": "d04",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "inpatient_stay": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "supported_condition"
+   },
+   {
+    "author": "builder",
+    "case_id": "d05",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "contradicted"
+   },
+   {
+    "author": "builder",
+    "case_id": "d06",
+    "correct": false,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "absent_evidence"
+   },
+   {
+    "author": "builder",
+    "case_id": "d07",
+    "correct": false,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "medical_deductible": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "missing_vs_zero"
+   },
+   {
+    "author": "builder",
+    "case_id": "d08",
+    "correct": false,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_page"
+   },
+   {
+    "author": "builder",
+    "case_id": "d09",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "specialist_copay": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_offset"
+   },
+   {
+    "author": "builder",
+    "case_id": "d10",
+    "correct": false,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "fabricated_quote"
+   },
+   {
+    "author": "builder",
+    "case_id": "d11",
+    "correct": false,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "dental_allowance": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "extrapolated"
+   },
+   {
+    "author": "builder",
+    "case_id": "d12",
+    "correct": false,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_plan"
+   },
+   {
+    "author": "builder",
+    "case_id": "d13",
+    "correct": false,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_year"
+   },
+   {
+    "author": "builder",
+    "case_id": "d14",
+    "correct": false,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "effective_date"
+   },
+   {
+    "author": "builder",
+    "case_id": "d15",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "superseded"
+   },
+   {
+    "author": "builder",
+    "case_id": "d16",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "amendment_not_yet"
+   },
+   {
+    "author": "builder",
+    "case_id": "d17",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "d18",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "table_header"
+   },
+   {
+    "author": "builder",
+    "case_id": "d19",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "otc_allowance": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "units_period"
+   },
+   {
+    "author": "builder",
+    "case_id": "d20",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "outpatient_surgery": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "value_kind"
+   },
+   {
+    "author": "builder",
+    "case_id": "d21",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "network"
+   },
+   {
+    "author": "builder",
+    "case_id": "d22",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "dental_allowance": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "negation"
+   },
+   {
+    "author": "builder",
+    "case_id": "d23",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "exception"
+   },
+   {
+    "author": "builder",
+    "case_id": "d24",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "dental_allowance": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "shared_allowance"
+   },
+   {
+    "author": "builder",
+    "case_id": "d25",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {
+     "monthly_premium": "needs_human_review",
+     "specialist_copay": "needs_human_review"
+    },
+    "false_supported": true,
+    "part_false_supported": true,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported",
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "compound_partial"
+   },
+   {
+    "author": "builder",
+    "case_id": "d26",
+    "correct": false,
+    "expected": "insufficient_evidence",
+    "expected_parts": {
+     "dental_allowance": "insufficient_evidence",
+     "monthly_premium": "needs_human_review"
+    },
+    "false_supported": true,
+    "part_false_supported": true,
+    "predicted": "supported",
+    "predicted_parts": {
+     "dental_allowance": "supported",
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "compound_partial"
+   },
+   {
+    "author": "builder",
+    "case_id": "d27",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "unavailable_source"
+   },
+   {
+    "author": "builder",
+    "case_id": "d28",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "truncated_artifact"
+   },
+   {
+    "author": "builder",
+    "case_id": "d29",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "malformed_artifact"
+   },
+   {
+    "author": "builder",
+    "case_id": "d30",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "monthly_premium": "insufficient_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "absent_evidence"
+   },
+   {
+    "author": "builder",
+    "case_id": "d31",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "unavailable_source"
+   },
+   {
+    "author": "builder",
+    "case_id": "d32",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "dental_allowance": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "prompt_injection"
+   },
+   {
+    "author": "builder",
+    "case_id": "d33",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "moop_in_network": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "multi_amount"
+   },
+   {
+    "author": "builder",
+    "case_id": "d34",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "emergency_room": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "builder",
+    "case_id": "d35",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "duplicate_rows"
+   },
+   {
+    "author": "builder",
+    "case_id": "d36",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_applicability"
+   },
+   {
+    "author": "builder",
+    "case_id": "d37",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "p": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "untyped_claim"
+   },
+   {
+    "author": "builder",
+    "case_id": "d38",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "hash_mismatch"
+   },
+   {
+    "author": "builder",
+    "case_id": "d39",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "otc_allowance": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_period"
+   },
+   {
+    "author": "builder",
+    "case_id": "d40",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "drug_tier_2": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_tier"
+   },
+   {
+    "author": "builder",
+    "case_id": "d41",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_second_source"
+   },
+   {
+    "author": "builder",
+    "case_id": "d42",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "text_overstates"
+   },
+   {
+    "author": "builder",
+    "case_id": "d43",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "text_mismatch"
+   },
+   {
+    "author": "builder",
+    "case_id": "d44",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "pdf_cms_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "d45",
+    "correct": false,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "booklet_pages"
+   },
+   {
+    "author": "builder",
+    "case_id": "d46",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "booklet_pages"
+   },
+   {
+    "author": "builder",
+    "case_id": "d47",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "anoc_two_years"
+   },
+   {
+    "author": "builder",
+    "case_id": "d48",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "printed_page"
+   },
+   {
+    "author": "builder",
+    "case_id": "d49",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c01",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "negation"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c02",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "exception"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c03",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "network"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c04",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "otc_allowance": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "shared_allowance"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c05",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "otc_allowance": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "units_period"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c06",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "multi_amount"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c07",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c08",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "inpatient_stay": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "multi_amount"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c09",
+    "correct": false,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "fabricated_quote"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c10",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c11",
+    "correct": false,
+    "expected": "unverifiable",
+    "expected_parts": {
+     "dental_allowance": "unverifiable",
+     "monthly_premium": "needs_human_review",
+     "specialist_copay": "needs_human_review"
+    },
+    "false_supported": false,
+    "part_false_supported": true,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "dental_allowance": "unverifiable",
+     "monthly_premium": "supported",
+     "specialist_copay": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "compound_partial"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c12",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "supported_zero"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A1",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported",
+     "specialist_copay": "supported"
+    },
+    "split": "challenge-2",
+    "taxonomy": "compound_swapped"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A2",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "challenge-2",
+    "taxonomy": "units_period"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A3",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "challenge-2",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A4",
+    "correct": false,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "medical_deductible": "supported"
+    },
+    "split": "challenge-2",
+    "taxonomy": "wrong_section"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A5",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "challenge-2",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A6",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "challenge-2",
+    "taxonomy": "superseded"
+   },
+   {
+    "author": "builder",
+    "case_id": "p01",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "negation"
+   },
+   {
+    "author": "builder",
+    "case_id": "p02",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "exception"
+   },
+   {
+    "author": "builder",
+    "case_id": "p04",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "otc_allowance": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "shared_allowance"
+   },
+   {
+    "author": "builder",
+    "case_id": "p07",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B1",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "premium": "supported",
+     "specialist": "supported"
+    },
+    "split": "challenge-3",
+    "taxonomy": "compound_swapped"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B2",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist": "supported"
+    },
+    "split": "challenge-3",
+    "taxonomy": "unicode_negation"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B3",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist": "supported"
+    },
+    "split": "challenge-3",
+    "taxonomy": "cross_page_network"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B4",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist": "supported"
+    },
+    "split": "challenge-3",
+    "taxonomy": "qualified_contrary_failed_citation"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B5",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "premium": "supported"
+    },
+    "split": "challenge-3",
+    "taxonomy": "unknown_identity_contrary"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B6",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "premium": "supported"
+    },
+    "split": "challenge-3",
+    "taxonomy": "wrong_plan_superseder"
+   },
+   {
+    "author": "builder",
+    "case_id": "q01",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_dated"
+   },
+   {
+    "author": "builder",
+    "case_id": "q02",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_dated"
+   },
+   {
+    "author": "builder",
+    "case_id": "q03",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "effective_date"
+   },
+   {
+    "author": "builder",
+    "case_id": "q04",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "q05",
+    "correct": false,
+    "expected": "contradicted",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "contradicted"
+   },
+   {
+    "author": "builder",
+    "case_id": "q06",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {
+     "monthly_premium": "supported",
+     "specialist_copay": "supported"
+    },
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported",
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "compound_supported"
+   },
+   {
+    "author": "builder",
+    "case_id": "q07",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "effective_date"
+   },
+   {
+    "author": "builder",
+    "case_id": "q08",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "effective_date"
+   },
+   {
+    "author": "builder",
+    "case_id": "q09",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "specialist_copay": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "pdf_cms_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "q10",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "drug_tier_2": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_tier"
+   },
+   {
+    "author": "builder",
+    "case_id": "q11",
+    "correct": false,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unclear_contrary"
+   },
+   {
+    "author": "builder",
+    "case_id": "q12",
+    "correct": false,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "wrong_plan"
+   },
+   {
+    "author": "builder",
+    "case_id": "q45",
+    "correct": false,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "booklet_pages"
+   },
+   {
+    "author": "independent-ai-reviewer (Astra policy2-engine; serialized by continuation builder)",
+    "case_id": "P2R1",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_dates_superseder"
+   },
+   {
+    "author": "independent-ai-reviewer (Astra policy2-engine; serialized by continuation builder)",
+    "case_id": "P2R2",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_dates_superseder"
+   },
+   {
+    "author": "independent-ai-reviewer (Astra policy2-engine; serialized by continuation builder)",
+    "case_id": "P2R3",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_dates_superseder"
+   },
+   {
+    "author": "independent-ai-reviewer (Astra policy2-engine; serialized by continuation builder)",
+    "case_id": "P2R4",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_dates_superseder"
+   },
+   {
+    "author": "independent-ai-reviewer (continuation supersession review; serialized by builder)",
+    "case_id": "P2R5",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unverifiable_superseder_unknown_year"
+   },
+   {
+    "author": "independent-ai-reviewer (continuation supersession review; serialized by builder)",
+    "case_id": "P2R6",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unverifiable_superseder_missing"
+   },
+   {
+    "author": "independent-ai-reviewer (continuation supersession review; serialized by builder)",
+    "case_id": "P2R7",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unverifiable_superseder_corrupt"
+   },
+   {
+    "author": "independent-ai-reviewer (continuation supersession review; serialized by builder)",
+    "case_id": "P2R8",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "unverifiable_superseder_anoc"
+   },
+   {
+    "author": "continuation builder, final reflection",
+    "case_id": "P2R9",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "cyclic_supersession"
+   },
+   {
+    "author": "continuation builder, final reflection",
+    "case_id": "P2R10",
+    "correct": false,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": true,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "cyclic_supersession"
+   }
+  ],
+  "schema_version": "citation-audit-eval-v1",
+  "summary": {
+   "abstention": {
+    "count": 0,
+    "denominator": 100,
+    "rate": 0.0
+   },
+   "by_split": {
+    "challenge": {
+     "cases": 12,
+     "correct": 0,
+     "false_supported": 11
+    },
+    "challenge-2": {
+     "cases": 6,
+     "correct": 0,
+     "false_supported": 6
+    },
+    "challenge-3": {
+     "cases": 6,
+     "correct": 0,
+     "false_supported": 6
+    },
+    "dev": {
+     "cases": 24,
+     "correct": 1,
+     "false_supported": 23
+    },
+    "regression": {
+     "cases": 52,
+     "correct": 11,
+     "false_supported": 41
+    }
+   },
+   "by_taxonomy": {
+    "absent_evidence": {
+     "cases": 2,
+     "correct": 1
+    },
+    "amendment_not_yet": {
+     "cases": 1,
+     "correct": 0
+    },
+    "anoc_two_years": {
+     "cases": 1,
+     "correct": 0
+    },
+    "booklet_pages": {
+     "cases": 3,
+     "correct": 0
+    },
+    "compound_partial": {
+     "cases": 3,
+     "correct": 0
+    },
+    "compound_supported": {
+     "cases": 1,
+     "correct": 1
+    },
+    "compound_swapped": {
+     "cases": 2,
+     "correct": 0
+    },
+    "contradicted": {
+     "cases": 2,
+     "correct": 0
+    },
+    "cross_page_network": {
+     "cases": 1,
+     "correct": 0
+    },
+    "cyclic_supersession": {
+     "cases": 2,
+     "correct": 0
+    },
+    "duplicate_rows": {
+     "cases": 1,
+     "correct": 0
+    },
+    "effective_date": {
+     "cases": 4,
+     "correct": 0
+    },
+    "exception": {
+     "cases": 3,
+     "correct": 0
+    },
+    "extrapolated": {
+     "cases": 1,
+     "correct": 0
+    },
+    "fabricated_quote": {
+     "cases": 2,
+     "correct": 0
+    },
+    "footnote": {
+     "cases": 4,
+     "correct": 0
+    },
+    "hash_mismatch": {
+     "cases": 1,
+     "correct": 1
+    },
+    "malformed_artifact": {
+     "cases": 1,
+     "correct": 1
+    },
+    "missing_vs_zero": {
+     "cases": 1,
+     "correct": 0
+    },
+    "multi_amount": {
+     "cases": 3,
+     "correct": 0
+    },
+    "negation": {
+     "cases": 3,
+     "correct": 0
+    },
+    "network": {
+     "cases": 2,
+     "correct": 0
+    },
+    "pdf_cms_conflict": {
+     "cases": 2,
+     "correct": 0
+    },
+    "printed_page": {
+     "cases": 1,
+     "correct": 0
+    },
+    "prompt_injection": {
+     "cases": 1,
+     "correct": 0
+    },
+    "qualified_contrary_failed_citation": {
+     "cases": 1,
+     "correct": 0
+    },
+    "shared_allowance": {
+     "cases": 3,
+     "correct": 0
+    },
+    "source_conflict": {
+     "cases": 5,
+     "correct": 0
+    },
+    "superseded": {
+     "cases": 2,
+     "correct": 0
+    },
+    "supported": {
+     "cases": 2,
+     "correct": 0
+    },
+    "supported_condition": {
+     "cases": 1,
+     "correct": 0
+    },
+    "supported_dated": {
+     "cases": 2,
+     "correct": 2
+    },
+    "supported_period": {
+     "cases": 1,
+     "correct": 0
+    },
+    "supported_second_source": {
+     "cases": 1,
+     "correct": 0
+    },
+    "supported_tier": {
+     "cases": 2,
+     "correct": 1
+    },
+    "supported_zero": {
+     "cases": 2,
+     "correct": 0
+    },
+    "table_header": {
+     "cases": 1,
+     "correct": 0
+    },
+    "text_mismatch": {
+     "cases": 1,
+     "correct": 0
+    },
+    "text_overstates": {
+     "cases": 1,
+     "correct": 0
+    },
+    "truncated_artifact": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unavailable_source": {
+     "cases": 2,
+     "correct": 2
+    },
+    "unclear_contrary": {
+     "cases": 1,
+     "correct": 0
+    },
+    "unicode_negation": {
+     "cases": 1,
+     "correct": 0
+    },
+    "units_period": {
+     "cases": 3,
+     "correct": 0
+    },
+    "unknown_applicability": {
+     "cases": 1,
+     "correct": 0
+    },
+    "unknown_dates_superseder": {
+     "cases": 4,
+     "correct": 1
+    },
+    "unknown_identity_contrary": {
+     "cases": 1,
+     "correct": 0
+    },
+    "untyped_claim": {
+     "cases": 1,
+     "correct": 0
+    },
+    "unverifiable_superseder_anoc": {
+     "cases": 1,
+     "correct": 0
+    },
+    "unverifiable_superseder_corrupt": {
+     "cases": 1,
+     "correct": 0
+    },
+    "unverifiable_superseder_missing": {
+     "cases": 1,
+     "correct": 0
+    },
+    "unverifiable_superseder_unknown_year": {
+     "cases": 1,
+     "correct": 0
+    },
+    "value_kind": {
+     "cases": 1,
+     "correct": 0
+    },
+    "wrong_offset": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_page": {
+     "cases": 1,
+     "correct": 0
+    },
+    "wrong_plan": {
+     "cases": 2,
+     "correct": 0
+    },
+    "wrong_plan_superseder": {
+     "cases": 1,
+     "correct": 0
+    },
+    "wrong_section": {
+     "cases": 1,
+     "correct": 0
+    },
+    "wrong_year": {
+     "cases": 1,
+     "correct": 0
+    }
+   },
+   "cases": 100,
+   "conflict_detection": {
+    "count": 0,
+    "denominator": 12,
+    "rate": 0.0
+   },
+   "confusion": {
+    "conflicting_evidence -> supported": 12,
+    "contradicted -> supported": 1,
+    "inapplicable_version -> supported": 6,
+    "insufficient_evidence -> insufficient_evidence": 2,
+    "insufficient_evidence -> supported": 8,
+    "needs_human_review -> supported": 60,
+    "supported -> supported": 5,
+    "unverifiable -> unverifiable": 6
+   },
+   "exact_agreement": {
+    "count": 12,
+    "denominator": 100,
+    "rate": 0.12
+   },
+   "false_supported": {
+    "count": 87,
+    "denominator": 95,
+    "rate": 0.9158,
+    "wilson_95": [
+     0.8425,
+     0.9567
+    ]
+   },
+   "location_correct": {
+    "count": 2,
+    "denominator": 6,
+    "rate": 0.3333
+   },
+   "part_false_supported": {
+    "count": 3,
+    "denominator": 4,
+    "rate": 0.75
+   },
+   "supported_precision": {
+    "count": 5,
+    "denominator": 92,
+    "rate": 0.0543
+   },
+   "supported_recall": {
+    "count": 5,
+    "denominator": 5,
+    "rate": 1.0
+   }
+  },
+  "wall_seconds": 0.541
+ },
+ "data_kind": "synthetic",
+ "human_adjudication": "not_run",
+ "model_lane": "not_run",
+ "negative_controls": {
+  "accept_any_existing_citation": {
+   "caught": true,
+   "false_supported": {
+    "count": 87,
+    "denominator": 95,
+    "rate": 0.9158,
+    "wilson_95": [
+     0.8425,
+     0.9567
+    ]
+   },
+   "got": {
+    "d05": "supported",
+    "d06": "supported",
+    "d22": "supported"
+   },
+   "integrity_problems": [],
+   "must_become": {},
+   "must_become_supported": [
+    "d05",
+    "d06",
+    "d22"
+   ],
+   "policy": {
+    "check_contrary": true,
+    "check_effective_dates": true,
+    "check_plan_year": true,
+    "require_support": false,
+    "unknown_blocks": true,
+    "unknown_dates_block": true
+   }
+  },
+  "accept_unknown_dates": {
+   "caught": true,
+   "false_supported": {
+    "count": 16,
+    "denominator": 95,
+    "rate": 0.1684,
+    "wilson_95": [
+     0.1064,
+     0.2562
+    ]
+   },
+   "got": {
+    "c12": "supported",
+    "d01": "supported",
+    "q03": "supported"
+   },
+   "integrity_problems": [],
+   "must_become": {},
+   "must_become_supported": [
+    "d01",
+    "c12",
+    "q03"
+   ],
+   "policy": {
+    "check_contrary": true,
+    "check_effective_dates": true,
+    "check_plan_year": true,
+    "require_support": true,
+    "unknown_blocks": true,
+    "unknown_dates_block": false
+   }
+  },
+  "drop_failing_case": {
+   "caught": true,
+   "integrity_problems": [
+    "case inventory differs from the manifest: missing ['d05'], extra []"
+   ]
+  },
+  "forge_scoring_fields": {
+   "caught": true,
+   "integrity_problems": [
+    "d05: scoring fields do not follow from its verdicts"
+   ]
+  },
+  "forge_summary": {
+   "caught": true,
+   "integrity_problems": [
+    "summary does not recompute from the per-case rows"
+   ]
+  },
+  "ignore_effective_dates": {
+   "caught": true,
+   "false_supported": {
+    "count": 14,
+    "denominator": 95,
+    "rate": 0.1474,
+    "wilson_95": [
+     0.0899,
+     0.2323
+    ]
+   },
+   "got": {
+    "d14": "supported",
+    "d15": "conflicting_evidence"
+   },
+   "integrity_problems": [],
+   "must_become": {
+    "d15": "conflicting_evidence"
+   },
+   "must_become_supported": [
+    "d14"
+   ],
+   "policy": {
+    "check_contrary": true,
+    "check_effective_dates": false,
+    "check_plan_year": true,
+    "require_support": true,
+    "unknown_blocks": true,
+    "unknown_dates_block": true
+   }
+  },
+  "ignore_plan_year": {
+   "caught": true,
+   "false_supported": {
+    "count": 3,
+    "denominator": 95,
+    "rate": 0.0316,
+    "wilson_95": [
+     0.0108,
+     0.0888
+    ]
+   },
+   "got": {
+    "q12": "supported",
+    "q45": "conflicting_evidence"
+   },
+   "integrity_problems": [],
+   "must_become": {
+    "q45": "conflicting_evidence"
+   },
+   "must_become_supported": [
+    "q12"
+   ],
+   "policy": {
+    "check_contrary": true,
+    "check_effective_dates": true,
+    "check_plan_year": false,
+    "require_support": true,
+    "unknown_blocks": true,
+    "unknown_dates_block": true
+   }
+  },
+  "remove_contradiction_check": {
+   "caught": true,
+   "false_supported": {
+    "count": 15,
+    "denominator": 95,
+    "rate": 0.1579,
+    "wilson_95": [
+     0.0981,
+     0.2443
+    ]
+   },
+   "got": {
+    "q04": "supported",
+    "q09": "supported"
+   },
+   "integrity_problems": [],
+   "must_become": {},
+   "must_become_supported": [
+    "q04",
+    "q09"
+   ],
+   "policy": {
+    "check_contrary": false,
+    "check_effective_dates": true,
+    "check_plan_year": true,
+    "require_support": true,
+    "unknown_blocks": true,
+    "unknown_dates_block": true
+   }
+  },
+  "treat_unknown_as_supported": {
+   "caught": true,
+   "false_supported": {
+    "count": 43,
+    "denominator": 95,
+    "rate": 0.4526,
+    "wilson_95": [
+     0.3563,
+     0.5526
+    ]
+   },
+   "got": {
+    "d18": "supported",
+    "d36": "supported",
+    "d42": "supported"
+   },
+   "integrity_problems": [],
+   "must_become": {},
+   "must_become_supported": [
+    "d18",
+    "d36",
+    "d42"
+   ],
+   "policy": {
+    "check_contrary": true,
+    "check_effective_dates": true,
+    "check_plan_year": true,
+    "require_support": true,
+    "unknown_blocks": false,
+    "unknown_dates_block": true
+   }
+  }
+ },
+ "peak_rss_mb": 94.5,
+ "policy_1_legacy": {
+  "gates": {
+   "floor_exact_agreement": true,
+   "floor_supported_recall": true,
+   "hard_complete_inventory": true,
+   "hard_no_false_supported": true
+  },
+  "inputs": {
+   "audit_code": "4c4cbcf9a424167e86849b54a28e048b34d95a319676dacc62cc7857e44c65e1",
+   "case_builder": "5d9205e5886bbf1369735c34aad2654fad32810471b2defd3ce8afd6ada3e8ce",
+   "evaluation_harness": "f43735494f128e68ce60f84c9b8d5d71a85884be0265e7da23818766929b2882",
+   "labels_policy": "1",
+   "policy-2/README.md": "3fe3d27b421294e76a48f0220607210fad5201d7f3adeb8a34ceffc44476a1fd",
+   "policy-2/REVISION-2.md": "fb659989a0c20026b431d50c5c1ebddba940842f61755314eee8b85cad62d57e",
+   "policy-2/expectations-r2.json": "a470e4f32024e5b87efa04cc143c6689b427573b3e3fd12ecddd91468f98a85e",
+   "policy-2/expectations.json": "4a21d3029d73e27df0bc86a99f2b4f3fd742064693385defa4035c508f329e22",
+   "rubric-freeze.json": "8e84925fc4f0d0311f95cce0277b7ace38baafbbdcb50204686b48373ca0dc6b",
+   "v1/PROVENANCE.md": "5973f4b0bd9e8fa75a63c5a278884610d1b641e9d0eb623a669bf4f276e29d3f",
+   "v1/cases.json": "e564713f765a5934ad1623fe86ea140fc20fb3be8bab56f9fab876f2e2a74d86",
+   "v1/labels.json": "1df06eb4735a0a063447fcb189e7d441552c9a5530c7537ef1c645bf4fc3f38c",
+   "v1/pdf-sha256.json": "f6d7fe169d0cb42534cf44589524be6699b5da6e4d37322fb3ea00389f0aa39c",
+   "v1/rubric.md": "eb89499e463cf815a7a2d1ad8f3cf345d530fbcc0247b6826eb7878b9acdeb86",
+   "v2/PROVENANCE.md": "937ea0d47306a1555231843622bd070ba2b76b0f9db9d9200e264e53a379c308",
+   "v2/cases.json": "a25a6e631a0dc8b58e2dfb0994b18301861fb14232e1e804adf1ef8155840ae9",
+   "v2/labels.json": "76820755a8c20630a984fc919b5f4501712dd23d4cbf868e30b5d07ec390cd6a",
+   "v2/pdf-sha256.json": "7347b47fd38903eddce45ffaf244f4af742fa5587e7d5f6906a7f899bdca5e10",
+   "v3/PROVENANCE.md": "e43827f71091077a0f6989142aba8ba6123df9f699e148c58dc442a5d4dd47f9",
+   "v3/cases.json": "8764b84eaf71789061207fb0aa979f24ade2a46398c6a3d5d35844b1ed6517b1",
+   "v3/labels.json": "3564340f283572eddfc49405c62b87973ce15d055a8a566e16af61d140c675b5",
+   "v3/pdf-sha256.json": "8452676cbf4326073c23e57fc0a45816a25e4d494f9b171eb192b5b31a6e693d"
+  },
+  "integrity_problems": [],
+  "lane": "policy_1_legacy",
+  "pdf_sha256": {
+   "A1": {
+    "a": "9a27f6788ffa78a88bdd5229ea031b3548386ea11eec07a5086e44c048949d1c"
+   },
+   "A2": {
+    "a": "a3dc51cfa0ae8ad5f64c02c5cfb9eb719aef2a50fc7b2478c0fa7ddcb76c451c"
+   },
+   "A3": {
+    "a": "3163da8c1791c65fa197aca04d9830793c0f97cc9721be833768a8b9b0a1efc1"
+   },
+   "A4": {
+    "a": "7b35d69f7b4bffcc72e7b9b5789d04da393f2359784140ac565930af64b902d4"
+   },
+   "A5": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906"
+   },
+   "A6": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906",
+    "c": "4798ffdf1c5ce907b02de3bb8b96ab5eb8106da8d7980ffb6d02e79eef2d912d"
+   },
+   "B1": {
+    "a": "9a27f6788ffa78a88bdd5229ea031b3548386ea11eec07a5086e44c048949d1c"
+   },
+   "B2": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130"
+   },
+   "B3": {
+    "a": "5de574dbbd1fcf1803655a1a7065eb8f3faa82e5769104064b5127b242623280"
+   },
+   "B4": {
+    "a": "8a757d5fe7f7faa8f95ddb361cb09482a09c9e82e2019ed8ea6c396c3bdec130",
+    "b": "246f57e185db26b8c53e8972b5319ea80c2aeb65c56d0a2d60b5d8628c6dc147"
+   },
+   "B5": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "58bf375b0d4d759957e67edb4792f9b2fe2834160099ca8559c421b3e4f03bac"
+   },
+   "B6": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "62e3f5736c5088023a53816fc92775a12ee501707ee0c112dcf131959a65a906",
+    "c": "9e03b52258b2de8a0c60e4a8ab7b7305fc9ed908ab36bade68e0a6c237033d85"
+   },
+   "c01": {
+    "a": "cde86a0f33fb0479f210c60f290869a681827a323fc96b32e53156963b21486b"
+   },
+   "c02": {
+    "a": "1f76e15306d51a080ad76b6a8d093122b488732fdf15a6fd26d5a27aa39fcb85"
+   },
+   "c03": {
+    "a": "638ca07c246bd56ea455d4902daf9d25455e5b775bac9383dacdd2cd98654aa7"
+   },
+   "c04": {
+    "a": "0aaaea5354b015435b816dc99d1e7a185bb0137aa58e5b0bd6d1dee5cc1e94ba"
+   },
+   "c05": {
+    "a": "dd3b371adc5456746dbf0627652da8b7c62b76f8a209c270a365d878755be8b2"
+   },
+   "c06": {
+    "a": "b34b0a8cde8cc0ee3326fec70d6054e5eaffe4033f5c16cb5b19ebb45c94b815"
+   },
+   "c07": {
+    "a": "d567467e72860594ebabf048c355ef35c480181be60f7ea069734342530fa832"
+   },
+   "c08": {
+    "a": "1d371f689ff949698b326d8d8bcadcc3b620f5c6a58525eae89a862e1a189e90"
+   },
+   "c09": {
+    "a": "5a87585d8ad8cf45fbcf9e6fe825de216d24cb283155a3cfa20fa4c1c2936bd3"
+   },
+   "c10": {
+    "a": "5a87585d8ad8cf45fbcf9e6fe825de216d24cb283155a3cfa20fa4c1c2936bd3",
+    "b": "685f719f0526e77ec8eed3fa5acf7df3ef4c1adf8ba3bfa0704978cfc4aeec9f"
+   },
+   "c11": {
+    "a": "c0f81365a92805dcefb673d224f6b19a228f010dd85fa829342c68f99d7454b2",
+    "dental": "82969ee145b27af7ac522097d2716d80cd055ea6f67ae8f109d3a1752929e79f"
+   },
+   "c12": {
+    "a": "49129b9b452c58883c40b03db7cdc6567690e3e913a0d0bf66e8a3003bd1fc3d"
+   },
+   "d01": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d02": {
+    "a": "acc8e494771da54bd1c44e8c4b52e850c1f0e11dd5a14aa541ea387a8a614022"
+   },
+   "d03": {
+    "a": "ee9ec31f544694d3d9c0ccef73610fc3406fba085422a23478bc3c0b40f4b9b0"
+   },
+   "d04": {
+    "a": "a4841de646f6076c063dca70e1554bfea0eccedcdd5cdd462c9639845b6e0507"
+   },
+   "d05": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d06": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d07": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d08": {
+    "a": "b594d7752521c08fc82b00881a812a55b8ca52a34296b9eb7a8a1405335799db"
+   },
+   "d09": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d10": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d11": {
+    "a": "1188069f53e02cb92f3bd7da95e2c2c5262129144f0f645e230851db000ecb0f"
+   },
+   "d12": {
+    "a": "85b5200d79074c9407c27a12f61601545ca3c01ee2a3984bd60efe6650159a61"
+   },
+   "d13": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d14": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d15": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "cd8820af5694c981bc83479a4e6479403f909e7d29af85961ee1c0378e2d39b5"
+   },
+   "d16": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "b": "cd8820af5694c981bc83479a4e6479403f909e7d29af85961ee1c0378e2d39b5"
+   },
+   "d17": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d18": {
+    "a": "8fed01765d009231e36b67399d15febc4c7c3a3579ad4d1f41f5011a299109bb"
+   },
+   "d19": {
+    "a": "4a15642f8174792de60c068c366271c9e635cd9fa5b7947a71ab17ace6075efe"
+   },
+   "d20": {
+    "a": "acc8e494771da54bd1c44e8c4b52e850c1f0e11dd5a14aa541ea387a8a614022"
+   },
+   "d21": {
+    "a": "bc30051a1f012ba5c823c740173b3023f628f7633fbfd53c2aad8aeae0451f50"
+   },
+   "d22": {
+    "a": "6b9c4430d9db14ddab96e74335a0459c65e33adb38c0f7dece54a6849341a798"
+   },
+   "d23": {
+    "a": "96496f3c3a1c7ad13b1bbb63d718be94019a8806233a4e0b88a287d40ed2d545"
+   },
+   "d24": {
+    "a": "fe99084fd69a64662a97986100c58d3fa19501148f37f8be396b956339c8b190"
+   },
+   "d25": {
+    "a": "dd576c8b7a660916c129edb11c15d2d01553b888ec8f08302e357d39fa3b2009"
+   },
+   "d26": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d27": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d28": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d29": {
+    "a": "7f592137a2691b846c95af0f2f75f6fda87ce614347d5e55f4385cca2e608100"
+   },
+   "d30": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d31": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d32": {
+    "a": "c47b338a543ddf79c5af3f4c6b8929c8853387b15c456eb15c2a624b5c9a3eca"
+   },
+   "d33": {
+    "a": "40d5e21c43471fa276a852e961d88688762a93e6bd61177f00ab539fa585b4be"
+   },
+   "d34": {
+    "a": "2b3cfc37c3098bcedc24580bef53f46f5bff01244c52ab5f8b7e63b80b8f4382"
+   },
+   "d35": {
+    "a": "ee4194c242d424ac6e6e9e0f73b8c88d7a7eb46f250056cdc0e18a3089e01a46"
+   },
+   "d36": {
+    "a": "7f180eb2db4ac3204397d5ca65b76582ff476df35278257137a3391a2dce866a"
+   },
+   "d37": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d38": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d39": {
+    "a": "4a15642f8174792de60c068c366271c9e635cd9fa5b7947a71ab17ace6075efe"
+   },
+   "d40": {
+    "a": "f89f8beec0e58962aeafe4c12fff8767ef4c0cbc89124110415b30eaca6124a0"
+   },
+   "d41": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5",
+    "old": "0e1ef2cc1d2fbb126ef89e1120cff223386d6c2623743993095b9761abcc289f"
+   },
+   "d42": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d43": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d44": {
+    "a": "e54816046f57b928f6f978256b8c7e97ce4815c4a693989fb33b5d476c8365d5"
+   },
+   "d45": {
+    "book": "9cd64e1e1e945ce47fb795ebd7c33820989ccd9abfa2e7e3ebc33fe39d10822a"
+   },
+   "d46": {
+    "book": "9cd64e1e1e945ce47fb795ebd7c33820989ccd9abfa2e7e3ebc33fe39d10822a"
+   },
+   "d47": {
+    "a": "20a1f9432fbfe4083f33f147ac1c13e26ef99ea7c75b1306cf65e02ccf76b684"
+   },
+   "d48": {
+    "a": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "d49": {
+    "eoc": "2b57b6113b6194b925a1dec85cf9178acc1b5f7ba56e560b697cc381061d01f6",
+    "sb": "27da5ab954481a3ba9f223f795df76c6ee80d0e30aa430824b0d9c5c144d45a5"
+   },
+   "p01": {
+    "a": "cde86a0f33fb0479f210c60f290869a681827a323fc96b32e53156963b21486b"
+   },
+   "p02": {
+    "a": "1f76e15306d51a080ad76b6a8d093122b488732fdf15a6fd26d5a27aa39fcb85"
+   },
+   "p04": {
+    "a": "0aaaea5354b015435b816dc99d1e7a185bb0137aa58e5b0bd6d1dee5cc1e94ba"
+   },
+   "p07": {
+    "a": "d567467e72860594ebabf048c355ef35c480181be60f7ea069734342530fa832"
+   }
+  },
+  "policy": {
+   "check_contrary": true,
+   "check_effective_dates": true,
+   "check_plan_year": true,
+   "require_support": true,
+   "unknown_blocks": true,
+   "unknown_dates_block": false
+  },
+  "rows": [
+   {
+    "author": "builder",
+    "case_id": "d01",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "supported"
+   },
+   {
+    "author": "builder",
+    "case_id": "d02",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "outpatient_surgery": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "supported"
+   },
+   {
+    "author": "builder",
+    "case_id": "d03",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "medical_deductible": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "supported_zero"
+   },
+   {
+    "author": "builder",
+    "case_id": "d04",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "inpatient_stay": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "supported_condition"
+   },
+   {
+    "author": "builder",
+    "case_id": "d05",
+    "correct": true,
+    "expected": "contradicted",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "contradicted",
+    "predicted_parts": {
+     "specialist_copay": "contradicted"
+    },
+    "split": "dev",
+    "taxonomy": "contradicted"
+   },
+   {
+    "author": "builder",
+    "case_id": "d06",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "specialist_copay": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "absent_evidence"
+   },
+   {
+    "author": "builder",
+    "case_id": "d07",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "medical_deductible": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "missing_vs_zero"
+   },
+   {
+    "author": "builder",
+    "case_id": "d08",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "specialist_copay": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_page"
+   },
+   {
+    "author": "builder",
+    "case_id": "d09",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "specialist_copay": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_offset"
+   },
+   {
+    "author": "builder",
+    "case_id": "d10",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "specialist_copay": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "fabricated_quote"
+   },
+   {
+    "author": "builder",
+    "case_id": "d11",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "dental_allowance": "insufficient_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "extrapolated"
+   },
+   {
+    "author": "builder",
+    "case_id": "d12",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_plan"
+   },
+   {
+    "author": "builder",
+    "case_id": "d13",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "dev",
+    "taxonomy": "wrong_year"
+   },
+   {
+    "author": "builder",
+    "case_id": "d14",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "dev",
+    "taxonomy": "effective_date"
+   },
+   {
+    "author": "builder",
+    "case_id": "d15",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "dev",
+    "taxonomy": "superseded"
+   },
+   {
+    "author": "builder",
+    "case_id": "d16",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "dev",
+    "taxonomy": "amendment_not_yet"
+   },
+   {
+    "author": "builder",
+    "case_id": "d17",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "dev",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "d18",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "table_header"
+   },
+   {
+    "author": "builder",
+    "case_id": "d19",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "otc_allowance": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "units_period"
+   },
+   {
+    "author": "builder",
+    "case_id": "d20",
+    "correct": true,
+    "expected": "contradicted",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "contradicted",
+    "predicted_parts": {
+     "outpatient_surgery": "contradicted"
+    },
+    "split": "dev",
+    "taxonomy": "value_kind"
+   },
+   {
+    "author": "builder",
+    "case_id": "d21",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "network"
+   },
+   {
+    "author": "builder",
+    "case_id": "d22",
+    "correct": true,
+    "expected": "contradicted",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "contradicted",
+    "predicted_parts": {
+     "dental_allowance": "contradicted"
+    },
+    "split": "dev",
+    "taxonomy": "negation"
+   },
+   {
+    "author": "builder",
+    "case_id": "d23",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "exception"
+   },
+   {
+    "author": "builder",
+    "case_id": "d24",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "dental_allowance": "needs_human_review"
+    },
+    "split": "dev",
+    "taxonomy": "shared_allowance"
+   },
+   {
+    "author": "builder",
+    "case_id": "d25",
+    "correct": true,
+    "expected": "contradicted",
+    "expected_parts": {
+     "monthly_premium": "supported",
+     "specialist_copay": "contradicted"
+    },
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "contradicted",
+    "predicted_parts": {
+     "monthly_premium": "supported",
+     "specialist_copay": "contradicted"
+    },
+    "split": "regression",
+    "taxonomy": "compound_partial"
+   },
+   {
+    "author": "builder",
+    "case_id": "d26",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {
+     "dental_allowance": "insufficient_evidence",
+     "monthly_premium": "supported"
+    },
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "dental_allowance": "insufficient_evidence",
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "compound_partial"
+   },
+   {
+    "author": "builder",
+    "case_id": "d27",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "unavailable_source"
+   },
+   {
+    "author": "builder",
+    "case_id": "d28",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "truncated_artifact"
+   },
+   {
+    "author": "builder",
+    "case_id": "d29",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "malformed_artifact"
+   },
+   {
+    "author": "builder",
+    "case_id": "d30",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "monthly_premium": "insufficient_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "absent_evidence"
+   },
+   {
+    "author": "builder",
+    "case_id": "d31",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "unavailable_source"
+   },
+   {
+    "author": "builder",
+    "case_id": "d32",
+    "correct": true,
+    "expected": "contradicted",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "contradicted",
+    "predicted_parts": {
+     "dental_allowance": "contradicted"
+    },
+    "split": "regression",
+    "taxonomy": "prompt_injection"
+   },
+   {
+    "author": "builder",
+    "case_id": "d33",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "moop_in_network": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "multi_amount"
+   },
+   {
+    "author": "builder",
+    "case_id": "d34",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "emergency_room": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "builder",
+    "case_id": "d35",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "duplicate_rows"
+   },
+   {
+    "author": "builder",
+    "case_id": "d36",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "unknown_applicability"
+   },
+   {
+    "author": "builder",
+    "case_id": "d37",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "p": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "untyped_claim"
+   },
+   {
+    "author": "builder",
+    "case_id": "d38",
+    "correct": true,
+    "expected": "unverifiable",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "unverifiable",
+    "predicted_parts": {
+     "monthly_premium": "unverifiable"
+    },
+    "split": "regression",
+    "taxonomy": "hash_mismatch"
+   },
+   {
+    "author": "builder",
+    "case_id": "d39",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "otc_allowance": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_period"
+   },
+   {
+    "author": "builder",
+    "case_id": "d40",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "drug_tier_2": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_tier"
+   },
+   {
+    "author": "builder",
+    "case_id": "d41",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "supported_second_source"
+   },
+   {
+    "author": "builder",
+    "case_id": "d42",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "text_overstates"
+   },
+   {
+    "author": "builder",
+    "case_id": "d43",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "text_mismatch"
+   },
+   {
+    "author": "builder",
+    "case_id": "d44",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "specialist_copay": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "pdf_cms_conflict"
+   },
+   {
+    "author": "builder",
+    "case_id": "d45",
+    "correct": true,
+    "expected": "inapplicable_version",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "inapplicable_version",
+    "predicted_parts": {
+     "monthly_premium": "inapplicable_version"
+    },
+    "split": "regression",
+    "taxonomy": "booklet_pages"
+   },
+   {
+    "author": "builder",
+    "case_id": "d46",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "booklet_pages"
+   },
+   {
+    "author": "builder",
+    "case_id": "d47",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "anoc_two_years"
+   },
+   {
+    "author": "builder",
+    "case_id": "d48",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "regression",
+    "taxonomy": "printed_page"
+   },
+   {
+    "author": "builder",
+    "case_id": "d49",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "regression",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c01",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "negation"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c02",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "exception"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c03",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "network"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c04",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "otc_allowance": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "shared_allowance"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c05",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "otc_allowance": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "units_period"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c06",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "multi_amount"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c07",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c08",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "inpatient_stay": "needs_human_review"
+    },
+    "split": "challenge",
+    "taxonomy": "multi_amount"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c09",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "monthly_premium": "insufficient_evidence"
+    },
+    "split": "challenge",
+    "taxonomy": "fabricated_quote"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c10",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "challenge",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c11",
+    "correct": true,
+    "expected": "contradicted",
+    "expected_parts": {
+     "dental_allowance": "unverifiable",
+     "monthly_premium": "supported",
+     "specialist_copay": "contradicted"
+    },
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "contradicted",
+    "predicted_parts": {
+     "dental_allowance": "unverifiable",
+     "monthly_premium": "supported",
+     "specialist_copay": "contradicted"
+    },
+    "split": "challenge",
+    "taxonomy": "compound_partial"
+   },
+   {
+    "author": "astra-design-reviewer",
+    "case_id": "c12",
+    "correct": true,
+    "expected": "supported",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "supported",
+    "predicted_parts": {
+     "monthly_premium": "supported"
+    },
+    "split": "challenge",
+    "taxonomy": "supported_zero"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A1",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "monthly_premium": "needs_human_review",
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge-2",
+    "taxonomy": "compound_swapped"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A2",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge-2",
+    "taxonomy": "units_period"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A3",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "challenge-2",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A4",
+    "correct": true,
+    "expected": "insufficient_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "insufficient_evidence",
+    "predicted_parts": {
+     "medical_deductible": "insufficient_evidence"
+    },
+    "split": "challenge-2",
+    "taxonomy": "wrong_section"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A5",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "challenge-2",
+    "taxonomy": "source_conflict"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "A6",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "monthly_premium": "conflicting_evidence"
+    },
+    "split": "challenge-2",
+    "taxonomy": "superseded"
+   },
+   {
+    "author": "builder",
+    "case_id": "p01",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "negation"
+   },
+   {
+    "author": "builder",
+    "case_id": "p02",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "exception"
+   },
+   {
+    "author": "builder",
+    "case_id": "p04",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "otc_allowance": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "shared_allowance"
+   },
+   {
+    "author": "builder",
+    "case_id": "p07",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist_copay": "needs_human_review"
+    },
+    "split": "regression",
+    "taxonomy": "footnote"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B1",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "premium": "needs_human_review",
+     "specialist": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "compound_swapped"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B2",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "unicode_negation"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B3",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "cross_page_network"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B4",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "specialist": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "qualified_contrary_failed_citation"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B5",
+    "correct": true,
+    "expected": "needs_human_review",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "needs_human_review",
+    "predicted_parts": {
+     "premium": "needs_human_review"
+    },
+    "split": "challenge-3",
+    "taxonomy": "unknown_identity_contrary"
+   },
+   {
+    "author": "astra-quality-reviewer",
+    "case_id": "B6",
+    "correct": true,
+    "expected": "conflicting_evidence",
+    "expected_parts": {},
+    "false_supported": false,
+    "part_false_supported": false,
+    "predicted": "conflicting_evidence",
+    "predicted_parts": {
+     "premium": "conflicting_evidence"
+    },
+    "split": "challenge-3",
+    "taxonomy": "wrong_plan_superseder"
+   }
+  ],
+  "schema_version": "citation-audit-eval-v1",
+  "summary": {
+   "abstention": {
+    "count": 33,
+    "denominator": 77,
+    "rate": 0.4286
+   },
+   "by_split": {
+    "challenge": {
+     "cases": 12,
+     "correct": 12,
+     "false_supported": 0
+    },
+    "challenge-2": {
+     "cases": 6,
+     "correct": 6,
+     "false_supported": 0
+    },
+    "challenge-3": {
+     "cases": 6,
+     "correct": 6,
+     "false_supported": 0
+    },
+    "dev": {
+     "cases": 24,
+     "correct": 24,
+     "false_supported": 0
+    },
+    "regression": {
+     "cases": 29,
+     "correct": 29,
+     "false_supported": 0
+    }
+   },
+   "by_taxonomy": {
+    "absent_evidence": {
+     "cases": 2,
+     "correct": 2
+    },
+    "amendment_not_yet": {
+     "cases": 1,
+     "correct": 1
+    },
+    "anoc_two_years": {
+     "cases": 1,
+     "correct": 1
+    },
+    "booklet_pages": {
+     "cases": 2,
+     "correct": 2
+    },
+    "compound_partial": {
+     "cases": 3,
+     "correct": 3
+    },
+    "compound_swapped": {
+     "cases": 2,
+     "correct": 2
+    },
+    "contradicted": {
+     "cases": 1,
+     "correct": 1
+    },
+    "cross_page_network": {
+     "cases": 1,
+     "correct": 1
+    },
+    "duplicate_rows": {
+     "cases": 1,
+     "correct": 1
+    },
+    "effective_date": {
+     "cases": 1,
+     "correct": 1
+    },
+    "exception": {
+     "cases": 3,
+     "correct": 3
+    },
+    "extrapolated": {
+     "cases": 1,
+     "correct": 1
+    },
+    "fabricated_quote": {
+     "cases": 2,
+     "correct": 2
+    },
+    "footnote": {
+     "cases": 4,
+     "correct": 4
+    },
+    "hash_mismatch": {
+     "cases": 1,
+     "correct": 1
+    },
+    "malformed_artifact": {
+     "cases": 1,
+     "correct": 1
+    },
+    "missing_vs_zero": {
+     "cases": 1,
+     "correct": 1
+    },
+    "multi_amount": {
+     "cases": 3,
+     "correct": 3
+    },
+    "negation": {
+     "cases": 3,
+     "correct": 3
+    },
+    "network": {
+     "cases": 2,
+     "correct": 2
+    },
+    "pdf_cms_conflict": {
+     "cases": 1,
+     "correct": 1
+    },
+    "printed_page": {
+     "cases": 1,
+     "correct": 1
+    },
+    "prompt_injection": {
+     "cases": 1,
+     "correct": 1
+    },
+    "qualified_contrary_failed_citation": {
+     "cases": 1,
+     "correct": 1
+    },
+    "shared_allowance": {
+     "cases": 3,
+     "correct": 3
+    },
+    "source_conflict": {
+     "cases": 4,
+     "correct": 4
+    },
+    "superseded": {
+     "cases": 2,
+     "correct": 2
+    },
+    "supported": {
+     "cases": 2,
+     "correct": 2
+    },
+    "supported_condition": {
+     "cases": 1,
+     "correct": 1
+    },
+    "supported_period": {
+     "cases": 1,
+     "correct": 1
+    },
+    "supported_second_source": {
+     "cases": 1,
+     "correct": 1
+    },
+    "supported_tier": {
+     "cases": 1,
+     "correct": 1
+    },
+    "supported_zero": {
+     "cases": 2,
+     "correct": 2
+    },
+    "table_header": {
+     "cases": 1,
+     "correct": 1
+    },
+    "text_mismatch": {
+     "cases": 1,
+     "correct": 1
+    },
+    "text_overstates": {
+     "cases": 1,
+     "correct": 1
+    },
+    "truncated_artifact": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unavailable_source": {
+     "cases": 2,
+     "correct": 2
+    },
+    "unicode_negation": {
+     "cases": 1,
+     "correct": 1
+    },
+    "units_period": {
+     "cases": 3,
+     "correct": 3
+    },
+    "unknown_applicability": {
+     "cases": 1,
+     "correct": 1
+    },
+    "unknown_identity_contrary": {
+     "cases": 1,
+     "correct": 1
+    },
+    "untyped_claim": {
+     "cases": 1,
+     "correct": 1
+    },
+    "value_kind": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_offset": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_page": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_plan": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_plan_superseder": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_section": {
+     "cases": 1,
+     "correct": 1
+    },
+    "wrong_year": {
+     "cases": 1,
+     "correct": 1
+    }
+   },
+   "cases": 77,
+   "conflict_detection": {
+    "count": 7,
+    "denominator": 7,
+    "rate": 1.0
+   },
+   "confusion": {
+    "conflicting_evidence -> conflicting_evidence": 7,
+    "contradicted -> contradicted": 6,
+    "inapplicable_version -> inapplicable_version": 5,
+    "insufficient_evidence -> insufficient_evidence": 10,
+    "needs_human_review -> needs_human_review": 33,
+    "supported -> supported": 11,
+    "unverifiable -> unverifiable": 5
+   },
+   "exact_agreement": {
+    "count": 77,
+    "denominator": 77,
+    "rate": 1.0
+   },
+   "false_supported": {
+    "count": 0,
+    "denominator": 66,
+    "rate": 0.0,
+    "wilson_95": [
+     0.0,
+     0.055
+    ]
+   },
+   "location_correct": {
+    "count": 6,
+    "denominator": 6,
+    "rate": 1.0
+   },
+   "part_false_supported": {
+    "count": 0,
+    "denominator": 3,
+    "rate": 0.0
+   },
+   "supported_precision": {
+    "count": 11,
+    "denominator": 11,
+    "rate": 1.0
+   },
+   "supported_recall": {
+    "count": 11,
+    "denominator": 11,
+    "rate": 1.0
+   }
+  },
+  "wall_seconds": 0.401
+ },
+ "schema_version": "citation-audit-evidence-v1"
+}

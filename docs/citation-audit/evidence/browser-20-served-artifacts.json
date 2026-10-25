@@ -1,0 +1,18 @@
+[
+  {
+    "file": "audit.json",
+    "http_status": 200,
+    "content_type": "application/json; charset=UTF-8",
+    "bytes": 59626,
+    "sha256": "e75c57551e0014d54df413cfcbe3db4867be649b1c641a62d4194b740213a120",
+    "matches_recorded_artifact": true
+  },
+  {
+    "file": "audit_manifest.json",
+    "http_status": 200,
+    "content_type": "application/json; charset=UTF-8",
+    "bytes": 1982,
+    "sha256": "4c28031bbb07b21f04a549248d38c826fdf781174927435e067c30b1e919097a",
+    "matches_recorded_artifact": true
+  }
+]

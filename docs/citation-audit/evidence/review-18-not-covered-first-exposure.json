@@ -1,0 +1,225 @@
+{
+  "actual": {
+    "claim": {
+      "as_of": null,
+      "claim_id": "R-not-covered-benefit",
+      "parts": [
+        {
+          "benefit": "specialist_copay",
+          "conditions": [
+            "not covered"
+          ],
+          "network": null,
+          "part_id": "specialist",
+          "unit": null,
+          "value": {
+            "kind": "not_covered"
+          }
+        }
+      ],
+      "plan_id": "H9999-001",
+      "sources": [
+        {
+          "document_id": "a",
+          "page": 1,
+          "parts": [],
+          "quote": null,
+          "sha256": null
+        }
+      ],
+      "text": "Insulin is not covered.",
+      "year": 2026
+    },
+    "model_lane": "not_run",
+    "origin": "deterministic_rules_v1",
+    "parts": [
+      {
+        "checks": [
+          {
+            "lane": "deterministic",
+            "location": null,
+            "name": "text_matches_parts",
+            "outcome": "pass",
+            "reason": "the text says what the typed parts say"
+          }
+        ],
+        "contrary": [],
+        "part_id": "specialist",
+        "reasons": [
+          "a cited row states exactly the claimed value in an applicable document"
+        ],
+        "sources": [
+          {
+            "checks": [
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "source_resolves",
+                "outcome": "pass",
+                "reason": "the document is in the run"
+              },
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "hash_matches",
+                "outcome": "pass",
+                "reason": "bytes match the run's SHA-256"
+              },
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "page_in_range",
+                "outcome": "pass",
+                "reason": "page 1 exists"
+              },
+              {
+                "lane": "deterministic",
+                "location": {
+                  "document_id": "a",
+                  "kind": "pdf_page",
+                  "page": 1,
+                  "printed_page": null,
+                  "row": null
+                },
+                "name": "plan_year_matches",
+                "outcome": "pass",
+                "reason": "the document is for 2026"
+              },
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "effective_date_applies",
+                "outcome": "pass",
+                "reason": "the declared dates cover plan year 2026"
+              },
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "not_superseded",
+                "outcome": "pass",
+                "reason": "no document is declared to supersede it"
+              },
+              {
+                "lane": "deterministic",
+                "location": {
+                  "document_id": "a",
+                  "kind": "pdf_page",
+                  "page": 1,
+                  "printed_page": null,
+                  "row": "Specialist visits not covered"
+                },
+                "name": "row_found",
+                "outcome": "pass",
+                "reason": "one row found"
+              },
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "row_in_grammar",
+                "outcome": "pass",
+                "reason": "one value"
+              },
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "network_matches",
+                "outcome": "pass",
+                "reason": "an in-network claim; rows read in-network"
+              },
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "page_has_no_qualifiers",
+                "outcome": "pass",
+                "reason": "no qualifying wording on the page"
+              },
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "value_matches",
+                "outcome": "pass",
+                "reason": "the row states exactly not covered"
+              },
+              {
+                "lane": "deterministic",
+                "location": null,
+                "name": "conditions_present",
+                "outcome": "pass",
+                "reason": "every stated condition is in the row"
+              }
+            ],
+            "source_index": 0,
+            "verdict": "supported"
+          }
+        ],
+        "unknowns": [],
+        "verdict": "supported"
+      }
+    ],
+    "reasons": [
+      "a cited row states exactly the claimed value in an applicable document"
+    ],
+    "uncertainty": "Deterministic rules only; the model lane was not run.",
+    "verdict": "supported"
+  },
+  "case": {
+    "author": "continuation independent AI engine reviewer",
+    "case_id": "R-not-covered-benefit",
+    "claim": {
+      "claim_id": "R-not-covered-benefit",
+      "parts": [
+        {
+          "benefit": "specialist_copay",
+          "conditions": [
+            "not covered"
+          ],
+          "part_id": "specialist",
+          "unit": null,
+          "value": {
+            "kind": "not_covered"
+          }
+        }
+      ],
+      "plan_id": "H9999-001",
+      "sources": [
+        {
+          "document_id": "a",
+          "page": 1
+        }
+      ],
+      "text": "Insulin is not covered.",
+      "year": 2026
+    },
+    "cms_conflicts": [],
+    "documents": [
+      {
+        "document_id": "a",
+        "document_type": "SB",
+        "pages": [
+          [
+            "Specialist visits not covered"
+          ]
+        ],
+        "plan_id": "H9999-001",
+        "year": 2026
+      }
+    ],
+    "meta": [
+      {
+        "document_id": "a",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31"
+      }
+    ],
+    "split": "regression",
+    "taxonomy": "not_covered_decomposition_mismatch"
+  },
+  "code_sha256": "1e66466ca529b849a4a2435dad8fa202122b6c8bff0947dd76f6646e65460f01",
+  "expected": "needs_human_review",
+  "expected_reason": "Text and typed evidence name different benefits; no support for the insulin statement.",
+  "exposure_note": "Independent AI repair-review probe. Initially executed before this saved reproduction; no pre-run freeze claim. Exposed regression, not holdout or human validation.",
+  "pdf_sha256": {
+    "a": "9c423bba403844702f47819f0d37984821c385eab61380e6b74b6b95fc76ba20"
+  },
+  "script_sha256": "79e969daf95f47dd9e14fbcfc35b4e3726c1727bc8b806e8971a463647686bb8"
+}

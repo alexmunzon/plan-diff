@@ -1,0 +1,64 @@
+{
+ "source": "Astra quality review quality-a, run 20261024-230640 (AI-proposed, not human labels)",
+ "first_exposure": [
+  {
+   "case": "A1",
+   "astra_expected": "needs_human_review",
+   "got": "supported",
+   "false_supported": true,
+   "reasons": [
+    "monthly_premium: supported",
+    "specialist_copay: supported",
+    "a cited row states exactly the claimed value in an applicable document"
+   ]
+  },
+  {
+   "case": "A2",
+   "astra_expected": "needs_human_review",
+   "got": "supported",
+   "false_supported": true,
+   "reasons": [
+    "a cited row states exactly the claimed value in an applicable document"
+   ]
+  },
+  {
+   "case": "A3",
+   "astra_expected": "needs_human_review",
+   "got": "supported",
+   "false_supported": true,
+   "reasons": [
+    "a cited row states exactly the claimed value in an applicable document"
+   ]
+  },
+  {
+   "case": "A4",
+   "astra_expected": "insufficient_evidence",
+   "got": "supported",
+   "false_supported": true,
+   "reasons": [
+    "a cited row states exactly the claimed value in an applicable document"
+   ]
+  },
+  {
+   "case": "A5",
+   "astra_expected": "conflicting_evidence",
+   "got": "supported",
+   "false_supported": true,
+   "reasons": [
+    "a cited row states exactly the claimed value in an applicable document",
+    "source 2: the quote is not on the cited page",
+    "source 2: effective dates unknown (not declared); plan year is the only applicability evidence"
+   ]
+  },
+  {
+   "case": "A6",
+   "astra_expected": "conflicting_evidence",
+   "got": "supported",
+   "false_supported": true,
+   "reasons": [
+    "a cited row states exactly the claimed value in an applicable document",
+    "source 1: effective dates unknown (not declared); plan year is the only applicability evidence"
+   ]
+  }
+ ]
+}

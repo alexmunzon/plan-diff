@@ -16,6 +16,10 @@ Unreleased local candidate: `/worklist` adds a browser-only synthetic broker wor
 The optional `advisory evaluate` command emits an offline review sidecar. See
 [scope and commands](docs/unreleased-worklist-advisory.md). These additions are not deployed.
 
+The offline `audit` command checks whether each declared benefit claim is supported by the page it
+cites, in the right plan, year, and version. See the [citation audit runbook](docs/citation-audit.md).
+Synthetic evidence only; not deployed.
+
 The dashboard has Overview, Plan comparison, Changes, Trust, and Documents for two committed runs:
 
 - **Synthetic**, at `/`: four made-up plans, generated PDFs, and CMS-shaped fixtures. Shows known
@@ -133,3 +137,11 @@ Separate demos, shared trust principles. No data is transferred between these ap
 1. [Intake Kit](https://agency-intake-kit.vercel.app): inspect carrier intake and validation
 2. [Bob Resolve](https://bob-resolve-nine.vercel.app): inspect record matching and review
 3. [Plan Diff](https://plan-diff.vercel.app): inspect benefit changes and source evidence
+
+## Development and continuity
+
+The current continuation uses one project session with bounded internal Astra reviews. Read
+the workspace's AGENTS.md, CLAUDE.md and local project state before editing; these local
+coordination notes preserve ownership, approval boundaries and explicit holds. Handoffs carry
+working context without migrating original conversation history. Product architecture and
+reproducible evidence are in the [citation audit runbook](docs/citation-audit.md).
