@@ -1,0 +1,57 @@
+{
+  "schema_version": "citation-audit-cases-v1",
+  "cases": [
+    {
+      "author": "continuation independent AI engine reviewer",
+      "case_id": "R-not-covered-benefit",
+      "claim": {
+        "claim_id": "R-not-covered-benefit",
+        "parts": [
+          {
+            "benefit": "specialist_copay",
+            "conditions": [
+              "not covered"
+            ],
+            "part_id": "specialist",
+            "unit": null,
+            "value": {
+              "kind": "not_covered"
+            }
+          }
+        ],
+        "plan_id": "H9999-001",
+        "sources": [
+          {
+            "document_id": "a",
+            "page": 1
+          }
+        ],
+        "text": "Insulin is not covered.",
+        "year": 2026
+      },
+      "cms_conflicts": [],
+      "documents": [
+        {
+          "document_id": "a",
+          "document_type": "SB",
+          "pages": [
+            [
+              "Specialist visits not covered"
+            ]
+          ],
+          "plan_id": "H9999-001",
+          "year": 2026
+        }
+      ],
+      "meta": [
+        {
+          "document_id": "a",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-12-31"
+        }
+      ],
+      "split": "regression",
+      "taxonomy": "not_covered_decomposition_mismatch"
+    }
+  ]
+}

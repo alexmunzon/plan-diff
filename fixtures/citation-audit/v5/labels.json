@@ -1,0 +1,21 @@
+{
+ "schema_version": "citation-audit-labels-v1",
+ "labels": {
+  "P2R1": {
+   "verdict": "conflicting_evidence",
+   "rationale": "Unknown replacement coverage cannot dismiss the dated disagreement."
+  },
+  "P2R2": {
+   "verdict": "conflicting_evidence",
+   "rationale": "Unknown replacement coverage cannot dismiss the dated disagreement."
+  },
+  "P2R3": {
+   "verdict": "conflicting_evidence",
+   "rationale": "Unknown replacement coverage cannot dismiss the dated disagreement."
+  },
+  "P2R4": {
+   "verdict": "supported",
+   "rationale": "Both declared replacement dates cover the claim's whole year."
+  }
+ }
+}

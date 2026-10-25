@@ -1,0 +1,15 @@
+{
+ "schema_version": "citation-audit-expectations-v1",
+ "extends_sha256": "4a21d3029d73e27df0bc86a99f2b4f3fd742064693385defa4035c508f329e22",
+ "applies_to": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "overrides": {
+  "d15": {
+   "verdict": "needs_human_review",
+   "rationale": "Policy 2 correction from Astra review: the replacement declares only effective_from, so its applicability is unknown and it cannot supersede the cited source."
+  }
+ }
+}

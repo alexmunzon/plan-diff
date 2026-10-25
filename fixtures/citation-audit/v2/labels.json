@@ -1,0 +1,46 @@
+{
+ "schema_version": "citation-audit-labels-v1",
+ "rubric": "../v1/rubric.md",
+ "labels": {
+  "A1": {
+   "verdict": "needs_human_review",
+   "rationale": "The prose binds each amount to the other benefit; typed parts alone cannot certify that wording."
+  },
+  "A2": {
+   "verdict": "needs_human_review",
+   "rationale": "The row states a monthly charge; a per-visit claim is not shown."
+  },
+  "A3": {
+   "verdict": "needs_human_review",
+   "rationale": "The superscript is a footnote marker, not a digit; the row does not state $451."
+  },
+  "A4": {
+   "verdict": "insufficient_evidence",
+   "rationale": "The deductible row sits under the drug benefits heading; no medical deductible row is cited."
+  },
+  "A5": {
+   "verdict": "conflicting_evidence",
+   "rationale": "A bad quote on document b must not hide b's applicable $30 row."
+  },
+  "A6": {
+   "verdict": "conflicting_evidence",
+   "rationale": "A 2027 replacement cannot dismiss a conflicting 2026 document for a 2026 claim."
+  },
+  "p01": {
+   "verdict": "needs_human_review",
+   "rationale": "Plain wording of c01: only the page's negation line can block support."
+  },
+  "p02": {
+   "verdict": "needs_human_review",
+   "rationale": "Plain wording of c02: only the page's exception line can block support."
+  },
+  "p04": {
+   "verdict": "needs_human_review",
+   "rationale": "Plain wording of c04: only the shared-balance heading can block support."
+  },
+  "p07": {
+   "verdict": "needs_human_review",
+   "rationale": "Plain wording of c07: only the footnote marker can block support."
+  }
+ }
+}

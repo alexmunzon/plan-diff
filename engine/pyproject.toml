@@ -48,4 +48,4 @@ files = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["tests"]  # so tests can import pdf_factory
+pythonpath = ["tests", "src"]  # tests import pdf_factory; src works even if a hidden .pth is skipped

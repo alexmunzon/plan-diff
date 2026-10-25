@@ -13,6 +13,8 @@ from plan_diff import __version__
 from plan_diff import fetch as fetching
 from plan_diff import run as running
 from plan_diff.advisory_cli import app as advisory_app
+from plan_diff.audit.evidence import AuditRefused
+from plan_diff.audit.runner import AuditOptions, audit
 from plan_diff.cms import CmsFileError
 from plan_diff.cms.unzip import UnzipRefused, unzip_cms
 from plan_diff.integration_cli import app as integration_app
@@ -134,6 +136,47 @@ def run_command(
     typer.echo(f"wrote {folder}")
     for line in running.summary(folder):
         typer.echo(line)
+
+
+@app.command("audit")
+def audit_command(
+    claims: Annotated[Path, typer.Option(help="Claims file (citation-claims-v1 JSON).")],
+    run: Annotated[Path, typer.Option(help="Run folder; its manifest names each PDF and hash.")],
+    docs: Annotated[Path, typer.Option(help="Folder of the PDFs that run read.")],
+    out: Annotated[Path, typer.Option(help="Folder that holds audit folders.")] = Path("audits"),
+    audit_id: Annotated[str, typer.Option("--audit-id", help="Name of this audit's folder.")] = "",
+    meta: Annotated[
+        Path | None, typer.Option(help="Evidence metadata: effective dates, supersession.")
+    ] = None,
+    now: Annotated[
+        str | None, typer.Option(help="Freeze the clock (ISO time with zone) for a repeatable run.")
+    ] = None,
+) -> None:
+    """Check whether each claim's cited evidence supports it. Offline; no model is called."""
+    frozen = datetime.fromisoformat(now) if now else None
+    if frozen is not None and frozen.tzinfo is None:
+        typer.echo("refused: --now needs a time zone, for example 2026-10-05T12:00:00+00:00")
+        raise typer.Exit(2)
+    clock = (lambda: frozen) if frozen is not None else (lambda: datetime.now(UTC))
+    options = AuditOptions(
+        claims=claims,
+        docs=docs,
+        out=out,
+        audit_id=audit_id or (frozen or datetime.now(UTC)).strftime("%Y%m%dT%H%M%SZ"),
+        run=run,
+        meta=meta,
+    )
+    try:
+        command = ["plan-diff", "audit", "--claims", str(claims), "--run", str(run)]
+        command += ["--docs", str(docs), "--out", str(out), "--audit-id", options.audit_id]
+        command += [*(["--meta", str(meta)] if meta else []), *(["--now", now] if now else [])]
+        folder = audit(options, clock, command=command)
+    except AuditRefused as err:  # anything else is a bug: fail loudly
+        typer.echo(f"refused: {err}")
+        raise typer.Exit(1) from None
+    typer.echo(f"wrote {folder}")
+    verdicts = json.loads((folder / "audit_manifest.json").read_text())["verdicts"]
+    typer.echo(", ".join(f"{k} {v}" for k, v in verdicts.items() if v))
 
 
 @app.command("unzip-cms")

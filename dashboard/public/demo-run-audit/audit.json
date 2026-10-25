@@ -1,0 +1,1707 @@
+{
+  "schema_version": "citation-audit-v1",
+  "audit_id": "demo-audit",
+  "data_kind": "synthetic",
+  "run_id": "demo",
+  "policy": {
+    "require_support": true,
+    "check_plan_year": true,
+    "check_effective_dates": true,
+    "check_contrary": true,
+    "unknown_blocks": true,
+    "unknown_dates_block": true
+  },
+  "documents": [
+    {
+      "document_id": "H9999-001_2026_SB",
+      "sha256": "05038d3690dcf5e67df30d6434ff4bc8dbc078ea9c19707e4e88f7bb582b5eed",
+      "size_bytes": 2946,
+      "page_count": 2,
+      "page_index": "1-based physical page",
+      "plan_id": "H9999-001",
+      "year": 2026,
+      "document_type": "SB",
+      "readable": true,
+      "problem": null,
+      "meta": {
+        "document_id": "H9999-001_2026_SB",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "supersedes": [],
+        "printed_page_labels": {},
+        "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+      }
+    },
+    {
+      "document_id": "H9999-001_2027_SB",
+      "sha256": "b3274c657d444eee45f19d35db0e4ad573776392d0d361e936ff414bbca40124",
+      "size_bytes": 2950,
+      "page_count": 2,
+      "page_index": "1-based physical page",
+      "plan_id": "H9999-001",
+      "year": 2027,
+      "document_type": "SB",
+      "readable": true,
+      "problem": null,
+      "meta": {
+        "document_id": "H9999-001_2027_SB",
+        "effective_from": "2027-01-01",
+        "effective_to": "2027-12-31",
+        "supersedes": [],
+        "printed_page_labels": {},
+        "note": "Synthetic demo SB; its own page 1 prints January 1, 2027 to December 31, 2027."
+      }
+    },
+    {
+      "document_id": "H9999-002_2026_SB",
+      "sha256": "f238001ab23c69bdbf0846ec4d55d60e0eec9055647a5d746bb7d4255b11da95",
+      "size_bytes": 2950,
+      "page_count": 2,
+      "page_index": "1-based physical page",
+      "plan_id": "H9999-002",
+      "year": 2026,
+      "document_type": "SB",
+      "readable": true,
+      "problem": null,
+      "meta": {
+        "document_id": "H9999-002_2026_SB",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "supersedes": [],
+        "printed_page_labels": {},
+        "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+      }
+    },
+    {
+      "document_id": "H9999-003_2026_SB",
+      "sha256": "946dd2ac4505d81ac6f7eda76efd5762278aca31e07ff96541074645574081b1",
+      "size_bytes": 2953,
+      "page_count": 2,
+      "page_index": "1-based physical page",
+      "plan_id": "H9999-003",
+      "year": 2026,
+      "document_type": "SB",
+      "readable": true,
+      "problem": null,
+      "meta": {
+        "document_id": "H9999-003_2026_SB",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "supersedes": [],
+        "printed_page_labels": {},
+        "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+      }
+    },
+    {
+      "document_id": "H9999-004_2026_SB",
+      "sha256": "eb1c44d4189099a5f0ca17675faa8b0bd903c2d8c4f745ed387daeea65180ad5",
+      "size_bytes": 2952,
+      "page_count": 2,
+      "page_index": "1-based physical page",
+      "plan_id": "H9999-004",
+      "year": 2026,
+      "document_type": "SB",
+      "readable": true,
+      "problem": null,
+      "meta": {
+        "document_id": "H9999-004_2026_SB",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "supersedes": [],
+        "printed_page_labels": {},
+        "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+      }
+    },
+    {
+      "document_id": "H9999-004_2027_SB",
+      "sha256": "47f556ccbe356c2d489b5428283ff170cfc45b7d507e4859e9b3bb6b067d201d",
+      "size_bytes": 2961,
+      "page_count": 2,
+      "page_index": "1-based physical page",
+      "plan_id": "H9999-004",
+      "year": 2027,
+      "document_type": "SB",
+      "readable": true,
+      "problem": null,
+      "meta": {
+        "document_id": "H9999-004_2027_SB",
+        "effective_from": "2027-01-01",
+        "effective_to": "2027-12-31",
+        "supersedes": [],
+        "printed_page_labels": {},
+        "note": "Synthetic demo SB; its own page 1 prints January 1, 2027 to December 31, 2027."
+      }
+    },
+    {
+      "document_id": "unlabeled_2026_SB",
+      "sha256": "016a16aa4faf2c1d631fda6acffacfa3e223a4fa0670fa42fe6fa4e0bcf5386b",
+      "size_bytes": 2949,
+      "page_count": 2,
+      "page_index": "1-based physical page",
+      "plan_id": null,
+      "year": 2026,
+      "document_type": "SB",
+      "readable": true,
+      "problem": null,
+      "meta": {
+        "document_id": "unlabeled_2026_SB",
+        "effective_from": "2026-01-01",
+        "effective_to": "2026-12-31",
+        "supersedes": [],
+        "printed_page_labels": {},
+        "note": "Synthetic demo SB; its own page 1 prints January 1, 2026 to December 31, 2026."
+      }
+    }
+  ],
+  "claims": [
+    {
+      "claim": {
+        "claim_id": "demo-01-premium-2027",
+        "text": "Gold HMO (H9999-001) premium is $25 per month in 2027.",
+        "plan_id": "H9999-001",
+        "year": 2027,
+        "as_of": null,
+        "parts": [
+          {
+            "part_id": "monthly_premium",
+            "benefit": "monthly_premium",
+            "value": {
+              "kind": "money",
+              "amount": "25.00"
+            },
+            "unit": "per_month",
+            "network": null,
+            "conditions": []
+          }
+        ],
+        "sources": [
+          {
+            "document_id": "H9999-001_2027_SB",
+            "page": 1,
+            "quote": "Monthly plan premium $25 per month",
+            "sha256": null,
+            "parts": []
+          }
+        ]
+      },
+      "verdict": "supported",
+      "reasons": [
+        "a cited row states exactly the claimed value in an applicable document"
+      ],
+      "parts": [
+        {
+          "part_id": "monthly_premium",
+          "checks": [
+            {
+              "name": "text_matches_parts",
+              "lane": "deterministic",
+              "outcome": "pass",
+              "reason": "the text says what the typed parts say",
+              "location": null
+            }
+          ],
+          "verdict": "supported",
+          "reasons": [
+            "a cited row states exactly the claimed value in an applicable document"
+          ],
+          "sources": [
+            {
+              "source_index": 0,
+              "verdict": "supported",
+              "checks": [
+                {
+                  "name": "source_resolves",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is in the run",
+                  "location": null
+                },
+                {
+                  "name": "hash_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "bytes match the run's SHA-256",
+                  "location": null
+                },
+                {
+                  "name": "page_in_range",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "page 1 exists",
+                  "location": null
+                },
+                {
+                  "name": "quote_on_page",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the quote is on the cited page",
+                  "location": null
+                },
+                {
+                  "name": "plan_year_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is for 2027",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2027_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "effective_date_applies",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the declared dates cover plan year 2027",
+                  "location": null
+                },
+                {
+                  "name": "not_superseded",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no document is declared to supersede it",
+                  "location": null
+                },
+                {
+                  "name": "row_found",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one row found",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2027_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": "Monthly plan premium $25 per month"
+                  }
+                },
+                {
+                  "name": "quote_covers_row",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the quote contains the row",
+                  "location": null
+                },
+                {
+                  "name": "row_in_grammar",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one value",
+                  "location": null
+                },
+                {
+                  "name": "network_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "an in-network claim; rows read in-network",
+                  "location": null
+                },
+                {
+                  "name": "page_has_no_qualifiers",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no qualifying wording on the page",
+                  "location": null
+                },
+                {
+                  "name": "value_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the row states exactly $25.00 per month",
+                  "location": null
+                }
+              ]
+            }
+          ],
+          "contrary": [],
+          "unknowns": []
+        }
+      ],
+      "origin": "deterministic_rules_v1",
+      "model_lane": "not_run",
+      "uncertainty": "Deterministic rules only; the model lane was not run."
+    },
+    {
+      "claim": {
+        "claim_id": "demo-02-premium-wrong-year",
+        "text": "Gold HMO (H9999-001) premium is $25 per month in 2026.",
+        "plan_id": "H9999-001",
+        "year": 2026,
+        "as_of": null,
+        "parts": [
+          {
+            "part_id": "monthly_premium",
+            "benefit": "monthly_premium",
+            "value": {
+              "kind": "money",
+              "amount": "25.00"
+            },
+            "unit": "per_month",
+            "network": null,
+            "conditions": []
+          }
+        ],
+        "sources": [
+          {
+            "document_id": "H9999-001_2027_SB",
+            "page": 1,
+            "quote": "Monthly plan premium $25 per month",
+            "sha256": null,
+            "parts": []
+          }
+        ]
+      },
+      "verdict": "inapplicable_version",
+      "reasons": [
+        "the cited evidence is for another plan, year, booklet, or version",
+        "source 1: document is H9999-001 2027; claim is H9999-001 2026",
+        "source 1: plan year 2026 is outside the document's declared effective dates",
+        "other evidence H9999-001_2026_SB page 1: reads $0.00 per month",
+        "other evidence unlabeled_2026_SB page 1: reads $0.00 per month; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply"
+      ],
+      "parts": [
+        {
+          "part_id": "monthly_premium",
+          "checks": [
+            {
+              "name": "text_matches_parts",
+              "lane": "deterministic",
+              "outcome": "pass",
+              "reason": "the text says what the typed parts say",
+              "location": null
+            }
+          ],
+          "verdict": "inapplicable_version",
+          "reasons": [
+            "the cited evidence is for another plan, year, booklet, or version",
+            "source 1: document is H9999-001 2027; claim is H9999-001 2026",
+            "source 1: plan year 2026 is outside the document's declared effective dates",
+            "other evidence H9999-001_2026_SB page 1: reads $0.00 per month",
+            "other evidence unlabeled_2026_SB page 1: reads $0.00 per month; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply"
+          ],
+          "sources": [
+            {
+              "source_index": 0,
+              "verdict": "inapplicable_version",
+              "checks": [
+                {
+                  "name": "source_resolves",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is in the run",
+                  "location": null
+                },
+                {
+                  "name": "hash_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "bytes match the run's SHA-256",
+                  "location": null
+                },
+                {
+                  "name": "page_in_range",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "page 1 exists",
+                  "location": null
+                },
+                {
+                  "name": "quote_on_page",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the quote is on the cited page",
+                  "location": null
+                },
+                {
+                  "name": "plan_year_matches",
+                  "lane": "deterministic",
+                  "outcome": "fail",
+                  "reason": "document is H9999-001 2027; claim is H9999-001 2026",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2027_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "effective_date_applies",
+                  "lane": "deterministic",
+                  "outcome": "fail",
+                  "reason": "plan year 2026 is outside the document's declared effective dates",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2027_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "not_superseded",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no document is declared to supersede it",
+                  "location": null
+                },
+                {
+                  "name": "row_found",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one row found",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2027_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": "Monthly plan premium $25 per month"
+                  }
+                },
+                {
+                  "name": "quote_covers_row",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the quote contains the row",
+                  "location": null
+                },
+                {
+                  "name": "row_in_grammar",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one value",
+                  "location": null
+                },
+                {
+                  "name": "network_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "an in-network claim; rows read in-network",
+                  "location": null
+                },
+                {
+                  "name": "page_has_no_qualifiers",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no qualifying wording on the page",
+                  "location": null
+                },
+                {
+                  "name": "value_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the row states exactly $25.00 per month",
+                  "location": null
+                }
+              ]
+            }
+          ],
+          "contrary": [
+            {
+              "location": {
+                "kind": "pdf_page",
+                "document_id": "H9999-001_2026_SB",
+                "page": 1,
+                "printed_page": null,
+                "row": "Monthly plan premium $0 per month"
+              },
+              "reason": "reads $0.00 per month",
+              "dismissed": null
+            },
+            {
+              "location": {
+                "kind": "pdf_page",
+                "document_id": "unlabeled_2026_SB",
+                "page": 1,
+                "printed_page": null,
+                "row": "Monthly plan premium $0 per month"
+              },
+              "reason": "reads $0.00 per month; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply",
+              "dismissed": null
+            }
+          ],
+          "unknowns": []
+        }
+      ],
+      "origin": "deterministic_rules_v1",
+      "model_lane": "not_run",
+      "uncertainty": "Deterministic rules only; the model lane was not run."
+    },
+    {
+      "claim": {
+        "claim_id": "demo-03-specialist",
+        "text": "A Gold HMO specialist visit costs $45 per visit in 2026.",
+        "plan_id": "H9999-001",
+        "year": 2026,
+        "as_of": null,
+        "parts": [
+          {
+            "part_id": "specialist_copay",
+            "benefit": "specialist_copay",
+            "value": {
+              "kind": "copay",
+              "amount": "45.00"
+            },
+            "unit": "per_visit",
+            "network": null,
+            "conditions": []
+          }
+        ],
+        "sources": [
+          {
+            "document_id": "H9999-001_2026_SB",
+            "page": 1,
+            "quote": null,
+            "sha256": null,
+            "parts": []
+          }
+        ]
+      },
+      "verdict": "conflicting_evidence",
+      "reasons": [
+        "a cited row supports the part, but other applicable evidence reads differently and no explicit metadata says which controls",
+        "other evidence pbp_b7_health_prof.txt row 1: the run recorded a CMS mismatch: values differ"
+      ],
+      "parts": [
+        {
+          "part_id": "specialist_copay",
+          "checks": [
+            {
+              "name": "text_matches_parts",
+              "lane": "deterministic",
+              "outcome": "pass",
+              "reason": "the text says what the typed parts say",
+              "location": null
+            }
+          ],
+          "verdict": "conflicting_evidence",
+          "reasons": [
+            "a cited row supports the part, but other applicable evidence reads differently and no explicit metadata says which controls",
+            "other evidence pbp_b7_health_prof.txt row 1: the run recorded a CMS mismatch: values differ"
+          ],
+          "sources": [
+            {
+              "source_index": 0,
+              "verdict": "supported",
+              "checks": [
+                {
+                  "name": "source_resolves",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is in the run",
+                  "location": null
+                },
+                {
+                  "name": "hash_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "bytes match the run's SHA-256",
+                  "location": null
+                },
+                {
+                  "name": "page_in_range",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "page 1 exists",
+                  "location": null
+                },
+                {
+                  "name": "plan_year_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is for 2026",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "effective_date_applies",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the declared dates cover plan year 2026",
+                  "location": null
+                },
+                {
+                  "name": "not_superseded",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no document is declared to supersede it",
+                  "location": null
+                },
+                {
+                  "name": "row_found",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one row found",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": "Specialist visit $45 per visit"
+                  }
+                },
+                {
+                  "name": "row_in_grammar",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one value",
+                  "location": null
+                },
+                {
+                  "name": "network_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "an in-network claim; rows read in-network",
+                  "location": null
+                },
+                {
+                  "name": "page_has_no_qualifiers",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no qualifying wording on the page",
+                  "location": null
+                },
+                {
+                  "name": "value_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the row states exactly $45.00 per visit",
+                  "location": null
+                }
+              ]
+            }
+          ],
+          "contrary": [
+            {
+              "location": {
+                "kind": "cms_row",
+                "document_id": "pbp_b7_health_prof.txt",
+                "page": 1,
+                "printed_page": null,
+                "row": "values differ"
+              },
+              "reason": "the run recorded a CMS mismatch: values differ",
+              "dismissed": null
+            }
+          ],
+          "unknowns": []
+        }
+      ],
+      "origin": "deterministic_rules_v1",
+      "model_lane": "not_run",
+      "uncertainty": "Deterministic rules only; the model lane was not run."
+    },
+    {
+      "claim": {
+        "claim_id": "demo-04-platinum-moop",
+        "text": "Platinum HMO (H9999-004) in-network maximum out-of-pocket is $3,400 per year in 2027.",
+        "plan_id": "H9999-004",
+        "year": 2027,
+        "as_of": null,
+        "parts": [
+          {
+            "part_id": "moop_in_network",
+            "benefit": "moop_in_network",
+            "value": {
+              "kind": "money",
+              "amount": "3400.00"
+            },
+            "unit": "per_year",
+            "network": null,
+            "conditions": [
+              "in-network"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "document_id": "H9999-004_2027_SB",
+            "page": 1,
+            "quote": null,
+            "sha256": null,
+            "parts": []
+          }
+        ]
+      },
+      "verdict": "needs_human_review",
+      "reasons": [
+        "the cited evidence may support the part, but only a person can tell",
+        "source 1: the row holds more than one value or an unclear unit",
+        "source 1: not in the row: ['in-network']",
+        "other evidence H9999-004_2027_SB page 1: reads $3400.00 per year; a person must judge it: the row holds more than one value or an unclear unit"
+      ],
+      "parts": [
+        {
+          "part_id": "moop_in_network",
+          "checks": [
+            {
+              "name": "text_matches_parts",
+              "lane": "deterministic",
+              "outcome": "pass",
+              "reason": "the text says what the typed parts say",
+              "location": null
+            }
+          ],
+          "verdict": "needs_human_review",
+          "reasons": [
+            "the cited evidence may support the part, but only a person can tell",
+            "source 1: the row holds more than one value or an unclear unit",
+            "source 1: not in the row: ['in-network']",
+            "other evidence H9999-004_2027_SB page 1: reads $3400.00 per year; a person must judge it: the row holds more than one value or an unclear unit"
+          ],
+          "sources": [
+            {
+              "source_index": 0,
+              "verdict": "needs_human_review",
+              "checks": [
+                {
+                  "name": "source_resolves",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is in the run",
+                  "location": null
+                },
+                {
+                  "name": "hash_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "bytes match the run's SHA-256",
+                  "location": null
+                },
+                {
+                  "name": "page_in_range",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "page 1 exists",
+                  "location": null
+                },
+                {
+                  "name": "plan_year_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is for 2027",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-004_2027_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "effective_date_applies",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the declared dates cover plan year 2027",
+                  "location": null
+                },
+                {
+                  "name": "not_superseded",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no document is declared to supersede it",
+                  "location": null
+                },
+                {
+                  "name": "row_found",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one row found",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-004_2027_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": "Maximum out-of-pocket (in network) $3,400 / $5,900"
+                  }
+                },
+                {
+                  "name": "row_in_grammar",
+                  "lane": "deterministic",
+                  "outcome": "fail",
+                  "reason": "the row holds more than one value or an unclear unit",
+                  "location": null
+                },
+                {
+                  "name": "network_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "an in-network claim; rows read in-network",
+                  "location": null
+                },
+                {
+                  "name": "page_has_no_qualifiers",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no qualifying wording on the page",
+                  "location": null
+                },
+                {
+                  "name": "conditions_present",
+                  "lane": "deterministic",
+                  "outcome": "fail",
+                  "reason": "not in the row: ['in-network']",
+                  "location": null
+                }
+              ]
+            }
+          ],
+          "contrary": [
+            {
+              "location": {
+                "kind": "pdf_page",
+                "document_id": "H9999-004_2027_SB",
+                "page": 1,
+                "printed_page": null,
+                "row": "Maximum out-of-pocket (in network) $3,400 / $5,900"
+              },
+              "reason": "reads $3400.00 per year; a person must judge it: the row holds more than one value or an unclear unit",
+              "dismissed": null
+            }
+          ],
+          "unknowns": []
+        }
+      ],
+      "origin": "deterministic_rules_v1",
+      "model_lane": "not_run",
+      "uncertainty": "Deterministic rules only; the model lane was not run."
+    },
+    {
+      "claim": {
+        "claim_id": "demo-05-dental-wrong-page",
+        "text": "Gold HMO dental allowance is $2,000 per year in 2026.",
+        "plan_id": "H9999-001",
+        "year": 2026,
+        "as_of": null,
+        "parts": [
+          {
+            "part_id": "dental_allowance",
+            "benefit": "dental_allowance",
+            "value": {
+              "kind": "money",
+              "amount": "2000.00"
+            },
+            "unit": "per_year",
+            "network": null,
+            "conditions": []
+          }
+        ],
+        "sources": [
+          {
+            "document_id": "H9999-001_2026_SB",
+            "page": 1,
+            "quote": null,
+            "sha256": null,
+            "parts": []
+          }
+        ]
+      },
+      "verdict": "insufficient_evidence",
+      "reasons": [
+        "the cited location does not hold evidence for the part",
+        "source 1: no dental_allowance row on the page",
+        "other evidence unlabeled_2026_SB page 2: reads $1500.00 per year; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply"
+      ],
+      "parts": [
+        {
+          "part_id": "dental_allowance",
+          "checks": [
+            {
+              "name": "text_matches_parts",
+              "lane": "deterministic",
+              "outcome": "pass",
+              "reason": "the text says what the typed parts say",
+              "location": null
+            }
+          ],
+          "verdict": "insufficient_evidence",
+          "reasons": [
+            "the cited location does not hold evidence for the part",
+            "source 1: no dental_allowance row on the page",
+            "other evidence unlabeled_2026_SB page 2: reads $1500.00 per year; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply"
+          ],
+          "sources": [
+            {
+              "source_index": 0,
+              "verdict": "insufficient_evidence",
+              "checks": [
+                {
+                  "name": "source_resolves",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is in the run",
+                  "location": null
+                },
+                {
+                  "name": "hash_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "bytes match the run's SHA-256",
+                  "location": null
+                },
+                {
+                  "name": "page_in_range",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "page 1 exists",
+                  "location": null
+                },
+                {
+                  "name": "plan_year_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is for 2026",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "effective_date_applies",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the declared dates cover plan year 2026",
+                  "location": null
+                },
+                {
+                  "name": "not_superseded",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no document is declared to supersede it",
+                  "location": null
+                },
+                {
+                  "name": "row_found",
+                  "lane": "deterministic",
+                  "outcome": "fail",
+                  "reason": "no dental_allowance row on the page",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": null
+                  }
+                }
+              ]
+            }
+          ],
+          "contrary": [
+            {
+              "location": {
+                "kind": "pdf_page",
+                "document_id": "unlabeled_2026_SB",
+                "page": 2,
+                "printed_page": null,
+                "row": "Dental allowance $1,500 per year"
+              },
+              "reason": "reads $1500.00 per year; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply",
+              "dismissed": null
+            }
+          ],
+          "unknowns": []
+        }
+      ],
+      "origin": "deterministic_rules_v1",
+      "model_lane": "not_run",
+      "uncertainty": "Deterministic rules only; the model lane was not run."
+    },
+    {
+      "claim": {
+        "claim_id": "demo-06-compound",
+        "text": "Gold HMO premium is $0 per month and Tier 2 generic drugs are $5 per prescription in 2026.",
+        "plan_id": "H9999-001",
+        "year": 2026,
+        "as_of": null,
+        "parts": [
+          {
+            "part_id": "monthly_premium",
+            "benefit": "monthly_premium",
+            "value": {
+              "kind": "money",
+              "amount": "0.00"
+            },
+            "unit": "per_month",
+            "network": null,
+            "conditions": []
+          },
+          {
+            "part_id": "drug_tier_2",
+            "benefit": "drug_tier_2",
+            "value": {
+              "kind": "copay",
+              "amount": "5.00"
+            },
+            "unit": "per_prescription",
+            "network": null,
+            "conditions": []
+          }
+        ],
+        "sources": [
+          {
+            "document_id": "H9999-001_2026_SB",
+            "page": 1,
+            "quote": null,
+            "sha256": null,
+            "parts": [
+              "monthly_premium"
+            ]
+          },
+          {
+            "document_id": "H9999-001_2026_SB",
+            "page": 2,
+            "quote": null,
+            "sha256": null,
+            "parts": [
+              "drug_tier_2"
+            ]
+          }
+        ]
+      },
+      "verdict": "contradicted",
+      "reasons": [
+        "monthly_premium: supported",
+        "drug_tier_2: contradicted",
+        "a cited row states exactly the claimed value in an applicable document",
+        "the cited row in an applicable document states a different value",
+        "source 2: the row states $8.00 per prescription, not $5.00 per prescription"
+      ],
+      "parts": [
+        {
+          "part_id": "monthly_premium",
+          "checks": [
+            {
+              "name": "text_matches_parts",
+              "lane": "deterministic",
+              "outcome": "pass",
+              "reason": "the text says what the typed parts say",
+              "location": null
+            }
+          ],
+          "verdict": "supported",
+          "reasons": [
+            "a cited row states exactly the claimed value in an applicable document"
+          ],
+          "sources": [
+            {
+              "source_index": 0,
+              "verdict": "supported",
+              "checks": [
+                {
+                  "name": "source_resolves",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is in the run",
+                  "location": null
+                },
+                {
+                  "name": "hash_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "bytes match the run's SHA-256",
+                  "location": null
+                },
+                {
+                  "name": "page_in_range",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "page 1 exists",
+                  "location": null
+                },
+                {
+                  "name": "plan_year_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is for 2026",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "effective_date_applies",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the declared dates cover plan year 2026",
+                  "location": null
+                },
+                {
+                  "name": "not_superseded",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no document is declared to supersede it",
+                  "location": null
+                },
+                {
+                  "name": "row_found",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one row found",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": "Monthly plan premium $0 per month"
+                  }
+                },
+                {
+                  "name": "row_in_grammar",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one value",
+                  "location": null
+                },
+                {
+                  "name": "network_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "an in-network claim; rows read in-network",
+                  "location": null
+                },
+                {
+                  "name": "page_has_no_qualifiers",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no qualifying wording on the page",
+                  "location": null
+                },
+                {
+                  "name": "value_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the row states exactly $0.00 per month",
+                  "location": null
+                }
+              ]
+            }
+          ],
+          "contrary": [],
+          "unknowns": []
+        },
+        {
+          "part_id": "drug_tier_2",
+          "checks": [
+            {
+              "name": "text_matches_parts",
+              "lane": "deterministic",
+              "outcome": "pass",
+              "reason": "the text says what the typed parts say",
+              "location": null
+            }
+          ],
+          "verdict": "contradicted",
+          "reasons": [
+            "the cited row in an applicable document states a different value",
+            "source 2: the row states $8.00 per prescription, not $5.00 per prescription"
+          ],
+          "sources": [
+            {
+              "source_index": 1,
+              "verdict": "contradicted",
+              "checks": [
+                {
+                  "name": "source_resolves",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is in the run",
+                  "location": null
+                },
+                {
+                  "name": "hash_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "bytes match the run's SHA-256",
+                  "location": null
+                },
+                {
+                  "name": "page_in_range",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "page 2 exists",
+                  "location": null
+                },
+                {
+                  "name": "plan_year_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is for 2026",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 2,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "effective_date_applies",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the declared dates cover plan year 2026",
+                  "location": null
+                },
+                {
+                  "name": "not_superseded",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no document is declared to supersede it",
+                  "location": null
+                },
+                {
+                  "name": "row_found",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one row found",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 2,
+                    "printed_page": null,
+                    "row": "Tier 2 generic drugs $8 per prescription"
+                  }
+                },
+                {
+                  "name": "row_in_grammar",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one value",
+                  "location": null
+                },
+                {
+                  "name": "network_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "an in-network claim; rows read in-network",
+                  "location": null
+                },
+                {
+                  "name": "page_has_no_qualifiers",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no qualifying wording on the page",
+                  "location": null
+                },
+                {
+                  "name": "value_matches",
+                  "lane": "deterministic",
+                  "outcome": "fail",
+                  "reason": "the row states $8.00 per prescription, not $5.00 per prescription",
+                  "location": null
+                }
+              ]
+            }
+          ],
+          "contrary": [],
+          "unknowns": []
+        }
+      ],
+      "origin": "deterministic_rules_v1",
+      "model_lane": "not_run",
+      "uncertainty": "Deterministic rules only; the model lane was not run."
+    },
+    {
+      "claim": {
+        "claim_id": "demo-07-fabricated-quote",
+        "text": "Gold HMO inpatient stay is $325 per day for days 1 to 5 in 2026.",
+        "plan_id": "H9999-001",
+        "year": 2026,
+        "as_of": null,
+        "parts": [
+          {
+            "part_id": "inpatient_stay",
+            "benefit": "inpatient_stay",
+            "value": {
+              "kind": "copay",
+              "amount": "325.00"
+            },
+            "unit": "per_day",
+            "network": null,
+            "conditions": [
+              "days 1 to 5"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "document_id": "H9999-001_2026_SB",
+            "page": 1,
+            "quote": "Inpatient hospital stay $325 per day, days 1 to 10",
+            "sha256": null,
+            "parts": []
+          }
+        ]
+      },
+      "verdict": "insufficient_evidence",
+      "reasons": [
+        "the cited location does not hold evidence for the part",
+        "source 1: the quote is not on the cited page",
+        "source 1: the quote is not the row that is checked",
+        "other evidence unlabeled_2026_SB page 1: reads $295.00 per day; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply"
+      ],
+      "parts": [
+        {
+          "part_id": "inpatient_stay",
+          "checks": [
+            {
+              "name": "text_matches_parts",
+              "lane": "deterministic",
+              "outcome": "pass",
+              "reason": "the text says what the typed parts say",
+              "location": null
+            }
+          ],
+          "verdict": "insufficient_evidence",
+          "reasons": [
+            "the cited location does not hold evidence for the part",
+            "source 1: the quote is not on the cited page",
+            "source 1: the quote is not the row that is checked",
+            "other evidence unlabeled_2026_SB page 1: reads $295.00 per day; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply"
+          ],
+          "sources": [
+            {
+              "source_index": 0,
+              "verdict": "insufficient_evidence",
+              "checks": [
+                {
+                  "name": "source_resolves",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is in the run",
+                  "location": null
+                },
+                {
+                  "name": "hash_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "bytes match the run's SHA-256",
+                  "location": null
+                },
+                {
+                  "name": "page_in_range",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "page 1 exists",
+                  "location": null
+                },
+                {
+                  "name": "quote_on_page",
+                  "lane": "deterministic",
+                  "outcome": "fail",
+                  "reason": "the quote is not on the cited page",
+                  "location": null
+                },
+                {
+                  "name": "plan_year_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is for 2026",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "effective_date_applies",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the declared dates cover plan year 2026",
+                  "location": null
+                },
+                {
+                  "name": "not_superseded",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no document is declared to supersede it",
+                  "location": null
+                },
+                {
+                  "name": "row_found",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one row found",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-001_2026_SB",
+                    "page": 1,
+                    "printed_page": null,
+                    "row": "Inpatient hospital stay $325 per day, days 1 to 5"
+                  }
+                },
+                {
+                  "name": "quote_covers_row",
+                  "lane": "deterministic",
+                  "outcome": "fail",
+                  "reason": "the quote is not the row that is checked",
+                  "location": null
+                },
+                {
+                  "name": "row_in_grammar",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one value",
+                  "location": null
+                },
+                {
+                  "name": "network_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "an in-network claim; rows read in-network",
+                  "location": null
+                },
+                {
+                  "name": "page_has_no_qualifiers",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no qualifying wording on the page",
+                  "location": null
+                },
+                {
+                  "name": "value_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the row states exactly $325.00 per day",
+                  "location": null
+                },
+                {
+                  "name": "conditions_present",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "every stated condition is in the row",
+                  "location": null
+                }
+              ]
+            }
+          ],
+          "contrary": [
+            {
+              "location": {
+                "kind": "pdf_page",
+                "document_id": "unlabeled_2026_SB",
+                "page": 1,
+                "printed_page": null,
+                "row": "Inpatient hospital stay $295 per day, days 1 to 5"
+              },
+              "reason": "reads $295.00 per day; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply",
+              "dismissed": null
+            }
+          ],
+          "unknowns": []
+        }
+      ],
+      "origin": "deterministic_rules_v1",
+      "model_lane": "not_run",
+      "uncertainty": "Deterministic rules only; the model lane was not run."
+    },
+    {
+      "claim": {
+        "claim_id": "demo-08-otc",
+        "text": "Silver HMO (H9999-002) OTC allowance is $150 per year in 2026.",
+        "plan_id": "H9999-002",
+        "year": 2026,
+        "as_of": null,
+        "parts": [
+          {
+            "part_id": "otc_allowance",
+            "benefit": "otc_allowance",
+            "value": {
+              "kind": "money",
+              "amount": "150.00"
+            },
+            "unit": "per_year",
+            "network": null,
+            "conditions": []
+          }
+        ],
+        "sources": [
+          {
+            "document_id": "H9999-002_2026_SB",
+            "page": 2,
+            "quote": "Over-the-counter (OTC) allowance $150 per year",
+            "sha256": null,
+            "parts": []
+          }
+        ]
+      },
+      "verdict": "needs_human_review",
+      "reasons": [
+        "a cited row supports the part, but another row for it is unclear (its applicability, its wording, or its unit); only a person can tell",
+        "other evidence unlabeled_2026_SB page 2: reads $50.00 per quarter; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply"
+      ],
+      "parts": [
+        {
+          "part_id": "otc_allowance",
+          "checks": [
+            {
+              "name": "text_matches_parts",
+              "lane": "deterministic",
+              "outcome": "pass",
+              "reason": "the text says what the typed parts say",
+              "location": null
+            }
+          ],
+          "verdict": "needs_human_review",
+          "reasons": [
+            "a cited row supports the part, but another row for it is unclear (its applicability, its wording, or its unit); only a person can tell",
+            "other evidence unlabeled_2026_SB page 2: reads $50.00 per quarter; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply"
+          ],
+          "sources": [
+            {
+              "source_index": 0,
+              "verdict": "supported",
+              "checks": [
+                {
+                  "name": "source_resolves",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is in the run",
+                  "location": null
+                },
+                {
+                  "name": "hash_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "bytes match the run's SHA-256",
+                  "location": null
+                },
+                {
+                  "name": "page_in_range",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "page 2 exists",
+                  "location": null
+                },
+                {
+                  "name": "quote_on_page",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the quote is on the cited page",
+                  "location": null
+                },
+                {
+                  "name": "plan_year_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the document is for 2026",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-002_2026_SB",
+                    "page": 2,
+                    "printed_page": null,
+                    "row": null
+                  }
+                },
+                {
+                  "name": "effective_date_applies",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the declared dates cover plan year 2026",
+                  "location": null
+                },
+                {
+                  "name": "not_superseded",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no document is declared to supersede it",
+                  "location": null
+                },
+                {
+                  "name": "row_found",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one row found",
+                  "location": {
+                    "kind": "pdf_page",
+                    "document_id": "H9999-002_2026_SB",
+                    "page": 2,
+                    "printed_page": null,
+                    "row": "Over-the-counter (OTC) allowance $150 per year"
+                  }
+                },
+                {
+                  "name": "quote_covers_row",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the quote contains the row",
+                  "location": null
+                },
+                {
+                  "name": "row_in_grammar",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "one value",
+                  "location": null
+                },
+                {
+                  "name": "network_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "an in-network claim; rows read in-network",
+                  "location": null
+                },
+                {
+                  "name": "page_has_no_qualifiers",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "no qualifying wording on the page",
+                  "location": null
+                },
+                {
+                  "name": "value_matches",
+                  "lane": "deterministic",
+                  "outcome": "pass",
+                  "reason": "the row states exactly $150.00 per year",
+                  "location": null
+                }
+              ]
+            }
+          ],
+          "contrary": [
+            {
+              "location": {
+                "kind": "pdf_page",
+                "document_id": "unlabeled_2026_SB",
+                "page": 2,
+                "printed_page": null,
+                "row": "Over-the-counter (OTC) allowance $50 per quarter"
+              },
+              "reason": "reads $50.00 per quarter; a person must judge it: the document's plan or year is unknown, so it cannot be shown to apply",
+              "dismissed": null
+            }
+          ],
+          "unknowns": []
+        }
+      ],
+      "origin": "deterministic_rules_v1",
+      "model_lane": "not_run",
+      "uncertainty": "Deterministic rules only; the model lane was not run."
+    }
+  ],
+  "counts": {
+    "supported": 1,
+    "contradicted": 1,
+    "insufficient_evidence": 2,
+    "conflicting_evidence": 1,
+    "inapplicable_version": 1,
+    "unverifiable": 0,
+    "needs_human_review": 2,
+    "claims": 8
+  },
+  "notice": "Document review aid only. Deterministic rules check exact typed facts against one cited table row; they are not a general semantic judge, and no model was called. Not coverage adjudication, clinical or legal advice, or a recommendation for any person's plan."
+}
